@@ -1,0 +1,7 @@
+.nurture-directory-main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 80vw;
+    margin: auto;
+}

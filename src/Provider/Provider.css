@@ -1,0 +1,15 @@
+.provider-container {
+    width:31%;
+    min-width:300px;
+    margin: 10px 0;
+    border-radius: 6px;
+    box-shadow: 1px 1px 3px #ccc;
+}
+
+.provider-container label {
+    font-weight: bold;
+}
+
+.provider-overview {
+    font-style: italic;
+}
