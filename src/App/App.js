@@ -15,6 +15,7 @@ function App() {
   });
   const [loading, setLoading] = useState(true);
   async function getProviders() {
+    console.log('change')
     const providers = await fetch(`${process.env.NODE_ENV === 'development' ? "http://localhost:5000/providers": "https://nurture-server.herokuapp.com/providers" }`, {
       mode: 'cors',
       headers: {
