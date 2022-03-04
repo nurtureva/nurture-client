@@ -12,19 +12,20 @@ function App() {
   const [filters, setFilters] = useState({
     certs: [], //get these filters from table (maybe make new column section for available filters)
     services: []
-  })
+  });
   const [loading, setLoading] = useState(true);
   async function getProviders() {
-    const providers = await fetch('http://localhost:5000/providers', {
+    const providers = await fetch(`${process.env.NODE_ENV === 'development' ? "http://localhost:5000/providers": "https://nurture-server.herokuapp.com/providers" }`, {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json'
-      },
-    })
-    return providers.json()
+      }
+    });
+    return providers.json();
   }
 
   useEffect(() => {
+    console.log(process.env.NODE_ENV)
     getProviders()
     .then(res => {
       setProviders(res);
