@@ -1,7 +1,7 @@
-.nurture-directory-main-container {
+.provider-table-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     width: 80vw;
     margin: auto;
 }

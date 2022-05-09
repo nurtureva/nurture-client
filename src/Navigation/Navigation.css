@@ -1,0 +1,29 @@
+.navigation-container {
+    padding: 20px;
+    margin: 0 300px;
+    display: flex;
+}
+
+
+.navigation-container .filters-dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 1;
+    height: 100%;
+}
+
+.navigation-container .ant-input-search {
+    flex: 3 1;
+}
+
+.filters-container .ant-select-multiple {
+    width:100%;
+}
+.filters-container .ant-dropdown-menu-item:last-child span {
+    display: flex;
+    justify-content: flex-end;
+}
+.filters-containter {
+    width:300px;
+}
