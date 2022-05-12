@@ -1,29 +1,38 @@
 .navigation-container {
-    padding: 20px;
-    margin: 0 300px;
-    display: flex;
+  padding: 20px;
+  margin: 0 300px;
+  display: flex;
 }
-
 
 .navigation-container .filters-dropdown {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1 1;
-    height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
 }
 
-.navigation-container .ant-input-search {
-    flex: 3 1;
+.navigation-container .new-provider {
+  font-size: 0.8em;
+  width: 50px;
 }
 
 .filters-container .ant-select-multiple {
-    width:100%;
+  width: 100%;
 }
 .filters-container .ant-dropdown-menu-item:last-child span {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 .filters-containter {
-    width:300px;
+  width: 300px;
+}
+
+.zip-container label {
+  font-size: 0.9em;
+  margin-right: 5px;
+}
+.zip-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
