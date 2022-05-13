@@ -40,12 +40,11 @@ function App() {
   };
 
   async function getProviders() {
-    console.log(process.env);
     const providers = await fetch(
       `${
         process.env.NODE_ENV === 'development'
           ? 'http://localhost:5000/providers'
-          : process.env.BASE_URL + '/providers'
+          : process.env.REACT_APP_BASE_URL + '/providers'
       }`,
       {
         mode: 'cors',
