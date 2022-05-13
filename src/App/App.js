@@ -53,6 +53,7 @@ function App() {
         }
       }
     );
+    console.log(providers);
     return providers.json();
   }
 
