@@ -40,6 +40,7 @@ function App() {
   };
 
   async function getProviders() {
+    console.log(process.env);
     const providers = await fetch(
       `${
         process.env.NODE_ENV === 'development'
