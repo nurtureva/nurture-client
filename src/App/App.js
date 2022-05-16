@@ -41,11 +41,7 @@ function App() {
 
   async function getProviders() {
     const providers = await fetch(
-      `${
-        process.env.NODE_ENV === 'development'
-          ? 'http://localhost:5000/providers'
-          : process.env.REACT_APP_BASE_URL + '/providers'
-      }`,
+      `${process.env.REACT_APP_BASE_URL}/providers`,
       {
         mode: 'cors',
         headers: {
@@ -77,13 +73,11 @@ function App() {
   };
 
   const zipSearch = async () => {
-    const key =
-      'js-zuUj1Y8TUKY7yOgL7f4spjr6CsEp1bikITARNRvJhaRizIM1OtPJ5y2wdNiPwMKK';
     const { value, radius } = filters.zipCode;
     let result;
     try {
       result = await fetch(
-        `https://www.zipcodeapi.com/rest/${key}/radius.json/${value}/${radius}/mile`
+        `${process.env.REACT_APP_BASE_URL}/zip-codes?value=${value}&radius=${radius}`
       );
     } catch (err) {
       result = '';
