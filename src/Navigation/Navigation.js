@@ -42,6 +42,7 @@ export default function Navigation(props) {
   const clearForm = () => {
     setPaymentValues([]);
     setServicesValues([]);
+    setZipValue('');
   };
 
   const setSearch = () => {
@@ -113,6 +114,7 @@ export default function Navigation(props) {
       <Menu.Item key={2}>
         <Input
           placeholder="zip code"
+          value={zipValue}
           onChange={(e) => {
             setZipValue(e.target.value);
           }}

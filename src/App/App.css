@@ -1,7 +1,6 @@
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.active-filters {
+  width: 65vw;
+  margin: auto;
 }
 
 .ant-spin-spinning {

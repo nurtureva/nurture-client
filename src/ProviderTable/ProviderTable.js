@@ -14,5 +14,19 @@ export default function ProviderTable(props) {
       }
     });
   };
-  return <div className="provider-table-container">{renderProviders()}</div>;
+
+  const renderNoProviders = () => {
+    return <div className="no-results-found">No results found...</div>;
+  };
+
+  return (
+    <div className="provider-table-container">
+      <h2>
+        {props.providers.length === 1
+          ? 'There is 1 provider'
+          : `There are ${props.providers.length} providers`}
+      </h2>
+      {props.providers.length ? renderProviders() : renderNoProviders()}
+    </div>
+  );
 }
