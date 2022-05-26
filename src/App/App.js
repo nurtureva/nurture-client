@@ -3,9 +3,10 @@ import './App.css';
 import ProviderTable from '../ProviderTable/ProviderTable';
 import Navigation from '../Navigation/Navigation';
 import ActiveFilters from '../ActiveFilters/ActiveFilters';
+import Header from '../Header/Header';
 import React, { useState, useEffect } from 'react';
 //UI components
-import { Spin, Modal } from 'antd';
+import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 function App() {
@@ -20,24 +21,14 @@ function App() {
   };
   //filter state
   const [filters, setFilters] = useState(emptyFilters);
-  const [searchTerm, setSearchTerm] = useState({
-    name: ''
-  });
+  const [searchTerm, setSearchTerm] = useState('');
   //data state
   const [providers, setProviders] = useState([]);
   const [visibleProviders, setVisibleProviders] = useState([]);
+  const [templateProvider, setTemplateProvider] = useState();
   //visual state
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [isModal, setIsModal] = useState(false);
-
-  const handleOk = () => {
-    setIsModal(false);
-  };
-
-  const handleCancel = () => {
-    setIsModal(false);
-  };
 
   async function getProviders() {
     const providers = await fetch(
@@ -94,6 +85,7 @@ function App() {
           return result.zip_code;
         })
       : '';
+
     newProviders = newProviders.filter((provider) => {
       //filters, providers,
 
@@ -108,8 +100,9 @@ function App() {
           : false;
       }
 
-      if (searchTerm) {
-        const providerName = provider.contact['Your First and Last Name'];
+      if (searchTerm.name) {
+        const providerName = provider.contact['Name'];
+
         if (!providerName) nameCheck = false;
         else nameCheck = providerName.toLowerCase().includes(searchTerm.name);
       }
@@ -155,6 +148,16 @@ function App() {
   useEffect(async () => {
     try {
       const res = await getProviders();
+      let templateProvider = res.shift(); //actually the headers for the providers table
+      //"empty" out the first template provider to keep the formatting
+      for (const key in templateProvider) {
+        const category = templateProvider[key];
+        for (const item in category) {
+          category[item] = '';
+        }
+      }
+
+      setTemplateProvider(templateProvider);
       setProviders(res);
       setVisibleProviders(res);
     } catch (err) {
@@ -173,11 +176,10 @@ function App() {
       <Spin indicator={antIcon} />
     ) : (
       <div className="nurture-directory-main-container">
-        <div className="header"></div>
+        <Header template={templateProvider} />
         <Navigation
           updateFilters={updateFilters}
           setSearchTerm={setSearchTerm}
-          openModal={setIsModal}
           filters={filters}
         />
         <ActiveFilters
@@ -186,13 +188,7 @@ function App() {
           setSearch={setSearchTerm}
           removeFilter={removeFilter}
         />
-        <Modal
-          title="New Provider Form"
-          visible={isModal}
-          onOk={handleOk}
-          onCancel={handleCancel}>
-          <p>enter data here...</p>
-        </Modal>
+
         <ProviderTable providers={visibleProviders} />
       </div>
     );

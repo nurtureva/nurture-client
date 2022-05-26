@@ -4,13 +4,8 @@ import './ProviderTable.css';
 export default function ProviderTable(props) {
   const renderProviders = () => {
     return props.providers.map((provider) => {
-      if (provider.contact['Your First and Last Name']) {
-        return (
-          <Provider
-            provider={provider}
-            key={provider.formData['Respondent ID']}
-          />
-        );
+      if (provider.contact['Name']) {
+        return <Provider provider={provider} key={provider.formData.id} />;
       }
     });
   };

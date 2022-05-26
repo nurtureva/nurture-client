@@ -1,0 +1,80 @@
+.ant-form-vertical .ant-form-item-label {
+  padding: 0;
+}
+
+.ant-form label {
+  font-size: 0.8rem;
+  color: #505050;
+}
+
+.ant-form-bottom {
+  margin-bottom: 15px;
+}
+
+.info-container > div {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.info-container .ant-row {
+  margin-bottom: 8px;
+  width: 45%;
+  min-width: 240px;
+  display: inline-flex;
+  flex-wrap: nowrap;
+}
+
+div.form-info-response > div.ant-row {
+  width: 55%;
+}
+div.form-info-response {
+  width: 100%;
+  justify-content: center;
+}
+#radioSelect_visibility {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.form-radio-visibility .ant-form-item-label {
+  display: none;
+}
+
+.form-info-response textarea {
+  height: 100px;
+}
+
+.form-radio-paymentOptions > div .ant-form-item-control,
+.form-radio-certifications > div .ant-form-item-control,
+.form-radio-services > div .ant-form-item-control {
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+  padding: 10px 20px;
+}
+.form-radio-certifications,
+.form-radio-services,
+.form-radio-paymentOptions {
+  margin: 0 60px;
+}
+
+.form-radio-certifications .ant-checkbox-group,
+.form-radio-services .ant-checkbox-group,
+.form-radio-paymentOptions .ant-checkbox-group {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 600px) {
+  .info-container > div {
+    flex-direction: column;
+  }
+  .form-radio-certifications,
+  .form-radio-services,
+  .form-radio-paymentOptions {
+    margin: 0;
+  }
+  .ant-row {
+    width: 100% !important;
+  }
+}

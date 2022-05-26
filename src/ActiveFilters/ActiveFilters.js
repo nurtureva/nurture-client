@@ -8,7 +8,7 @@ export default function ActiveFilters(props) {
     if (arr[0] === 'name') {
       props.setSearch('');
     } else {
-      props.removeFilter(arr[0], arr[1]);
+      props.removeFilter(camelCasify(arr[0]), arr[1]);
     }
   };
 
@@ -23,6 +23,13 @@ export default function ActiveFilters(props) {
       .replace(/([A-Z])/g, ' $1')
       .trim()
       .toLowerCase();
+  };
+
+  const camelCasify = (string) => {
+    return string.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
+      if (+match === 0) return ''; // or if (/\s+/.test(match)) for white spaces
+      return index === 0 ? match.toLowerCase() : match.toUpperCase();
+    });
   };
 
   useEffect(() => {

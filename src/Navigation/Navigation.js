@@ -16,7 +16,7 @@ export default function Navigation(props) {
     services: [
       'Doula Support',
       'Breast/Chestfeeding Support',
-      'Perinatal Counseling'
+      'Perinatal Mental Health'
     ],
     paymentOptions: [
       'Free or Pro Bono',
@@ -162,13 +162,6 @@ export default function Navigation(props) {
           <DownOutlined />
         </Button>
       </Dropdown>
-      {/* <Button
-        className="new-provider"
-        onClick={() => {
-          props.openModal(true);
-        }}>
-        +
-      </Button> */}
     </div>
   );
 }

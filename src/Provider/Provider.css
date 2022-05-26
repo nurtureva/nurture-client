@@ -1,15 +1,32 @@
 .provider-container {
-    width: 300px;
-    margin: 10px 10px;
-    border-radius: 20px;
-    background: #f5f5f5;
-    box-shadow: 1px 1px 3px #ccc;
+  width: 300px;
+  margin: 10px 10px;
+  border-radius: 20px;
+  background: #f5f5f5;
+  box-shadow: 1px 1px 3px #ccc;
+  font-size: 0.9em;
 }
 
 .provider-container label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .provider-overview {
-    font-style: italic;
+  font-style: italic;
+}
+
+.provider-container li {
+  padding-bottom: 2px;
+}
+.provider-container ul {
+  padding-left: 10px;
+  list-style-type: '✓ ';
+}
+
+.provider-container .provider-payment {
+  columns: 2;
+}
+
+.provider-contact > div span {
+  margin-right: 4px;
 }
