@@ -25,6 +25,7 @@ export default function Header(props) {
       },
       body: JSON.stringify({ comment })
     });
+    setIsCommentModal(false);
   };
   return (
     <div className="header">

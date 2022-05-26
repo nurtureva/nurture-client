@@ -198,3 +198,15 @@ function App() {
 }
 
 export default App;
+
+/**
+ * leveraged form data to create a workable and readable spreadsheet
+ * added features to spreadsheet to make working with it easier:
+ *        - highlight row if needs review
+ *        - if any visibility column is not empty then don't share provider data
+ * create server to interact with spreadsheet:
+ *        - read all data from spreadsheet
+ *        - organize and trim data to be usable for programming
+ *        - create endpoints to add new provider data and comments
+ *
+ */
