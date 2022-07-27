@@ -30,7 +30,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  async function getProviders() {
+  const getProviders = async () => {
     const providers = await fetch(
       `${process.env.REACT_APP_BASE_URL}/providers`,
       {
@@ -42,28 +42,9 @@ function App() {
     );
 
     return providers.json();
-  }
-
-  const removeFilter = (filterType, filterName) => {
-    if (filterType === 'all') {
-      setFilters(emptyFilters);
-      return;
-    }
-
-    let newFilters = { ...filters };
-
-    newFilters[filterType] = newFilters[filterType].filter((param) => {
-      return param !== filterName;
-    });
-
-    setFilters(newFilters);
   };
 
-  const updateFilters = (filterArray) => {
-    setFilters({ ...filters, ...filterArray });
-  };
-
-  const zipSearch = async () => {
+  const getClosestZipCodes = async () => {
     const { value, radius } = filters.zipCode;
     let result;
     try {
@@ -77,10 +58,64 @@ function App() {
     return result.json();
   };
 
+  /**
+   * this runs on initial load.
+   * Basically just setting all providers in state, and either changing view state to error or turning off loading (initial state)
+   */
   useEffect(async () => {
+    try {
+      const res = await getProviders();
+      setProviders(res);
+      setVisibleProviders(res);
+    } catch (err) {
+      console.log(err);
+      setError(true);
+    }
+    setIsLoading(false);
+  }, []);
+
+  /**
+   * This is a function to remove a single filter from the filter object in state.
+   * If filterType is 'all' it clears all filters
+   *
+   * @param {String} filterType the type of filter to be removed (i.e. 'service').
+   * If the value of this is 'all' it will clear all filters
+   * @param {String} filterName the name of the specific filter to be removed (i.e 'Lactation Support')
+   */
+  const removeFilter = (filterType, filterName) => {
+    if (filterType === 'all') {
+      setFilters(emptyFilters);
+      return;
+    }
+
+    let newFilters = { ...filters };
+
+    newFilters[filterType] = newFilters[filterType].filter((param) => {
+      return param.name !== filterName;
+    });
+
+    setFilters(newFilters);
+  };
+
+  /**
+   * This function adds filters to the existing filter object.
+   * The only time we want this to remove a filter element is if it's being replaced.
+   * i.e. if a _different_ service is being added (currently filtering by 'Doula Services', but then it gets switched to 'Lactation Support')
+   *
+   *
+   * @param {Object} filterObject new filters to be added to the filter object
+   */
+  const updateFilters = (filterObject) => {
+    setFilters({ ...filters, ...filterObject });
+  };
+
+  useEffect(async () => {
+    //any time a filter changes, we start with all providers.
     let newProviders = [...providers];
-    const closestZipCodes = filters.zipCode.value ? await zipSearch() : '';
-    const acceptableZipCodes = closestZipCodes
+    const closestZipCodes = filters.zipCode.value
+      ? await getClosestZipCodes()
+      : '';
+    const zipCodeArray = closestZipCodes
       ? closestZipCodes.zip_codes.map((result) => {
           return result.zip_code;
         })
@@ -94,24 +129,38 @@ function App() {
       let paymentCheck = true;
       let nameCheck = true;
 
-      if (acceptableZipCodes.length) {
-        zipCheck = provider.contact['Zip Code']
-          ? acceptableZipCodes.includes(provider.contact['Zip Code'])
-          : false;
+      if (zipCodeArray.length) {
+        zipCheck = provider.zip ? zipCodeArray.includes(provider.zip) : false;
       }
 
       if (searchTerm.name) {
-        const providerName = provider.contact['Name'];
+        const providerName = provider.name;
 
         if (!providerName) nameCheck = false;
         else nameCheck = providerName.toLowerCase().includes(searchTerm.name);
       }
 
+      /**
+       * This function goes through an array of services or paymentOptions that one provider has.
+       * i.e. [{name: 'Doula Support', id: 1}]
+       * it then goes through the active filters that the user is trying to filter providers by.
+       * If the provider has at least all the elements in the filter array then return true.
+       * @example
+       * checkMultiple([{name: 'Doula Support', id: 1}], [{name: 'Doula Support', id: 1}, {name: 'Other', id: 4}])
+       * returns true
+       * checkMultiple([{name: 'Doula Support', id: 1}], [{name: 'Other', id: 4}])
+       * returns false
+       *
+       *
+       * @param {Array.<{name: String, id: Number}>} activeFilters this will either be a list of services or payment options (or another filter type in the future)
+       * @param {Array.<{name: String, id: Number}>} providerValues this is a list of services or payment options that a given provider offers
+       * @returns {Boolean} a boolean value, basically validating the particular provider for the filter
+       */
       const checkMultiple = (activeFilters, providerValues) => {
         let evaluator = false;
         for (const value of providerValues) {
           for (const option of activeFilters) {
-            evaluator = value.includes(option);
+            evaluator = value.name === option.name;
             if (evaluator) {
               //remove filter from the activeFilters search array since we found it
               const index = activeFilters.indexOf(option);
@@ -128,44 +177,19 @@ function App() {
       };
 
       if (filters.services.length) {
-        serviceCheck = checkMultiple(
-          [...filters.services],
-          Object.values(provider.services)
-        );
+        serviceCheck = checkMultiple([...filters.services], provider.services);
       }
 
       if (filters.paymentOptions.length) {
         paymentCheck = checkMultiple(
           [...filters.paymentOptions],
-          Object.values(provider.paymentOptions)
+          provider.paymentOptions
         );
       }
       return zipCheck && serviceCheck && paymentCheck && nameCheck;
     });
     setVisibleProviders(newProviders);
   }, [filters, searchTerm]);
-
-  useEffect(async () => {
-    try {
-      const res = await getProviders();
-      let templateProvider = res.shift(); //actually the headers for the providers table
-      //"empty" out the first template provider to keep the formatting
-      for (const key in templateProvider) {
-        const category = templateProvider[key];
-        for (const item in category) {
-          category[item] = '';
-        }
-      }
-
-      setTemplateProvider(templateProvider);
-      setProviders(res);
-      setVisibleProviders(res);
-    } catch (err) {
-      console.log(err);
-      setError(true);
-    }
-    setIsLoading(false);
-  }, []);
 
   const render = () => {
     if (error) {
@@ -180,7 +204,6 @@ function App() {
         <Navigation
           updateFilters={updateFilters}
           setSearchTerm={setSearchTerm}
-          filters={filters}
         />
         <ActiveFilters
           searchTerm={searchTerm}
@@ -198,15 +221,3 @@ function App() {
 }
 
 export default App;
-
-/**
- * leveraged form data to create a workable and readable spreadsheet
- * added features to spreadsheet to make working with it easier:
- *        - highlight row if needs review
- *        - if any visibility column is not empty then don't share provider data
- * create server to interact with spreadsheet:
- *        - read all data from spreadsheet
- *        - organize and trim data to be usable for programming
- *        - create endpoints to add new provider data and comments
- *
- */

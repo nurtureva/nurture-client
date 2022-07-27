@@ -38,14 +38,11 @@ export default function ActiveFilters(props) {
 
   const renderActiveFilters = () => {
     const filtersArray = Object.entries(activeFilters);
-
     const finalArray = [];
     filtersArray.map((filter) => {
-      if (typeof filter[1] === 'string' && filter[1]) {
-        finalArray.push([filter[0], filter[1]]);
-      } else if (filter[1].length) {
+      if (filter[1].length) {
         filter[1].forEach((filterName) => {
-          finalArray.push([unCamelCase(filter[0]), filterName]);
+          finalArray.push([unCamelCase(filter[0]), filterName.name]);
         });
       } else if (filter[1].value) {
         finalArray.push([unCamelCase(filter[0]), filter[1].value]);

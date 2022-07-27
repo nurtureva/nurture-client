@@ -1,8 +1,8 @@
 import './Provider.css';
+import Address from './Address/Address';
 import { useEffect, useState } from 'react';
 import { Button, Card, Collapse, Modal } from 'antd';
 import { PhoneFilled, CarFilled, MailOutlined } from '@ant-design/icons';
-const { Panel } = Collapse;
 
 export default function Provider(props) {
   const emptyState = {
@@ -35,10 +35,11 @@ export default function Provider(props) {
     const sortData = (providerData, type) => {
       for (const key in providerData) {
         if (
-          providerData[key] &&
-          !newProviderData[type].partial.includes(providerData[key])
+          !newProviderData[type].partial.some(
+            (item) => item.name === providerData[key].name
+          )
         ) {
-          if (key === 'Other') {
+          if (providerData[key].name === 'Other') {
             newProviderData[type].other.push(providerData[key]);
           } else {
             newProviderData[type].partial.push(providerData[key]);
@@ -50,7 +51,7 @@ export default function Provider(props) {
     for (const prop in propsToBeSorted) {
       sortData(propsToBeSorted[prop], prop);
     }
-    newProviderData.providerOverview = props.provider.contact['Overview'];
+    newProviderData.providerOverview = props.provider.overview;
     setProviderData(newProviderData);
   }, [props]);
 
@@ -60,28 +61,19 @@ export default function Provider(props) {
         <label>Contact</label>
         <div className="email">
           <MailOutlined />
-          <a
-            href={`mailto:${props.provider.contact['Email']}`}
-            className="provider-email">
-            {props.provider.contact['Email']}
+          <a href={`mailto:${props.provider.email}`} className="provider-email">
+            {props.provider.email}
           </a>
         </div>
         <div className="phone">
           <PhoneFilled />
-          <a
-            href={`tel:+${props.provider.contact['Phone']}`}
-            className="provider-phone">
-            {props.provider.contact['Phone']}
+          <a href={`tel:+${props.provider.phone}`} className="provider-phone">
+            {props.provider.phone}
           </a>
         </div>
         <div className="address">
           <CarFilled />
-          <a className="provider-address">
-            {/*make address formatting it's own component */}
-            {`${props.provider.contact['Address 1']} ${props.provider.contact['Address 2']} 
-              ${props.provider.contact['City']} ${props.provider.contact['State']} 
-              ${props.provider.contact['Zip Code']}`}
-          </a>
+          <Address provider={props.provider} />
         </div>
       </address>
     );
@@ -94,7 +86,7 @@ export default function Provider(props) {
         <label>{title}:</label>
         <ul className={className}>
           {categoryList.map((option) => {
-            return <li>{option}</li>;
+            return <li key={option.id}>{option.name}</li>;
           })}
         </ul>
       </div>
@@ -110,7 +102,7 @@ export default function Provider(props) {
   return (
     <Card
       className="provider-container"
-      title={props.provider.contact['Name']}
+      title={props.provider.name}
       headStyle={{
         backgroundColor: '#c4d7ca',
         borderTopLeftRadius: '20px',
@@ -128,7 +120,7 @@ export default function Provider(props) {
       </Button>
 
       <Modal
-        title={props.provider.contact['Name']}
+        title={props.provider.name}
         visible={isProviderOpen}
         width={'90%'}
         footer={null}
