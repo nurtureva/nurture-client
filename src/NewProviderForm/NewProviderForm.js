@@ -1,96 +1,68 @@
 import { Button, Checkbox, Form, Input, Select } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './NewProviderForm.css';
 import TextArea from 'antd/lib/input/TextArea';
 
 export default function NewProviderForm(props) {
-  const radioSelects = {
+  const [radioSelects, setRadioSelects] = useState({
     visibility: ['Currently Practicing', 'Permission to share'],
-    services: [
-      'Doula Support',
-      'Breast/Chestfeeding Support',
-      'Perinatal Mental Health'
-    ],
-    paymentOptions: [
-      'Free or Pro Bono Service',
-      'Private Insurance',
-      'Medicaid',
-      'FAMIS',
-      'Fee for Service',
-      'Sliding Scale'
-    ],
-    certifications: [
-      'International Board Certified Lactation Consultant (IBCLC)',
-      'Certified Lactation Counselor (CLC)',
-      'Certified Lactation Specialist (CLS)',
-      'Certified Lactation Educator (CLE)',
-      'Certified Breastfeeding Counselor (CBC)',
-      'Lactation Education Counselor (LEC)',
-      'La Leche League Leader (LLL)',
-      'Breastfeeding USA Counselor',
-      'Peer Breastfeeding Counselor',
-      'Community Health Worker (CHW)',
-      'Certified Doula (CD)',
-      'Licensed Professional Counselor (LPC)',
-      'Licensed Clinical Social Worker (LCSW)',
-      'Licensed Clinical Psychologist (LCP)',
-      'Doctor of Psychology (Psy.D)',
-      'Perinatal Mental Health Certification (PMH-C)',
-      'Doctoral Degree (PhD)',
-      'Medical Degree (MD)',
-      'Nursing Degree (RN, BSN)',
-      'I do not have any credentials'
-    ]
-  };
+    services: [],
+    paymentOptions: [],
+    certifications: []
+  });
 
-  /**
-   * this takes an object and replaces the undefined values with empty string.
-   * This is mainly to keepy google sheets api happy, and to keep data consistent.
-   *
-   */
-  const swapUndefinedWithEmptyStrings = (obj) => {
-    const contact = { ...obj };
-    for (const key in obj) {
-      if (contact[key] === undefined) {
-        contact[key] = '';
+  async function getServices() {
+    const providers = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/services`,
+      {
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
-    }
-    return { contact };
-  };
+    );
 
-  /**
-   * takes an object of arrays. the arrays contain values from the form.
-   * We go through each array and convert it into an object and then give each value a key equal to itself.
-   *
-   * @param {Object} obj an object of arrays, that contain values
-   * @returns {Object} newly created object of objects
-   */
-  const objectifyEachArray = (obj) => {
-    const newObj = { ...obj };
-    for (const key in obj) {
-      newObj[key] = newObj[key]
-        ? newObj[key].reduce((a, v) => ({ ...a, [v]: v }), {})
-        : {};
-    }
-    return newObj;
-  };
+    return providers.json();
+  }
 
-  /**
-   * fills in our proivders data to the template provider. structuring the provider data how the backend expects
-   *
-   * @param {Object} provider the new provider built from the form
-   * @returns {Object} provider the same provider but all the unused values filled in from the blank template
-   */
-  const fillInEmptyValues = (provider) => {
-    const newProvider = { ...provider };
-    for (const category in newProvider) {
-      newProvider[category] = {
-        ...props.template[category],
-        ...newProvider[category]
-      };
-    }
-    return newProvider;
-  };
+  async function getPaymentOptions() {
+    const providers = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/paymentOptions`,
+      {
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    return providers.json();
+  }
+  async function getCertifications() {
+    const providers = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/certifications`,
+      {
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    return providers.json();
+  }
+
+  useEffect(async () => {
+    const services = await getServices();
+    const certifications = await getCertifications();
+    const paymentOptions = await getPaymentOptions();
+    setRadioSelects({
+      ...radioSelects,
+      services,
+      certifications,
+      paymentOptions
+    });
+  }, []);
 
   const onFinish = async (values) => {
     props.setConfirmed(true);
@@ -101,8 +73,8 @@ export default function NewProviderForm(props) {
     //confirmation (your info was received, thanks! ok|cancel )
     const { contact, radioSelect } = values;
     const newProvider = {
-      ...swapUndefinedWithEmptyStrings(contact),
-      ...objectifyEachArray(radioSelect)
+      contact,
+      ...radioSelect
     };
     newProvider.visibility = {
       'Needs Review': 'yes',
@@ -110,23 +82,23 @@ export default function NewProviderForm(props) {
       'Permission to share': '',
       ...newProvider.visibility
     };
-
-    await fetch(`${process.env.REACT_APP_BASE_URL}/new-provider`, {
+    await fetch(`${process.env.REACT_APP_BASE_URL}/providers/add`, {
       method: 'POST',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(fillInEmptyValues(newProvider))
+      body: JSON.stringify({ newProvider })
     });
   };
-  const formItemWrapper = (element, name, subName, rules) => {
+
+  const formItemWrapper = (element, name, subName, rules, dbName) => {
     return (
       <Form.Item
         key={name}
         className={`form-${subName}-${name}-container`}
         label={name}>
-        <Form.Item name={[subName, name]} noStyle rules={rules}>
+        <Form.Item name={[subName, dbName || name]} noStyle rules={rules}>
           {element}
         </Form.Item>
       </Form.Item>
@@ -137,20 +109,26 @@ export default function NewProviderForm(props) {
     const info = {
       general: {
         Element: Input,
-        value: ['Name', 'Business Name', 'Email', 'Website', 'Phone']
+        value: [
+          ['Name', 'name'],
+          ['Business Name', 'business'],
+          ['Email', 'email'],
+          ['Website', 'website'],
+          ['Phone', 'phone']
+        ]
       },
       address: {
         Element: Input,
         value: [
-          'Address 1',
-          'Address 2',
-          'City',
-          'State',
-          'Zip Code',
-          'Country'
+          ['Address 1', 'address_1'],
+          ['Address 2', 'address_2'],
+          ['City', 'city'],
+          ['State', 'state'],
+          ['Zip Code', 'zip'],
+          ['Country', 'country']
         ]
       },
-      response: { Element: TextArea, value: ['Overview'] }
+      response: { Element: TextArea, value: [['Overview', 'overview']] }
     };
     return (
       <div className="info-container">
@@ -160,9 +138,11 @@ export default function NewProviderForm(props) {
               {info[key].value.map((field) => {
                 const { Element } = info[key];
                 return formItemWrapper(
-                  <Element placeholder={field} />,
-                  field,
-                  'contact'
+                  <Element placeholder={field[0]} />,
+                  field[0],
+                  'contact',
+                  '',
+                  field[1]
                 );
               })}
             </div>
@@ -173,18 +153,28 @@ export default function NewProviderForm(props) {
   };
 
   const renderRadioSelects = () => {
+    const unCamelCase = (string) => {
+      return string
+        .replace(/([A-Z])/g, ' $1')
+        .trim()
+        .toLowerCase();
+    };
     return Object.keys(radioSelects).map((key) => {
       const rules =
         key === 'visibility'
           ? ''
           : [{ required: true, message: `you must select an option` }];
+      const optionsArray = radioSelects[key].map((option) => {
+        return { label: option.name || option, value: option.id || option };
+      });
       return (
         <div key={key} className={`form-radio-${key}`}>
           {formItemWrapper(
-            <Checkbox.Group options={radioSelects[key]} />,
-            key,
+            <Checkbox.Group options={optionsArray} />,
+            unCamelCase(key),
             'radioSelect',
-            rules
+            rules,
+            key
           )}
         </div>
       );
