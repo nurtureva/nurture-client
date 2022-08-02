@@ -12,7 +12,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 function App() {
   const emptyFilters = {
     //pass setfilters to header, then when these filters change
-    services: [], //get these filters from table (maybe make new column section for available filters)
+    services: [], //get these filters from table
     paymentOptions: [],
     zipCode: {
       value: '',

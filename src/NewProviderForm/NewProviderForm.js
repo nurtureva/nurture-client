@@ -115,7 +115,22 @@ export default function NewProviderForm(props) {
           ['Email', 'email'],
           ['Website', 'website'],
           ['Phone', 'phone']
-        ]
+        ],
+        rules: (fieldName) => {
+          if (fieldName === 'name') {
+            return [{ required: true, message: 'Name is a required field' }];
+          }
+          if (fieldName === 'phone') {
+            return [
+              { len: 10, message: 'phone number must be 10 digits' },
+              {
+                pattern: '^(0|[1-9][0-9]*)$',
+                message: 'phone number must only contain numbers'
+              }
+            ];
+          }
+          return '';
+        }
       },
       address: {
         Element: Input,
@@ -137,11 +152,12 @@ export default function NewProviderForm(props) {
             <div key={key} className={`form-info-${key}`}>
               {info[key].value.map((field) => {
                 const { Element } = info[key];
+                const { rules } = info[key];
                 return formItemWrapper(
                   <Element placeholder={field[0]} />,
                   field[0],
                   'contact',
-                  '',
+                  rules && rules(field[1]),
                   field[1]
                 );
               })}
