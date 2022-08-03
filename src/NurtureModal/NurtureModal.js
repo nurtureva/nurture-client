@@ -16,9 +16,6 @@ export default function NurtureModal(props) {
     );
   };
 
-  const submitForm = (callback) => {
-    callback();
-  };
   const footer = confirmed
     ? [
         <Button type="primary" onClick={props.closeModal}>
@@ -38,7 +35,6 @@ export default function NurtureModal(props) {
       ) : (
         <NewProviderForm
           setConfirmed={setConfirmed}
-          submitForm={submitForm}
           {...props}></NewProviderForm>
       )}
     </Modal>
