@@ -114,7 +114,8 @@ export default function NewProviderForm(props) {
           ['Business Name', 'business'],
           ['Email', 'email'],
           ['Website', 'website'],
-          ['Phone', 'phone']
+          ['Phone', 'phone'],
+          ['Link to Logo', 'logo']
         ],
         rules: (fieldName) => {
           if (fieldName === 'name') {

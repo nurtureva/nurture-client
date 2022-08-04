@@ -2,7 +2,12 @@ import './Provider.css';
 import Address from './Address/Address';
 import { useEffect, useState } from 'react';
 import { Button, Card, Collapse, Modal } from 'antd';
-import { PhoneFilled, CarFilled, MailOutlined } from '@ant-design/icons';
+import {
+  PhoneFilled,
+  CarFilled,
+  MailOutlined,
+  GlobalOutlined
+} from '@ant-design/icons';
 
 export default function Provider(props) {
   const emptyState = {
@@ -59,22 +64,40 @@ export default function Provider(props) {
     return (
       <address className="provider-contact">
         <label>Contact</label>
-        <div className="email">
-          <MailOutlined />
-          <a href={`mailto:${props.provider.email}`} className="provider-email">
-            {props.provider.email}
-          </a>
-        </div>
-        <div className="phone">
-          <PhoneFilled />
-          <a href={`tel:+${props.provider.phone}`} className="provider-phone">
-            {props.provider.phone}
-          </a>
-        </div>
-        <div className="address">
-          <CarFilled />
-          <Address provider={props.provider} />
-        </div>
+
+        {props.provider.website && (
+          <div className="website">
+            <GlobalOutlined />
+            <a href={props.provider.website} className="provider-website">
+              {props.provider.website}
+            </a>
+          </div>
+        )}
+
+        {props.provider.email && (
+          <div className="email">
+            <MailOutlined />
+            <a
+              href={`mailto:${props.provider.email}`}
+              className="provider-email">
+              {props.provider.email}
+            </a>
+          </div>
+        )}
+        {props.provider.phone && (
+          <div className="phone">
+            <PhoneFilled />
+            <a href={`tel:+${props.provider.phone}`} className="provider-phone">
+              {props.provider.phone}
+            </a>
+          </div>
+        )}
+        {props.provider.address_1 && (
+          <div className="address">
+            <CarFilled />
+            <Address provider={props.provider} />
+          </div>
+        )}
       </address>
     );
   };
