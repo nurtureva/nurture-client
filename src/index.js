@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AdminPage from './AdminPage/AdminPage';
 import App from './App/App';
+import NewProviderForm from './NewProviderForm/NewProviderForm';
 
 // const consoleError = console.error.bind(console);
 
@@ -17,7 +20,13 @@ import App from './App/App';
 // };
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="admin" element={<AdminPage />} />
+        <Route path="edit/:userId" element={<NewProviderForm />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

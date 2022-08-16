@@ -9,7 +9,7 @@ import React, { useState, useEffect } from 'react';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
-function App() {
+export default function App() {
   const emptyFilters = {
     //pass setfilters to header, then when these filters change
     services: [], //get these filters from table
@@ -219,5 +219,3 @@ function App() {
 
   return render();
 }
-
-export default App;
