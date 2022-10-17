@@ -82,7 +82,7 @@ export default function NewProviderForm(props) {
       'Permission to share': '',
       ...newProvider.visibility
     };
-    await fetch(`${process.env.REACT_APP_BASE_URL}/providers/add`, {
+    await fetch(`${process.env.REACT_APP_BASE_URL}/providers`, {
       method: 'POST',
       mode: 'cors',
       headers: {
