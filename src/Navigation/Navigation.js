@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { DownOutlined } from '@ant-design/icons';
+import React, { useEffect, useState } from 'react';
+import { CloseOutlined, DownOutlined } from '@ant-design/icons';
 import './Navigation.css';
 
-import { Select, Input, Button, Menu, Dropdown } from 'antd';
+import { Select, Input, Button, Menu, Dropdown, Checkbox, Slider } from 'antd';
+import DropdownWrapper from './FilterDropdown/FilterDropdown';
 const { Option } = Select;
 const { Search } = Input;
 
@@ -22,7 +23,7 @@ const { Search } = Input;
  *
  */
 export default function Navigation(props) {
-  const [nameValue, setNameValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
   const [zipValue, setZipValue] = useState('');
   const [zipRadius, setZipRadius] = useState(5);
   const [servicesValues, setServicesValues] = useState([]);
@@ -60,10 +61,14 @@ export default function Navigation(props) {
     return providers.json();
   }
 
+  useEffect(() => {
+    submitFilters();
+  }, [servicesValues, paymentValues]);
+
   const clearForm = () => {
     setPaymentValues([]);
     setServicesValues([]);
-    setZipValue('');
+    props.clearSearch();
   };
 
   //when the component first loads we get all service and payment options from the database, and set those to state.
@@ -84,14 +89,16 @@ export default function Navigation(props) {
     setMenuVisible(flag);
   };
   //end of antd code
-
   /**
    * this function sends a submitted search term to app state, triggering the filter providers function
    */
   const setSearch = () => {
+    const isZip = (val) => /^\d{5}-\d{4}$|^\d{5}$/.test(val);
+    const searchParam = isZip(searchValue) ? 'zip' : 'name';
     //clear the search bar value
-    setNameValue('');
-    props.setSearchTerm({ name: nameValue.toLowerCase() });
+    setSearchValue('');
+    props.updateSearch(searchParam, searchValue.toLowerCase());
+    // props.setSearchTerm({ [searchParam]: searchValue.toLowerCase() });
   };
 
   /**
@@ -108,24 +115,20 @@ export default function Navigation(props) {
    */
   const submitFilters = () => {
     const updateData = {};
-    if (servicesValues.length) {
-      updateData.services = servicesValues.map((option) => {
-        return { name: option.label, id: option.value };
-      });
-    }
-    if (paymentValues.length) {
-      updateData.paymentOptions = paymentValues.map((option) => {
-        return { name: option.label, id: option.value };
-      });
-    }
+    updateData.services = servicesValues.map((option) => {
+      return { id: option };
+    });
+
+    updateData.paymentOptions = paymentValues.map((option) => {
+      return { id: option };
+    });
+
     if (zipValue) {
       updateData.zipCode = { value: zipValue, radius: zipRadius };
     }
+
     props.updateFilters(updateData);
-
-    clearForm();
   };
-
   /**
    * this is the real meat and potatoes of the component. it's where all our selects are hidden.
    * we keep it this menu var for the dropdown component
@@ -144,6 +147,7 @@ export default function Navigation(props) {
           placeholder="Services"
           value={servicesValues}
           onChange={(value) => {
+            console.log(value);
             setServicesValues(value);
           }}>
           {filters.services.map((service) => {
@@ -202,30 +206,158 @@ export default function Navigation(props) {
       </Menu.Item>
     </Menu>
   );
-
+  const serviceChecklistOptions = filters.services.map((service) => {
+    return { label: service.name, value: service.id };
+  });
+  const paymentChecklistOptions = filters.paymentOptions.map(
+    (paymentOption) => {
+      return {
+        label: paymentOption.name,
+        value: paymentOption.id,
+        key: paymentOption.id
+      };
+    }
+  );
+  const radiusMenu = (
+    <Menu>
+      <Menu.Item>
+        <label>Radius (in miles)</label>
+        <span className="slider-wrapper">
+          <Slider
+            value={props.searchTerm.zip}
+            onChange={(value) => {
+              props.updateSearch('radius', value);
+            }}
+            min={1}
+            max={20}
+          />
+          {zipRadius}
+        </span>
+        <Button
+          size="small"
+          onClick={() => {
+            props.updateSearch('zip', '');
+          }}>
+          clear
+        </Button>
+      </Menu.Item>
+    </Menu>
+  );
+  const serviceMenu = (
+    <Menu>
+      <Menu.Item>
+        <Checkbox.Group
+          options={serviceChecklistOptions}
+          value={servicesValues}
+          onChange={(values) => {
+            setServicesValues(values);
+          }}
+        />
+      </Menu.Item>
+    </Menu>
+  );
+  const paymentMenu = (
+    <Menu>
+      <Menu.Item>
+        <Checkbox.Group
+          className={paymentValues.length ? 'active' : ''}
+          options={paymentChecklistOptions}
+          value={paymentValues}
+          onChange={(values) => {
+            console.log(values);
+            setPaymentValues(values);
+          }}
+        />
+      </Menu.Item>
+    </Menu>
+  );
+  /**
+   *
+   *
+   *
+   * NOTES FOR MONDAY 11-something
+   * make a dropdown filter choice for each filter option
+   * then add styling to match phsycologytoday.com
+   * rework and potentially merge activeFilters module with this one
+   *
+   * THEN
+   *
+   * if search query is a number, search for zip code. Otherwise, search for a name.
+   * is zip is an active filter then add it with other ones.
+   *
+   *
+   *
+   * * */
   return (
     <div className="navigation-container">
       <Search
-        placeholder="Name"
+        className="search-bar"
+        placeholder="Name or Zip Code"
         onSearch={setSearch}
-        value={nameValue}
+        value={searchValue}
+        allowClear
+        size="large"
         onChange={(e) => {
-          setNameValue(e.target.value);
+          setSearchValue(e.target.value);
         }}
       />
 
-      <Dropdown
-        onVisibleChange={handleVisibleChange}
-        visible={menuVisible}
-        overlay={menu}
-        trigger={['click']}
-        className="filters-dropdown"
-        placement="bottomRight">
-        <Button>
-          Filters
-          <DownOutlined />
-        </Button>
-      </Dropdown>
+      <div className="filters-container">
+        <DropdownWrapper
+          menu={serviceMenu}
+          body={
+            <Button>
+              Services
+              <DownOutlined />
+            </Button>
+          }
+          active={servicesValues.length ? true : false}
+        />
+        <DropdownWrapper
+          menu={paymentMenu}
+          body={
+            <Button>
+              Payment Accepted
+              <DownOutlined />
+            </Button>
+          }
+          active={paymentValues.length ? true : false}
+        />
+        {props.searchTerm.name ? (
+          <Button
+            className="filters-dropdown active"
+            onClick={() => {
+              props.updateSearch('name', '');
+            }}>
+            Name: {props.searchTerm.name}
+            <CloseOutlined />
+          </Button>
+        ) : (
+          ''
+        )}
+        {props.searchTerm.zip ? (
+          <Button
+            className="filters-dropdown active"
+            onClick={() => {
+              props.updateSearch('zip', '');
+            }}>
+            Zip: {props.searchTerm.zip}
+            <CloseOutlined />
+          </Button>
+        ) : (
+          ''
+        )}
+        {servicesValues.length ||
+        paymentValues.length ||
+        props.searchTerm.name ||
+        props.searchTerm.zip ? (
+          <Button className="filters-dropdown" onClick={clearForm}>
+            Clear all filters
+          </Button>
+        ) : (
+          ''
+        )}
+      </div>
     </div>
   );
 }

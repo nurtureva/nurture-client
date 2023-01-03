@@ -16,11 +16,11 @@ export default function ProviderTable(props) {
 
   return (
     <div className="provider-table-container">
-      <h2>
+      {/* <h2>
         {props.providers.length === 1
           ? 'There is 1 provider'
           : `There are ${props.providers.length} providers`}
-      </h2>
+      </h2> */}
       {props.providers.length ? renderProviders() : renderNoProviders()}
     </div>
   );

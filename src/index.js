@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AdminPage from './AdminPage/AdminPage';
 import App from './App/App';
 import NewProviderForm from './NewProviderForm/NewProviderForm';
+import Provider from './Provider/Provider';
 
 // const consoleError = console.error.bind(console);
 
@@ -24,6 +25,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="admin" element={<AdminPage />} />
+        <Route path="/:userId" element={<Provider view="full" />} />
         <Route path="edit/:userId" element={<NewProviderForm />} />
       </Routes>
     </BrowserRouter>

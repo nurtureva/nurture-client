@@ -19,9 +19,14 @@ export default function App() {
       radius: 5
     }
   };
+  const emptySearchTerm = {
+    name: '',
+    zip: '',
+    radius: 5
+  };
   //filter state
   const [filters, setFilters] = useState(emptyFilters);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(emptySearchTerm);
   //data state
   const [providers, setProviders] = useState([]);
   const [visibleProviders, setVisibleProviders] = useState([]);
@@ -45,11 +50,11 @@ export default function App() {
   };
 
   const getClosestZipCodes = async () => {
-    const { value, radius } = filters.zipCode;
+    const { zip, radius } = searchTerm;
     let result;
     try {
       result = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/zip-codes?value=${value}&radius=${radius}`
+        `${process.env.REACT_APP_BASE_URL}/zip-codes?value=${zip}&radius=${radius}`
       );
     } catch (err) {
       result = '';
@@ -97,6 +102,18 @@ export default function App() {
     setFilters(newFilters);
   };
 
+  const updateSearch = (newSearchType, newValue) => {
+    const newSearchTerm = { ...searchTerm };
+    newSearchTerm[newSearchType] = newValue;
+
+    setSearchTerm(newSearchTerm);
+    //make this function to use setSearchTerm
+  };
+
+  const clearSearch = () => {
+    setSearchTerm(emptySearchTerm);
+  };
+
   /**
    * This function adds filters to the existing filter object.
    * The only time we want this to remove a filter element is if it's being replaced.
@@ -112,9 +129,8 @@ export default function App() {
   useEffect(async () => {
     //any time a filter changes, we start with all providers.
     let newProviders = [...providers];
-    const closestZipCodes = filters.zipCode.value
-      ? await getClosestZipCodes()
-      : '';
+    const closestZipCodes = searchTerm.zip ? await getClosestZipCodes() : '';
+    console.log(closestZipCodes, searchTerm);
     const zipCodeArray = closestZipCodes
       ? closestZipCodes.zip_codes.map((result) => {
           return result.zip_code;
@@ -128,8 +144,7 @@ export default function App() {
       let serviceCheck = true;
       let paymentCheck = true;
       let nameCheck = true;
-
-      if (zipCodeArray.length) {
+      if (searchTerm.zip) {
         zipCheck = provider.zip ? zipCodeArray.includes(provider.zip) : false;
       }
 
@@ -160,7 +175,8 @@ export default function App() {
         let evaluator = false;
         for (const value of providerValues) {
           for (const option of activeFilters) {
-            evaluator = value.name === option.name;
+            //I think this should be changed to id from named
+            evaluator = value.id === option.id;
             if (evaluator) {
               //remove filter from the activeFilters search array since we found it
               const index = activeFilters.indexOf(option);
@@ -203,14 +219,16 @@ export default function App() {
         <Header template={templateProvider} />
         <Navigation
           updateFilters={updateFilters}
-          setSearchTerm={setSearchTerm}
+          updateSearch={updateSearch}
+          clearSearch={clearSearch}
+          searchTerm={searchTerm}
         />
-        <ActiveFilters
+        {/* <ActiveFilters
           searchTerm={searchTerm}
           filters={filters}
           setSearch={setSearchTerm}
           removeFilter={removeFilter}
-        />
+        /> */}
 
         <ProviderTable providers={visibleProviders} />
       </div>

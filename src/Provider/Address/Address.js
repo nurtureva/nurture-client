@@ -6,7 +6,11 @@ export default function Address(props) {
   const state = props.provider.state || '';
   const zip = props.provider.zip || '';
   return (
-    <a className="provider-address">
+    <a
+      className="provider-address"
+      href={`https://www.google.com/maps/search/${address_1} ${address_2} ${
+        city ? city + ',' : ''
+      } ${state} ${zip}`}>
       {`${address_1} ${address_2} ${city ? city + ',' : ''} ${state} ${zip}`}
     </a>
   );

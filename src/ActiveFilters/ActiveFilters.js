@@ -40,7 +40,7 @@ export default function ActiveFilters(props) {
     const filtersArray = Object.entries(activeFilters);
     const finalArray = [];
     filtersArray.map((filter) => {
-      if (filter[1].length) {
+      if (filter[1].length && typeof filter[1] === 'object') {
         filter[1].forEach((filterName) => {
           finalArray.push([unCamelCase(filter[0]), filterName.name]);
         });
