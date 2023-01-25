@@ -76,12 +76,19 @@ export default function NewProviderForm(props) {
       contact,
       ...radioSelect
     };
-    newProvider.visibility = {
-      'Needs Review': 'yes',
-      'Currently Practicing': '',
-      'Permission to share': '',
-      ...newProvider.visibility
+
+    const visibility = {
+      needs_review: false
     };
+
+    newProvider.visibility.forEach((option) => {
+      visibility[
+        option === 'Permission to share' ? 'shareable' : 'currently_practicing'
+      ] = true;
+    });
+
+    newProvider.contact = { ...newProvider.contact, ...visibility };
+    console.log(newProvider);
     await fetch(`${process.env.REACT_APP_BASE_URL}/providers`, {
       method: 'POST',
       mode: 'cors',
