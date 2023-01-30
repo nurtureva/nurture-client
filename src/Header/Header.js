@@ -29,7 +29,7 @@ export default function Header(props) {
   };
   return (
     <div className="header">
-      <img src="https://nurturerva.org/wp-content/uploads/2018/09/Nurture_logo_horz.png" />
+      <img src="https://nurture-provider-photos.s3.amazonaws.com/nurture-logo-2.jpg" />
 
       <span className="header-forms">
         <Button onClick={openModal} type="text">
