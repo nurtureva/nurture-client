@@ -9,7 +9,7 @@
   padding: 10px;
   border-bottom: 1px solid #dcdcdc;
   display: grid;
-  grid-template-columns: 1fr 4fr 3fr 3fr;
+  grid-template-columns: 3fr 3fr 2fr 2fr;
   grid-template-rows: 2fr 3fr 3fr;
   transition: linear;
   transition-duration: 300ms;
@@ -96,7 +96,6 @@ div span {
   justify-content: flex-start;
   grid-row: 1 / 4;
   min-width: 129px;
-  background: #ececec;
   margin-right: 20px;
   height: 90%;
   margin: auto 20px auto 0;

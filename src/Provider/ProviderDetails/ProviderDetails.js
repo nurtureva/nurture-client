@@ -159,15 +159,14 @@ export default function ProviderDetails(props) {
   };
 
   const photoList = [
-    'https://photos.psychologytoday.com/ea525307-2554-4da1-8aeb-34a524253d5f/2/320x400.jpeg',
-    'https://photos.psychologytoday.com/a8e44405-f458-467a-b574-6d03313f4e36/2/320x400.jpeg',
-    'https://photos.psychologytoday.com/27e04795-8344-4d26-a74d-47ee3b0f0d4a/1/320x400.png',
-    'https://photos.psychologytoday.com/4b4bc420-46cd-11ea-a6ad-06142c356176/2/320x400.jpeg',
-    'https://photos.psychologytoday.com/4b4bc420-46cd-11ea-a6ad-06142c356176/2/320x400.jpeg',
-    'https://photos.psychologytoday.com/7abf6d0d-410f-4ea4-937f-892baf780bf3/1/320x400.jpeg',
-    'https://photos.psychologytoday.com/4511d9d1-46cd-11ea-a6ad-06142c356176/3/320x400.jpeg',
-    'https://photos.psychologytoday.com/4a3d9f3b-46cd-11ea-a6ad-06142c356176/3/320x400.jpeg',
-    ''
+    'https://nurture-provider-photos.s3.amazonaws.com/profile-1.png',
+    'https://nurture-provider-photos.s3.amazonaws.com/profile-2.png'
+  ];
+
+  const logoList = [
+    'https://nurture-provider-photos.s3.amazonaws.com/sample-logo-2.png',
+    'https://nurture-provider-photos.s3.amazonaws.com/nurture-logo-1.png',
+    'https://nurture-provider-photos.s3.amazonaws.com/nurture-logo-2.jpg'
   ];
 
   if (props.view === 'full') {
@@ -183,7 +182,7 @@ export default function ProviderDetails(props) {
           <div className="logo">
             <img
               className="logo"
-              src="https://thediversedoula.com/wp-content/uploads/2021/10/IMG_7494-240x59.png"
+              src={logoList[Math.floor(Math.random() * logoList.length)]}
             />
           </div>
         </div>
