@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CloseOutlined, DownOutlined } from '@ant-design/icons';
-import './Navigation.css';
+import './Navigation.scss';
 
 import { Select, Input, Button, Menu, Dropdown, Checkbox, Slider } from 'antd';
 import DropdownWrapper from './FilterDropdown/FilterDropdown';

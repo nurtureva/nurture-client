@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './Provider.css';
+import './Provider.scss';
 import ProviderDetails from './ProviderDetails/ProviderDetails';
 
 export default function Provider(props) {

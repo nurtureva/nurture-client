@@ -22,6 +22,7 @@ export default function ProviderDetails(props) {
   const resetState = () => {
     setProviderData(emptyState);
   };
+
   useEffect(async () => {
     await resetState();
     let newProviderData = { ...providerData };
@@ -57,93 +58,88 @@ export default function ProviderDetails(props) {
 
   const renderContact = (provider) => {
     return (
-      <>
-        <div className="provider-contact">
-          {provider.phone && (
-            <div className="phone">
-              <a href={`tel:+${provider.phone}`} className="provider-phone">
-                <PhoneFilled />
-              </a>
-            </div>
-          )}
-          {provider.email && (
-            <div className="email">
-              <a href={`mailto:${provider.email}`} className="provider-email">
-                <MailOutlined />
-              </a>
-            </div>
-          )}
-        </div>
-        <div className="website">
-          {provider.website && (
-            <Button
-              type="primary"
-              shape="round"
-              icon={<GlobalOutlined />}
-              href={provider.website}
-              size="medium">
-              Go to their Website
-            </Button>
-          )}
-        </div>
-        {provider.address_1 && (
-          <div className="address">
-            <CarFilled />
-            <Address provider={provider} />
+      <div className="provider-contact">
+        {provider.phone && (
+          <div className="phone">
+            <a href={`tel:+${provider.phone}`} className="provider-phone">
+              <PhoneFilled />
+            </a>
           </div>
         )}
-      </>
+        {provider.email && (
+          <div className="email">
+            <a href={`mailto:${provider.email}`} className="provider-email">
+              <MailOutlined />
+            </a>
+          </div>
+        )}
+      </div>
     );
   };
 
-  const renderFullContact = (provider) => {
+  const renderWesbite = (provider) => {
     return (
-      <>
-        <div className="provider-contact">
-          {provider.phone && (
-            <div className="phone">
-              <a href={`tel:+${provider.phone}`} className="provider-phone">
-                <PhoneFilled />
-              </a>
-            </div>
-          )}
-          {provider.email && (
-            <div className="email">
-              <a href={`mailto:${provider.email}`} className="provider-email">
-                <MailOutlined />
-              </a>
-            </div>
-          )}
-        </div>
-        <div className="website">
-          {provider.website && (
-            <Button
-              type="primary"
-              shape="round"
-              icon={<GlobalOutlined />}
-              href={provider.website}
-              size="medium">
-              Go to their Website
-            </Button>
-          )}
-        </div>
-        {provider.address_1 && (
-          <div className="address">
-            <CarFilled />
-            <Address provider={provider} />
-          </div>
+      <div className="website">
+        {provider.website && (
+          <Button
+            type="primary"
+            shape="round"
+            icon={<GlobalOutlined />}
+            href={provider.website}
+            size="medium">
+            Go to their Website
+          </Button>
         )}
-      </>
+      </div>
     );
+  };
+
+  const renderAddress = (provider) => {
+    //empty values from the db are 'null'. null doesn't get replaced with destructuring defaults (only undefined does)
+    const address_1 = props.provider.address_1 || '';
+    const address_2 = props.provider.address_2 || '';
+    const city = props.provider.city || '';
+    const state = props.provider.state || '';
+    const zip = props.provider.zip || '';
+    return (
+      <div className="address">
+        {provider.address_1 && (
+          <Button
+            type="primary"
+            shape="round"
+            icon={<CarFilled />}
+            href={`https://www.google.com/maps/search/${address_1} ${address_2} ${
+              city ? city + ',' : ''
+            } ${state} ${zip}`}
+            size="medium">
+            Go to their Location
+          </Button>
+        )}
+      </div>
+    );
+  };
+
+  const renderName = () => {
+    return (
+      <div className="name">
+        <h3>{providerData.name}</h3>
+      </div>
+    );
+  };
+
+  const renderOverview = () => {
+    return <p className="provider-overview">{providerData.providerOverview}</p>;
   };
 
   const renderList = (categoryList, title, className) => {
-    // Accepted Payment
+    const { partial, other } = categoryList;
+    const fullList = [...partial, ...other];
+
     return (
       <div>
         <label>{title}:</label>
         <ul className={className}>
-          {categoryList.map((option) => {
+          {fullList.map((option) => {
             return <li key={option.id}>{option.name}</li>;
           })}
         </ul>
@@ -151,11 +147,17 @@ export default function ProviderDetails(props) {
     );
   };
 
-  const renderFullList = (categoryList, title, className) => {
-    const { partial, other } = categoryList;
-    const fullList = [...partial, ...other];
-
-    return renderList(fullList, title, className);
+  const renderBackButton = () => {
+    return (
+      <div className="back">
+        <Button
+          onClick={() => {
+            window.history.back();
+          }}>
+          back
+        </Button>
+      </div>
+    );
   };
 
   const photoList = [
@@ -165,20 +167,57 @@ export default function ProviderDetails(props) {
 
   const logoList = [
     'https://nurture-provider-photos.s3.amazonaws.com/sample-logo-2.png',
-    'https://nurture-provider-photos.s3.amazonaws.com/nurture-logo-1.png',
-    'https://nurture-provider-photos.s3.amazonaws.com/nurture-logo-2.jpg'
+    'https://nurture-provider-photos.s3.amazonaws.com/sample-logo-1.png'
   ];
+
+  const renderPhoto = () => {
+    return (
+      <span className="provider-photo">
+        <img src={photoList[Math.floor(Math.random() * photoList.length)]} />
+      </span>
+    );
+  };
+
+  const renderLogo = () => {
+    return (
+      <span className="logo">
+        <img src={logoList[Math.floor(Math.random() * logoList.length)]} />
+      </span>
+    );
+  };
 
   if (props.view === 'full') {
     return (
       <div className="details-view">
-        <div className="very-top">
-          <Button
-            onClick={() => {
-              window.history.back();
-            }}>
-            back
-          </Button>
+        <span className="provider-header">
+          {renderBackButton()}
+          {renderLogo()}
+        </span>
+        {renderPhoto()}
+        <span className="provider-description">
+          {renderName()}
+          {renderOverview()}
+        </span>
+        <span className="provider-resources">
+          {renderContact(props.provider)}
+          {renderAddress(props.provider)}
+          {renderWesbite(props.provider)}
+        </span>
+        <span className="provider-info">
+          {renderList(providerData.services, 'Services', 'provider-services')}
+          {renderList(
+            providerData.paymentOptions,
+            'Accepted Payment',
+            'provider-payment'
+          )}
+          {renderList(
+            providerData.certifications,
+            'Certifications',
+            'provider-certifications'
+          )}
+        </span>
+        {/* <div className="very-top">
+          
           <div className="logo">
             <img
               className="logo"
@@ -214,23 +253,17 @@ export default function ProviderDetails(props) {
             'Certifications',
             'provider-certifications'
           )}
-        </div>
+        </div> */}
       </div>
     );
   }
   return (
-    <>
-      <h3>{providerData.name}</h3>
-      <span className="provider-photo">
-        <img src={photoList[Math.floor(Math.random() * photoList.length)]} />
-      </span>
+    <div className="list-view">
+      <span className="left">{renderPhoto()}</span>
+      <span className="middle">{renderName()}</span>
+
       {renderContact(props.provider)}
-      {renderList(providerData.services.partial, 'Services')}
-      {renderList(
-        providerData.paymentOptions.partial,
-        'Accepted Payment',
-        'provider-payment'
-      )}
-    </>
+      {renderWesbite(props.provider)}
+    </div>
   );
 }
