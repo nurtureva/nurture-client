@@ -1,6 +1,7 @@
-import { Button, Modal, Table } from 'antd';
+import { DeleteFilled } from '@ant-design/icons';
+import { Modal, Table } from 'antd';
 import { useEffect, useState } from 'react';
-import ProviderDetails from '../Provider/ProviderDetails/ProviderDetails';
+// import ProviderDetails from '../Provider/ProviderDetails/ProviderDetails';
 import './PendingProviders.css';
 
 export default function PendingProviders(props) {
@@ -12,6 +13,33 @@ export default function PendingProviders(props) {
   const [modalVisibility, setModalVisibility] = useState(
     initialModalVisibility
   );
+  const [tableData, setTableData] = useState([]);
+  const deleteProvider = async (id) => {
+    const list = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/providers/${id}`,
+      {
+        method: 'DELETE',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    const newData = tableData.filter((provider) => {
+      console.log(provider);
+      return provider.key !== id;
+    });
+    setTableData(newData);
+    return list.json();
+  };
+
+  useEffect(() => {
+    setTableData(
+      props.pendingProviders.map((provider) => {
+        return { key: provider.id, name: provider.name, ref: provider };
+      })
+    );
+  }, [props]);
 
   const resetModalVisibility = () => {
     setModalVisibility(initialModalVisibility);
@@ -34,35 +62,35 @@ export default function PendingProviders(props) {
         render: (_, { ref: provider }) => {
           return (
             <div className="admin-actions-cell">
-              <a
+              <a href={`${window.location.origin}/${provider.id}`}>details</a>
+              {props.title === 'Pending Providers' ? (
+                <a
+                  onClick={async () => {
+                    setActiveProvider(provider);
+                    modalVisibility.approveConfirmation = true;
+                  }}>
+                  approve
+                </a>
+              ) : (
+                ''
+              )}
+              <DeleteFilled
+                className="delete-icon"
                 onClick={() => {
-                  setActiveProvider(provider);
-                  modalVisibility.details = true;
-                }}>
-                details
-              </a>
-              <a
-                onClick={async () => {
-                  setActiveProvider(provider);
-                  modalVisibility.approveConfirmation = true;
-                }}>
-                approve
-              </a>
-              {/* open modal that asks for confirmation, then approve provider */}
+                  deleteProvider(provider.id);
+                }}
+              />
             </div>
           );
         }
       }
     ];
-    const data = props.pendingProviders.map((provider) => {
-      return { key: provider.id, name: provider.name, ref: provider };
-    });
 
     return (
       <Table
         bordered
         columns={columns}
-        dataSource={data}
+        dataSource={tableData}
         pagination={false}
         scroll={{ y: 240 }}
       />
@@ -109,24 +137,13 @@ export default function PendingProviders(props) {
       }
     });
   };
-
   return (
     <>
       <div>
-        <label>pending providers</label>
+        <h3>{props.title}</h3>
 
         {renderPendingProvidersTable()}
       </div>
-      <Modal
-        title={activeProvider?.name}
-        visible={!!modalVisibility.details}
-        width={'90%'}
-        footer={null}
-        onCancel={() => {
-          closeModal();
-        }}>
-        <ProviderDetails provider={activeProvider} view={'full'} />
-      </Modal>
     </>
   );
 }

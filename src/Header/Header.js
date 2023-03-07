@@ -1,4 +1,4 @@
-import { Button, Modal } from 'antd';
+import { Button, Form, Modal, Upload } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import { useState } from 'react';
 import NurtureModal from '../NurtureModal/NurtureModal';
@@ -6,6 +6,7 @@ import NurtureModal from '../NurtureModal/NurtureModal';
 export default function Header(props) {
   const [isCommentModal, setIsCommentModal] = useState(false);
   const [comment, setComment] = useState('');
+  const [photo, setPhoto] = useState('');
   const [isNewProviderModal, setIsNewProviderModal] = useState(false);
 
   const closeModal = () => {
@@ -17,13 +18,13 @@ export default function Header(props) {
   };
 
   const submitComment = () => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/comment`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/upload`, {
       method: 'POST',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ comment })
+      body: JSON.stringify({ photo })
     });
     setIsCommentModal(false);
   };
@@ -55,13 +56,7 @@ export default function Header(props) {
         onCancel={() => {
           setIsCommentModal(false);
         }}>
-        <TextArea
-          placeholder="leave your comment here..."
-          value={comment}
-          onChange={(e) => {
-            setComment(e.target.value);
-          }}
-        />
+        <Test />
       </Modal>
       <NurtureModal
         isModal={isNewProviderModal}
@@ -69,4 +64,8 @@ export default function Header(props) {
         closeModal={closeModal}></NurtureModal>
     </div>
   );
+}
+
+function Test(props) {
+  return <Form></Form>;
 }

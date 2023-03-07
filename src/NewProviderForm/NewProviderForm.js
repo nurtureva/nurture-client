@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input, Select } from 'antd';
+import { Button, Checkbox, Form, Input, Select, Upload } from 'antd';
 import React, { useEffect, useState } from 'react';
 import './NewProviderForm.css';
 import TextArea from 'antd/lib/input/TextArea';
@@ -6,10 +6,19 @@ import TextArea from 'antd/lib/input/TextArea';
 export default function NewProviderForm(props) {
   const [radioSelects, setRadioSelects] = useState({
     visibility: ['Currently Practicing', 'Permission to share'],
-    services: [],
-    paymentOptions: [],
-    certifications: []
+    services: [], //array [id, id, id] turn into [{id, description}] VVVVVV
+    paymentOptions: [], //VVVVVVVvv
+    certifications: [] //VVVVVVV
   });
+  const [provider, setProvider] = useState();
+  const [initialValues, setInitialValues] = useState({
+    contact: {},
+    radioSelects: {}
+  });
+  const [photo, setPhoto] = useState();
+  const [logo, setLogo] = useState();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   async function getServices() {
     const providers = await fetch(
@@ -24,10 +33,9 @@ export default function NewProviderForm(props) {
 
     return providers.json();
   }
-
   async function getPaymentOptions() {
     const providers = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/paymentOptions`,
+      `${process.env.REACT_APP_BASE_URL}/payment-options`,
       {
         mode: 'cors',
         headers: {
@@ -52,7 +60,47 @@ export default function NewProviderForm(props) {
     return providers.json();
   }
 
+  const hashChecker = async (userId, editHash) => {
+    const hashCheck = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/providers/${userId}/${editHash}`,
+      {
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    return hashCheck.json();
+  };
+
+  const getProvider = async (id) => {
+    const provider = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/providers/${id}`,
+      {
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    return provider.json();
+  };
+
   useEffect(async () => {
+    console.log('sanity');
+    const url = window.location.href.split('/');
+    const userId = url[url.length - 3];
+    const editHash = url[url.length - 1];
+    if (editHash) {
+      // const hashCheck = await hashChecker(userId, editHash);
+      const hashCheck = true;
+      setError(!hashCheck);
+      if (hashCheck) {
+        setProvider(await getProvider(userId));
+      }
+    }
+
     const services = await getServices();
     const certifications = await getCertifications();
     const paymentOptions = await getPaymentOptions();
@@ -62,23 +110,47 @@ export default function NewProviderForm(props) {
       certifications,
       paymentOptions
     });
+
+    setLoading(false);
   }, []);
 
+  useEffect(async () => {
+    if (provider) {
+      const flattenObject = (optionsArray) => {
+        return optionsArray.map((option) => option.id);
+      };
+      const contact = { ...provider };
+      const radioSelect = {
+        services: flattenObject(provider.services),
+        certifications: flattenObject(provider.certifications),
+        paymentOptions: flattenObject(provider.paymentOptions),
+        visibility: [
+          provider.currently_practicing
+            ? 'Currently Practicing'
+            : 'not practicing',
+          provider.shareable ? 'Permission to share' : 'not sharing'
+        ]
+      };
+      setInitialValues({ contact, radioSelect });
+    }
+  }, [provider]);
+
   const onFinish = async (values) => {
-    props.setConfirmed(true);
+    props.setConfirmed && props.setConfirmed(true);
 
     //modal states todo:
     //initial - option to click to new provider or to leave a comment
     //either form
     //confirmation (your info was received, thanks! ok|cancel )
     const { contact, radioSelect } = values;
+    console.log(radioSelect);
     const newProvider = {
       contact,
       ...radioSelect
     };
 
     const visibility = {
-      needs_review: false
+      needs_review: true
     };
 
     newProvider.visibility.forEach((option) => {
@@ -86,17 +158,65 @@ export default function NewProviderForm(props) {
         option === 'Permission to share' ? 'shareable' : 'currently_practicing'
       ] = true;
     });
+    newProvider.contact = {
+      ...newProvider.contact,
+      ...visibility
+    };
+    // if (provider) {
+    //   await fetch(
+    //     `${process.env.REACT_APP_BASE_URL}/providers/${provider.id}`,
+    //     {
+    //       method: 'PATCH',
+    //       mode: 'cors',
+    //       headers: {
+    //         'Content-Type': 'application/json'
+    //       },
+    //       body: JSON.stringify({ patchBody: newProvider })
+    //     }
+    //   );
+    // } else {
+    //   const res = await fetch(`${process.env.REACT_APP_BASE_URL}/providers`, {
+    //     method: 'POST',
+    //     mode: 'cors',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({ newProvider })
+    //   });
+    //   const response = await res.json();
+    //   const { id } = response;
+    //   if (photo || logo) {
+    //     const { upload: profile_photo } = photo
+    //       ? await uploadPhoto(id, 'photo', photo)
+    //       : '';
+    //     const { upload: newLogo } = logo
+    //       ? await uploadPhoto(id, 'logo', logo)
+    //       : '';
+    //     const patchBody = { profile_photo, logo: newLogo };
+    //     const res = await fetch(
+    //       `${process.env.REACT_APP_BASE_URL}/providers/${id}`,
+    //       {
+    //         method: 'PATCH',
+    //         mode: 'cors',
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ patchBody })
+    //       }
+    //     );
+    //   }
+    // }
+  };
 
-    newProvider.contact = { ...newProvider.contact, ...visibility };
-    console.log(newProvider);
-    await fetch(`${process.env.REACT_APP_BASE_URL}/providers`, {
+  const uploadPhoto = async (id, type, file) => {
+    const formData = new FormData();
+    formData.append('photo', file, `${id}-${type}.${file.type.split('/')[1]}`);
+
+    const res = await fetch(`${process.env.REACT_APP_BASE_URL}/upload`, {
       method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ newProvider })
+      body: formData
     });
+    return res.json();
   };
 
   const formItemWrapper = (element, name, subName, rules, dbName) => {
@@ -121,8 +241,7 @@ export default function NewProviderForm(props) {
           ['Business Name', 'business'],
           ['Email', 'email'],
           ['Website', 'website'],
-          ['Phone', 'phone'],
-          ['Link to Logo', 'logo']
+          ['Phone', 'phone']
         ],
         rules: (fieldName) => {
           if (fieldName === 'name') {
@@ -191,6 +310,7 @@ export default function NewProviderForm(props) {
       const optionsArray = radioSelects[key].map((option) => {
         return { label: option.name || option, value: option.id || option };
       });
+      console.log('key:', key, '\br', 'option:', radioSelects[key]);
       return (
         <div key={key} className={`form-radio-${key}`}>
           {formItemWrapper(
@@ -205,9 +325,46 @@ export default function NewProviderForm(props) {
     });
   };
 
+  if (loading) return <p>loading...</p>;
+  if (error) return <p>error...</p>;
   return (
-    <Form onFinish={onFinish} layout="vertical">
+    <Form onFinish={onFinish} layout="vertical" initialValues={initialValues}>
       {renderInfoSegment()}
+      <div>
+        <Upload
+          accept=".png,.jpg,.jpeg"
+          // beforeUpload={(photo) => {
+          //   photo.name = 'test.jpg';
+          //   photo.lastModified = new Date();
+          //   console.log(photo instanceof File);
+          //   const reader = new FileReader();
+          //   reader.onload = (e) => {
+          //     console.log(e.target.result);
+          //   };
+          //   reader.readAsText(photo);
+          //   setPhoto(photo);
+          //   return false;
+          // }}
+          customRequest={(a, b, c) => {
+            setPhoto(a.file);
+          }}>
+          <Button>Upload</Button>
+        </Upload>
+      </div>
+      {/* <div>
+        <Upload
+          accept=".png,.jpg,.jpeg"
+          beforeUpload={(photo) => {
+            photo.name = 'test.jpg';
+            photo.lastModified = new Date();
+            console.log(photo instanceof File);
+
+            setLogo(photo);
+            return false;
+          }}>
+          <Button>Upload</Button>
+        </Upload>
+      </div> */}
       {renderRadioSelects()}
       <Form.Item label=" " colon={false}>
         <Button type="primary" htmlType="submit">

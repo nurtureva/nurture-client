@@ -47,7 +47,10 @@ export default function Provider(props) {
         if (!props.view) window.location = `${window.location}${provider.id}`;
       }}
       className="provider-container"
-      title={`${provider?.name}\n------------------\n${provider?.overview}`}
+      title={
+        props.view !== 'full' &&
+        `${provider?.name}\n------------------\n${provider?.overview}`
+      }
       headStyle={{
         backgroundColor: '#c4d7ca',
         borderTopLeftRadius: '20px',

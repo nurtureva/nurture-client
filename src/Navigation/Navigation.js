@@ -49,7 +49,7 @@ export default function Navigation(props) {
 
   async function getPaymentOptions() {
     const providers = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/paymentOptions`,
+      `${process.env.REACT_APP_BASE_URL}/payment-options`,
       {
         mode: 'cors',
         headers: {

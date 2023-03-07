@@ -26,7 +26,7 @@ ReactDOM.render(
         <Route path="/" element={<App />} />
         <Route path="admin" element={<AdminPage />} />
         <Route path="/:userId" element={<Provider view="full" />} />
-        <Route path="edit/:userId" element={<NewProviderForm />} />
+        <Route path="/:userId/edit/:hash" element={<NewProviderForm />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

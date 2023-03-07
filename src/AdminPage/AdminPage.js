@@ -1,12 +1,29 @@
 import { useEffect, useState } from 'react';
-import PendingProviders from '../PendingProviders/PendingProviders';
+import PendingProviders from './PendingProviders/PendingProviders';
+import ProviderTable from '../ProviderTable/ProviderTable';
+import './AdminPage.scss';
+import OptionList from './OptionList/OptionList';
 
 export default function AdminPage() {
   const [pendingProviders, setPendingProviders] = useState([]);
+  const [providers, setProviders] = useState([]);
   const [currentReports, setCurrentReports] = useState([]);
   const getPendingProviders = async () => {
     const providers = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/admin/pending-providers`,
+      `${process.env.REACT_APP_BASE_URL}/providers?isPending=true`,
+      {
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    return providers.json();
+  };
+  const getProviders = async () => {
+    const providers = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/providers`,
       {
         mode: 'cors',
         headers: {
@@ -35,6 +52,8 @@ export default function AdminPage() {
     try {
       const provRes = await getPendingProviders();
       setPendingProviders(provRes);
+      const providersResponse = await getProviders();
+      setProviders(providersResponse);
       const reportsRes = await getMonthlyReports();
       setCurrentReports(reportsRes);
     } catch (err) {
@@ -45,10 +64,21 @@ export default function AdminPage() {
   return (
     <div>
       <h1>Admin Panel</h1>
-      <h3>{currentReports.pageViews} monthly page views</h3>
-      <h3>and {currentReports.uniqueUsers} unique monthly users</h3>
-
-      <PendingProviders pendingProviders={pendingProviders} />
+      <span className="analytics-container">
+        <h3>{currentReports.pageViews} monthly page views</h3>
+        <h3>and {currentReports.uniqueUsers} unique monthly users</h3>
+      </span>
+      <OptionList endpoint="services" name="Services" />
+      <OptionList endpoint="certifications" name="Certifications" />
+      <OptionList endpoint="payment-options" name="Payment Options" />
+      <PendingProviders
+        pendingProviders={pendingProviders}
+        title={'Pending Providers'}
+      />
+      <PendingProviders
+        pendingProviders={providers}
+        title={'Current Providers'}
+      />
     </div>
   );
 }

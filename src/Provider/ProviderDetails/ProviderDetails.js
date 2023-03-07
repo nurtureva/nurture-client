@@ -6,6 +6,7 @@ import {
 } from '@ant-design/icons';
 import { Button } from 'antd';
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Address from '../Address/Address';
 
 export default function ProviderDetails(props) {
@@ -160,6 +161,31 @@ export default function ProviderDetails(props) {
     );
   };
 
+  const setEditHash = async () => {
+    const patchBody = {
+      edit_hash: uuidv4()
+    };
+    await fetch(
+      `${process.env.REACT_APP_BASE_URL}/providers${window.location.pathname}`,
+      {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ patchBody })
+      }
+    );
+  };
+
+  const renderEditButton = () => {
+    return (
+      <div className="edit">
+        <Button onClick={setEditHash}>request edit</Button>
+      </div>
+    );
+  };
+
   const photoList = [
     'https://nurture-provider-photos.s3.amazonaws.com/profile-1.png',
     'https://nurture-provider-photos.s3.amazonaws.com/profile-2.png'
@@ -171,17 +197,23 @@ export default function ProviderDetails(props) {
   ];
 
   const renderPhoto = () => {
+    const src = props.provider.profile_photo
+      ? props.provider.profile_photo
+      : photoList[Math.floor(Math.random() * photoList.length)];
     return (
       <span className="provider-photo">
-        <img src={photoList[Math.floor(Math.random() * photoList.length)]} />
+        <img src={src} />
       </span>
     );
   };
 
   const renderLogo = () => {
+    const src = props.provider.logo
+      ? props.provider.logo
+      : photoList[Math.floor(Math.random() * photoList.length)];
     return (
       <span className="logo">
-        <img src={logoList[Math.floor(Math.random() * logoList.length)]} />
+        <img src={src} />
       </span>
     );
   };
@@ -191,6 +223,7 @@ export default function ProviderDetails(props) {
       <div className="details-view">
         <span className="provider-header">
           {renderBackButton()}
+          {renderEditButton()}
           {renderLogo()}
         </span>
         {renderPhoto()}
@@ -216,44 +249,6 @@ export default function ProviderDetails(props) {
             'provider-certifications'
           )}
         </span>
-        {/* <div className="very-top">
-          
-          <div className="logo">
-            <img
-              className="logo"
-              src={logoList[Math.floor(Math.random() * logoList.length)]}
-            />
-          </div>
-        </div>
-        <div className="top-left">
-          <span className="provider-photo">
-            <img
-              src={photoList[Math.floor(Math.random() * photoList.length)]}
-            />
-          </span>
-        </div>
-        <div className="top-middle">
-          <h3>{providerData.name}</h3>
-          <p className="provider-overview">{providerData.providerOverview}</p>
-        </div>
-        <div className="top-right">{renderFullContact(props.provider)}</div>
-        <div className="bottom">
-          {renderFullList(
-            providerData.services,
-            'Services',
-            'provider-services'
-          )}
-          {renderFullList(
-            providerData.paymentOptions,
-            'Accepted Payment',
-            'provider-payment'
-          )}
-          {renderFullList(
-            providerData.certifications,
-            'Certifications',
-            'provider-certifications'
-          )}
-        </div> */}
       </div>
     );
   }
