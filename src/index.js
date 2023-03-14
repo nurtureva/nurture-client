@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AdminPage from './AdminPage/AdminPage';
 import App from './App/App';
-import NewProviderForm from './NewProviderForm/NewProviderForm';
+import { EditProviderForm } from './NewProviderForm/NewProviderForm';
 import Provider from './Provider/Provider';
 
 // const consoleError = console.error.bind(console);
@@ -26,7 +26,7 @@ ReactDOM.render(
         <Route path="/" element={<App />} />
         <Route path="admin" element={<AdminPage />} />
         <Route path="/:userId" element={<Provider view="full" />} />
-        <Route path="/:userId/edit/:hash" element={<NewProviderForm />} />
+        <Route path="/:userId/edit/:hash" element={<EditProviderForm />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

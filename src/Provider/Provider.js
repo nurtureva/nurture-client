@@ -51,7 +51,7 @@ export default function Provider(props) {
         props.view !== 'full' &&
         `${provider?.name}\n------------------\n${provider?.overview}`
       }
-      headStyle={{
+      headstyle={{
         backgroundColor: '#c4d7ca',
         borderTopLeftRadius: '20px',
         borderTopRightRadius: '20px'

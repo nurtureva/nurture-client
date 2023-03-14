@@ -15,8 +15,11 @@
   font-size: 60px;
 }
 
+.logo-container {
+  height: 50%;
+  margin-left: 50px;
+}
 .header img {
-  margin: 30px;
   height: 100%;
 }
 .header {

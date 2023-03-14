@@ -7,7 +7,6 @@ import {
 import { Button } from 'antd';
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Address from '../Address/Address';
 
 export default function ProviderDetails(props) {
   const emptyState = {
@@ -210,7 +209,7 @@ export default function ProviderDetails(props) {
   const renderLogo = () => {
     const src = props.provider.logo
       ? props.provider.logo
-      : photoList[Math.floor(Math.random() * photoList.length)];
+      : logoList[Math.floor(Math.random() * logoList.length)];
     return (
       <span className="logo">
         <img src={src} />

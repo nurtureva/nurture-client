@@ -30,7 +30,9 @@ export default function Header(props) {
   };
   return (
     <div className="header">
-      <img src="https://nurture-provider-photos.s3.amazonaws.com/nurture-logo-1.png" />
+      <span className="logo-container">
+        <img src="https://nurture-provider-photos.s3.amazonaws.com/nurture-logo-1.png" />
+      </span>
 
       <span className="header-forms">
         <Button onClick={openModal} type="text">

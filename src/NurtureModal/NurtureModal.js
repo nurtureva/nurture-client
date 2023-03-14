@@ -1,6 +1,6 @@
 import { Button, Modal } from 'antd';
 import { useEffect, useState } from 'react';
-import NewProviderForm from '../NewProviderForm/NewProviderForm';
+import { NewProviderForm } from '../NewProviderForm/NewProviderForm';
 
 export default function NurtureModal(props) {
   const [confirmed, setConfirmed] = useState(false);
@@ -30,13 +30,7 @@ export default function NurtureModal(props) {
       width={'90%'}
       onCancel={props.closeModal}
       footer={footer}>
-      {confirmed ? (
-        renderConfirmed()
-      ) : (
-        <NewProviderForm
-          setConfirmed={setConfirmed}
-          {...props}></NewProviderForm>
-      )}
+      <NewProviderForm setConfirmed={setConfirmed} {...props}></NewProviderForm>
     </Modal>
   );
 }
