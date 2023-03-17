@@ -133,13 +133,12 @@ const ProviderForm = ({ onSubmit, provider }) => {
       </fieldset>
       <fieldset className="visibility-container">
         <label>
-          <input type="checkbox" checked {...register('general.shareable')} />
+          <input type="checkbox" {...register('general.shareable')} />
           Permission to Share?
         </label>
         <label>
           <input
             type="checkbox"
-            checked
             {...register('general.currently_practicing')}
           />
           Currently Practicing?

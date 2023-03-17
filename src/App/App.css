@@ -28,3 +28,9 @@
   justify-content: space-between;
   height: 120px;
 }
+
+@media only screen and (max-width: 750px) {
+  .logo-container {
+    margin-left: 0;
+  }
+}
