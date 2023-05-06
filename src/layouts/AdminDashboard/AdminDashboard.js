@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import PendingProviders from './PendingProviders/PendingProviders';
-import ProviderTable from '../ProviderTable/ProviderTable';
-import './AdminPage.scss';
+import ProviderTable from '../../components/ProviderTable/ProviderTable';
+import './AdminDashboard.scss';
 import OptionList from './OptionList/OptionList';
 
-export default function AdminPage() {
+export default function AdminDashboard() {
   const [pendingProviders, setPendingProviders] = useState([]);
   const [providers, setProviders] = useState([]);
   const [currentReports, setCurrentReports] = useState([]);

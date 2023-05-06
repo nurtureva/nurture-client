@@ -78,6 +78,21 @@ export default function ProviderDetails(props) {
   };
 
   const renderWesbite = (provider) => {
+    const sanitizeURL = (url) => {
+      if (url.includes('https') || url.includes('http')) {
+        return url;
+      }
+      if (
+        !(url.includes('.com') || url.includes('.net') || url.includes('org'))
+      ) {
+        return null;
+      }
+      return 'https://' + url;
+    };
+    const website =
+      provider.website && provider.website != 'n/a'
+        ? sanitizeURL(provider.website)
+        : null;
     return (
       <div className="website">
         {provider.website && (
@@ -85,7 +100,7 @@ export default function ProviderDetails(props) {
             type="primary"
             shape="round"
             icon={<GlobalOutlined />}
-            href={provider.website}
+            href={website}
             size="medium">
             Go to their Website
           </Button>

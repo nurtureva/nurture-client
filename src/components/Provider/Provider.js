@@ -44,7 +44,7 @@ export default function Provider(props) {
   return (
     <div
       onClick={() => {
-        if (!props.view) window.location = `${window.location}${provider.id}`;
+        if (!props.view) window.location = `${window.location}/${provider.id}`;
       }}
       className="provider-container"
       title={

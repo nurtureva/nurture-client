@@ -1,15 +1,16 @@
 import 'antd/dist/antd.css';
-import './App.css';
-import ProviderTable from '../ProviderTable/ProviderTable';
-import Navigation from '../Navigation/Navigation';
-import ActiveFilters from '../ActiveFilters/ActiveFilters';
-import Header from '../Header/Header';
+import './Results.scss';
+import ProviderTable from '../../components/ProviderTable/ProviderTable';
+import Navigation from '../../components/Navigation/Navigation';
 import React, { useState, useEffect } from 'react';
 //UI components
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import { getClosestZipCodes } from '../../api/api';
+import { useOutletContext } from 'react-router-dom';
 
-export default function App() {
+export default function Results() {
+  const providers = useOutletContext();
   const emptyFilters = {
     //pass setfilters to header, then when these filters change
     services: [], //get these filters from table
@@ -28,56 +29,13 @@ export default function App() {
   const [filters, setFilters] = useState(emptyFilters);
   const [searchTerm, setSearchTerm] = useState(emptySearchTerm);
   //data state
-  const [providers, setProviders] = useState([]);
   const [visibleProviders, setVisibleProviders] = useState([]);
   const [templateProvider, setTemplateProvider] = useState();
-  //visual state
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  const getProviders = async () => {
-    const providers = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/providers`,
-      {
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    );
-
-    return providers.json();
-  };
-
-  const getClosestZipCodes = async () => {
-    const { zip, radius } = searchTerm;
-    let result;
-    try {
-      result = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/zip-codes?value=${zip}&radius=${radius}`
-      );
-    } catch (err) {
-      result = '';
-    }
-
-    return result.json();
-  };
 
   /**
    * this runs on initial load.
    * Basically just setting all providers in state, and either changing view state to error or turning off loading (initial state)
    */
-  useEffect(async () => {
-    try {
-      const res = await getProviders();
-      setProviders(res);
-      setVisibleProviders(res);
-    } catch (err) {
-      console.log(err);
-      setError(true);
-    }
-    setIsLoading(false);
-  }, []);
 
   /**
    * This is a function to remove a single filter from the filter object in state.
@@ -129,8 +87,9 @@ export default function App() {
   useEffect(async () => {
     //any time a filter changes, we start with all providers.
     let newProviders = [...providers];
-    const closestZipCodes = searchTerm.zip ? await getClosestZipCodes() : '';
-    console.log(closestZipCodes, searchTerm);
+    const closestZipCodes = searchTerm.zip
+      ? await getClosestZipCodes(searchTerm)
+      : '';
     const zipCodeArray = closestZipCodes
       ? closestZipCodes.zip_codes.map((result) => {
           return result.zip_code;
@@ -208,28 +167,14 @@ export default function App() {
   }, [filters, searchTerm]);
 
   const render = () => {
-    if (error) {
-      return <p>There was an error please try again...</p>;
-    }
-    const antIcon = <LoadingOutlined spin />;
-    return isLoading ? (
-      <Spin indicator={antIcon} />
-    ) : (
+    return (
       <div className="nurture-directory-main-container">
-        <Header template={templateProvider} />
         <Navigation
           updateFilters={updateFilters}
           updateSearch={updateSearch}
           clearSearch={clearSearch}
           searchTerm={searchTerm}
         />
-        {/* <ActiveFilters
-          searchTerm={searchTerm}
-          filters={filters}
-          setSearch={setSearchTerm}
-          removeFilter={removeFilter}
-        /> */}
-
         <ProviderTable providers={visibleProviders} />
       </div>
     );
