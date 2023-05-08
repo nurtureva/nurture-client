@@ -1,13 +1,40 @@
+import { useState } from 'react';
 import { Outlet, useLoaderData } from 'react-router-dom';
-import Navigation from '../../components/Navigation/Navigation';
+import { useFilterReducer } from '../../utils/filterReducer';
 
 export default function ResultsLayout() {
   const providers = useLoaderData();
-  console.log(providers);
+  const { updateSearch, updateFilters, filteredProviders } =
+    useFilterReducer(providers);
   return (
-    <div className="nurture-directory-main-container">
-      test
-      <Outlet context={providers} />
+    <div className="content-container">
+      <Search updateSearch={updateSearch} />
+
+      <Outlet context={{ filteredProviders }} />
     </div>
   );
 }
+
+const Search = ({ updateSearch }) => {
+  const [keywordTerm, setKeywordTerm] = useState();
+  const [distanceTerm, setDistanceTerm] = useState();
+
+  return (
+    <div>
+      <input
+        onChange={(e) => {
+          setKeywordTerm(e.target.value);
+        }}></input>
+      <input
+        onChange={(e) => {
+          setDistanceTerm(e.target.value);
+        }}></input>
+      <button
+        onClick={() => {
+          updateSearch(keywordTerm, distanceTerm);
+        }}>
+        search
+      </button>
+    </div>
+  );
+};

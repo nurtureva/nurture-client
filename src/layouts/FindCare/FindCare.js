@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import '../Dashboard/Dashboard.scss';
 
 export default function DefaultCare() {
   return (

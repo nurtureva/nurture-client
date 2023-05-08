@@ -1,0 +1,286 @@
+@import '../node_modules/modern-normalize/modern-normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;900&display=swap');
+
+/****************************** UI COMPONENTS ********************************************/
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link-button {
+  display: block;
+  background-color: lightgrey;
+  width: fit-content;
+  padding: 7px 30px;
+  border-radius: 3px;
+  margin: 10px;
+  color: black;
+}
+
+h1 {
+  text-align: center;
+  font-weight: normal;
+}
+
+/********************************* ELEMENTS ********************************************/
+
+footer {
+  background: lightgrey;
+  padding: 40px;
+  h3 {
+    font-size: 1em;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    font-size: 0.8em;
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
+
+header {
+  img {
+    height: 60px;
+  }
+  nav {
+    ul {
+      li {
+        padding: 10px;
+      }
+      display: flex;
+      list-style: none;
+      padding: 0;
+    }
+  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+}
+
+form {
+  padding: 0 50px;
+  font-size: 1.2em;
+  .input-label {
+    font-weight: bold;
+    width: 25%;
+    display: inline-flex;
+    flex-direction: column;
+    margin: 10px;
+    input {
+      height: 2.3em;
+    }
+  }
+  fieldset {
+    margin-bottom: 20px;
+    display: flex;
+  }
+  .general-info-container {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .long-input {
+      width: 45%;
+    }
+  }
+  .overview-container {
+    justify-content: center;
+    label {
+      width: 50%;
+      height: 8em;
+      textarea {
+        height: 100%;
+      }
+    }
+  }
+  .photo-container,
+  .visibility-container {
+    justify-content: space-around;
+  }
+  .photo-container {
+    label {
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+    }
+    input {
+      font-size: 0.9em;
+    }
+  }
+  .visibility-container {
+    font-size: 1.1em;
+    label {
+      display: flex;
+      align-items: center;
+    }
+    input {
+      height: 1em;
+      width: 1em;
+      margin-right: 10px;
+    }
+  }
+  .options-group-container {
+    justify-content: space-between;
+    fieldset {
+      width: 30%;
+    }
+    legend {
+      font-size: 1.3em;
+      margin: 0;
+    }
+    input {
+      margin-right: 6px;
+    }
+    ul {
+      list-style: none;
+      width: 100%;
+      padding: 4px 12px;
+      border: 1px solid black;
+      height: 300px;
+      overflow-y: scroll;
+    }
+  }
+}
+
+.provider-name {
+  display: flex;
+  height: 100%;
+  img {
+    border-radius: 50%;
+    margin-right: 10px;
+    max-height: 250px;
+  }
+  .name {
+    display: flex;
+    padding: 0 7px;
+    flex-direction: column;
+    font-size: 0.9em;
+    h3 {
+      font-weight: normal;
+      font-size: 2em;
+      margin: 0;
+    }
+    p {
+      font-style: italic;
+      margin: 0;
+    }
+    ul {
+      padding: 0;
+      label {
+        font-weight: bold;
+      }
+      li {
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+.provider-contact {
+  font-size: 0.85em;
+  width: 200px;
+  align-self: center;
+}
+
+.content-container {
+  max-width: 2000px;
+  margin: auto;
+  padding: 0 100px;
+}
+
+.provider-table-container {
+  h2,
+  h3 {
+    font-weight: normal;
+    margin: 7px;
+  }
+
+  & > div {
+    a {
+      flex: 2;
+    }
+    display: flex;
+    justify-content: space-between;
+    max-height: 200px;
+    border-top: 1px solid lightgrey;
+    padding: 30px;
+  }
+}
+
+/********************************* LAYOUT ********************************************/
+
+.content-header {
+  padding: 70px;
+  display: flex;
+  background: #eeee;
+  h2 {
+    font-weight: bolder;
+  }
+}
+
+.dashboard-main {
+  padding: 70px;
+  h3 {
+    padding: 20px;
+    font-size: 1.6em;
+    text-align: center;
+  }
+  .category-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    & > div {
+      max-width: 400px;
+      flex: 1 1 235px;
+      padding: 30px;
+      & span:first-of-type {
+        display: flex;
+        justify-content: center;
+      }
+    }
+    img {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    h4 {
+      text-align: center;
+      font-size: 1.2em;
+      padding: 20px;
+    }
+  }
+}
+
+.find-care {
+  .content-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p {
+      padding: 0 100px;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  form {
+    padding: 0 10px;
+    fieldset {
+      margin: 0;
+    }
+    label {
+      width: 100% !important;
+    }
+    .options-group-container {
+      flex-direction: column;
+      fieldset {
+        width: 100% !important;
+      }
+    }
+    .photo-container {
+      flex-direction: column;
+    }
+  }
+}

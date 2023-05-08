@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+
 import PendingProviders from './PendingProviders/PendingProviders';
-import ProviderTable from '../../components/ProviderTable/ProviderTable';
 import './AdminDashboard.scss';
 import OptionList from './OptionList/OptionList';
 

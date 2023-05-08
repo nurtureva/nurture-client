@@ -1,24 +1,10 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-import './Dashboard.scss';
+import OptionCenter from '../../components/OptionCenter/OptionCenter';
 
 export default function Dashboard() {
-  const OptionCenter = ({ img, title, path, className, children }) => {
-    return (
-      <div>
-        <span>
-          <img src={img} />
-        </span>
-        <h4>{title}</h4>
-        <span>
-          {children}
-          <Link to={path}>learn more</Link>
-        </span>
-      </div>
-    );
-  };
   return (
-    <content className="dashboard">
+    <div className="dashboard">
       <h1>Birth and Early Parenting Resource Directory</h1>
       <div className="content-header">
         <span>
@@ -69,6 +55,6 @@ export default function Dashboard() {
           </OptionCenter>
         </div>
       </div>
-    </content>
+    </div>
   );
 }

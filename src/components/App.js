@@ -1,14 +1,13 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import AdminDashboard from '../layouts/AdminDashboard/AdminDashboard';
 import Dashboard from '../layouts/Dashboard/Dashboard';
-import Provider from './Provider/Provider';
-import Results from '../layouts/Results/Results';
 import FindCare from '../layouts/FindCare/FindCare';
 import { EditProviderForm } from './NewProviderForm/NewProviderForm';
 import Layout from '../layouts/Layout';
 import ResultsLayout from '../layouts/Results/RestultsLayout';
-import { getProviders } from '../api/api';
-
+import { getProviders } from '../utils/api';
+import Results from '../layouts/Results/Results';
+import ProviderPage from './Provider/layouts/ProviderPage';
 export default function App() {
   const router = createBrowserRouter([
     {
@@ -37,26 +36,17 @@ export default function App() {
             },
             {
               path: ':userId',
-              element: <Provider view="full" />
+              element: <ProviderPage />
             }
+            // {
+            //   path: ':userId',
+            //   element: <ProviderPage />
+            // }
           ]
         },
         { path: ':userId/edit/:hash', element: <EditProviderForm /> }
       ]
     }
   ]);
-  return (
-    <RouterProvider router={router} />
-    // <Routes>
-    //   <Route element={<Layout />}>
-    //     <Route path="/" element={<Dashboard />} />
-    //     {/* <Route path="admin" element={<AdminDashboard />} /> */}
-    //     <Route path="results" element={<ResultsLayout loader={getProviders} />}>
-    //       <Route index element={<Results />} />
-    //       <Route path=":userId" element={<Provider view="full" />}></Route>
-    //     </Route>
-    //     <Route path=":userId/edit/:hash" element={<EditProviderForm />} />
-    //   </Route>
-    // </Routes>
-  );
+  return <RouterProvider router={router} />;
 }

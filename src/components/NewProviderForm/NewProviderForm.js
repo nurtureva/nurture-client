@@ -1,6 +1,4 @@
-import { Button, Checkbox, Form, Input, Select, Upload } from 'antd';
 import React, { useEffect, useState } from 'react';
-import './NewProviderForm.scss';
 import { useForm } from 'react-hook-form';
 
 const ProviderForm = ({ onSubmit, provider }) => {
