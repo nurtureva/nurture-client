@@ -1,5 +1,4 @@
 export const useFilters = (providers, filters) => {
-  console.log(filters);
   /**
    * This function adds filters to the existing filter object.
    * The only time we want this to remove a filter element is if it's being replaced.

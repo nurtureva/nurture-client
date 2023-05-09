@@ -8,6 +8,7 @@ export default function ResultsLayout() {
   const filterOptions = { services, paymentOptions, certifications };
   const { updateSearch, updateFilters, filteredProviders } =
     useFilterReducer(providers);
+
   return (
     <div className="content-container">
       <Search updateSearch={updateSearch} />

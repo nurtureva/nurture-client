@@ -39,6 +39,17 @@ footer {
     margin-right: 10px;
   }
 }
+.ant-spin-spinning {
+  display: block;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ant-spin-dot {
+  font-size: 60px;
+}
 
 header {
   img {
