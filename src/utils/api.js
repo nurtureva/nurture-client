@@ -1,12 +1,21 @@
-export const getProviders = async () => {
-  const providers = await fetch(`${process.env.REACT_APP_BASE_URL}/providers`, {
+const getFromDb = async (endpoint) => {
+  const data = await fetch(`${process.env.REACT_APP_BASE_URL}/${endpoint}`, {
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
     }
   });
 
-  return providers.json();
+  return data.json();
+};
+
+export const usePageLoader = async () => {
+  const providers = await getFromDb('providers');
+  const services = await getFromDb('services');
+  const certifications = await getFromDb('certifications');
+  const paymentOptions = await getFromDb('payment-options');
+
+  return { providers, services, certifications, paymentOptions };
 };
 
 export const getClosestZipCodes = async (searchTerm) => {

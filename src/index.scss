@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;900&display=swap');
 
 /****************************** UI COMPONENTS ********************************************/
+
 a {
   text-decoration: none;
   color: inherit;
@@ -54,6 +55,7 @@ header {
     }
   }
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 50px;
@@ -144,6 +146,82 @@ form {
   }
 }
 
+.provider-search {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+  input {
+    height: 30px;
+    &:first-of-type {
+      flex: 1;
+    }
+  }
+
+  & > * {
+    margin: 0 7px;
+  }
+}
+
+.provider-filters {
+  min-width: 200px;
+  font-size: 0.8em;
+  padding: 20px;
+  background: #eee;
+  height: fit-content;
+  margin-right: 20px;
+  & > div {
+    padding: 10px 0;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        padding: 5px;
+        input {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+.provider-container {
+  padding: 20px 0 80px;
+  .provider-contact {
+    width: 50%;
+    background: #eee;
+    margin: auto;
+    text-align: center;
+    padding: 40px;
+    h3 {
+      margin: 0;
+      font-size: 1.2em;
+    }
+  }
+  .provider-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 30px 0;
+    button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-decoration: underline;
+      &:first-of-type {
+        flex: 1;
+        text-align: left;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
 .provider-name {
   display: flex;
   height: 100%;
@@ -179,15 +257,19 @@ form {
 }
 
 .provider-contact {
-  font-size: 0.85em;
-  width: 200px;
+  font-size: 0.8em;
+  width: 300px;
   align-self: center;
+  a {
+    display: block;
+    margin: 5px;
+  }
 }
 
 .content-container {
-  max-width: 2000px;
+  max-width: 1100px;
   margin: auto;
-  padding: 0 100px;
+  padding: 0 20px;
 }
 
 .provider-table-container {
@@ -206,6 +288,17 @@ form {
     max-height: 200px;
     border-top: 1px solid lightgrey;
     padding: 30px;
+  }
+}
+
+.option-list-container {
+  font-size: 0.9em;
+  padding: 50px;
+  display: flex;
+  justify-content: space-around;
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
   }
 }
 
@@ -264,6 +357,15 @@ form {
   }
 }
 
+.results-page {
+  display: flex;
+}
+
+@media only screen and (max-width: 950px) {
+  .provider-filters {
+    display: none;
+  }
+}
 @media only screen and (max-width: 750px) {
   form {
     padding: 0 10px;
@@ -281,6 +383,28 @@ form {
     }
     .photo-container {
       flex-direction: column;
+    }
+  }
+  header {
+    flex-direction: column;
+    padding: 20px;
+    font-size: 0.8em;
+  }
+  .content-header {
+    padding: 20px;
+    p {
+      padding: 0 !important;
+    }
+  }
+  .dashboard-main {
+    padding: 10px;
+    margin: auto;
+  }
+  .provider-table-container > div {
+    flex-direction: column;
+    max-height: none;
+    img {
+      max-height: 150px;
     }
   }
 }

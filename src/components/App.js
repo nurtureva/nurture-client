@@ -5,7 +5,8 @@ import FindCare from '../layouts/FindCare/FindCare';
 import { EditProviderForm } from './NewProviderForm/NewProviderForm';
 import Layout from '../layouts/Layout';
 import ResultsLayout from '../layouts/Results/RestultsLayout';
-import { getProviders } from '../utils/api';
+import { usePageLoader } from '../utils/api';
+
 import Results from '../layouts/Results/Results';
 import ProviderPage from './Provider/layouts/ProviderPage';
 export default function App() {
@@ -28,7 +29,7 @@ export default function App() {
         {
           path: 'results',
           element: <ResultsLayout />,
-          loader: getProviders,
+          loader: usePageLoader,
           children: [
             {
               element: <Results />,

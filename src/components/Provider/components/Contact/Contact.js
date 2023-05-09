@@ -1,6 +1,6 @@
 import { GlobalOutlined, MailOutlined, PhoneFilled } from '@ant-design/icons';
 
-export default function Contact({ provider }) {
+export default function Contact({ provider, title }) {
   const sanitizeURL = (url) => {
     if (url.includes('https') || url.includes('http')) {
       return url;
@@ -18,27 +18,22 @@ export default function Contact({ provider }) {
       : null;
   return (
     <div className="provider-contact">
+      {title ? <h3>Contact {title}</h3> : ''}
       <Address provider={provider} />
       {provider.phone && (
-        <div className="phone">
-          <a href={`tel:+${provider.phone}`} className="provider-phone">
-            <PhoneFilled />
-          </a>
-        </div>
+        <a href={`tel:+${provider.phone}`} className="provider-phone phone">
+          <PhoneFilled /> {provider.phone}
+        </a>
       )}
       {provider.email && (
-        <div className="email">
-          <a href={`mailto:${provider.email}`} className="provider-email">
-            <MailOutlined />
-          </a>
-        </div>
+        <a href={`mailto:${provider.email}`} className="provider-email">
+          <MailOutlined /> {provider.email}
+        </a>
       )}
       {provider.website && (
-        <div className="website">
-          <a href={website}>
-            <GlobalOutlined /> {website}
-          </a>
-        </div>
+        <a href={website}>
+          <GlobalOutlined /> {website}
+        </a>
       )}
     </div>
   );
