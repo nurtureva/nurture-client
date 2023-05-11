@@ -286,6 +286,8 @@ form {
 }
 
 .provider-table-container {
+  margin: auto;
+
   h2,
   h3 {
     font-weight: normal;
@@ -310,6 +312,9 @@ form {
   padding: 50px 0;
   display: flex;
   justify-content: space-around;
+  span {
+    width: 50%;
+  }
   label {
     font-weight: bold;
     margin-bottom: 5px;
@@ -417,19 +422,16 @@ form {
   .provider-table-container > div {
     flex-direction: column;
     max-height: none;
+    align-items: center;
     img {
-      max-height: 150px;
+      height: 175px;
     }
   }
   .provider-name {
     flex-direction: column;
     img {
       min-height: none;
-      width: 50%;
       margin: auto;
     }
-  }
-  .option-list-container span {
-    width: 50%;
   }
 }
