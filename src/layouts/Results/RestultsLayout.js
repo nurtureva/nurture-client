@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useLoaderData } from 'react-router-dom';
 import { useFilterReducer } from '../../utils/filterReducer';
 

@@ -8,7 +8,6 @@ export default function ProviderPage() {
   const userId = url[url.length - 1];
   const provider = providers.find((provider) => provider.id == userId);
   const navigate = useNavigate();
-  console.log(provider);
   return (
     <div className="provider-container">
       <div className="provider-header">

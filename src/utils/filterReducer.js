@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useReducer } from 'react';
 import { useFilters } from './filterProviders';
 const reducer = (state, action) => {
   switch (action.type) {
