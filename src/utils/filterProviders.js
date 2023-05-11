@@ -77,7 +77,6 @@ export const useFilters = (providers, filters) => {
        */
       const checkMultiple = (activeFilters, providerValues) => {
         let evaluator = false;
-        // console.log(activeFilters, providerValues);
         for (const value of providerValues) {
           for (const option of activeFilters) {
             evaluator = value.id == option;
