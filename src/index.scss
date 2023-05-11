@@ -301,6 +301,7 @@ form {
     max-height: 200px;
     border-top: 1px solid lightgrey;
     padding: 30px;
+    overflow: hidden;
   }
 }
 
@@ -427,5 +428,8 @@ form {
       width: 50%;
       margin: auto;
     }
+  }
+  .option-list-container span {
+    width: 50%;
   }
 }
