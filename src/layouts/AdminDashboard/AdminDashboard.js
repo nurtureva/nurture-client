@@ -54,8 +54,8 @@ export default function AdminDashboard() {
       setPendingProviders(provRes);
       const providersResponse = await getProviders();
       setProviders(providersResponse);
-      const reportsRes = await getMonthlyReports();
-      setCurrentReports(reportsRes);
+      // const reportsRes = await getMonthlyReports();
+      // setCurrentReports(reportsRes);
     } catch (err) {
       console.log(err);
     }
@@ -65,7 +65,7 @@ export default function AdminDashboard() {
     <div>
       <h1>Admin Panel</h1>
       <span className="analytics-container">
-        <h3>{currentReports.pageViews} monthly page views</h3>
+        {/* <h3>{currentReports.pageViews} monthly page views</h3> */}
         <h3>and {currentReports.uniqueUsers} unique monthly users</h3>
       </span>
       <OptionList endpoint="services" name="Services" />

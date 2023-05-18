@@ -8,6 +8,10 @@ a {
   color: inherit;
 }
 
+input[type='checkbox'] {
+  margin-right: 10px;
+}
+
 .link-button {
   display: block;
   background-color: lightgrey;
@@ -39,17 +43,6 @@ footer {
     margin-right: 10px;
   }
 }
-.ant-spin-spinning {
-  display: block;
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ant-spin-dot {
-  font-size: 60px;
-}
 
 header {
   img {
@@ -72,66 +65,62 @@ header {
   padding: 50px;
 }
 
-form {
-  padding: 0 50px;
-  font-size: 1.2em;
-  .input-label {
-    font-weight: bold;
-    width: 25%;
-    display: inline-flex;
-    flex-direction: column;
-    margin: 10px;
-    input {
-      height: 2.3em;
-    }
-  }
-  fieldset {
-    margin-bottom: 20px;
-    display: flex;
-  }
-  .general-info-container {
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 100%;
+.ant-spin-spinning {
+  display: block;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .long-input {
-      width: 45%;
-    }
+.ant-spin-dot {
+  font-size: 60px;
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+  input[type='text'] {
+    height: 35px;
   }
-  .overview-container {
-    justify-content: center;
-    label {
-      width: 50%;
-      height: 8em;
-      textarea {
-        height: 100%;
-      }
-    }
+  textarea {
+    height: 100px;
   }
-  .photo-container,
-  .visibility-container {
-    justify-content: space-around;
-  }
-  .photo-container {
-    label {
-      font-weight: bold;
+  .input-container {
+    display: flex;
+    justify-content: space-between;
+    max-height: 200px;
+    margin: 20px 0;
+    & > label {
       display: flex;
       flex-direction: column;
+      align-items: flex-end;
+      width: 30%;
+      padding: 0 20px;
+      p {
+        margin: 0;
+      }
+      p:last-child {
+        color: grey;
+        font-size: 0.9em;
+      }
     }
-    input {
-      font-size: 0.9em;
-    }
-  }
-  .visibility-container {
-    font-size: 1.1em;
-    label {
+    ul {
+      list-style: none;
+      padding: 20px;
+      margin: 0;
+      overflow-y: auto;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      border: 1px solid gray;
+      li {
+        padding: 10px;
+      }
     }
-    input {
-      height: 1em;
-      width: 1em;
-      margin-right: 10px;
+    & > input,
+    textarea,
+    ul {
+      width: 70%;
     }
   }
   .options-group-container {
@@ -335,7 +324,7 @@ form {
   }
 }
 
-.dashboard-main {
+.content-main {
   padding: 70px;
   h3 {
     padding: 20px;
@@ -427,24 +416,24 @@ form {
     width: 70%;
     height: 70%;
   }
-  form {
-    padding: 0 10px;
-    fieldset {
-      margin: 0;
-    }
-    label {
-      width: 100% !important;
-    }
-    .options-group-container {
-      flex-direction: column;
-      fieldset {
-        width: 100% !important;
-      }
-    }
-    .photo-container {
-      flex-direction: column;
-    }
-  }
+  // form {
+  //   padding: 0 10px;
+  //   fieldset {
+  //     margin: 0;
+  //   }
+  //   label {
+  //     width: 100% !important;
+  //   }
+  //   .options-group-container {
+  //     flex-direction: column;
+  //     fieldset {
+  //       width: 100% !important;
+  //     }
+  //   }
+  //   .photo-container {
+  //     flex-direction: column;
+  //   }
+  // }
   header {
     flex-direction: column;
     padding: 20px;

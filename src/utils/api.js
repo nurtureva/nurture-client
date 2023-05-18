@@ -9,13 +9,26 @@ const getFromDb = async (endpoint) => {
   return data.json();
 };
 
-export const usePageLoader = async () => {
-  const providers = await getFromDb('providers');
+export const useOptionsLoader = async () => {
   const services = await getFromDb('services');
   const certifications = await getFromDb('certifications');
   const paymentOptions = await getFromDb('payment-options');
 
-  return { providers, services, certifications, paymentOptions };
+  return { services, certifications, paymentOptions };
+};
+
+export const useMainPageLoader = async () => {
+  const providers = await getFromDb('providers');
+  const options = await useOptionsLoader();
+
+  return { providers, ...options };
+};
+
+export const useProviderLoader = async ({ params }) => {
+  const { userId } = params;
+  const provider = await getFromDb(`providers/${userId}`);
+
+  return { provider };
 };
 
 export const getClosestZipCodes = async (searchTerm) => {
