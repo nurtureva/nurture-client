@@ -1,4 +1,18 @@
-const getFromDb = async (endpoint) => {
+import { LoaderFunctionArgs } from 'react-router-dom';
+
+interface Option {
+  name: string;
+  id: number;
+}
+
+interface ZipCode {
+  zip_code: string;
+  distance: number;
+  city: string;
+  state: string;
+}
+
+const getFromDb = async (endpoint: string): Promise<Option[]> => {
   const data = await fetch(`${process.env.REACT_APP_BASE_URL}/${endpoint}`, {
     mode: 'cors',
     headers: {
@@ -24,24 +38,26 @@ export const useMainPageLoader = async () => {
   return { providers, ...options };
 };
 
-export const useProviderLoader = async ({ params }) => {
+export const useProviderLoader = async ({ params }: LoaderFunctionArgs) => {
   const { userId } = params;
+
   const provider = await getFromDb(`providers/${userId}`);
 
   return { provider };
 };
 
-export const getClosestZipCodes = async (searchTerm) => {
-  let result;
+export const getClosestZipCodes = async (
+  searchTerm: string
+): Promise<ZipCode[] | unknown> => {
   try {
-    result = await fetch(
+    const result = await fetch(
       `${
         process.env.REACT_APP_BASE_URL
       }/zip-codes?value=${searchTerm}&radius=${5}`
     );
-  } catch (err) {
-    result = '';
-  }
 
-  return result.json();
+    return result.json();
+  } catch (err) {
+    return err;
+  }
 };

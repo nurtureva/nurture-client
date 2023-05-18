@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  RouteObject,
+  RouterProvider,
+  createBrowserRouter
+} from 'react-router-dom';
 import {
   useProviderLoader,
   useMainPageLoader,
@@ -18,8 +22,13 @@ import {
 } from '../features/Provider';
 import { useFormContent } from '../features/ProviderForm';
 
+export type Endpoint = RouteObject & {
+  name: string;
+  path: string;
+};
+
 //make array of paths and pass that down to layoutwrapper. that way we can dynamically generate navlinks in the header and the footer
-const endpoints = [
+const endpoints: Endpoint[] = [
   {
     name: 'Home',
     path: '/',
@@ -43,12 +52,17 @@ const endpoints = [
   }
 ];
 
+const navRoutes: RouteObject[] = endpoints.map((endpoint) => {
+  const { path, element, loader } = endpoint;
+  return { path, element, loader };
+});
+
 export default function App() {
   const router = createBrowserRouter([
     {
+      ...navRoutes,
       element: <LayoutWrapper navPaths={endpoints} />,
       children: [
-        ...endpoints,
         {
           path: 'results/:userId',
           element: <PageLayout {...providerPageContent} />,
