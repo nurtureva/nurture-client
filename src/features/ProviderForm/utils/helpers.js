@@ -9,16 +9,21 @@ const uploadPhoto = async (id, type, file) => {
   return res.json();
 };
 
+const createPageContent = (title, description, Content) => {
+  return { title, description, Content };
+};
 const useDefaultValues = (provider) => {
+  console.log(provider);
   const flattenArray = (array) => {
-    return array.map((option) => {
-      return option.id.toString();
-    });
+    if (array)
+      return array.map((option) => {
+        return option.id.toString();
+      });
   };
   return provider
     ? {
         defaultValues: {
-          general: provider,
+          general: provider.general || provider,
           services: flattenArray(provider.services),
           paymentOptions: flattenArray(provider.paymentOptions),
           certifications: flattenArray(provider.certifications)
@@ -27,4 +32,4 @@ const useDefaultValues = (provider) => {
     : {};
 };
 
-export { uploadPhoto, useDefaultValues };
+export { uploadPhoto, useDefaultValues, createPageContent };

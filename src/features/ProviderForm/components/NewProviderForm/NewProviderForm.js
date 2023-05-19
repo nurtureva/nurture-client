@@ -3,9 +3,13 @@ import { useForm } from 'react-hook-form';
 import FormItem from '../FormItem';
 import Input from '../Input';
 import { useFormInputList } from '../../utils/formInputList';
-import { uploadPhoto, useDefaultValues } from '../../utils/helpers';
+import {
+  createPageContent,
+  uploadPhoto,
+  useDefaultValues
+} from '../../utils/helpers';
 
-const ProviderForm = ({ onSubmit, provider, changePageState }) => {
+export default function ProviderForm({ provider, changePageState }) {
   const formInputList = useFormInputList();
   const defaultValues = useDefaultValues(provider);
   const { register, handleSubmit } = useForm(defaultValues);
@@ -31,7 +35,13 @@ const ProviderForm = ({ onSubmit, provider, changePageState }) => {
       <input type="submit" />
     </form>
   );
-};
+}
+
+const formContent = createPageContent(
+  'Add your practice to the directory',
+  'Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi.',
+  ProviderForm
+);
 
 const EditProviderForm = () => {
   const [loading, setLoading] = useState(true);
@@ -121,4 +131,4 @@ const NewProviderForm = ({ setPageState }) => {
   return <ProviderForm onSubmit={onSubmit} />;
 };
 
-export { ProviderForm };
+export { formContent };

@@ -79,12 +79,12 @@ const useFormInputList = () => {
     {
       name: 'Profile Photo',
       dbName: 'profile_photo',
-      props: { type: 'file' }
+      props: { type: 'file', element: 'input' }
     },
     {
       name: 'Logo',
       dbName: 'logo',
-      props: { type: 'file' }
+      props: { type: 'file', element: 'input' }
     }
   ];
   return formContent;

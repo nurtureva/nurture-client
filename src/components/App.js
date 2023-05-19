@@ -16,7 +16,7 @@ import {
   providerPageContent,
   providerTableContent
 } from '../features/Provider';
-import { useFormContent } from '../features/ProviderForm';
+import { formContent } from '../features/ProviderForm';
 
 //make array of paths and pass that down to layoutwrapper. that way we can dynamically generate navlinks in the header and the footer
 const endpoints = [
