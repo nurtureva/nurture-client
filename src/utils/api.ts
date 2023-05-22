@@ -1,4 +1,18 @@
-const getFromDb = async (endpoint) => {
+import { LoaderFunctionArgs } from 'react-router-dom';
+import { Option, ProviderObject } from '../features/Provider/types';
+
+export interface ZipCode {
+  zip_code: string;
+  distance: number;
+  city: string;
+  state: string;
+}
+
+type GetterFunction<T> = (endpoint: string) => Promise<T>;
+
+const getFromDb: GetterFunction<Option[] | ProviderObject[]> = async (
+  endpoint
+) => {
   const data = await fetch(`${process.env.REACT_APP_BASE_URL}/${endpoint}`, {
     mode: 'cors',
     headers: {
@@ -24,24 +38,26 @@ export const useMainPageLoader = async () => {
   return { providers, ...options };
 };
 
-export const useProviderLoader = async ({ params }) => {
+export const useProviderLoader = async ({ params }: LoaderFunctionArgs) => {
   const { userId } = params;
+
   const provider = await getFromDb(`providers/${userId}`);
 
   return { provider };
 };
 
-export const getClosestZipCodes = async (searchTerm) => {
-  let result;
+export const getClosestZipCodes = async (
+  searchTerm: string | undefined
+): Promise<ZipCode[] | string> => {
   try {
-    result = await fetch(
+    const result = await fetch(
       `${
         process.env.REACT_APP_BASE_URL
       }/zip-codes?value=${searchTerm}&radius=${5}`
     );
-  } catch (err) {
-    result = '';
-  }
 
-  return result.json();
+    return result.json();
+  } catch (err) {
+    return 'probably too many requests';
+  }
 };

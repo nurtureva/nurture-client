@@ -1,21 +1,28 @@
 import { GlobalOutlined, MailOutlined, PhoneFilled } from '@ant-design/icons';
+import { ProviderObject } from '../../types';
 
-export default function Contact({ provider, title }) {
-  const sanitizeURL = (url) => {
+export default function Contact({
+  provider,
+  title
+}: {
+  provider: ProviderObject;
+  title?: string;
+}) {
+  const sanitizeURL = (url: string) => {
     if (url.includes('https') || url.includes('http')) {
       return url;
     }
     if (
       !(url.includes('.com') || url.includes('.net') || url.includes('org'))
     ) {
-      return null;
+      return undefined;
     }
     return 'https://' + url;
   };
   const website =
     provider.website && provider.website != 'n/a'
       ? sanitizeURL(provider.website)
-      : null;
+      : undefined;
   return (
     <div className="provider-contact">
       {title ? <h3>Contact {title}</h3> : ''}
@@ -39,7 +46,7 @@ export default function Contact({ provider, title }) {
   );
 }
 
-const Address = ({ provider }) => {
+const Address = ({ provider }: { provider: ProviderObject }) => {
   const address_1 = provider.address_1 || '';
   const address_2 = provider.address_2 || '';
   const city = provider.city || '';

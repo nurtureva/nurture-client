@@ -1,8 +1,15 @@
+import { Option } from '../../../Provider/types';
+
 export default function CheckboxOptionGroup({
   title,
   formKey,
   register,
   optionsArray
+}: {
+  title: string;
+  formKey: 'string';
+  register: Function;
+  optionsArray: Option[];
 }) {
   return (
     <ul>

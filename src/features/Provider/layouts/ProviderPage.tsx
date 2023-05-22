@@ -1,9 +1,10 @@
 import Contact from '../components/Contact';
 import Name from '../components/Name';
-import { useLoaderData, useNavigate, useOutletContext } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { ProviderObject } from '../types';
 
 export default function ProviderPage() {
-  const { provider } = useLoaderData();
+  const { provider } = useLoaderData() as { provider: ProviderObject };
   const navigate = useNavigate();
   return (
     <div className="provider-container">
@@ -25,7 +26,7 @@ export default function ProviderPage() {
           <span>
             <label>Payment accepted:</label>
             <ul>
-              {provider.paymentOptions.map((payment) => {
+              {provider.paymentOptions?.map((payment) => {
                 return <li key={payment.id}>{payment.name}</li>;
               })}
             </ul>
@@ -33,7 +34,7 @@ export default function ProviderPage() {
           <span>
             <label>Certifications:</label>
             <ul>
-              {provider.certifications.map((certification) => {
+              {provider.certifications?.map((certification) => {
                 return <li key={certification.id}>{certification.name}</li>;
               })}
             </ul>

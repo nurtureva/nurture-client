@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react';
+import { Option, OptionsObject } from '../../types';
 
-const Filters = ({ options, updateFilters }) => {
+const Filters = ({
+  options,
+  updateFilters
+}: {
+  options: OptionsObject;
+  updateFilters: Function;
+}) => {
   const { services, paymentOptions, certifications } = options;
-  const [serviceFilters, setServiceFilters] = useState([]);
-  const [paymentFilters, setPaymentFilters] = useState([]);
+  const [serviceFilters, setServiceFilters] = useState<string[]>([]);
+  const [paymentFilters, setPaymentFilters] = useState<string[]>([]);
   const clearFilters = () => {
     setPaymentFilters([]);
     setServiceFilters([]);
@@ -32,8 +39,18 @@ const Filters = ({ options, updateFilters }) => {
   );
 };
 
-const FilterList = ({ optionList, title, filterGroup, setFilterGroup }) => {
-  const updateFilterList = (value, checked) => {
+const FilterList = ({
+  optionList,
+  title,
+  filterGroup,
+  setFilterGroup
+}: {
+  optionList: Option[];
+  title: string;
+  filterGroup: string[];
+  setFilterGroup: React.Dispatch<React.SetStateAction<string[]>>;
+}) => {
+  const updateFilterList = (value: string, checked: boolean) => {
     if (checked) setFilterGroup([...filterGroup, value]);
     else {
       const index = filterGroup.indexOf(value);

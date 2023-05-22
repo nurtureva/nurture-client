@@ -1,6 +1,16 @@
 import { Link } from 'react-router-dom';
 
-export default function OptionCenter({ img, title, path, children }) {
+export default function OptionCenter({
+  img,
+  title,
+  path,
+  children
+}: {
+  img: string;
+  title: string;
+  path: string;
+  children: JSX.Element;
+}) {
   return (
     <div>
       <span>
