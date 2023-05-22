@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import { Endpoint, EndpointPropWrapper } from '../App';
 
-export default function Footer({ navPaths }) {
+export default function Footer({ navRoutes }: EndpointPropWrapper) {
   return (
     <footer>
       <h3>Nurture</h3>
       <ul>
-        {navPaths.map((path) => {
+        {navRoutes.map((path) => {
           return (
             <li key={path.path}>
               <Link to={path.path}>{path.name}</Link>
@@ -15,13 +16,13 @@ export default function Footer({ navPaths }) {
       </ul>
       <ul>
         <li>
-          <Link>Education Center</Link>
+          <a>Education Center</a>
         </li>
         <li>
-          <Link>FAQ</Link>
+          <a>FAQ</a>
         </li>
         <li>
-          <Link>Contact</Link>
+          <a>Contact</a>
         </li>
       </ul>
     </footer>

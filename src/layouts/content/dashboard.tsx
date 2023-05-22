@@ -15,7 +15,7 @@ const Header = () => {
       <Link className="link-button" to="/find-care">
         Find Care
       </Link>
-      <Link className="link-button">I'm a Care Provider</Link>
+      <a className="link-button">I'm a Care Provider</a>
     </span>
   );
 };
@@ -58,5 +58,10 @@ const Content = () => {
   );
 };
 
-const dashboardContent = { title, Header, Content, className: 'dashboard' };
+const dashboardContent = {
+  title,
+  Header,
+  Content,
+  className: 'dashboard'
+};
 export default dashboardContent;

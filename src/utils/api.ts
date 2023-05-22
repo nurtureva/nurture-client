@@ -1,18 +1,18 @@
 import { LoaderFunctionArgs } from 'react-router-dom';
+import { Option, ProviderObject } from '../features/Provider/types';
 
-interface Option {
-  name: string;
-  id: number;
-}
-
-interface ZipCode {
+export interface ZipCode {
   zip_code: string;
   distance: number;
   city: string;
   state: string;
 }
 
-const getFromDb = async (endpoint: string): Promise<Option[]> => {
+type GetterFunction<T> = (endpoint: string) => Promise<T>;
+
+const getFromDb: GetterFunction<Option[] | ProviderObject[]> = async (
+  endpoint
+) => {
   const data = await fetch(`${process.env.REACT_APP_BASE_URL}/${endpoint}`, {
     mode: 'cors',
     headers: {
@@ -47,8 +47,8 @@ export const useProviderLoader = async ({ params }: LoaderFunctionArgs) => {
 };
 
 export const getClosestZipCodes = async (
-  searchTerm: string
-): Promise<ZipCode[] | unknown> => {
+  searchTerm: string | undefined
+): Promise<ZipCode[] | string> => {
   try {
     const result = await fetch(
       `${
@@ -58,6 +58,6 @@ export const getClosestZipCodes = async (
 
     return result.json();
   } catch (err) {
-    return err;
+    return 'probably too many requests';
   }
 };

@@ -1,4 +1,12 @@
-export default function FormItem({ name, children, description }) {
+export default function FormItem({
+  name,
+  children,
+  description
+}: {
+  name: string;
+  children: JSX.Element;
+  description: string;
+}) {
   return (
     <span className="input-container">
       <label>

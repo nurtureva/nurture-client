@@ -1,4 +1,6 @@
-export default function PageLayout(props) {
+import { ContentObject } from '../components/App';
+
+const PageLayout: React.FC<ContentObject> = (props) => {
   const { title, Header, Content, className, description } = props;
   return (
     <div className={`content-wrapper${className ? ' ' + className : ''}`}>
@@ -19,4 +21,6 @@ export default function PageLayout(props) {
       )}
     </div>
   );
-}
+};
+
+export default PageLayout;

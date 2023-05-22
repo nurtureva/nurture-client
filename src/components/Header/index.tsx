@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/nurture-logo-1.png';
-import { Endpoint } from '../App';
+import { EndpointPropWrapper } from '../App';
 
-export default function Header({ navPaths }: { navPaths: Endpoint[] }) {
+export default function Header({ navRoutes }: EndpointPropWrapper) {
   return (
     <header>
       <span className="logo-container">
@@ -11,7 +11,7 @@ export default function Header({ navPaths }: { navPaths: Endpoint[] }) {
 
       <nav>
         <ul>
-          {navPaths.map((path) => {
+          {navRoutes.map((path) => {
             return (
               <li key={path.path}>
                 <Link to={path.path}>{path.name}</Link>

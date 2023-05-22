@@ -5,7 +5,7 @@ const Header = () => {
   return <p>choices...</p>;
 };
 
-const providerTableContent = { title: '', Content: ProviderTablePage, Header };
+const providerTableContent = { Content: ProviderTablePage, Header };
 const providerPageContent = { Content: ProviderPage };
 
 export { providerTableContent, providerPageContent };

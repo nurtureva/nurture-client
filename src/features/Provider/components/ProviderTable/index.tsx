@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
 import Name from '../Name';
 import Contact from '../Contact';
+import { ProviderObject } from '../../types';
 
-export default function ProviderTable({ providers }) {
+export default function ProviderTable({
+  providers
+}: {
+  providers: ProviderObject[];
+}) {
   const renderProviders = () => {
     return providers.map((provider) => {
       if (provider.name) {
@@ -30,7 +35,7 @@ export default function ProviderTable({ providers }) {
   );
 }
 
-const Provider = ({ provider }) => {
+const Provider = ({ provider }: { provider: ProviderObject }) => {
   return (
     <div>
       <Link to={`/results/${provider.id}`}>

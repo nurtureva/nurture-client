@@ -1,6 +1,12 @@
 import { useReducer } from 'react';
 import { useFilters } from './filterProviders';
-const reducer = (state, action) => {
+import {
+  FilterObject,
+  FiltersContainerObject,
+  ProviderObject,
+  ReducerAction
+} from '../types';
+const reducer = (state: FiltersContainerObject, action: ReducerAction) => {
   switch (action.type) {
     case 'UPDATE_SEARCH':
       return {
@@ -13,7 +19,7 @@ const reducer = (state, action) => {
       return state;
   }
 };
-const initialState = {
+const initialState: FiltersContainerObject = {
   searchTerm: {
     keyword: '',
     distance: ''
@@ -21,10 +27,16 @@ const initialState = {
   filters: { services: [], paymentOptions: [] }
 };
 
-export const useFilterReducer = (providers) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+export const useFilterReducer = (providers: ProviderObject[]) => {
+  const [state, dispatch]: [FiltersContainerObject, any] = useReducer(
+    reducer,
+    initialState
+  );
 
-  const updateSearch = (keywordSearch, distanceSearch) => {
+  const updateSearch = (
+    keywordSearch: string | undefined,
+    distanceSearch: string | undefined
+  ) => {
     const newSearchTerm = { keywordSearch, distanceSearch };
     if (keywordSearch || distanceSearch) {
       newSearchTerm.keywordSearch = keywordSearch;
@@ -33,7 +45,7 @@ export const useFilterReducer = (providers) => {
     if (!distanceSearch) delete newSearchTerm.distanceSearch;
     dispatch({ type: 'UPDATE_SEARCH', newSearchTerm });
   };
-  const updateFilters = (filters) => {
+  const updateFilters = (filters: FilterObject) => {
     dispatch({ type: 'UPDATE_FILTERS', filters });
   };
   return {

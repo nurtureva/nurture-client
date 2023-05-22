@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { toggleFilterMenu } from '../../../../utils/helpers';
 
 export default function Search({ updateSearch }) {
-  const [keywordTerm, setKeywordTerm] = useState();
-  const [distanceTerm, setDistanceTerm] = useState();
+  const [keywordTerm, setKeywordTerm] = useState('');
+  const [distanceTerm, setDistanceTerm] = useState('');
 
   return (
     <div className="search-container">
