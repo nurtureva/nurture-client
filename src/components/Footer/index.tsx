@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Endpoint, EndpointPropWrapper } from '../App';
+import { EndpointPropWrapper } from '../../types';
 
 export default function Footer({ navRoutes }: EndpointPropWrapper) {
   return (

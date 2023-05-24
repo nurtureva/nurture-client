@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toggleFilterMenu } from '../../../../utils/helpers';
 
-export default function Search({ updateSearch }) {
+export default function Search({ updateSearch }: { updateSearch: Function }) {
   const [keywordTerm, setKeywordTerm] = useState('');
   const [distanceTerm, setDistanceTerm] = useState('');
 

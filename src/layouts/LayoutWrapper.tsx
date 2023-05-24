@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { EndpointPropWrapper } from '../components/App';
+import { EndpointPropWrapper } from '../types';
 
 const LayoutWrapper: React.FC<EndpointPropWrapper> = ({ navRoutes }) => {
   const navigation = useNavigation();

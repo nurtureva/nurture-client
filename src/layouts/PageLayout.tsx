@@ -1,4 +1,4 @@
-import { ContentObject } from '../components/App';
+import { ContentObject } from '../types';
 
 const PageLayout: React.FC<ContentObject> = (props) => {
   const { title, Header, Content, className, description } = props;
