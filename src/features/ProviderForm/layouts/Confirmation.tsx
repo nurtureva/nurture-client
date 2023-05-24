@@ -1,19 +1,29 @@
 import { useLoaderData } from 'react-router-dom';
 import { createPageContent } from '../utils/helpers';
+import { FormProvider, ProviderOptions } from '../../Provider/types';
 
-export default function Confirmation({ changePageState, provider }) {
-  const { services, paymentOptions, certifications } = useLoaderData();
-
+export default function Confirmation({
+  changePageState,
+  provider
+}: {
+  changePageState: Function;
+  provider: FormProvider;
+}) {
+  const { services, paymentOptions, certifications } =
+    useLoaderData() as ProviderOptions;
+  console.log(provider?.general);
   return (
     <>
       <ul>
         {Object.entries(provider.general).map((inputValue) => {
           const [label, userResponse] = inputValue;
           if (userResponse.length) {
-            let value = userResponse;
-            if (typeof userResponse !== 'string') value = userResponse[0].name;
+            let value =
+              typeof userResponse === 'string'
+                ? userResponse
+                : userResponse[0].name;
             return (
-              <li>
+              <li key={label}>
                 {label}: {value}
               </li>
             );

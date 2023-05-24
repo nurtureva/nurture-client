@@ -2,13 +2,13 @@ export default function Input({
   register,
   dbName,
   type = 'text',
-  foo
+  element
 }: {
   register: Function;
-  dbName: string;
-  type: React.HTMLInputTxypeAttribute;
-  foo: 'string';
+  dbName?: string;
+  type?: React.HTMLInputTypeAttribute;
+  element?: string;
 }) {
-  const Element = foo || 'input';
+  const Element = element || 'input';
   return <Element type={type} {...register(`general.${dbName}`)} />;
 }

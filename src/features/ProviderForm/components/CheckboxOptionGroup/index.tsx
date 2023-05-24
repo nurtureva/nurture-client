@@ -1,16 +1,16 @@
 import { Option } from '../../../Provider/types';
 
+export interface CheckboxPropsObject {
+  formKey: string;
+  register: Function;
+  optionsArray: Option[];
+}
+
 export default function CheckboxOptionGroup({
-  title,
   formKey,
   register,
   optionsArray
-}: {
-  title: string;
-  formKey: 'string';
-  register: Function;
-  optionsArray: Option[];
-}) {
+}: CheckboxPropsObject) {
   return (
     <ul>
       {optionsArray.map((option) => {
@@ -20,7 +20,6 @@ export default function CheckboxOptionGroup({
               <input
                 type="checkbox"
                 value={option.id}
-                name={title}
                 {...register(`${formKey}`)}
               />
               {option.name}

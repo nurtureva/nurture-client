@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ZipCode, getClosestZipCodes } from '../../../utils/api';
+import { getClosestZipCodes } from '../../../utils/api';
 import { useNavigation } from 'react-router-dom';
 import { FiltersContainerObject, Option, ProviderObject } from '../types';
 
@@ -32,14 +32,14 @@ export const useFilters = (
   ) => {
     //any time a filter changes, we start with all providers.
     let newProviders = [...providers];
-    // const closestZipCodes = searchTerm.distanceSearch
-    //   ? getClosestZipCodes(searchTerm.distanceSearch)
-    //   : '';
-    // const zipCodeArray = closestZipCodes
-    //   ? closestZipCodes.zip_codes.map((result) => {
-    //       return result.zip_code;
-    //     })
-    //   : '';
+    const closestZipCodes = searchTerm.distance
+      ? getClosestZipCodes(searchTerm.distance)
+      : '';
+    const zipCodeArray = closestZipCodes
+      ? closestZipCodes?.zip_codes.map((result) => {
+          return result.zip_code;
+        })
+      : '';
     newProviders = newProviders.filter((provider) => {
       //filters, providers,
 
@@ -47,6 +47,7 @@ export const useFilters = (
       let serviceCheck = true;
       let paymentCheck = true;
       let nameCheck = true;
+      console.log(searchTerm);
       if (searchTerm.distance) {
         zipCheck = provider.zip ? zipArray.includes(provider.zip) : false;
         console.log(zipCheck);

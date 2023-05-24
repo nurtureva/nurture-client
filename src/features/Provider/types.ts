@@ -24,12 +24,15 @@ export interface ProviderNoOptions {
   profile_photo?: string;
 }
 
-export interface ProviderObject extends ProviderNoOptions {
-  appointment_options: Option[];
-  paymentOptions: Option[];
-  services: Option[];
-  certifications: Option[];
-}
+export type OptionType =
+  | 'appointmentOptions'
+  | 'paymentOptions'
+  | 'services'
+  | 'certifications';
+
+export type ProviderOptionsGenerator<T> = {
+  [optionName in OptionType]?: T[];
+};
 
 export interface Option {
   name: string;
@@ -40,21 +43,28 @@ export interface OptionsObject {
   [key: string]: Option[];
 }
 
-export type FilterType = 'services' | 'paymentOptions';
+export type ProviderOptions = ProviderOptionsGenerator<Option>;
 
-export interface FiltersContainerObject {
-  filters: FilterObject;
-  searchTerm: SearchObject;
+export type ProviderObject = ProviderNoOptions & ProviderOptions;
+
+export interface FormProvider extends ProviderOptionsGenerator<string> {
+  general: ProviderNoOptions;
 }
 
-export interface FilterObject {
-  services: string[];
-  paymentOptions: string[];
-}
+export type FilterType = Exclude<OptionType, 'certifications'>;
+
+export type FilterObject = {
+  [filterName in FilterType]?: string[];
+};
 
 export interface SearchObject {
   keyword?: string;
   distance?: string;
+}
+
+export interface FiltersContainerObject {
+  filters: FilterObject;
+  searchTerm: SearchObject;
 }
 
 export type ActionType = 'UPDATE_SEARCH' | 'UPDATE_FILTERS';

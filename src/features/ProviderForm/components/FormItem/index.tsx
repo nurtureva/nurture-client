@@ -1,17 +1,19 @@
+export interface FormItemWrapperObject {
+  name: string;
+  children: React.ReactNode;
+  description?: string;
+}
+
 export default function FormItem({
   name,
   children,
   description
-}: {
-  name: string;
-  children: JSX.Element;
-  description: string;
-}) {
+}: FormItemWrapperObject) {
   return (
     <span className="input-container">
       <label>
         <p>{name}</p>
-        <p>{description}</p>
+        {description && <p>{description}</p>}
       </label>
       {children}
     </span>

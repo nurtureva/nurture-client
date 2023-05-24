@@ -1,8 +1,4 @@
-import {
-  RouteObject,
-  RouterProvider,
-  createBrowserRouter
-} from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import {
   useProviderLoader,
   useMainPageLoader,
@@ -20,25 +16,10 @@ import {
   providerPageContent,
   providerTableContent
 } from '../features/Provider';
-import { formContent } from '../features/ProviderForm';
-
-export type Endpoint = RouteObject & {
-  name: string;
-  path: string;
-};
-
-export interface EndpointPropWrapper {
-  navRoutes: Endpoint[];
-}
-
-export interface ContentObject {
-  title?: string;
-  Header?: React.FC<{}>;
-  Content?: React.FC<ContentObject | {}>;
-  className?: string;
-  description?: string;
-  changePageState?: Function;
-}
+// import { formContent } from '../features/ProviderForm';
+// import FormManager from '../features/ProviderForm/components/FormManager';
+import FormManager from '../features/ProviderForm';
+import { Endpoint } from '../types';
 
 const navRoutes: Endpoint[] = [
   {
@@ -78,7 +59,7 @@ export default function App() {
         {
           path: 'provider-form',
           loader: useOptionsLoader,
-          element: <PageLayout {...useFormContent()} />
+          element: <FormManager />
         }
         // {
         //   path: 'admin',

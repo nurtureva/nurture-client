@@ -34,15 +34,15 @@ export const useFilterReducer = (providers: ProviderObject[]) => {
   );
 
   const updateSearch = (
-    keywordSearch: string | undefined,
-    distanceSearch: string | undefined
+    keyword: string | undefined,
+    distance: string | undefined
   ) => {
-    const newSearchTerm = { keywordSearch, distanceSearch };
-    if (keywordSearch || distanceSearch) {
-      newSearchTerm.keywordSearch = keywordSearch;
+    const newSearchTerm = { keyword, distance };
+    if (keyword || distance) {
+      newSearchTerm.keyword = keyword;
     }
-    if (!keywordSearch) delete newSearchTerm.keywordSearch;
-    if (!distanceSearch) delete newSearchTerm.distanceSearch;
+    if (!keyword) delete newSearchTerm.keyword;
+    if (!distance) delete newSearchTerm.distance;
     dispatch({ type: 'UPDATE_SEARCH', newSearchTerm });
   };
   const updateFilters = (filters: FilterObject) => {

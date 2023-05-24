@@ -1,19 +1,13 @@
 import { LoaderFunctionArgs } from 'react-router-dom';
 import { Option, ProviderObject } from '../features/Provider/types';
-
-export interface ZipCode {
-  zip_code: string;
-  distance: number;
-  city: string;
-  state: string;
-}
+import { ZipCode } from '../types';
 
 type GetterFunction<T> = (endpoint: string) => Promise<T>;
 
 const getFromDb: GetterFunction<Option[] | ProviderObject[]> = async (
   endpoint
 ) => {
-  const data = await fetch(`${process.env.REACT_APP_BASE_URL}/${endpoint}`, {
+  const data = await fetch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`, {
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
@@ -52,7 +46,7 @@ export const getClosestZipCodes = async (
   try {
     const result = await fetch(
       `${
-        process.env.REACT_APP_BASE_URL
+        import.meta.env.VITE_BASE_URL
       }/zip-codes?value=${searchTerm}&radius=${5}`
     );
 

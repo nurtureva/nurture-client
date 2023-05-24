@@ -1,13 +1,47 @@
 import { useLoaderData } from 'react-router-dom';
-import CheckboxOptionGroup from '../components/CheckboxOptionGroup';
+import CheckboxOptionGroup, {
+  CheckboxPropsObject
+} from '../components/CheckboxOptionGroup';
+import { Option } from '../../Provider/types';
+
+export interface BaseInputObject {
+  name: string;
+  description?: string;
+}
+
+export interface GenericInputObject extends BaseInputObject {
+  dbName: string;
+  props?: GenericInputProps;
+}
+
+export interface CustomInputObject extends BaseInputObject {
+  Element: React.FC<CheckboxPropsObject>;
+  props: CustomInputProps;
+}
+
+export type InputObject = GenericInputObject | CustomInputObject;
+
+export interface CustomInputProps {
+  formKey: string;
+  optionsArray: Option[];
+}
+
+export interface GenericInputProps {
+  element: string;
+  type?: string;
+}
 
 const useFormInputList = () => {
   const appointmentOptions = [
     { id: 1, name: 'Online/Telehealth' },
     { id: 2, name: 'Home Visits' }
   ];
-  const { services, paymentOptions, certifications } = useLoaderData();
-  const formContent = [
+  const { services, paymentOptions, certifications } = useLoaderData() as {
+    services: Option[];
+    paymentOptions: Option[];
+    certifications: Option[];
+  };
+  const formContent: InputObject[] = [
     { name: 'Name', dbName: 'name', description: 'First & Last' },
     {
       name: 'Business Name',
