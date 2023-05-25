@@ -19,6 +19,7 @@ export interface ProviderNoOptions {
   languages_spoken?: string;
   needs_review: false;
   overview?: string;
+  isBookmarked: boolean;
   logo?: Url;
   role?: Url;
   profile_photo?: string;
@@ -55,7 +56,7 @@ export type FilterType = Exclude<OptionType, 'certifications'>;
 
 export type FilterObject = {
   [filterName in FilterType]?: string[];
-};
+} & { bookmarkFilter: boolean };
 
 export interface SearchObject {
   keyword?: string;

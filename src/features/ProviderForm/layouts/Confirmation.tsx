@@ -11,7 +11,6 @@ export default function Confirmation({
 }) {
   const { services, paymentOptions, certifications } =
     useLoaderData() as ProviderOptions;
-  console.log(provider?.general);
   return (
     <>
       <ul>

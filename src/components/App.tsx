@@ -16,8 +16,6 @@ import {
   providerPageContent,
   providerTableContent
 } from '../features/Provider';
-// import { formContent } from '../features/ProviderForm';
-// import FormManager from '../features/ProviderForm/components/FormManager';
 import FormManager from '../features/ProviderForm';
 import { Endpoint } from '../types';
 
@@ -46,6 +44,11 @@ const navRoutes: Endpoint[] = [
 ];
 
 export default function App() {
+  const bookmarkedProviders: string | null = window.localStorage.getItem(
+    'bookmarked-providers'
+  );
+  if (!bookmarkedProviders)
+    window.localStorage.setItem('bookmarked-providers', '[]');
   const router = createBrowserRouter([
     {
       element: <LayoutWrapper navRoutes={navRoutes} />,

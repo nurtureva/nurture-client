@@ -84,7 +84,6 @@ export default function OptionList(props) {
           <input
             value={name}
             onChange={(e) => {
-              console.log(e.target.value);
               setName(e.target.value);
             }}
           />

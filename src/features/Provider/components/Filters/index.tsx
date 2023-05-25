@@ -11,14 +11,20 @@ const Filters = ({
   const { services, paymentOptions, certifications } = options;
   const [serviceFilters, setServiceFilters] = useState<string[]>([]);
   const [paymentFilters, setPaymentFilters] = useState<string[]>([]);
+  const [bookmarkFilter, setBookmarkFilter] = useState(false);
   const clearFilters = () => {
     setPaymentFilters([]);
     setServiceFilters([]);
+    setBookmarkFilter(false);
   };
 
   useEffect(() => {
-    updateFilters({ services: serviceFilters, paymentOptions: paymentFilters });
-  }, [serviceFilters, paymentFilters]);
+    updateFilters({
+      services: serviceFilters,
+      paymentOptions: paymentFilters,
+      bookmarkFilter
+    });
+  }, [serviceFilters, paymentFilters, bookmarkFilter]);
   return (
     <div className="provider-filters">
       <h4>Filters</h4>
@@ -34,6 +40,16 @@ const Filters = ({
         setFilterGroup={setPaymentFilters}
         filterGroup={paymentFilters}
       />
+      <label>
+        <input
+          type="checkbox"
+          onChange={(e) => {
+            setBookmarkFilter(e.target.checked);
+          }}
+          checked={bookmarkFilter}
+        />
+        Bookmarks
+      </label>
       <button onClick={clearFilters}>clear filters</button>
     </div>
   );

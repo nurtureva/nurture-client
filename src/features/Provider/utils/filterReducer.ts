@@ -24,7 +24,7 @@ const initialState: FiltersContainerObject = {
     keyword: '',
     distance: ''
   },
-  filters: { services: [], paymentOptions: [] }
+  filters: { services: [], paymentOptions: [], bookmarkFilter: false }
 };
 
 export const useFilterReducer = (providers: ProviderObject[]) => {
