@@ -1,6 +1,6 @@
 import { LoaderFunctionArgs } from 'react-router-dom';
-import { Option, OptionType, ProviderObject } from '../features/Provider/types';
-import { ZipCode } from '../types';
+import { ZipCode, Option, ProviderObject } from '../types';
+import { getBookmarkedProviders, mergeIsBookmarked } from './helpers';
 
 type OptionEndpoint = 'services' | 'certifications' | 'payment-options';
 type ProviderEndpoint = `providers/${string}`;
@@ -34,15 +34,7 @@ export const useOptionsLoader = async () => {
 
 export const useMainPageLoader = async () => {
   const providers = await getFromDb('providers');
-  const stringifiredBookmarkedProviders = window.localStorage.getItem(
-    'bookmarked-providers'
-  );
-  const bookmarkedProviders: number[] = stringifiredBookmarkedProviders
-    ? JSON.parse(stringifiredBookmarkedProviders)
-    : [];
-  providers.forEach((provider) => {
-    provider.isBookmarked = bookmarkedProviders.includes(provider.id);
-  });
+  mergeIsBookmarked(providers);
   const options = await useOptionsLoader();
 
   return { providers, ...options };
@@ -52,6 +44,7 @@ export const useProviderLoader = async ({ params }: LoaderFunctionArgs) => {
   const { userId } = params;
 
   const provider = await getFromDb(`providers/${userId}`);
+  mergeIsBookmarked(provider);
   return { provider };
 };
 

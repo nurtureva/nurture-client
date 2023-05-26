@@ -18,6 +18,7 @@ import {
 } from '../features/Provider';
 import FormManager from '../features/ProviderForm';
 import { Endpoint } from '../types';
+import { initBookmarkedProviders } from '../utils/helpers';
 
 const navRoutes: Endpoint[] = [
   {
@@ -44,11 +45,7 @@ const navRoutes: Endpoint[] = [
 ];
 
 export default function App() {
-  const bookmarkedProviders: string | null = window.localStorage.getItem(
-    'bookmarked-providers'
-  );
-  if (!bookmarkedProviders)
-    window.localStorage.setItem('bookmarked-providers', '[]');
+  initBookmarkedProviders();
   const router = createBrowserRouter([
     {
       element: <LayoutWrapper navRoutes={navRoutes} />,

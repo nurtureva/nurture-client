@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getClosestZipCodes } from '../../../utils/api';
+import { getClosestZipCodes } from '@/utils/api';
 import { useNavigation } from 'react-router-dom';
 import { FiltersContainerObject, Option, ProviderObject } from '../types';
 

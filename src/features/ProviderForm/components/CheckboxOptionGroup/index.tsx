@@ -1,4 +1,4 @@
-import { Option } from '../../../Provider/types';
+import { Option } from '@/types';
 
 export interface CheckboxPropsObject {
   formKey: string;

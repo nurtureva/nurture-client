@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Name from '../Name';
 import Contact from '../Contact';
 import { ProviderObject } from '../../types';
-import { useEffect, useState } from 'react';
+import Bookmark from '../Bookmark';
 
 export default function ProviderTable({
   providers
@@ -37,43 +37,12 @@ export default function ProviderTable({
 }
 
 const Provider = ({ provider }: { provider: ProviderObject }) => {
-  const [isBookmarked, setIsBookmarked] = useState(!!provider.isBookmarked);
-  useEffect(() => {
-    const stringifiedBookmarkedProviders = window.localStorage.getItem(
-      'bookmarked-providers'
-    );
-    const bookmarkedProviders: number[] = stringifiedBookmarkedProviders
-      ? JSON.parse(stringifiedBookmarkedProviders)
-      : [];
-    const alreadyBookmared = bookmarkedProviders.includes(provider.id);
-
-    if (isBookmarked && !alreadyBookmared) {
-      bookmarkedProviders.push(provider.id);
-    } else if (!isBookmarked && alreadyBookmared) {
-      const bookmarkIndex = bookmarkedProviders.indexOf(provider.id);
-      bookmarkedProviders.splice(bookmarkIndex, 1);
-    }
-
-    window.localStorage.setItem(
-      'bookmarked-providers',
-      JSON.stringify(bookmarkedProviders)
-    );
-    provider.isBookmarked = isBookmarked;
-  }, [isBookmarked]);
   return (
     <div>
-      <div className="bookmark">
-        <input
-          type="checkbox"
-          checked={isBookmarked}
-          onChange={(e) => {
-            setIsBookmarked(e.target.checked);
-          }}></input>
-      </div>
       <Link to={`/results/${provider.id}`}>
         <Name provider={provider} />
       </Link>
-
+      <Bookmark provider={provider} />
       <Contact provider={provider} />
     </div>
   );

@@ -1,4 +1,4 @@
-import { FormProvider, Option, ProviderObject } from '../../../types';
+import { FormProvider, Option, ProviderObject } from '@/types';
 
 const uploadPhoto = async (id: number, type: string, file: File) => {
   const formData = new FormData();

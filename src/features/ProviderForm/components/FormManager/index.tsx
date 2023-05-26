@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { confirmationContent } from '../../layouts/Confirmation';
 import { submissionContent } from '../../layouts/FormSubmissionResults';
 import { formContent } from '../../layouts/Form';
-import { ContentObject, ProviderObject } from '../../../../types';
+import { ContentObject, ProviderObject } from '@/types';
 
 const FormManager = () => {
   const [pageState, setPageState] = useState(0);

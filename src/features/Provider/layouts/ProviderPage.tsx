@@ -2,6 +2,7 @@ import Contact from '../components/Contact';
 import Name from '../components/Name';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { ProviderObject } from '../types';
+import Bookmark from '../components/Bookmark';
 
 export default function ProviderPage() {
   const { provider } = useLoaderData() as { provider: ProviderObject };
@@ -15,7 +16,7 @@ export default function ProviderPage() {
           }}>
           {'< back'}
         </button>
-        <button>bookmark</button>
+        <Bookmark provider={provider} />
         <button>request an edit</button>
       </div>
       <div>
