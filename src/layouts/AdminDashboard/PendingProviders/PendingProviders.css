@@ -1,9 +1,0 @@
-.ant-table-wrapper {
-  border-bottom: 5px solid #fafafa;
-  width: 50%;
-}
-
-.admin-actions-cell {
-  display: flex;
-  justify-content: space-evenly;
-}

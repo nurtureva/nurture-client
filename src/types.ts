@@ -26,3 +26,5 @@ export interface ZipCode {
   city: string;
   state: string;
 }
+
+export type Reports = any;

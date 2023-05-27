@@ -2,23 +2,21 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import {
   useProviderLoader,
   useMainPageLoader,
-  useOptionsLoader
-} from '../utils/api';
+  useOptionsLoader,
+  useAdminLoader
+} from '@/utils/api';
+import { initBookmarkedProviders } from '@/utils/helpers';
+import { Endpoint } from '@/types';
 //page layouts
-import LayoutWrapper from '../layouts/LayoutWrapper';
-import PageLayout from '../layouts/PageLayout';
-import careProviderContent from '../layouts/content/careProvider';
-import findCareContent from '../layouts/content/findCare';
-import dashboardContent from '../layouts/content/dashboard';
+import LayoutWrapper from '@/layouts/LayoutWrapper';
+import PageLayout from '@/layouts/PageLayout';
+import careProviderContent from '@/layouts/content/careProvider';
+import findCareContent from '@/layouts/content/findCare';
+import dashboardContent from '@/layouts/content/dashboard';
 //features
-// import AdminDashboard from '../layouts/AdminDashboard/AdminDashboard';
-import {
-  providerPageContent,
-  providerTableContent
-} from '../features/Provider';
-import FormManager from '../features/ProviderForm';
-import { Endpoint } from '../types';
-import { initBookmarkedProviders } from '../utils/helpers';
+import { providerPageContent, providerTableContent } from '@/features/Provider';
+import { adminContent } from '@/features/Admin';
+import FormManager from '@/features/ProviderForm';
 
 const navRoutes: Endpoint[] = [
   {
@@ -60,6 +58,11 @@ export default function App() {
           path: 'provider-form',
           loader: useOptionsLoader,
           element: <FormManager />
+        },
+        {
+          path: 'admin',
+          loader: useAdminLoader,
+          element: <PageLayout {...adminContent} />
         }
         // {
         //   path: 'admin',

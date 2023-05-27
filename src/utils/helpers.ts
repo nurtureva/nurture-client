@@ -1,6 +1,6 @@
 import { ProviderObject } from '@/types';
 
-const toggleFilterMenu = () => {
+export const toggleFilterMenu = () => {
   const filterElement = document.getElementsByClassName('provider-filters')[0];
   if (filterElement instanceof HTMLElement) {
     if (filterElement.style.display === 'block') {
@@ -9,7 +9,7 @@ const toggleFilterMenu = () => {
   }
 };
 
-const initBookmarkedProviders = () => {
+export const initBookmarkedProviders = () => {
   const bookmarkedProviders: string | null = window.localStorage.getItem(
     'bookmarked-providers'
   );
@@ -32,7 +32,7 @@ export const setBookmarkedProviders = (value: string) => {
   window.localStorage.setItem('bookmarked-providers', value);
 };
 
-export const mergeIsBookmarked = (
+export const mergeLocalStorage = (
   toBeMerged: ProviderObject | ProviderObject[]
 ) => {
   const bookmarkedProviders = getBookmarkedProviders();
@@ -44,5 +44,3 @@ export const mergeIsBookmarked = (
     toBeMerged.isBookmarked = bookmarkedProviders.includes(toBeMerged.id);
   }
 };
-
-export { toggleFilterMenu, initBookmarkedProviders };
