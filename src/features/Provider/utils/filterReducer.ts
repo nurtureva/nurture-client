@@ -5,7 +5,7 @@ import {
   FiltersContainerObject,
   ProviderObject,
   ReducerAction
-} from '../types';
+} from '@/types';
 const reducer = (state: FiltersContainerObject, action: ReducerAction) => {
   switch (action.type) {
     case 'UPDATE_SEARCH':

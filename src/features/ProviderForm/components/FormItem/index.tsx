@@ -1,4 +1,4 @@
-export interface FormItemWrapperObject {
+interface FormItemWrapperObject {
   name: string;
   children: React.ReactNode;
   description?: string;

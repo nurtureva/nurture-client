@@ -19,11 +19,53 @@ type GetterFunction = {
   <T extends ReportsEndpoint>(endpoint: T): Promise<Reports[]>;
 };
 
+const accessDatabase: dbFunction = async (
+  method: MethodType,
+  endpoint: EndpointType,
+  body?: any
+) => {
+  const data = await fetch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`, {
+    ...requestOptions,
+    method,
+    body
+  });
+
+  return data.json();
+};
+accessDatabase('GET', 'services');
+type dbFunction = {
+  <T extends 'GET'>(
+    method: T,
+    endpoint: EndpointType,
+    body?: any
+  ): GetterFunction;
+};
+
+type MethodType = 'POST' | 'PATCH' | 'DELETE' | 'GET';
+
+interface RequestOptions extends RequestInit {
+  method: MethodType;
+}
+
+/*******************    HELPERS   *******************/
+
 const requestOptions: RequestInit = {
   mode: 'cors',
   headers: {
     'Content-Type': 'application/json'
   }
+};
+
+const useApi = (method: MethodType) => {
+  const accessDatabase = async (endpoint: EndpointType, body: any) => {
+    const data = await fetch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`, {
+      ...requestOptions,
+      method,
+      body
+    });
+
+    return data.json();
+  };
 };
 
 const getFromDb: GetterFunction = async (endpoint: EndpointType) => {
@@ -33,6 +75,8 @@ const getFromDb: GetterFunction = async (endpoint: EndpointType) => {
 
   return data.json();
 };
+
+/*******************    API   *******************/
 
 export const getClosestZipCodes = async (
   searchTerm: string | undefined
@@ -88,6 +132,8 @@ export const approveProvider = async (providerId: number) => {
   );
 };
 
+/*******************    LOADERS   *******************/
+
 export const useOptionsLoader = async () => {
   const services = await getFromDb('services');
   const certifications = await getFromDb('certifications');
@@ -118,4 +164,13 @@ export const useProviderLoader = async ({ params }: LoaderFunctionArgs) => {
   const provider = await getFromDb(`providers/${userId}`);
   mergeLocalStorage(provider);
   return { provider };
+};
+
+export const useEditFormLoader = async ({ params }: LoaderFunctionArgs) => {
+  const { userId } = params;
+
+  const options = await useOptionsLoader();
+  const provider = await getFromDb(`providers/${userId}`);
+
+  return { provider, ...options };
 };

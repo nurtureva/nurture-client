@@ -1,9 +1,9 @@
-import ProviderTable from '../components/ProviderTable';
 import { useLoaderData } from 'react-router-dom';
+import { Option, ProviderObject } from '@/types';
+import ProviderTable from '../components/ProviderTable';
 import Filters from '../components/Filters';
-import { useFilterReducer } from '../utils/filterReducer';
 import Search from '../components/Search';
-import { Option, ProviderObject } from '../types';
+import { useFilterReducer } from '../utils/filterReducer';
 
 export default function ProviderTablePage() {
   const { providers, services, paymentOptions, certifications } =

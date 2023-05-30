@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Name from '../Name';
 import Contact from '../Contact';
-import { ProviderObject } from '../../types';
+import { ProviderObject } from '@/types';
 import Bookmark from '../Bookmark';
 
 export default function ProviderTable({

@@ -1,13 +1,15 @@
 import { useLoaderData } from 'react-router-dom';
 import { createPageContent } from '../utils/helpers';
-import { FormProvider, ProviderOptions } from '../../Provider/types';
+import { FormProvider, ProviderOptions } from '@/types';
 
 export default function Confirmation({
-  changePageState,
-  provider
+  updateState,
+  provider,
+  formAction
 }: {
-  changePageState: Function;
+  updateState: Function;
   provider: FormProvider;
+  formAction: Function;
 }) {
   const { services, paymentOptions, certifications } =
     useLoaderData() as ProviderOptions;
@@ -16,7 +18,7 @@ export default function Confirmation({
       <ul>
         {Object.entries(provider.general).map((inputValue) => {
           const [label, userResponse] = inputValue;
-          if (userResponse.length) {
+          if (userResponse?.length) {
             let value =
               typeof userResponse === 'string'
                 ? userResponse
@@ -31,13 +33,13 @@ export default function Confirmation({
       </ul>
       <button
         onClick={() => {
-          changePageState(2);
+          formAction();
         }}>
         confirm
       </button>
       <button
         onClick={() => {
-          changePageState(0, provider);
+          updateState(0, provider);
         }}>
         edit
       </button>

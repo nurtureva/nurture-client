@@ -1,6 +1,6 @@
 import samplePhoto1 from '@/assets/profile-1.png';
 import samplePhoto2 from '@/assets/profile-2.png';
-import { ProviderObject } from '../../types';
+import { ProviderObject } from '@/types';
 
 export default function Name({
   provider,

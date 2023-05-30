@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import FormItem from '../components/FormItem';
 import Input from '../components/Input';
 import { useFormInputList } from '../utils/formInputList';
-import {
-  createPageContent,
-  uploadPhoto,
-  useDefaultValues
-} from '../utils/helpers';
+import { createPageContent, useDefaultValues } from '../utils/helpers';
 import { ProviderObject } from '../../Provider/types';
 
 export default function ProviderForm({

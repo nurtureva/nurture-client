@@ -1,6 +1,8 @@
 import { RouteObject } from 'react-router-dom';
 
 export * from './features/Provider/types';
+export * from './features/ProviderForm/types';
+export * from './api/types';
 
 export type Endpoint = RouteObject & {
   name: string;

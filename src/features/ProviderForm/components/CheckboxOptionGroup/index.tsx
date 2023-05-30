@@ -1,10 +1,4 @@
-import { Option } from '@/types';
-
-export interface CheckboxPropsObject {
-  formKey: string;
-  register: Function;
-  optionsArray: Option[];
-}
+import { CheckboxPropsObject } from '@/types';
 
 export default function CheckboxOptionGroup({
   formKey,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Option, OptionsObject } from '../../types';
+import { Option, OptionsObject } from '@/types';
 
 const Filters = ({
   options,
@@ -8,7 +8,7 @@ const Filters = ({
   options: OptionsObject;
   updateFilters: Function;
 }) => {
-  const { services, paymentOptions, certifications } = options;
+  const { services, paymentOptions } = options;
   const [serviceFilters, setServiceFilters] = useState<string[]>([]);
   const [paymentFilters, setPaymentFilters] = useState<string[]>([]);
   const [bookmarkFilter, setBookmarkFilter] = useState(false);

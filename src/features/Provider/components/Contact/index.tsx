@@ -1,5 +1,5 @@
 import { GlobalOutlined, MailOutlined, PhoneFilled } from '@ant-design/icons';
-import { ProviderObject } from '../../types';
+import { ProviderObject } from '@/types';
 
 export default function Contact({
   provider,

@@ -1,18 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { confirmationContent } from '../../layouts/Confirmation';
 import { submissionContent } from '../../layouts/FormSubmissionResults';
 import { formContent } from '../../layouts/Form';
-import { ContentObject, ProviderObject } from '@/types';
+import { useContextInitializer, useFormContext } from '../../utils/formContext';
 
-const FormManager = () => {
-  const [pageState, setPageState] = useState(0);
-  const [provider, setProvider] = useState<ProviderObject>();
-  const [content, setContent] = useState<ContentObject>(formContent);
-
-  const updateState = (pageState: number, provider: ProviderObject) => {
-    setPageState(pageState);
-    setProvider(provider);
-  };
+const FormSwitcher = ({ formAction }: { formAction: Function }) => {
+  const [content, setContent] = useState(formContent);
+  const { pageState, updateState, provider } = useFormContext();
 
   useEffect(() => {
     switch (pageState) {
@@ -29,13 +23,22 @@ const FormManager = () => {
   }, [pageState]);
 
   if (!content) return null;
-  const props = { updateState, provider };
+  const props = { updateState, provider, formAction };
   return (
     <div className="content-wrapper">
       {content.title && <h1>{content.title}</h1>}
       {content.description && <p>{content.description}</p>}
       <div>{content.Content ? <content.Content {...props} /> : ''}</div>
     </div>
+  );
+};
+
+const FormManager = ({ formAction }: { formAction: Function }) => {
+  const [FormContext, value] = useContextInitializer();
+  return (
+    <FormContext.Provider value={value}>
+      <FormSwitcher formAction={formAction} />
+    </FormContext.Provider>
   );
 };
 

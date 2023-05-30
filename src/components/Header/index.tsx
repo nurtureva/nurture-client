@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/nurture-logo-1.png';
-import { EndpointPropWrapper } from '../../types';
+import logo from '@/assets/nurture-logo-1.png';
+import { EndpointPropWrapper } from '@/types';
 
 export default function Header({ navRoutes }: EndpointPropWrapper) {
   return (

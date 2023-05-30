@@ -3,8 +3,9 @@ import {
   useProviderLoader,
   useMainPageLoader,
   useOptionsLoader,
-  useAdminLoader
-} from '@/utils/api';
+  useAdminLoader,
+  useEditFormLoader
+} from '@/api/loaders';
 import { initBookmarkedProviders } from '@/utils/helpers';
 import { Endpoint } from '@/types';
 //page layouts
@@ -17,6 +18,7 @@ import dashboardContent from '@/layouts/content/dashboard';
 import { providerPageContent, providerTableContent } from '@/features/Provider';
 import { adminContent } from '@/features/Admin';
 import FormManager from '@/features/ProviderForm';
+import { useFormAction } from '@/features/ProviderForm/utils/formActions';
 
 const navRoutes: Endpoint[] = [
   {
@@ -57,18 +59,18 @@ export default function App() {
         {
           path: 'provider-form',
           loader: useOptionsLoader,
-          element: <FormManager />
+          element: <FormManager formAction={useFormAction('create')} />
         },
         {
           path: 'admin',
           loader: useAdminLoader,
           element: <PageLayout {...adminContent} />
+        },
+        {
+          path: ':userId/edit/:hash',
+          element: <FormManager formAction={useFormAction('update')} />,
+          loader: useEditFormLoader
         }
-        // {
-        //   path: 'admin',
-        //   element: <AdminDashboard />
-        // }
-        // { path: ':userId/edit/:hash', element: <EditProviderForm /> }
       ]
     }
   ]);
