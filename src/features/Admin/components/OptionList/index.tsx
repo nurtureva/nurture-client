@@ -2,8 +2,8 @@ import { Button } from 'antd';
 import { useState } from 'react';
 import { DeleteFilled } from '@ant-design/icons';
 import './OptionList.scss';
-import { OptionsObject } from '@/types';
-import { OptionEndpoint, addOption, deleteById } from '@/utils/api';
+import { OptionEndpoint, OptionsObject } from '@/types';
+import { accessDatabase } from '@/api';
 import { useLoaderData } from 'react-router-dom';
 import { confirmChoice } from '../../utils/helpers';
 
@@ -28,12 +28,14 @@ export default function OptionList({
   );
 
   const deleteOption = (id: number) => {
-    confirmChoice(() => deleteById(endpoint, id));
+    confirmChoice(() => accessDatabase('DELETE', endpoint, { id }));
     setOptionList(optionList.filter((option) => option.id !== id));
   };
 
   const createOption = async () => {
-    const response = await confirmChoice(() => addOption(endpoint, name));
+    const response = await confirmChoice(() =>
+      accessDatabase('POST', endpoint, { body: { newService: { name } } })
+    );
     const id: number = response.rows[0].id;
     const newOptionList = [...optionList];
     newOptionList.push({ name, id });

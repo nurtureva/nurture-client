@@ -13,22 +13,17 @@ export type FormActionType = 'create' | 'update';
 
 export const useFormAction = (type: FormActionType) => {
   const { provider, setPageState } = useFormContext();
-  setPageState(2);
 
   switch (type) {
     case 'create':
-      return () => submitNewProvider(provider);
+      return () => {
+        submitNewProvider(provider);
+        setPageState(2);
+      };
     case 'update':
-      return () => editProvider(provider);
+      return () => {
+        editProvider(provider);
+        setPageState(2);
+      };
   }
 };
-
-const test = (value: string) => {
-  return () => {
-    console.log(value);
-  };
-};
-
-const foo = test('gdfgsdfgs');
-
-foo();

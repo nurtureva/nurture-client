@@ -1,2 +1,2 @@
 export * from './loaders';
-export * from './api-hook';
+export * from './fetch';

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { getClosestZipCodes } from '@/utils/api';
 import { useNavigation } from 'react-router-dom';
 import { FiltersContainerObject, Option, ProviderObject } from '../types';
+import { accessDatabase } from '@/api';
 
 const checkMultiple = (activeFilters: string[], providerValues: Option[]) => {
   let evaluator = false;
@@ -30,11 +30,11 @@ export const useFilters = (
   const [zipArray, setZipArray] = useState<string[]>([]);
   const navigation = useNavigation();
   useEffect(() => {
-    if (filters.searchTerm.distance) {
-      (async () => {
-        const closestZipCodes = await getClosestZipCodes(
-          filters.searchTerm.distance
-        );
+    (async () => {
+      if (filters.searchTerm.distance) {
+        const closestZipCodes = await accessDatabase('GET', 'zip-codes', {
+          params: { value: filters.searchTerm.distance, radius: 5 }
+        });
         const zipCodeArray =
           typeof closestZipCodes !== 'string'
             ? closestZipCodes.map((result) => {
@@ -42,8 +42,8 @@ export const useFilters = (
               })
             : [];
         setZipArray(zipCodeArray);
-      })();
-    }
+      }
+    })();
   }, [filters]);
 
   const filterProviders = (

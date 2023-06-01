@@ -17,7 +17,7 @@ export interface ProviderNoOptions {
   bio?: string;
   edit_hash?: string;
   languages_spoken?: string;
-  needs_review: false;
+  needs_review: boolean;
   overview?: string;
   isBookmarked: boolean;
   logo?: Url;

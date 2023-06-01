@@ -1,8 +1,8 @@
 import { DeleteFilled } from '@ant-design/icons';
-import { confirmChoice } from '../../utils/helpers';
-import { approveProvider, deleteById } from '@/utils/api';
+import { approveProvider, confirmChoice } from '../../utils/helpers';
 import { ProviderObject } from '@/types';
 import { useState } from 'react';
+import { accessDatabase } from '@/api';
 
 const ProviderList = ({
   providers,
@@ -21,7 +21,7 @@ const ProviderList = ({
     <ul>
       {providerList.map((provider) => {
         return (
-          <li>
+          <li key={provider.id}>
             <h5>{provider.name}</h5>
             <a href={`${window.location.origin}/results/${provider.id}`}>
               details
@@ -43,7 +43,7 @@ const ProviderList = ({
               className="delete-icon"
               onClick={() => {
                 confirmChoice(() => {
-                  deleteById('providers', provider.id);
+                  accessDatabase('DELETE', 'providers', { id: provider.id });
                   removeProviderFromList(provider.id);
                 });
               }}

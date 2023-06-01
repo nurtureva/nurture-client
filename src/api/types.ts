@@ -1,37 +1,76 @@
-import { FormProvider, Option, ProviderObject, Reports } from '@/types';
+import {
+  FormProvider,
+  Option,
+  ProviderNoOptions,
+  ProviderObject,
+  Reports,
+  ZipCode
+} from '@/types';
 
 export type OptionEndpoint = 'services' | 'certifications' | 'payment-options';
-export type ProviderEndpoint = `providers${string}`;
+export type ProviderEndpoint = `providers`;
 export type ReportsEndpoint = 'admin/reports';
-export type EndpointType = OptionEndpoint | ProviderEndpoint | ReportsEndpoint;
+export type ZipCodeEndpoint = 'zip-codes';
+export type EndpointType =
+  | OptionEndpoint
+  | ProviderEndpoint
+  | ReportsEndpoint
+  | ZipCodeEndpoint;
 type OptionPostBody = { newOption: { name: string } };
-type ProviderPostBody = { newProvider: FormProvider };
-type ProviderPatchBody = ProviderPostBody & { id: number };
-type DeleteFunction = (id: number) => void;
-type Poster<T> = (body: T) => Promise<number>;
+type ProviderPostBody = { newProvider: ProviderNoOptions };
 
-interface Getter<T> {
-  (body: { id: number }): Promise<T>;
-  (body?: never): Promise<T[]>;
-}
+export type Props = {
+  body?: any;
+  id?: number;
+  params?: { [key: string]: string | number | boolean };
+};
 
-type DbFunction = (
-  method: MethodType,
-  endpoint: EndpointType
-) => (body?: any) => Promise<any>;
-
-/**@type {T}*/
-export interface CRUDFactory extends DbFunction {
-  (method: 'GET', endpoint: ProviderEndpoint): Getter<ProviderObject>;
-  (method: 'POST', endpoint: ProviderEndpoint): Poster<ProviderPostBody>;
-  (method: 'PATCH', endpoint: ProviderEndpoint): Poster<ProviderPatchBody>;
-  (method: 'GET', endpoint: OptionEndpoint): Getter<Option>;
-  (method: 'POST', endpoint: OptionEndpoint): Poster<OptionPostBody>;
-  (method: 'GET', endpoint: ReportsEndpoint): () => Promise<Reports>;
+export interface FetchFunction {
+  (
+    method: 'GET',
+    endpoint: OptionEndpoint,
+    props: { id: number }
+  ): Promise<Option>;
+  (method: 'GET', endpoint: OptionEndpoint, props?: never): Promise<Option[]>;
+  (
+    method: 'GET',
+    endpoint: ProviderEndpoint,
+    props: { id: number }
+  ): Promise<ProviderObject>;
+  (
+    method: 'GET',
+    endpoint: ProviderEndpoint,
+    props?: { params?: { isPending: boolean } }
+  ): Promise<ProviderObject[]>;
+  (method: 'GET', endpoint: ReportsEndpoint, props?: never): Promise<Reports>;
+  (
+    method: 'GET',
+    endpoint: ZipCodeEndpoint,
+    props: { params: { value: string; radius: number } }
+  ): Promise<ZipCode[]>;
+  (
+    method: 'POST',
+    endpoint: OptionEndpoint,
+    props: { body: { newService: { name: string } } }
+  ): Promise<number>;
+  (
+    method: 'POST',
+    endpoint: ProviderEndpoint,
+    props: { body: { newProvider: FormProvider } }
+  ): Promise<number>;
+  (
+    method: 'PATCH',
+    endpoint: ProviderEndpoint,
+    props: {
+      id: number;
+      body: { patchBody: Partial<ProviderNoOptions> };
+    }
+  ): Promise<number>;
   (
     method: 'DELETE',
-    endpoint: OptionEndpoint | ProviderEndpoint
-  ): DeleteFunction;
+    endpoint: OptionEndpoint | ProviderEndpoint,
+    props: { id: number }
+  ): void;
 }
 
 export type MethodType = 'POST' | 'PATCH' | 'DELETE' | 'GET';

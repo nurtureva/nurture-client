@@ -46,6 +46,7 @@ const navRoutes: Endpoint[] = [
 
 export default function App() {
   initBookmarkedProviders();
+
   const router = createBrowserRouter([
     {
       element: <LayoutWrapper navRoutes={navRoutes} />,
