@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  useRouteError
+} from 'react-router-dom';
 import {
   useProviderLoader,
   useMainPageLoader,
@@ -18,7 +22,8 @@ import dashboardContent from '@/layouts/content/dashboard';
 import { providerPageContent, providerTableContent } from '@/features/Provider';
 import { adminContent } from '@/features/Admin';
 import FormManager from '@/features/ProviderForm';
-import { useFormAction } from '@/features/ProviderForm/utils/formActions';
+import pageNotFoundContent from '@/layouts/content/404';
+import errorContent from '@/layouts/content/error';
 
 const navRoutes: Endpoint[] = [
   {
@@ -35,7 +40,8 @@ const navRoutes: Endpoint[] = [
     name: 'Directory',
     path: 'results',
     loader: useMainPageLoader,
-    element: <PageLayout {...providerTableContent} />
+    element: <PageLayout {...providerTableContent} />,
+    errorElement: <PageLayout {...errorContent} />
   },
   {
     name: 'Care Provider Home',
@@ -50,17 +56,20 @@ export default function App() {
   const router = createBrowserRouter([
     {
       element: <LayoutWrapper navRoutes={navRoutes} />,
+      errorElement: <PageLayout {...errorContent} />,
       children: [
         ...navRoutes,
         {
           path: 'results/:userId',
           element: <PageLayout {...providerPageContent} />,
+          errorElement: <PageLayout {...errorContent} />,
           loader: useProviderLoader
         },
         {
           path: 'provider-form',
           loader: useOptionsLoader,
-          element: <FormManager formAction={useFormAction('create')} />
+          element: <FormManager />,
+          errorElement: <PageLayout {...errorContent} />
         },
         {
           path: 'admin',
@@ -69,8 +78,12 @@ export default function App() {
         },
         {
           path: ':userId/edit/:hash',
-          element: <FormManager formAction={useFormAction('update')} />,
+          element: <FormManager />,
           loader: useEditFormLoader
+        },
+        {
+          path: '*',
+          element: <PageLayout {...pageNotFoundContent} />
         }
       ]
     }

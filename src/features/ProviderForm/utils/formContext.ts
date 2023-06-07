@@ -1,13 +1,16 @@
-import { ProviderObject } from '@/types';
+import { FormProvider, ProviderObject } from '@/types';
 import { Context, createContext, useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 interface FormContextObject {
   pageState: number;
-  setPageState: React.Dispatch<React.SetStateAction<number>>;
-  provider: ProviderObject;
-  setProvider: React.Dispatch<React.SetStateAction<ProviderObject>>;
-  updateState: (pageState: number, provider?: ProviderObject) => void;
+  initialProvider?: ProviderObject;
+  formProvider?: FormProvider;
+  error: any;
+  updateState: (
+    pageState: number,
+    props?: { provider?: FormProvider; error?: any }
+  ) => void;
 }
 
 const FormContext = createContext({} as FormContextObject);
@@ -18,20 +21,25 @@ export const useContextInitializer = (): [
   Context<FormContextObject>,
   FormContextObject
 ] => {
-  const { provider: initialProvider } = useLoaderData() as {
+  const { provider: provider } = useLoaderData() as {
     provider: ProviderObject;
   };
   const [pageState, setPageState] = useState(0);
-  const [provider, setProvider] = useState<ProviderObject>(initialProvider);
-  const updateState = (pageState: number, provider?: ProviderObject) => {
+  const [error, setError] = useState();
+  const [formProvider, setFormProvider] = useState<FormProvider>();
+  const updateState = (
+    pageState: number,
+    props?: { provider?: FormProvider; error?: any }
+  ) => {
     setPageState(pageState);
-    if (provider) setProvider(provider);
+    if (props?.error) setError(props.error);
+    if (props?.provider) setFormProvider(props.provider);
   };
   const value: FormContextObject = {
     pageState,
-    setPageState,
-    provider,
-    setProvider,
+    initialProvider: provider,
+    formProvider,
+    error,
     updateState
   };
   return [FormContext, value];

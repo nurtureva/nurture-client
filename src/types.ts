@@ -22,6 +22,10 @@ export interface ContentObject {
   updateState?: Function;
 }
 
+export type Subset<K> = {
+  [attr in keyof K]?: K[attr] extends object ? Subset<K[attr]> : K[attr];
+};
+
 export interface ZipCode {
   zip_code: string;
   distance: number;

@@ -7,6 +7,6 @@ export const confirmChoice = (callback: CallableFunction) => {
 export const approveProvider = (id: number) => {
   accessDatabase('PATCH', 'providers', {
     id,
-    body: { patchBody: { needs_review: false } }
+    body: { general: { needs_review: false } }
   });
 };

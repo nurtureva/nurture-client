@@ -31,6 +31,9 @@ export const accessDatabase: FetchFunction = async (
     method,
     body
   });
-
-  return data.json();
+  if (!data.ok) {
+    return Promise.reject(data.clone());
+  } else {
+    return data.json();
+  }
 };

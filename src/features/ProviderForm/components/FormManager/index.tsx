@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { confirmationContent } from '../../layouts/Confirmation';
 import { submissionContent } from '../../layouts/FormSubmissionResults';
 import { formContent } from '../../layouts/Form';
 import { useContextInitializer, useFormContext } from '../../utils/formContext';
 
-const FormSwitcher = ({ formAction }: { formAction: Function }) => {
+const FormPageSwitcher = () => {
   const [content, setContent] = useState(formContent);
-  const { pageState, updateState, provider } = useFormContext();
+  const { pageState } = useFormContext();
 
   useEffect(() => {
     switch (pageState) {
@@ -23,21 +23,21 @@ const FormSwitcher = ({ formAction }: { formAction: Function }) => {
   }, [pageState]);
 
   if (!content) return null;
-  const props = { updateState, provider, formAction };
+
   return (
     <div className="content-wrapper">
       {content.title && <h1>{content.title}</h1>}
       {content.description && <p>{content.description}</p>}
-      <div>{content.Content ? <content.Content {...props} /> : ''}</div>
+      <div>{content.Content ? <content.Content /> : ''}</div>
     </div>
   );
 };
 
-const FormManager = ({ formAction }: { formAction: Function }) => {
+const FormManager = () => {
   const [FormContext, value] = useContextInitializer();
   return (
     <FormContext.Provider value={value}>
-      <FormSwitcher formAction={formAction} />
+      <FormPageSwitcher />
     </FormContext.Provider>
   );
 };

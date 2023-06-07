@@ -4,6 +4,7 @@ import {
   ProviderNoOptions,
   ProviderObject,
   Reports,
+  Subset,
   ZipCode
 } from '@/types';
 
@@ -11,11 +12,13 @@ export type OptionEndpoint = 'services' | 'certifications' | 'payment-options';
 export type ProviderEndpoint = `providers`;
 export type ReportsEndpoint = 'admin/reports';
 export type ZipCodeEndpoint = 'zip-codes';
+export type UploadEndpoint = 'upload';
 export type EndpointType =
   | OptionEndpoint
   | ProviderEndpoint
   | ReportsEndpoint
-  | ZipCodeEndpoint;
+  | ZipCodeEndpoint
+  | UploadEndpoint;
 type OptionPostBody = { newOption: { name: string } };
 type ProviderPostBody = { newProvider: ProviderNoOptions };
 
@@ -56,14 +59,19 @@ export interface FetchFunction {
   (
     method: 'POST',
     endpoint: ProviderEndpoint,
-    props: { body: { newProvider: FormProvider } }
+    props: { body: FormProvider }
+  ): Promise<{ id: number }>;
+  (
+    method: 'POST',
+    endpoint: UploadEndpoint,
+    props: { body: FormData }
   ): Promise<number>;
   (
     method: 'PATCH',
     endpoint: ProviderEndpoint,
     props: {
       id: number;
-      body: { patchBody: Partial<ProviderNoOptions> };
+      body: Subset<FormProvider>;
     }
   ): Promise<number>;
   (
