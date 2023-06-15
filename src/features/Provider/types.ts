@@ -20,9 +20,9 @@ export interface ProviderNoOptions {
   needs_review: boolean;
   overview?: string;
   isBookmarked: boolean;
-  logo?: string | File[];
+  logo?: string;
   role?: string;
-  profile_photo?: string | File[];
+  profile_photo?: string;
 }
 
 export type OptionType =
@@ -55,7 +55,7 @@ interface FormProviderGeneralObject
 }
 
 export interface FormProvider extends ProviderOptionsGenerator<string> {
-  general: ProviderNoOptions;
+  general: Omit<ProviderNoOptions, 'logo' | 'profile_photo'>;
 }
 
 export type FilterType = Exclude<OptionType, 'certifications'>;

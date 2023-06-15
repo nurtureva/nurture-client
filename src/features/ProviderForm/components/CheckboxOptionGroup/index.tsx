@@ -1,13 +1,13 @@
-import { CheckboxPropsObject } from '@/types';
+import { CustomInputParamsObject } from '@/types';
 
 export default function CheckboxOptionGroup({
   formKey,
   register,
   optionsArray
-}: CheckboxPropsObject) {
+}: CustomInputParamsObject) {
   return (
     <ul>
-      {optionsArray.map((option) => {
+      {optionsArray?.map((option) => {
         return (
           <li key={option.id}>
             <label>

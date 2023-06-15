@@ -1,32 +1,34 @@
-import { Option } from '@/types';
+import { FormProvider, Option } from '@/types';
+import { UseFormRegister } from 'react-hook-form';
 
 interface BaseInputObject {
   name: string;
   description?: string;
 }
 
-interface GenericInputObject extends BaseInputObject {
-  dbName: string;
+export interface GenericInputObject extends BaseInputObject {
+  dbName: keyof FormProvider['general'];
   props?: GenericInputProps;
 }
 interface GenericInputProps {
-  element: string;
-  type?: string;
+  element: 'textarea';
+  type?: React.HTMLInputTypeAttribute;
 }
 
 interface CustomInputObject extends BaseInputObject {
-  Element: React.FC<CheckboxPropsObject>;
+  Element: React.FC<CustomInputParamsObject>;
   props: CustomInputProps;
 }
 interface CustomInputProps {
-  formKey: string;
+  formKey: keyof FormProvider;
   optionsArray: Option[];
 }
 
 export type InputObject = GenericInputObject | CustomInputObject;
 
-export interface CheckboxPropsObject {
-  formKey: string;
-  register: Function;
-  optionsArray: Option[];
+export interface CustomInputParamsObject {
+  formKey: keyof FormProvider;
+  register: UseFormRegister<FormProvider>;
+  optionsArray?: Option[];
+  dbName?: keyof FormProvider['general'];
 }

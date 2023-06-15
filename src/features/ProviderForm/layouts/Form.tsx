@@ -4,17 +4,21 @@ import Input from '../components/Input';
 import { useFormInputList } from '../utils/formInputList';
 import { createPageContent, useDefaultValues } from '../utils/helpers';
 import { useFormContext } from '../utils/formContext';
+import { FormProvider } from '@/types';
+
+import PhotosContainer from '../components/PhotoInput';
 
 export default function ProviderForm() {
   const { updateState } = useFormContext();
-  const formInputList = useFormInputList();
+
   const defaultValues = useDefaultValues();
-  const { register, handleSubmit } = useForm(defaultValues);
+  const { register, handleSubmit } = useForm<FormProvider>(defaultValues);
+  const formInputList = useFormInputList();
 
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        updateState(1, { provider: data });
+        updateState({ newProvider: data });
       })}>
       {formInputList.map((input, i) => {
         return (
@@ -31,6 +35,7 @@ export default function ProviderForm() {
           </FormItem>
         );
       })}
+      <PhotosContainer />
       <input type="submit" />
     </form>
   );

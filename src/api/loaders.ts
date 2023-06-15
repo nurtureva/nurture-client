@@ -23,7 +23,6 @@ export const useAdminLoader = async () => {
   const pendingProviders = await accessDatabase('GET', 'providers', {
     params: { isPending: true }
   });
-  console.log(pendingProviders);
 
   // const reports = await accessDatabase('GET', 'admin/reports');
 

@@ -72,11 +72,20 @@ export const useFilters = (
         zipCheck = provider.zip ? zipArray.includes(provider.zip) : false;
       }
       if (searchTerm.keyword) {
-        const providerName = provider.name;
-
-        if (!providerName) nameCheck = false;
-        else
-          nameCheck = providerName.toLowerCase().includes(searchTerm.keyword);
+        const keywords = Object.values(provider)
+          .flat()
+          .map((keyword) => {
+            if (!keyword) return;
+            if (typeof keyword === 'object') return keyword.name;
+            return keyword;
+          });
+        nameCheck = keywords.some((keyword) => {
+          if (!keyword) return false;
+          return keyword
+            .toString()
+            .toLowerCase()
+            .includes(searchTerm.keyword?.toLowerCase());
+        });
       }
       if (filters.filters?.services?.length && provider.services) {
         serviceCheck = checkMultiple(

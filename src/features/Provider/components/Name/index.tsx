@@ -15,10 +15,9 @@ export default function Name({
     business_name: businessName,
     services
   } = provider;
-
   const photoList = [samplePhoto1, samplePhoto2];
   const photoSrc = profile_photo
-    ? profile_photo
+    ? import.meta.env.VITE_S3_URL + profile_photo
     : photoList[Math.floor(Math.random() * photoList.length)];
 
   return (

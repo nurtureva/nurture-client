@@ -1,45 +1,56 @@
 import { FormProvider, ProviderObject } from '@/types';
-import { Context, createContext, useContext, useState } from 'react';
+import { Context, createContext, useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
+export type Pictures = {
+  profile_photo?: File;
+  logo?: File;
+};
+
+type UpdateStateFn = (props: {
+  newProvider?: FormProvider;
+  error?: any;
+  initialProvider?: ProviderObject | FormProvider;
+  pictures?: Pictures;
+}) => void;
+
 interface FormContextObject {
-  pageState: number;
-  initialProvider?: ProviderObject;
-  formProvider?: FormProvider;
+  initialProvider?: ProviderObject | FormProvider;
+  newProvider?: FormProvider;
   error: any;
-  updateState: (
-    pageState: number,
-    props?: { provider?: FormProvider; error?: any }
-  ) => void;
+  pictures: Pictures;
+  updateState: UpdateStateFn;
 }
+
+type ContextInitializer = () => [Context<FormContextObject>, FormContextObject];
 
 const FormContext = createContext({} as FormContextObject);
 
 export const useFormContext = () => useContext(FormContext);
 
-export const useContextInitializer = (): [
-  Context<FormContextObject>,
-  FormContextObject
-] => {
-  const { provider: provider } = useLoaderData() as {
+export const useContextInitializer: ContextInitializer = () => {
+  const { provider } = useLoaderData() as {
     provider: ProviderObject;
   };
-  const [pageState, setPageState] = useState(0);
+  const [initialProvider, setInitialProvider] = useState<
+    FormProvider | ProviderObject
+  >(provider);
+  const [newProvider, setNewProvider] = useState<FormProvider>();
+  const [pictures, setPictures] = useState<Pictures>({});
   const [error, setError] = useState();
-  const [formProvider, setFormProvider] = useState<FormProvider>();
-  const updateState = (
-    pageState: number,
-    props?: { provider?: FormProvider; error?: any }
-  ) => {
-    setPageState(pageState);
+
+  const updateState: UpdateStateFn = (props) => {
     if (props?.error) setError(props.error);
-    if (props?.provider) setFormProvider(props.provider);
+    if (props?.newProvider) setNewProvider(props.newProvider);
+    if (props?.initialProvider) setInitialProvider(props.initialProvider);
+    if (props?.pictures) setPictures(props.pictures);
   };
+
   const value: FormContextObject = {
-    pageState,
-    initialProvider: provider,
-    formProvider,
+    initialProvider,
+    newProvider,
     error,
+    pictures,
     updateState
   };
   return [FormContext, value];

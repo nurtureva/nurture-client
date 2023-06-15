@@ -1,12 +1,14 @@
 import { useLoaderData } from 'react-router-dom';
 import CheckboxOptionGroup from '../components/CheckboxOptionGroup';
 import { InputObject, Option } from '@/types';
+import PhotoInput from '../components/PhotoInput';
 
 const useFormInputList = () => {
   const appointmentOptions = [
     { id: 1, name: 'Online/Telehealth' },
     { id: 2, name: 'Home Visits' }
   ];
+
   const { services, paymentOptions, certifications } = useLoaderData() as {
     services: Option[];
     paymentOptions: Option[];
@@ -80,17 +82,17 @@ const useFormInputList = () => {
       name: 'Bio',
       dbName: 'bio',
       props: { element: 'textarea' }
-    },
-    {
-      name: 'Profile Photo',
-      dbName: 'profile_photo',
-      props: { type: 'file', element: 'input' }
-    },
-    {
-      name: 'Logo',
-      dbName: 'logo',
-      props: { type: 'file', element: 'input' }
     }
+    // {
+    //   name: 'Profile Photo',
+    //   Element: PhotoInput,
+    //   props: { dbName: 'profile_photo' }
+    // },
+    // {
+    //   name: 'Logo',
+    //   Element: PhotoInput,
+    //   props: { dbName: 'logo' }
+    // }
   ];
   return formContent;
 };

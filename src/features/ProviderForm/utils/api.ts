@@ -1,49 +1,58 @@
 import { accessDatabase } from '@/api';
-import { FormProvider, ProviderObject, Subset } from '@/types';
+import { FormProvider } from '@/types';
+import { Pictures, useFormContext } from './formContext';
 
-const uploadPhoto = async (
-  id: number,
-  type: string,
-  file: File
-): Promise<{ photoLink: string }> => {
+const uploadPhotos = async (id: number, pictures: Pictures) => {
   const formData = new FormData();
-  formData.append('photo', file, `${id}-${type}.${file.type.split('/')[1]}`);
-
-  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/upload`, {
+  if (!Object.keys(pictures).length) return;
+  Object.keys(pictures).forEach((pictureType) => {
+    const file = pictures[pictureType as keyof Pictures];
+    if (!file) return;
+    formData.append(
+      pictureType,
+      file,
+      `${id}-${pictureType}.${file.type.split('/')[1]}`
+    );
+  });
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/s3/${id}`, {
     method: 'POST',
     body: formData
   });
   return res.json();
 };
 
-export const editProvider = async (provider: FormProvider, id: number) => {
+const editProvider = async (provider: FormProvider) => {
   provider.general.needs_review = true;
+  const id = Number(window.location.pathname.split('/')[1]);
   await accessDatabase('PATCH', 'providers', {
-    id: id,
+    id,
     body: provider
   });
+
+  return id;
 };
 
-export const submitNewProvider = async (provider: FormProvider) => {
-  const { id: newProviderId } = await accessDatabase('POST', 'providers', {
+const submitProvider = async (provider: FormProvider) => {
+  const { id } = await accessDatabase('POST', 'providers', {
     body: provider
   });
+  return id;
+};
 
-  //TODO move addPhotos to it's own function and call it in editprovider as well
-  //next work on display providers photo on preview screen
-  //BUG: editing current provider adds 'null' to all empty fields
-  const { profile_photo, logo } = provider.general;
-  const patchBody: Subset<FormProvider> = { general: {} };
-  const photoRes =
-    profile_photo[0] &&
-    (await uploadPhoto(newProviderId, 'photo', profile_photo[0]));
-  if (photoRes?.photoLink) patchBody.general.profile_photo = photoRes.photoLink;
-  const logoRes =
-    logo[0] && (await uploadPhoto(newProviderId, 'logo', logo[0]));
-  if (logoRes?.photoLink) patchBody.general.logo = logoRes.photoLink;
+export const useFormAction = () => {
+  const { pictures } = useFormContext();
+  const formFuncton = window.location.pathname.includes('provider-form')
+    ? submitProvider
+    : editProvider;
+  return async (provider: FormProvider) => {
+    const newId = await formFuncton(provider);
+    uploadPhotos(newId, pictures);
+  };
+};
 
-  await accessDatabase('PATCH', 'providers', {
-    id: newProviderId,
-    body: patchBody
+export const deletePhoto = async (key: string) => {
+  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/s3/${key}`, {
+    method: 'DELETE'
   });
+  return res.json();
 };

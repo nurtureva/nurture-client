@@ -9,7 +9,12 @@ export default function Search({ updateSearch }: { updateSearch: Function }) {
     <div className="search-container">
       <div className="provider-search">
         <input
+          onFocus={() => {
+            setKeywordTerm('');
+            updateSearch('', distanceTerm);
+          }}
           placeholder="keyword"
+          value={keywordTerm}
           onChange={(e) => {
             setKeywordTerm(e.target.value);
           }}></input>

@@ -18,13 +18,24 @@ export const createPageContent = (
 };
 
 export const useDefaultValues = (): { defaultValues: FormProvider } | {} => {
-  const { initialProvider, formProvider } = useFormContext();
-  const provider = formProvider || initialProvider;
-  if (!provider) return {};
-  const { services, paymentOptions, certifications, ...generalInfo } = provider;
+  const { initialProvider, newProvider } = useFormContext();
+  const provider = newProvider || initialProvider;
+  if (!provider)
+    return {
+      general: {
+        profile_photo: undefined,
+        logo: undefined
+      }
+    };
+  const { services, paymentOptions, certifications, ...providerDetails } =
+    provider;
+
   return {
     defaultValues: {
-      general: 'general' in generalInfo ? generalInfo.general : generalInfo,
+      general:
+        'general' in providerDetails
+          ? providerDetails.general
+          : providerDetails,
       services: flattenArray(services),
       paymentOptions: flattenArray(paymentOptions),
       certifications: flattenArray(certifications)
