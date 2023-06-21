@@ -1,0 +1,126 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?8b8tfh');
+  src:  url('fonts/icomoon.eot?8b8tfh#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?8b8tfh') format('truetype'),
+    url('fonts/icomoon.woff?8b8tfh') format('woff'),
+    url('fonts/icomoon.svg?8b8tfh#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow_back:before {
+  content: "\e900";
+}
+.icon-arrow_downward:before {
+  content: "\e901";
+}
+.icon-arrow_drop_down:before {
+  content: "\e902";
+}
+.icon-arrow_drop_up:before {
+  content: "\e903";
+}
+.icon-arrow_forward:before {
+  content: "\e904";
+}
+.icon-arrow_left:before {
+  content: "\e905";
+}
+.icon-arrow_right:before {
+  content: "\e906";
+}
+.icon-arrow_upward:before {
+  content: "\e907";
+}
+.icon-bookmark_border:before {
+  content: "\e908";
+}
+.icon-bookmark_filled:before {
+  content: "\e909";
+}
+.icon-call:before {
+  content: "\e90a";
+}
+.icon-carrot_back:before {
+  content: "\e90b";
+}
+.icon-carrot_down:before {
+  content: "\e90c";
+}
+.icon-carrot_forward:before {
+  content: "\e90d";
+}
+.icon-carrot_up:before {
+  content: "\e90e";
+}
+.icon-check_box_checked:before {
+  content: "\e90f";
+}
+.icon-check_box_unchecked:before {
+  content: "\e910";
+}
+.icon-check:before {
+  content: "\e911";
+}
+.icon-clear:before {
+  content: "\e912";
+}
+.icon-edit:before {
+  content: "\e913";
+}
+.icon-email:before {
+  content: "\e914";
+}
+.icon-error_outline:before {
+  content: "\e915";
+}
+.icon-error:before {
+  content: "\e916";
+}
+.icon-file_download:before {
+  content: "\e917";
+}
+.icon-file_upload:before {
+  content: "\e918";
+}
+.icon-map:before {
+  content: "\e919";
+}
+.icon-menu:before {
+  content: "\e91a";
+}
+.icon-open_in_new:before {
+  content: "\e91b";
+}
+.icon-print:before {
+  content: "\e91c";
+}
+.icon-radio_button_checked:before {
+  content: "\e91d";
+}
+.icon-radio_button_unchecked:before {
+  content: "\e91e";
+}
+.icon-search:before {
+  content: "\e91f";
+}
+.icon-web:before {
+  content: "\e920";
+}
