@@ -1,9 +1,9 @@
 import { Outlet, useNavigation } from 'react-router-dom';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { EndpointPropWrapper } from '../types';
+import Header from '@/components/Header';
 
 const LayoutWrapper: React.FC<EndpointPropWrapper> = ({ navRoutes }) => {
   const navigation = useNavigation();

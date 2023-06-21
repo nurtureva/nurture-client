@@ -1,0 +1,11 @@
+.card {
+  border-radius: 8px;
+  padding: 20px;
+  position: absolute;
+}
+
+@media only screen and (max-width: 750px) {
+  .card {
+    position: initial;
+  }
+}

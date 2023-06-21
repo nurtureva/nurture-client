@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import { EndpointPropWrapper } from '@/types';
+import logo from '@/assets/nurture-logo-1.png';
+import './footer.scss';
 
 export default function Footer({ navRoutes }: EndpointPropWrapper) {
   return (
     <footer>
-      <h3>Nurture</h3>
+      <img src={logo} />
       <ul>
         {navRoutes.map((path) => {
           return (

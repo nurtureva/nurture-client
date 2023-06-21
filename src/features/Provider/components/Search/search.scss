@@ -1,0 +1,23 @@
+.provider-search {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  p {
+    color: var(--light-gray);
+  }
+  input {
+    height: 45px;
+    &:first-of-type {
+      flex: 1;
+    }
+  }
+  & > * {
+    margin: 0 7px;
+  }
+}
+.filter-toggle {
+  display: none;
+}

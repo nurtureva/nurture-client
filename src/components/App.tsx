@@ -1,8 +1,4 @@
-import {
-  RouterProvider,
-  createBrowserRouter,
-  useRouteError
-} from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import {
   useProviderLoader,
   useMainPageLoader,
@@ -24,17 +20,19 @@ import { adminContent } from '@/features/Admin';
 import FormManager from '@/features/ProviderForm';
 import pageNotFoundContent from '@/layouts/content/404';
 import errorContent from '@/layouts/content/error';
+import Dashboard from '@/layouts/contentComponents/Dashboard';
+import FindCarePage from '@/layouts/contentComponents/FindCarePage';
 
 const navRoutes: Endpoint[] = [
   {
     name: 'Home',
-    path: '/',
-    element: <PageLayout {...dashboardContent} />
+    path: '',
+    element: <Dashboard />
   },
   {
     name: 'Find Care',
     path: 'find-care',
-    element: <PageLayout {...findCareContent} />
+    element: <FindCarePage />
   },
   {
     name: 'Directory',

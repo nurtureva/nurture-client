@@ -2,12 +2,10 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import OptionCenter from '../../components/OptionCenter';
 
-const title = 'Birth and Early Parenting Resource Directory';
-
 const Header = () => {
   return (
-    <span>
-      <h2>Welcome to community-centered care for all</h2>
+    <>
+      <h1>Birth and Early Parenting Resource Directory</h1>
       <p>
         One or two sentences explaining what this directory is and why it
         exists.
@@ -16,7 +14,7 @@ const Header = () => {
         Find Care
       </Link>
       <a className="link-button">I'm a Care Provider</a>
-    </span>
+    </>
   );
 };
 
@@ -59,7 +57,6 @@ const Content = () => {
 };
 
 const dashboardContent = {
-  title,
   Header,
   Content,
   className: 'dashboard'
