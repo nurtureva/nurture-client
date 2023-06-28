@@ -1,0 +1,50 @@
+.btn {
+  cursor: pointer;
+  width: fit-content;
+  font-size: 0.85em;
+  font-weight: 600;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 13px 30px; //this changes based on just icon or not
+  text-decoration: none;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid var(--brand-pink);
+  margin: 20px 0;
+  transition: filter 200ms;
+  i {
+    font-size: 1.5em;
+    margin-right: 5px;
+  }
+}
+.secondary {
+  background-color: var(--white);
+  color: var(--brand-pink);
+  &:hover,
+  :focus {
+    filter: brightness(95%);
+  }
+  &:active {
+    filter: brightness(90%);
+  }
+}
+.primary {
+  background-color: var(--brand-pink);
+  color: white;
+  &:hover,
+  :focus {
+    filter: brightness(106%);
+  }
+  &:active {
+    filter: brightness(90%);
+  }
+}
+
+.icon {
+  padding: 15px;
+  i {
+    margin: 0;
+  }
+}

@@ -11,7 +11,6 @@ import { EndpointPropWrapper } from '@/types';
 export default function Header({ navRoutes }: EndpointPropWrapper) {
   const location = useLocation();
 
-  console.log(location);
   return (
     <header>
       <span className="logo-container">
@@ -21,13 +20,6 @@ export default function Header({ navRoutes }: EndpointPropWrapper) {
       <nav>
         <ul>
           {navRoutes.map((path) => {
-            console.log(
-              'menu path:',
-              path.path,
-              'location path:',
-              location.pathname.split('/')[1],
-              'equal?'
-            );
             return (
               <li key={path.path}>
                 <Link

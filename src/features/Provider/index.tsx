@@ -1,11 +1,8 @@
 import ProviderPage from './layouts/ProviderPage';
 import ProviderTablePage from './layouts/ProviderTablePage';
+import Search from './components/Search/Search';
 
-const Header = () => {
-  return <p>choices...</p>;
-};
-
-const providerTableContent = { Content: ProviderTablePage, Header };
+const providerTableContent = { Content: ProviderTablePage };
 const providerPageContent = { Content: ProviderPage };
 
 export { providerTableContent, providerPageContent };

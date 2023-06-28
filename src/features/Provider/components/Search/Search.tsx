@@ -1,48 +1,41 @@
 import { useState } from 'react';
-import { toggleFilterMenu } from '@/utils/helpers';
+import { Button } from '@/components/Button/Button';
 
-export default function Search({
-  updateSearch,
-  type
-}: {
-  updateSearch: Function;
-  type?: string;
-}) {
-  const [keywordTerm, setKeywordTerm] = useState('');
-  const [distanceTerm, setDistanceTerm] = useState('');
+export default function Search({ type, updateSearch }: { type?: string }) {
+  const [keyword, setKeyword] = useState('');
+  const [distance, setDistance] = useState('');
 
   return (
     <div className="search-container">
       <div className="provider-search">
         <input
           onFocus={() => {
-            setKeywordTerm('');
-            updateSearch('', distanceTerm);
+            setKeyword('');
+            updateSearch('', distance);
           }}
           placeholder="keyword"
-          value={keywordTerm}
+          value={keyword}
           onChange={(e) => {
-            setKeywordTerm(e.target.value);
+            setKeyword(e.target.value);
           }}></input>
         {type === 'verbose' ? '' : <p>near </p>}
         <input
           placeholder="zip code"
           onChange={(e) => {
-            setDistanceTerm(e.target.value);
+            setDistance(e.target.value);
           }}></input>
-        <button
-          className="primary-button"
+        <Button
+          type="primary"
+          search
           onClick={() => {
-            updateSearch(keywordTerm, distanceTerm);
+            console.log({ keyword, distance });
+            updateSearch(keyword, distance);
           }}>
-          <i className="icon-search" />
-
           {type === 'verbose' ? 'Find care providers' : ''}
-        </button>
+        </Button>
       </div>
-      <button className="filter-toggle" onClick={toggleFilterMenu}>
-        filters
-      </button>
     </div>
   );
 }
+
+//search either navigates to results page with an optional history object, or updates

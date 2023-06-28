@@ -48,6 +48,13 @@ export const useFilterReducer = (providers: ProviderObject[]) => {
   const updateFilters = (filters: FilterObject) => {
     dispatch({ type: 'UPDATE_FILTERS', filters });
   };
+
+  //this should also return the type of provider page header. Doula/Mental Health/Lactation info, or bookmarks, or general page
+  /**
+   * service options header –– filters: services in history state
+   * bookmark header –– idk
+   * general header –– search bar
+   */
   return {
     updateSearch,
     updateFilters,

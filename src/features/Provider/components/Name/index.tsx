@@ -1,6 +1,7 @@
 import samplePhoto1 from '@/assets/profile-1.png';
 import samplePhoto2 from '@/assets/profile-2.png';
 import { ProviderObject } from '@/types';
+import Contact from '../Contact';
 
 export default function Name({
   provider,
@@ -13,7 +14,9 @@ export default function Name({
     profile_photo,
     name,
     business_name: businessName,
-    services
+    services,
+    certifications,
+    paymentOptions
   } = provider;
   const photoList = [samplePhoto1, samplePhoto2];
   const photoSrc = profile_photo
@@ -21,19 +24,49 @@ export default function Name({
     : photoList[Math.floor(Math.random() * photoList.length)];
 
   return (
-    <span className="provider-name">
+    <>
       <img src={photoSrc} />
-      <div className="name">
+      <span className="provider-name">
         <h3>{name}</h3>
         <p>{businessName}</p>
-        <ul>
-          <label>Type of care:</label>
-          {services?.map((service) => {
-            return <li key={service.id}>{service.name}</li>;
-          })}
-        </ul>
+      </span>
+      <span className="provider-details">
+        {services?.length ? (
+          <p>
+            Type of care:
+            {services?.map((service, index) => {
+              const comma = index !== services.length - 1 ? ',' : '';
+              return ` ${service.name}${comma}`;
+            })}
+          </p>
+        ) : (
+          ''
+        )}
+        {certifications?.length ? (
+          <p>
+            Certifications:
+            {certifications?.map((service, index) => {
+              const comma = index !== certifications.length - 1 ? ',' : '';
+              return ` ${service.name}${comma}`;
+            })}
+          </p>
+        ) : (
+          ''
+        )}
+        {paymentOptions?.length ? (
+          <p>
+            Payment:
+            {paymentOptions?.map((service, index) => {
+              const comma = index !== paymentOptions.length - 1 ? ',' : '';
+              return ` ${service.name}${comma}`;
+            })}
+          </p>
+        ) : (
+          ''
+        )}
         {children}
-      </div>
-    </span>
+      </span>
+      <Contact provider={provider} />
+    </>
   );
 }

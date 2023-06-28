@@ -7,12 +7,12 @@ import mentalHealthImage from '@/assets/mental-health-illustration.svg';
 function OptionCard({
   img,
   title,
-  path,
+  id,
   children
 }: {
   img: string;
   title: string;
-  path: string;
+  id: number;
   children: JSX.Element;
 }) {
   const depluralize = (string: string) => {
@@ -33,7 +33,10 @@ function OptionCard({
         <h3>{title}</h3>
         {children}
       </div>
-      <Link className="text-link" to={path}>
+      <Link
+        className="text-link"
+        state={{ filters: { services: [id] } }}
+        to={'/results'}>
         Find {depluralize(title)}
       </Link>
     </div>
@@ -43,7 +46,7 @@ function OptionCard({
 const OptionCenter = () => {
   return (
     <div className="option-center-container">
-      <OptionCard title="Doulas" img={doulaImage} path="/">
+      <OptionCard title="Doulas" img={doulaImage} id={1}>
         <p>
           Trained professionals offering support to expectant parents throughout
           pregnancy, childbirth, and after childbirth. They provide non-medical
@@ -52,7 +55,7 @@ const OptionCenter = () => {
           positive birth experience.
         </p>
       </OptionCard>
-      <OptionCard title="Lactation Support" img={lactationImage} path="/">
+      <OptionCard title="Lactation Support" img={lactationImage} id={2}>
         <p>
           Guidance, education, and assistance to help breastfeeding/chestfeeding
           parents overcome challenges and ensure the health and well-being of
@@ -60,7 +63,7 @@ const OptionCenter = () => {
           support, one-on-one assistance, and more.
         </p>
       </OptionCard>
-      <OptionCard title="Mental Health Care" img={mentalHealthImage} path="/">
+      <OptionCard title="Mental Health Care" img={mentalHealthImage} id={3}>
         <p>
           Support for emotional well-being during the perinatal period
           (pregnancy and the first year after childbirth). These care providers

@@ -4,6 +4,7 @@ import {
   setBookmarkedProviders
 } from '@/utils/helpers';
 import { ProviderObject } from '@/types';
+import './bookmark.scss';
 
 const Bookmark = ({ provider }: { provider: ProviderObject }) => {
   const [isBookmarked, setIsBookmarked] = useState(provider.isBookmarked);
@@ -22,14 +23,18 @@ const Bookmark = ({ provider }: { provider: ProviderObject }) => {
   }, [isBookmarked]);
 
   return (
-    <div className="bookmark">
+    <>
       <input
+        className="bookmark-checkbox"
+        id={`${provider.id}-bookmark`}
         type="checkbox"
         checked={isBookmarked}
         onChange={(e) => {
           setIsBookmarked(e.target.checked);
-        }}></input>
-    </div>
+        }}
+      />
+      <label htmlFor={`${provider.id}-bookmark`} className="bookmark-label" />
+    </>
   );
 };
 

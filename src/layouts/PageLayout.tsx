@@ -1,16 +1,16 @@
 import { ContentObject } from '../types';
 
 const PageLayout: React.FC<ContentObject> = (props) => {
-  const { title, Header, Content, className, description } = props;
+  const { title, Header, Content, className, description, headerProps } = props;
   return (
     <div className={`content-wrapper${className ? ' ' + className : ''}`}>
       {title ? <h1>{title}</h1> : ''}
       {Header ? (
         <div className="content-header">
-          <Header />
+          <Header {...{ ...props.headerProps }} />
         </div>
       ) : (
-        <p>{description}</p>
+        ''
       )}
       {Content ? (
         <div className="content-main">

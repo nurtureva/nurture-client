@@ -1,5 +1,5 @@
+import { Button } from '@/components/Button/Button';
 import OptionCenter from '@/components/OptionCenter/OptionCenter';
-import { Link } from 'react-router-dom';
 
 export const Content = () => {
   return (
@@ -9,9 +9,9 @@ export const Content = () => {
         <OptionCenter />
         <span>
           <h3>Not ready to narrow down your search?</h3>
-          <Link className="secondary-button" to="/results">
+          <Button type="secondary" to="/results">
             See all care providers
-          </Link>
+          </Button>
         </span>
       </section>
     </>

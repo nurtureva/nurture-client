@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import splashImage from '@/assets/dashboard-splash.png';
-import { Card } from '@/features/UI/components/Card/Card';
+import { Card } from '@/components/Card/Card';
+import { Button } from '@/components/Button/Button';
 
 export const Header = () => {
   return (
@@ -13,12 +14,12 @@ export const Header = () => {
             One or two sentences explaining what this directory is an why it
             exists
           </p>
-          <Link className="primary-button" to="/find-care">
+          <Button type="primary" to="/find-care">
             Find Care
-          </Link>
-          <Link className="secondary-button" to="/provider-home">
+          </Button>
+          <Button type="secondary" to="/provider-home">
             I'm a Care Provider
-          </Link>
+          </Button>
         </Card>
         <img src={splashImage} />
       </span>

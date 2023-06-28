@@ -1,3 +1,4 @@
+import { Button } from '@/components/Button/Button';
 import Search from '@/features/Provider/components/Search';
 import { Link } from 'react-router-dom';
 
@@ -12,11 +13,11 @@ export const Header = () => {
         the type of care you need, or type in a name if you’re looking for a
         specific practitioner. Enter your zip code to search providers near you.
       </p>
-      <Search updateSearch={() => {}} />
+      <Search />
       <p>Or:</p>
-      <Link className="primary-button" to="/results">
+      <Button type="primary" to="/results">
         See all care providers
-      </Link>
+      </Button>
     </>
   );
 };

@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://localhost:5173/results -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style rc-util-key="@ant-design-icons">
+.anticon {
+  display: inline-block;
+  color: inherit;
+  font-style: normal;
+  line-height: 0;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -0.125em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.anticon > * {
+  line-height: 1;
+}
+
+.anticon svg {
+  display: inline-block;
+}
+
+.anticon::before {
+  display: none;
+}
+
+.anticon .anticon-icon {
+  display: block;
+}
+
+.anticon[tabindex] {
+  cursor: pointer;
+}
+
+.anticon-spin::before,
+.anticon-spin {
+  display: inline-block;
+  -webkit-animation: loadingCircle 1s infinite linear;
+  animation: loadingCircle 1s infinite linear;
+}
+
+@-webkit-keyframes loadingCircle {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loadingCircle {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+</style>
+    <script type="module">
+import RefreshRuntime from "/@react-refresh"
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+
+    <script type="module" src="./Nurture _ Directory_files/client"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-50FY5FRL1J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-50FY5FRL1J');
+    </script>
+    
+    <link rel="icon" href="http://localhost:5173/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <title>Nurture | Directory</title>
+  <style type="text/css" data-vite-dev-id="/Users/sunstreaker/nurture-client/src/components/Footer/footer.scss">footer {
+  background: var(--menu-green);
+  padding: 60px;
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-height: 200px;
+}
+footer img {
+  height: 60px;
+}
+footer ul {
+  list-style: none;
+  padding: 0;
+  display: inline-block;
+}
+footer ul li {
+  padding: 4px;
+}</style><style type="text/css" data-vite-dev-id="/Users/sunstreaker/nurture-client/src/components/Header/header.scss">header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+header a {
+  text-decoration: none;
+  text-underline-offset: 5px;
+  color: var(--brand-gray);
+}
+header a:hover {
+  color: var(--black);
+}
+header .active {
+  color: var(--brand-pink);
+  text-decoration: underline;
+}
+header .active:hover {
+  color: var(--brand-pink);
+  text-decoration: underline;
+}
+header img {
+  height: 50px;
+}
+header nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+header nav ul li {
+  margin: 0 15px;
+}</style><style type="text/css" data-vite-dev-id="/Users/sunstreaker/nurture-client/src/features/Provider/components/ProviderTable/provider.scss">.provider-container.list {
+  height: 250px;
+  display: flex;
+  padding: 20px 0;
+  text-decoration: none;
+}
+.provider-container.list h3 {
+  text-align: left;
+}
+.provider-container.list img {
+  padding: 20px;
+  border-radius: 50%;
+}
+.provider-container.list p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+.provider-container.list .provider-name {
+  margin-bottom: 10px;
+}
+.provider-table-container {
+  width: 100%;
+}
+.provider-table-container > span {
+  padding: 15px 0;
+  display: block;
+  margin-bottom: 10px;
+  background-image: linear-gradient(to right, var(--primary-yellow) 33%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 16px 2px;
+  background-repeat: repeat-x;
+}
+.provider-table-container > span h2,
+.provider-table-container > span h3 {
+  text-align: left;
+  font-weight: unset;
+  font-size: 1.3em;
+}
+.provider-table-container > span h3 {
+  font-size: 1.2em;
+}
+.provider-table-container > div:nth-child(odd) {
+  background-color: var(--off-white);
+}</style><style type="text/css" data-vite-dev-id="/Users/sunstreaker/nurture-client/src/features/Provider/components/Search/search.scss">.provider-search {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.provider-search p {
+  color: var(--light-gray);
+}
+.provider-search input {
+  height: 45px;
+}
+.provider-search input:first-of-type {
+  flex: 1;
+}
+.provider-search > * {
+  margin: 0 7px;
+}
+
+.filter-toggle {
+  display: none;
+}</style><style type="text/css" data-vite-dev-id="/Users/sunstreaker/nurture-client/src/components/Button/button.scss">.btn {
+  cursor: pointer;
+  width: fit-content;
+  font-size: 0.85em;
+  font-weight: 600;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 13px 30px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid var(--brand-pink);
+  margin: 20px 0;
+  transition: filter 200ms;
+}
+.btn i {
+  font-size: 1.5em;
+  margin-right: 5px;
+}
+
+.secondary {
+  background-color: var(--white);
+  color: var(--brand-pink);
+}
+.secondary:hover,
+.secondary :focus {
+  filter: brightness(95%);
+}
+.secondary:active {
+  filter: brightness(90%);
+}
+
+.primary {
+  background-color: var(--brand-pink);
+  color: white;
+}
+.primary:hover,
+.primary :focus {
+  filter: brightness(106%);
+}
+.primary:active {
+  filter: brightness(90%);
+}
+
+.icon {
+  padding: 15px;
+}
+.icon i {
+  margin: 0;
+}</style><style type="text/css" data-vite-dev-id="/Users/sunstreaker/nurture-client/src/features/Admin/components/OptionList/OptionList.scss">.options-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  padding: 10px;
+  border: 1px solid gray;
+}
+.options-list-container > p {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+.options-list-container .options-list {
+  max-height: 150px;
+  overflow-y: scroll;
+}
+.options-list-container ul {
+  padding: 0;
+  list-style: none;
+}
+.options-list-container ul li {
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.options-list-container ul li p {
+  margin: 0;
+}
+
+.delete-icon {
+  color: #c4005b !important;
+}
+.delete-icon :hover {
+  color: #505050;
+}</style><style type="text/css" data-vite-dev-id="/Users/sunstreaker/nurture-client/src/components/Card/card.scss">.card {
+  border-radius: 8px;
+  padding: 20px;
+  position: absolute;
+}
+
+@media only screen and (max-width: 750px) {
+  .card {
+    position: initial;
+  }
+}</style><style type="text/css" data-vite-dev-id="/Users/sunstreaker/nurture-client/src/components/OptionCenter/optionCenter.scss">.option-center {
+  background-color: var(--off-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30%;
+  min-width: 300px;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 0 10px;
+}
+.option-center a {
+  text-align: center;
+}
+.option-center div:first-of-type {
+  position: relative;
+  top: -40px;
+}
+.option-center span:first-of-type {
+  display: flex;
+  justify-content: center;
+}
+.option-center img {
+  height: 100px;
+}
+
+.option-center-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 0;
+  display: flex;
+}
+
+@media only screen and (max-width: 750px) {
+  .option-center-container {
+    overflow-x: scroll;
+  }
+  .option-center {
+    background-color: var(--primary-tan);
+  }
+}</style><style type="text/css" data-vite-dev-id="/Users/sunstreaker/nurture-client/src/layouts/contentComponents/Dashboard/dashboard.scss">.bottom-section {
+  position: relative;
+  padding: 40px 0 !important;
+  display: block;
+}
+.bottom-section img {
+  width: 100%;
+}
+.bottom-section .card {
+  top: 20%;
+  left: 10%;
+  border-radius: 8px;
+  width: 450px;
+}
+
+.dashboard .content-header {
+  padding: 0 0 40px 0px;
+  min-height: 600px;
+}
+.dashboard .content-header .card a {
+  width: 100%;
+}
+.dashboard .content-header .card h2 {
+  text-align: left;
+}
+.dashboard h1 {
+  padding: 40px;
+  color: var(--brand-pink);
+}
+
+body .content-main .location-section {
+  display: flex;
+  padding: 40px 0;
+}
+body .content-main .location-section h2 {
+  text-align: left;
+  margin: 0;
+}
+body .content-main .location-section span {
+  padding: 10% 2%;
+}
+body .content-main .location-section img {
+  width: 60%;
+}
+
+.provider-links {
+  background: var(--primary-tan);
+  padding: 30px;
+  width: 40%;
+}
+.provider-links a {
+  width: 60%;
+  margin: auto;
+}
+
+@media only screen and (max-width: 750px) {
+  .dashboard .content-header .card {
+    background-color: var(--white) !important;
+  }
+  .dashboard .card {
+    width: 100% !important;
+  }
+  .dashboard .location-section {
+    text-align: center;
+    flex-direction: column-reverse;
+  }
+  .dashboard .location-section h2 {
+    text-align: center !important;
+  }
+  .dashboard .location-section img {
+    width: 100% !important;
+  }
+}</style><style type="text/css" data-vite-dev-id="/Users/sunstreaker/nurture-client/src/layouts/contentComponents/FindCarePage/findCare.scss">.find-care .content-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.find-care section span a {
+  margin: 20px auto 0;
+}</style><style type="text/css" data-vite-dev-id="/Users/sunstreaker/nurture-client/src/index.scss">
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");/*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize *//*
+Document
+========
+*//**
+Use a better box model (opinionated).
+*/*,
+::before,
+::after {
+	box-sizing: border-box;
+}/**
+Use a more readable tab size (opinionated).
+*/html {
+	-moz-tab-size: 4;
+	tab-size: 4;
+}/**
+1. Correct the line height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+*/html {
+	line-height: 1.15; /* 1 */
+	-webkit-text-size-adjust: 100%; /* 2 */
+}/*
+Sections
+========
+*//**
+Remove the margin in all browsers.
+*/body {
+	margin: 0;
+}/**
+Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+*/body {
+	font-family:
+		system-ui,
+		-apple-system, /* Firefox supports this but not yet `system-ui` */
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji';
+}/*
+Grouping content
+================
+*//**
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+*/hr {
+	height: 0; /* 1 */
+	color: inherit; /* 2 */
+}/*
+Text-level semantics
+====================
+*//**
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/abbr[title] {
+	text-decoration: underline dotted;
+}/**
+Add the correct font weight in Edge and Safari.
+*/b,
+strong {
+	font-weight: bolder;
+}/**
+1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+2. Correct the odd 'em' font sizing in all browsers.
+*/code,
+kbd,
+samp,
+pre {
+	font-family:
+		ui-monospace,
+		SFMono-Regular,
+		Consolas,
+		'Liberation Mono',
+		Menlo,
+		monospace; /* 1 */
+	font-size: 1em; /* 2 */
+}/**
+Add the correct font size in all browsers.
+*/small {
+	font-size: 80%;
+}/**
+Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+*/sub,
+sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}sub {
+	bottom: -0.25em;
+}sup {
+	top: -0.5em;
+}/*
+Tabular data
+============
+*//**
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+*/table {
+	text-indent: 0; /* 1 */
+	border-color: inherit; /* 2 */
+}/*
+Forms
+=====
+*//**
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+*/button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: inherit; /* 1 */
+	font-size: 100%; /* 1 */
+	line-height: 1.15; /* 1 */
+	margin: 0; /* 2 */
+}/**
+Remove the inheritance of text transform in Edge and Firefox.
+1. Remove the inheritance of text transform in Firefox.
+*/button,
+select { /* 1 */
+	text-transform: none;
+}/**
+Correct the inability to style clickable types in iOS and Safari.
+*/button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+	-webkit-appearance: button;
+}/**
+Remove the inner border and padding in Firefox.
+*/::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}/**
+Restore the focus styles unset by the previous rule.
+*/:-moz-focusring {
+	outline: 1px dotted ButtonText;
+}/**
+Remove the additional ':invalid' styles in Firefox.
+See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737
+*/:-moz-ui-invalid {
+	box-shadow: none;
+}/**
+Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
+*/legend {
+	padding: 0;
+}/**
+Add the correct vertical alignment in Chrome and Firefox.
+*/progress {
+	vertical-align: baseline;
+}/**
+Correct the cursor style of increment and decrement buttons in Safari.
+*/::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+	height: auto;
+}/**
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/[type='search'] {
+	-webkit-appearance: textfield; /* 1 */
+	outline-offset: -2px; /* 2 */
+}/**
+Remove the inner padding in Chrome and Safari on macOS.
+*/::-webkit-search-decoration {
+	-webkit-appearance: none;
+}/**
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to 'inherit' in Safari.
+*/::-webkit-file-upload-button {
+	-webkit-appearance: button; /* 1 */
+	font: inherit; /* 2 */
+}/*
+Interactive
+===========
+*//*
+Add the correct display in Chrome and Safari.
+*/summary {
+	display: list-item;
+}@font-face {
+  font-family: 'icomoon';
+  src:  url('/src/assets/fonts/fonts/icomoon.eot?8b8tfh');
+  src:  url('/src/assets/fonts/fonts/icomoon.eot?8b8tfh#iefix') format('embedded-opentype'),
+    url('/src/assets/fonts/fonts/icomoon.ttf?8b8tfh') format('truetype'),
+    url('/src/assets/fonts/fonts/icomoon.woff?8b8tfh') format('woff'),
+    url('/src/assets/fonts/fonts/icomoon.svg?8b8tfh#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}.icon-arrow_back:before {
+  content: "\e900";
+}.icon-arrow_downward:before {
+  content: "\e901";
+}.icon-arrow_drop_down:before {
+  content: "\e902";
+}.icon-arrow_drop_up:before {
+  content: "\e903";
+}.icon-arrow_forward:before {
+  content: "\e904";
+}.icon-arrow_left:before {
+  content: "\e905";
+}.icon-arrow_right:before {
+  content: "\e906";
+}.icon-arrow_upward:before {
+  content: "\e907";
+}.icon-bookmark_border:before {
+  content: "\e908";
+}.icon-bookmark_filled:before {
+  content: "\e909";
+}.icon-call:before {
+  content: "\e90a";
+}.icon-carrot_back:before {
+  content: "\e90b";
+}.icon-carrot_down:before {
+  content: "\e90c";
+}.icon-carrot_forward:before {
+  content: "\e90d";
+}.icon-carrot_up:before {
+  content: "\e90e";
+}.icon-check_box_checked:before {
+  content: "\e90f";
+}.icon-check_box_unchecked:before {
+  content: "\e910";
+}.icon-check:before {
+  content: "\e911";
+}.icon-clear:before {
+  content: "\e912";
+}.icon-edit:before {
+  content: "\e913";
+}.icon-email:before {
+  content: "\e914";
+}.icon-error_outline:before {
+  content: "\e915";
+}.icon-error:before {
+  content: "\e916";
+}.icon-file_download:before {
+  content: "\e917";
+}.icon-file_upload:before {
+  content: "\e918";
+}.icon-map:before {
+  content: "\e919";
+}.icon-menu:before {
+  content: "\e91a";
+}.icon-open_in_new:before {
+  content: "\e91b";
+}.icon-print:before {
+  content: "\e91c";
+}.icon-radio_button_checked:before {
+  content: "\e91d";
+}.icon-radio_button_unchecked:before {
+  content: "\e91e";
+}.icon-search:before {
+  content: "\e91f";
+}.icon-web:before {
+  content: "\e920";
+}@font-face {
+  font-family: "icomoon";
+  src: url("./assets/fonts/icomoon.eot?8b8tfh");
+  src: url("./assets/fonts/icomoon.eot?8b8tfh#iefix") format("embedded-opentype"), url("./assets/fonts/icomoon.ttf?8b8tfh") format("truetype"), url("./assets/fonts/icomoon.woff?8b8tfh") format("woff"), url("./assets/fonts/icomoon.svg?8b8tfh#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}:root {
+  --brand-gray: #676764;
+  --brand-pink: #c4005b;
+  --brand-green: #82aa8e;
+  --brand-yellow: #e3ab4a;
+  --menu-green: #caded0;
+  --primary-yellow: #f9e3bd;
+  --primary-tan: #fbf2e4;
+  --off-white: #fcfbf7;
+  --light-gray: #808080;
+  --black: #111;
+  --white: #fff;
+}body {
+  line-height: 1.4em;
+  font-family: "Inter", sans-serif;
+}a {
+  color: var(--black);
+  text-underline-offset: 3px;
+  text-decoration: underline var(--black);
+  transition: text-decoration 150ms;
+}a:hover {
+  text-decoration-color: transparent;
+}h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  text-align: center;
+}h1 {
+  font-size: 32px;
+  line-height: 36px;
+}h2 {
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 32px;
+}h3 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+}p {
+  font-size: 0.95em;
+  line-height: 24px;
+}.content-header {
+  padding: 40px 150px;
+  background-color: var(--primary-tan);
+}.content-header span {
+  position: relative;
+  display: block;
+}.content-header span img {
+  width: 100%;
+}.content-header .card {
+  top: 20%;
+  left: 13%;
+  width: 350px;
+  background: var(--off-white);
+}.content-main > section {
+  padding: 40px;
+}.text-link {
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}.text-link::after {
+  transition: transform 500ms;
+  margin-left: 5px;
+  content: "\e904";
+  font-family: "icomoon";
+  speak: none;
+}.text-link:hover::after {
+  transform: translateX(10px);
+}.bg-yellow {
+  background-color: var(--primary-yellow);
+}.ant-spin-spinning {
+  display: block;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}.ant-spin-dot {
+  font-size: 60px;
+}.results-description {
+  background-color: var(--off-white);
+  padding: 40px 15%;
+  margin: auto;
+}.results-description div {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}.results-description span {
+  border-radius: 8px;
+  width: 200px;
+  display: block;
+  background-color: var(--primary-yellow);
+  padding: 15px;
+}.provider-filters {
+  min-width: 200px;
+  font-size: 0.8em;
+  padding: 20px;
+  background: #eee;
+  height: fit-content;
+  margin-right: 20px;
+}.provider-filters > div {
+  padding: 10px 0;
+}.provider-filters > div ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}.provider-filters > div ul li {
+  padding: 5px;
+}.provider-filters > div ul li input {
+  margin-right: 10px;
+}.provider-container.full {
+  padding: 20px 0 80px;
+}.provider-container.full .provider-contact {
+  width: 100%;
+  max-width: 500px;
+  background: #eee;
+  margin: auto;
+  text-align: center;
+  padding: 40px;
+}.provider-container.full .provider-contact h3 {
+  margin: 0;
+  font-size: 1.2em;
+}.provider-container.full .provider-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 30px 0;
+}.provider-container.full .provider-header button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
+}.provider-container.full .provider-header button:first-of-type {
+  flex: 1;
+  text-align: left;
+}.provider-container.full .provider-header button:hover {
+  text-decoration: none;
+}.results-page {
+  display: flex;
+}@media only screen and (max-width: 750px) {
+  .bg-yellow,
+  .content-header {
+    background-color: var(--white);
+  }
+}</style></head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><header><span class="logo-container"><img src="./Nurture _ Directory_files/nurture-logo-1.png"></span><nav><ul><li><a class="" href="http://localhost:5173/">Home</a></li><li><a class="" href="http://localhost:5173/find-care">Find Care</a></li><li><a class="active" href="http://localhost:5173/results">Directory</a></li><li><a class="" href="http://localhost:5173/provider-home">Care Provider Home</a></li></ul></nav></header><div class="content-wrapper"><div class="content-main"><div class="content-header"><div class="search-container"><div class="provider-search"><input placeholder="keyword" value=""><p>near </p><input placeholder="zip code"><button class="btn primary icon"><i class="icon-search"></i></button></div><button class="filter-toggle">filters</button></div></div><div class="results-description"><h2>Doulas</h2><p>Doulas are professionally trained birth coaches who support and advocate for expecting parents. Many pregnant people, especially those giving birth for the first time, choose to hire a birth doula, who offers prenatal education and emotional support, and advocates for the pregnant parent.</p><h4>Different services that doulas provide:</h4><div><span><h4>type</h4><p>description</p></span><span><h4>type</h4><p>description</p></span><span><h4>type</h4><p>description</p></span></div></div><div class="results-page"><div class="provider-filters"><h4>Filters</h4><div><label>Type of care:</label><ul><li><label><input type="checkbox" value="1">Doula Support</label></li><li><label><input type="checkbox" value="2">Lactation Support</label></li><li><label><input type="checkbox" value="3">Perinatal Mental Health</label></li></ul></div><div><label>Payment accepted:</label><ul><li><label><input type="checkbox" value="1">Free or Pro Bono</label></li><li><label><input type="checkbox" value="2">Private Insurance</label></li><li><label><input type="checkbox" value="3">Medicaid</label></li><li><label><input type="checkbox" value="4">FAMIS</label></li><li><label><input type="checkbox" value="5">Fee for Service</label></li><li><label><input type="checkbox" value="6">Sliding Scale</label></li></ul></div><label><input type="checkbox">Bookmarks</label><button>clear filters</button></div><div class="provider-table-container"><span><h2>Showing all Doulas</h2><h3>118 providers</h3></span><div><a class="provider-container list" href="http://localhost:5173/results/1"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Portia Chan</h3>Portia Chan, MA, CPRS</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>10900 Virginia Forest Court   Glen Allen , VA 23060</p><p>(804) 393-8578 | portiagracesee@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/11"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Liz Snead</h3>Richmond Henrico Health District - WIC</span><span><div><p>Type of care: Lactation Support</p><p>Payment: Free or Pro Bono, Private Insurance, Medicaid, FAMIS, Sliding Scale</p></div><p>400 E. Cary St.  Richmond, VA 23219</p><p>(804) 205-3725 | lizbeth.snead@vdh.virginia.gov | www.rchd.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/2"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Natasha Wade</h3></span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Nursing Degree (RN, BSN), Certified Doula (CD), Certified Lactation Educator (CLE)</p><p>Payment: Fee for Service</p></div><p>  Midlothian, VA 23112</p><p>natashamthornton@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/3"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Megan Layaw</h3>Blessed Journey Birth Services</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>  Powhatan, VA 23139</p><p>blessedjourneyllc@gmail.com | www.blessedjourneydoula.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/4"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Carlie Copal </h3>In Your Own Hands LLC </span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>5090 Scuffletown Rd  Randolph , VA 23962</p><p>(434) 414-1067 | cmcopal@gmail.com | www.inyourownhandsva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/6"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Jayla Wilson</h3>Divine Align Integration </span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Fee for Service</p></div><p>1901 Huguenot Rd Suite 106  Bon Air, VA 23235</p><p>(804) 369-9702 | divinealignintegration@gmail.com | www.divinealignintegration.org</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/5"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Kristin Arnoldi</h3>The Circle of Life Doula</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Fee for Service</p></div><p>PO Box 2674  Mechanicsville, VA 23116</p><p>(202) 577-8099 | kristin.circleoflifedoula@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/7"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>JamiQuan Rudd</h3>Brunswick AgNCulture</span><span><div><p>Type of care: Perinatal Mental Health, Lactation Support, Doula Support</p><p>Certifications: Perinatal Mental Health Certification (PMH-C), Certified Doula (CD), Peer Breastfeeding Counselor, Certified Lactation Educator (CLE)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>3807 Larchmont Ln  Richmond , VA 23224</p><p>(804) 999-3368 | doula@jamiquan.cim | https://linktr.ee/jamiquans</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/8"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Cherie Walkley</h3>Speaking of Milk, LLC</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: International Board Certified Lactation Consultant (IBCLC)</p><p>Payment: Fee for Service</p></div><p>  Ashland, VA 23005</p><p>(817) 880-3433 | cherie@speakingofmilk.com | speakingofmilk.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/16"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Maggie Todd</h3>WIC Richmond City Health District/ VDH</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Peer Breastfeeding Counselor, Certified Lactation Counselor (CLC)</p><p>Payment: Free or Pro Bono</p></div><p>400 E Cary  Richmond, VA 23219</p><p>(804) 482-5450 | margaret.todd@vdh.virginia.gov | https://www.vdh.virginia.gov/wic/about/</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/10"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Sarah Hendricks</h3>DouLife</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Free or Pro Bono, Fee for Service, Sliding Scale</p></div><p>  Richmond, VA </p><p>(804) 461-0126 | DouLifeRVA@gmail.com | https://douliferva.com/</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/12"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Jessica Summers</h3>Jessica Summers LCSW LLC</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Licensed Clinical Social Worker (LCSW)</p><p>Payment: Private Insurance, Medicaid, Sliding Scale</p></div><p>9327 Midlothian Turnpike Suite 2G N. Chesterfield, VA 23235</p><p>(434) 466-6895 | jsummerslcsw@gmail.com | www.jsummerslcsw.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/14"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Sara Brockbank </h3>Sara Brockbank, Life Coach in collaboration with Sol Sanctuary </span><span><div><p>Type of care: Perinatal Mental Health, Doula Support</p><p>Payment: Fee for Service</p></div><p>3403 Sarsen Ct.   Midlothian, VA 23113</p><p>(804) 868-8816 | sara.brockbank@gmail.com | SolSanctuary.org</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/15"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Karla Helbert</h3>Mandala Yoga Therapeutics</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Licensed Professional Counselor (LPC), Certified Doula (CD)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>3111 Northside Ave  Richmond, VA 23228</p><p>(804) 892-2782 | karla@karlahelbert.com | http://www.karlahelbert.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/19"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Ginnie Kurtz</h3>Soeur Doula</span><span><div><p>Type of care: Doula Support</p><p>Payment: Free or Pro Bono, Fee for Service, Sliding Scale</p></div><p>517 Tuckahoe Blvd  Richmond, VA 23226</p><p>soeurdoula@gmail.com | www.soeurdoula.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/9"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Kara Weiland, LCSW</h3>Yellow Bird Counseling and Wellness</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Licensed Clinical Social Worker (LCSW)</p><p>Payment: Fee for Service</p></div><p>3126 West Cary Street (Virtual) Richmond, VA 23221</p><p>(804) 277-9649 | kara@yellowbirdwellness.com | yellowbirdwellness.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/24"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Tricia Flanagan </h3>New Life Midwifery, LLC</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Certified Lactation Counselor (CLC)</p><p>Payment: Fee for Service</p></div><p>7406 Woodman Rd  Henrico , VA 23024</p><p>(804) 404-6221 | newlifemidwiferyandwellness@gmail.com | newlifemidwiferyandwellness.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/17"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Kayley Mayhew 2</h3>Virginia Family Doulas</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Medicaid, Fee for Service</p></div><p>4411 Goodview St  Lynchburg, VA 24502</p><p>(434) 214-3034 | kayley@cvadoulas.com | www.virginiafamilydoulas.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/18"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Parker Bray</h3>Lyra Parker LLC</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD), Certified Lactation Counselor (CLC)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>  Richmond , VA 23221</p><p>(540) 553-6198 | lyra.parkerbray@gmail.com | www.lyraparker.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/26"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Amy Washington</h3>Mom for hire </span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Lactation Counselor (CLC)</p><p>Payment: Fee for Service</p></div><p>1005 fifth Ave   Farmville , VA 23901</p><p>(804) 909-0339 | amy@momforhire.net | Www.momforhire.net</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/27"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Latonya Williams-West</h3>LatonyaDeshelle, LLC </span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Community Health Worker (CHW), Lactation Education Counselor (LEC)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>6401 Trailview Cir Apt 403  Chester, VA 23831</p><p>(804) 986-8996 | info@latonyadeshelle.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/28"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Tiera Trapp</h3>Birthing with T,llc</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD), Peer Breastfeeding Counselor</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>225 Plazaview rd Apt A  Richmond, VA 23224</p><p>(443) 762-3073 | bwtt2020@gmail.com | Www.birthingwithT.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/29"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Julieanne Combest</h3>Temple Healing Arts</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>9019 Forest Hill Ave Suite 1A Richmond, VA 23224</p><p>(720) 325-0241 | ritual.rva@gmail.com | Templehealingarts.org</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/25"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Priscilla Anne</h3>Happy Latch LLC</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN), Certified Lactation Counselor (CLC), International Board Certified Lactation Consultant (IBCLC)</p><p>Payment: Free or Pro Bono, Private Insurance, Medicaid</p></div><p>   VA </p><p>(804) 368-1668 | happylatchllc@yahoo.com | Www.happylatch.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/22"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Linda Chermsode</h3>Best Beginnings LLC</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN)</p><p>Payment: Fee for Service</p></div><p>  North Chesterfield, VA 23235</p><p>(804) 323-2229</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/32"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Sarah Newton</h3>All Things Doula, LLC</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Fee for Service</p></div><p> 5033 Tara Dr.  Fredericksburg, VA 22407</p><p>(417) 942-8974 | allthingsdoula@yahoo.com | www.allthingsdoula.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/33"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Kate Pelais</h3>Doula Kate RVA</span><span><div><p>Type of care: Doula Support</p><p>Payment: Fee for Service</p></div><p>2500 Kettlewell Court   Midlothian , VA 23113</p><p>(804) 339-2197 | doulakaterva@gmail.com | www.doulakaterva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/34"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Sarah Cole</h3>Sage Mama</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Payment: Sliding Scale</p></div><p>    </p><p>sagemamarva@gmail.com | SageMamaRVA.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/30"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Hallie Lifson OTR/L</h3>DuraMater Therapy</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Payment: Fee for Service</p></div><p>3821 Gaskins Road   Richmond, VA 23233</p><p>(804) 513-6797 | www.duramatertherapy.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/37"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Cecelia Peace</h3></span><span><div><p>Type of care: Doula Support</p><p>Payment: Private Insurance, Fee for Service, Sliding Scale</p></div><p>6855 Pimlico Drive  Mechanicsville , VA 23111</p><p>(804) 441-4115 | cecelia.peace14@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/38"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Dr. Michele Davidson </h3>Chesapeake Bay Psychiatry </span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Nursing Degree (RN, BSN), Doctoral Degree (PhD), Perinatal Mental Health Certification (PMH-C)</p><p>Payment: Fee for Service</p></div><p>1545 Crossways Blvd # 250   Chesapeake , VA 23320</p><p>(757) 992-9600 | michele@chesapeakebaypsych.com | Www.chesapeakebaypsych.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/39"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Kidder Connell</h3>A Brighter Birth; Kidder Connell: Doula &amp; Artist</span><span><div><p>Type of care: Doula Support</p><p>Payment: Fee for Service</p></div><p>12 N Arthur Ashe Blvd  Richmond, VA 23220</p><p>(804) 339-8182 | hello@kidderconnell.com | abrighterbirth.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/31"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Courtney Nester</h3></span><span><div><p>Type of care: Doula Support</p><p>Certifications: Nursing Degree (RN, BSN)</p><p>Payment: Free or Pro Bono, Fee for Service, Sliding Scale</p></div><p>   VA 23150</p><p>(641) 799-2444 | courtneylnester@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/41"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Kimberly McNally, DNP, CNM, IBCLC</h3>Rewilding Midwifery &amp; Wellness, PLLC</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p><p>Payment: Medicaid, Fee for Service, Sliding Scale</p></div><p>1909 Huguenot Rd Suite 201 Richmond , VA 23235</p><p>(804) 381-9709 | kim@rewildingmidwifery.com | Www.rewildingmidwifery.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/42"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Leah Ross</h3>Affirm Foundation Birth Doula Services</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Fee for Service</p></div><p>2703 Bowles Lane  Glen Allen , VA 23060</p><p>(205) 499-1558 | affirmfoundationbirthdoula@gmail.com | https://www.affirmfoundationdoula.com/</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/43"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Dr. Caitlin Martin</h3>OB MOTIVATE at VCU Health </span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Medical Degree (MD)</p><p>Payment: Free or Pro Bono, Private Insurance, Medicaid, Fee for Service</p></div><p>Nelson Clinic: 401 N 11th St. 6th Floor  Richmond, VA 23298</p><p>(804) 827-9725 | OBMotivate@vcuhealth.org | https://www.vcuhealth.org/services/womens-health/our-services/ob-motivate-clinic</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/40"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Asia O'Neal</h3>The Caring Doula, RVA</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Nursing Degree (RN, BSN)</p><p>Payment: Fee for Service</p></div><p>  Midlothian, VA </p><p>caringdoularva@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/46"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Alina Betts</h3>A New Birth Story</span><span><div><p>Type of care: Doula Support</p><p>Payment: Free or Pro Bono, Fee for Service, Sliding Scale</p></div><p>  Henrico, VA 23233</p><p>(804) 690-5681 | anewbirthstory@gmail.com | Anewbirthstory.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/48"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Brianna Burton</h3>The Doula’s Garden</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Breastfeeding Counselor (CBC)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>    </p><p>thedoulasgarden@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/35"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Heidi Blanton-Pohl</h3>Heart of Virginia Birth Services/MyBirth RVA</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Free or Pro Bono, Private Insurance, Fee for Service, Sliding Scale</p></div><p>2801 Montrose Avenue APT A Richmond City, VA 23222</p><p>(434) 390-3888 | heartofvadoula@gmail.com | www.heartofvadoula.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/51"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Kathy Stewart</h3>Full Circle Childbirth Consultants Inc</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p><p>Payment: Fee for Service</p></div><p>2014 Skipwith Rd.  Richmond, VA 23294</p><p>(804) 747-0761 | kmspnp@aol.com | www.fullcirclechildbirthconsultants.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/52"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Fallon Regan</h3>Sister Soul Wellness</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Lactation Counselor (CLC)</p><p>Payment: Private Insurance, Medicaid, Fee for Service, Sliding Scale</p></div><p>1006 Robmont Dr  North Chesterfield, VA 23236</p><p>(732) 646-0032 | fallon@doulaprojectrva.org | https://msha.ke/sistersoulwellness/</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/53"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Ashley Shaw</h3>Take A Deep Breath, LLC</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Payment: Free or Pro Bono, Fee for Service, Sliding Scale</p></div><p>  Chesterfield, VA </p><p>(804) 638-0961 | takeadeepbreathllc@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/54"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Rachel Brown</h3>MyBirth RVA</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Fee for Service</p></div><p>1726 Altamont Ave #2  Richmond, VA 23230</p><p>(202) 836-2800 | rbrown.mybirthrva@gmail.com | https://mybirthrva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/50"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Dr. Cara Corbelli, BS, DC</h3>Renew Chiropractic</span><span><div><p>Payment: Fee for Service</p></div><p>1520 Huguenot Rd Suite 113 Midlothian, VA 23113</p><p>(804) 419-9290 | drcara@renewchiropracticrva.com | www.renewchiropracticrva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/56"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Nikiya Ellis</h3>The Diverse Doula</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Fee for Service</p></div><p>3219 North Ave   Richmond , VA 23223</p><p>(804) 683-5106 | nikiya79@hotmail.com | Www.thediversedoula.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/57"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Sarah Thorpe</h3>Nurturing Birth and Beyond </span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p><p>Payment: Fee for Service</p></div><p>9441 Rutlandshire Dr  Mechanicsville, VA 23116</p><p>(434) 509-7893 | sarah@nurturingbirthrva.com | Www.nurturingbirthrva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/49"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Sheena Jeffers</h3>Living Real WELL, LLC.</span><span><div><p>Type of care: Perinatal Mental Health, Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>7630 Granite Hall Ave  Richmond, VA 23225</p><p>(757) 621-9469 | sheena@reachingwell.com | www.reachingwell.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/59"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Chelsea Watson</h3>Birth and Beyond Doula Services, LLC</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Free or Pro Bono, Private Insurance, Fee for Service, Sliding Scale</p></div><p>2614 p st  Richmond , VA 23223</p><p>(804) 309-1921 | chelseathedoula05@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/55"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Margie Muth</h3>RVA Lactation Consultant, LLC</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>1120 West Avenue   Richmond , VA 23220</p><p>(703) 973-1473 | rvalactation@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/61"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Lisa Ripp</h3>Children's Hospital of Richmond at VCU</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p><p>Payment: Private Insurance, Medicaid, FAMIS</p></div><p>1000 East Broad Street  4th Floor Pod H Richmond , VA 23113</p><p>(804) 402-2213 | lisa.ripp@vcuhealth.org</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/62"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Laura Haskin CPNP IBCLC</h3>Children's Hospital of Richmond</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p><p>Payment: Private Insurance, Medicaid</p></div><p>1000 E. Broad Street  Richmond, VA 23298</p><p>(804) 828-2467 | laura.haskin@vcuhealth.org | www.chrichmond.org</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/63"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Jessica Mito</h3>Grow Together Postpartum, LLC</span><span><div><p>Type of care: Doula Support</p><p>Payment: Fee for Service</p></div><p>  Richmond, VA 23229</p><p>(503) 819-2089 | growtogetherpostpartum@gmail.com | www.growtogetherpostpartum.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/64"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Leann Ragland</h3></span><span><div><p>Type of care: Doula Support</p><p>Payment: Free or Pro Bono, Fee for Service</p></div><p>  Richmond, VA 23231</p><p>(540) 455-5333 | leann.ragland@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/60"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Ebony Allen</h3>Naturally Your Doula</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD), Certified Lactation Educator (CLE)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>5421 Stone Lane  Richmond , VA 23227</p><p>(804) 676-8377 | naturallyyourdoula@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/66"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Kristi ramey</h3>Richmond Birth and Baby</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD), Peer Breastfeeding Counselor, La Leche League Leader (LLL), Certified Lactation Counselor (CLC), International Board Certified Lactation Consultant (IBCLC)</p><p>Payment: Private Insurance, Fee for Service, Sliding Scale</p></div><p>1900 Skipwith Rd.  Henrico, VA 23229</p><p>(804) 393-0094 | Kristi@RichmondBirthAndBaby.com | https://www.richmondbirthandbaby.com/</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/58"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Caitlin Catts</h3>Clary and Crowned Birth</span><span><div><p>Type of care: Doula Support</p><p>Payment: Free or Pro Bono, Fee for Service, Sliding Scale</p></div><p>3910 Brook Rd.  Richmond, VA 23227</p><p>(571) 216-2531 | caitlinwalshcatts@gmail.com | https://claryandcrownedbirth.squarespace.com/claryandcrownedbirthblog</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/68"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Laurel Otey</h3>Layered Living</span><span><div><p>Payment: Fee for Service</p></div><p>7325 Rouseaux Place  North Chesterfield, VA 23234</p><p>(703) 835-2378 | laurel@layeredlivinglife.com | www.layeredlivinglife.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/69"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Clare Heaps</h3>Heaps of Love LLC</span><span><div><p>Type of care: Lactation Support</p><p>Payment: Fee for Service</p></div><p>  Midlothian, VA 23114</p><p>(312) 350-2106 | lactation@heapsoflove.com | www.heapsoflove.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/65"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Kenda Sutton-EL</h3>Birth In Color RVA</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD), Lactation Education Counselor (LEC), Certified Lactation Counselor (CLC)</p><p>Payment: Private Insurance, Medicaid, Sliding Scale</p></div><p>13805 village mill drive suite 201  midlothian, VA 23114</p><p>(804) 316-9867 | birthincolorrvafoundation@gmail.com | http://www.birthincolorrva.org</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/71"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Rachel Featherstone, WHNP-BC, MSN, PMH-C</h3>Eucalyptus Health</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Nursing Degree (RN, BSN), Perinatal Mental Health Certification (PMH-C)</p><p>Payment: Private Insurance, Medicaid, Fee for Service, Sliding Scale</p></div><p>8010 Nicewood Road  Glen Allen, VA 23060</p><p>(208) 779-7019 | info@eucalyptushealthcare.com | www.eucalyptushealthcare.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/72"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Jess Gray </h3>Richmond Doula Project</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>  Richmond, VA </p><p>(804) 212-9685 | jess@doulaprojectrva.org | https://doulaprojectrva.org/</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/73"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Courtney Jameson</h3>Jameson Therapeutic Massage</span><span><div><p>Payment: Fee for Service</p></div><p>1726 Altamont Ave Suite 2 Richmond, VA 23230</p><p>(804) 362-6212 | jamesontherapeutic@gmail.com | jamesontherapeutic.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/74"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Dr. Janelle S. Peifer, LCP</h3>Peifer Psychology</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Doctoral Degree (PhD), Licensed Clinical Psychologist (LCP)</p><p>Payment: Fee for Service</p></div><p>  Henrico, VA 23229</p><p>(678) 561-4187 | janelle@peiferpsychology.com | www.peiferpsychology.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/70"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Gabrielle Powell</h3>Well-Play Counseling &amp; Wellbeing Center</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Payment: Sliding Scale</p></div><p>2001 Barrington Ave  Los Angeles , CA 90025</p><p>(562) 725-7118 | Gpowell@well-play.com | https://www.well-play.com/</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/67"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Joy Brock</h3>LaunchPad Counseling</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Licensed Clinical Social Worker (LCSW)</p><p>Payment: Private Insurance, Fee for Service, Sliding Scale</p></div><p>2008 Libbie Ave  Richmond, VA 23226</p><p>(804) 665-4681 | joy@launchpadcounseling.com | counseling.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/78"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Aurea Hawkes</h3>The Sol Doula </span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Sliding Scale</p></div><p>  Richmond  , VA </p><p>(804) 591-5316 | Hawkesaurea@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/79"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>NyTasha Stevens, CLC</h3>Soothe First</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD), Community Health Worker (CHW), Certified Lactation Counselor (CLC)</p><p>Payment: Medicaid, Fee for Service, Sliding Scale</p></div><p>2902 Winchester Street   Richmond , VA 23231</p><p>(804) 319-9902 | info@rvahypnobirth.com | www.SootheFirst.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/75"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Stephanie Coleman </h3>HoneyBee Postpartum Support </span><span><div><p>Type of care: Doula Support</p><p>Payment: Fee for Service</p></div><p>1916 Hungary Oak CT   Henrico , VA 23228</p><p>(804) 476-8878 | Stephanie@honeybeepostpartum.com | Honeybeepostpartum.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/82"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Bailey Robinson</h3>MyBirth LLC</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD), Certified Lactation Specialist (CLS)</p><p>Payment: Fee for Service</p></div><p>1426 Altamont Ave Suite 2 Richmond, VA 23230</p><p>(804) 282-2608 | Www.mybirthRVA.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/83"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Blake Slusser</h3>Birthing Babies</span><span><div><p>Type of care: Doula Support</p><p>Payment: Fee for Service</p></div><p>PO Box 3197  Tappahannock , VA 22560</p><p>(804) 761-8008 | birthingbabiesva@gmail.com | Birthva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/84"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Anna Glezer</h3>Women's Wellness Psychiatry</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Medical Degree (MD)</p><p>Payment: Fee for Service</p></div><p>1290 Howard Ave Suite 325 Burlingame, CA 94010</p><p>(650) 275-3939 | drglezer@annaglezermd.com | www.annaglezermd.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/85"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Melanie Headley</h3>A Brighter Birth</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD), Certified Lactation Counselor (CLC)</p><p>Payment: Free or Pro Bono, Fee for Service, Sliding Scale</p></div><p>112 N. Arthur Ashe Blvd.  Richmond, VA 23220</p><p>(804) 874-4442 | melanie@abrighterbirth.com | abrighterbirth.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/76"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Elizabeth (Beth) McCafferty</h3>VCU Health, Childrens's Hospital of Richmond at VCU</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Certified Lactation Counselor (CLC)</p><p>Payment: Private Insurance, Medicaid, FAMIS</p></div><p>1000 E Broad Street 3rd floor, Pod B Richmond, VA 23219</p><p>(804) 628-5395 | elizabeth.mccafferty@vcuhealth.org</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/81"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Carly Hanchin </h3></span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Certified Lactation Counselor (CLC)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>  Richmond, VA 23222</p><p>(804) 319-7782 | hanchincs@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/87"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Claire Prendergast</h3>MyBirth LLC</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Fee for Service</p></div><p>1726 Altamont Ave #2 Apt 2 Richmond, VA 23230</p><p>(205) 706-0459 | cprendergast.mybirthrva@gmail.com | www.mybirthrva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/88"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Ann Nost</h3>Healing Circle Counseling</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Licensed Clinical Social Worker (LCSW)</p><p>Payment: Private Insurance, Medicaid, Fee for Service</p></div><p>1525 Huguenot Rd Suite 100 Midlothian, VA 23113</p><p>(804) 924-7600 | anost@healingcirclecounseling.com | Www.healingcirclecounseling.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/89"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Sidra Stanley</h3>Healthy Families Richmond</span><span><div><p>Payment: Free or Pro Bono</p></div><p>4100 Hull St. Rd.  Richmond , VA 23224</p><p>(804) 646-0208 | Sidra.stanley@Richmondgov.com | http://www.richmondgov.com/SocialServices/HealthyFamilies.aspx</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/90"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Amy Moore</h3></span><span><div><p>Type of care: Doula Support</p><p>Payment: Fee for Service</p></div><p>  Richmond, VA 23236</p><p>(804) 601-6194 | amymooredoula@gmail.com | www.Facebook.com/AmyMooreDoula</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/91"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Valencia Hargrove </h3>Women’s Wellness Center Of Virginia, LLC</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Licensed Professional Counselor (LPC)</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>7400 Beaufont Springs Dr Suite 300 Richmond , VA 23225</p><p>(804) 709-7044 | wellnesscenterva@gmail.com | https://wellnesscenterofvirginia.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/86"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Carrie Schaeffer</h3>Full Circle Grief Center</span><span><div><p>Certifications: Licensed Clinical Social Worker (LCSW)</p><p>Payment: Free or Pro Bono, Private Insurance, Fee for Service</p></div><p>10611 Patterson Avenue #201 Richmond, VA 23238</p><p>(804) 912-2947 | carrie@fullcirclegc.org | www.fullcirclegc.org</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/93"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Erica Angert</h3>Erica the Doula</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Payment: Free or Pro Bono, Fee for Service</p></div><p>7901 Shadowberry Ct  Richmond, VA 23227-1668</p><p>(225) 978-1507 | ericathedoula@gmail.com | www.ericathedoularva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/80"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Elise Benoit</h3>MyBirth</span><span><div><p>Type of care: Doula Support</p><p>Payment: Fee for Service</p></div><p>1726 Altamont Ave Suite 2 Richmond, VA 23230</p><p>(804) 839-3203 | ebenoit.mybirthrva@gmail.com | Www.mybirthrva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/95"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Melissa Yeager</h3>Open Arms Birth Collective LLC</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Doctoral Degree (PhD), Certified Doula (CD)</p><p>Payment: Free or Pro Bono, Fee for Service, Sliding Scale</p></div><p>4804 Chamberlayne Ave  Richmond, VA 23227</p><p>(804) 385-2100 | melissa@openarmsbc.com | www.openarmsbc.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/96"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Allison Nichols</h3>VCU Health </span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Certified Lactation Counselor (CLC)</p><p>Payment: Private Insurance, Medicaid</p></div><p>1000 E. Broad St.  Richmond, VA 23219</p><p>(804) 628-5395 | allison.nichols@vcuhealth.org | n/a</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/97"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Gauri Gulati</h3>Children’s Hospital of Richmond at VCU</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Medical Degree (MD), International Board Certified Lactation Consultant (IBCLC)</p><p>Payment: Private Insurance, Medicaid</p></div><p>1000 East Broad st  Richmond, VA </p><p>(804) 828-2467 | gauri.gulati@vcuhealth.org | https://www.chrichmond.org/services/primary-care/lactation/lactation-services</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/92"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Rachel North</h3>Rachel North, LCSW, LLC</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Perinatal Mental Health Certification (PMH-C), Licensed Clinical Social Worker (LCSW)</p><p>Payment: Private Insurance, Medicaid, Fee for Service, Sliding Scale</p></div><p>1806 Summit Avenue Ste 300, Stop297 Richmond, VA 23230</p><p>(804) 316-9207 | rachelnorthlcsw@gmail.com | https://www.psychologytoday.com/us/therapists/rachel-e-north-richmond-va/451485</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/21"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>kendall pacoe</h3>Henrico Doctors Hospital-Perinatal Nurse Navigator</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Nursing Degree (RN, BSN)</p><p>Payment: Free or Pro Bono</p></div><p>   VA </p><p>https://hcavirginia.com/specialties/labor-and-delivery?location=henrico-doctors</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/23"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Elaine Allen </h3>Masa Doula Services </span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Free or Pro Bono, Fee for Service, Sliding Scale</p></div><p>802 Timken Drive   Henrico, VA 23229</p><p>(804) 387-6041 | elainetroyallen@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/20"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Amy Thomas, Lcsw</h3>Richmond Creative Counseling</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Licensed Clinical Social Worker (LCSW)</p><p>Payment: Private Insurance, Medicaid, Fee for Service, Sliding Scale</p></div><p>1900 Byrd Ave  Richmond , VA 23230</p><p>(804) 592-6311 | amy@richmondcreativecounseling.com | Richmondcreativecounseling.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/99"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Sara Babb, LCSW</h3>Old Towne Counseling</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Licensed Clinical Social Worker (LCSW)</p><p>Payment: Private Insurance, Medicaid, Fee for Service, Sliding Scale</p></div><p>7489 Right Flank Rd  Mechanicsville, VA 23116</p><p>(804) 398-8401 | sbabb@otcounseling.com | www.otcounseling.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/94"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Cristina Evans</h3>Blooming Birth</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Lactation Counselor (CLC)</p><p>Payment: Fee for Service</p></div><p>  North Chesterfield , VA 23235</p><p>(757) 729-2085 | bloomingbirthrva@gmail.com | www.bloomingbirthrva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/101"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Lauren Collins</h3>WellNest Counseling and Services</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Licensed Clinical Social Worker (LCSW)</p><p>Payment: Private Insurance, Medicaid, Fee for Service</p></div><p>2609 Lancraft Rd  N Chesterfield, VA 23235</p><p>(804) 601-6169 | admin@wellnestrva.com | https://www.wellnestrva.com/</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/108"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Heather Kay</h3>Clearwater Counseling &amp; Wellness Services LLC</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Doctoral Degree (PhD), Licensed Clinical Psychologist (LCP)</p><p>Payment: Sliding Scale, Private Insurance, Fee for Service</p></div><p>530 E Main St Suite 910 Richmond , VA 23219</p><p>clearwatercounselingrva@gmail.com | Clearwatercounselingrva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/117"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Rochelle Alberti</h3>Nest and Nurture</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Lactation Counselor (CLC)</p><p>Payment: Free or Pro Bono, Fee for Service, Sliding Scale</p></div><p>5840 Charles City Rd  Henrico, VA 23231</p><p>(804) 401-0640 | albertirochelle@gmail.com | Nest-and-nurture.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/103"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Lydia English</h3></span><span><div><p>Certifications: Community Health Worker (CHW)</p><p>Payment: Free or Pro Bono</p></div><p>   VA 23230</p><p>lydiamenglish@gmail.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/111"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Dorota Hill</h3>Dragonfly Family Services</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Lactation Counselor (CLC)</p><p>Payment: Free or Pro Bono, Sliding Scale, Fee for Service</p></div><p>  Richmond, VA 23221</p><p>(703) 864-1703 | hello@dragonflyrva.com | www.dragonflyrva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/105"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Reid Byrne</h3>Mother Nurture Midwifery </span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Nursing Degree (RN, BSN)</p><p>Payment: Fee for Service</p></div><p>7305 Hancock Village Rd.   Chesterfield , VA 23832</p><p>(804) 220-0691 | reid@MotherNurtureMidwifery.com | www.mothernurturemidwifery.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/113"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Donna Westcott</h3>A Sweet New Life Doula Services, LLC</span><span><div><p>Type of care: Doula Support</p><p>Payment: Fee for Service, Sliding Scale, Free or Pro Bono</p></div><p>  Mechanicsville, VA </p><p>(804) 517-8043 | asweetnewlife@gmail.com | www.asweetnewlifedoulaservices.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/116"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Tracey Wingold</h3>Tracey Wingold, LCSW, LLC</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Licensed Clinical Social Worker (LCSW)</p><p>Payment: Sliding Scale, Fee for Service</p></div><p>Online   VA </p><p>(804) 316-9694 | traceywingold@itherapymail.com | Www.itherapy.com/tracey-wingold</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/106"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Emily Bruno</h3>MyBirth</span><span><div><p>Type of care: Doula Support</p><p>Certifications: Certified Doula (CD)</p><p>Payment: Free or Pro Bono, Private Insurance, Fee for Service, Sliding Scale</p></div><p>1726 Altamont Ave Suite 2  Richmond, VA 23230</p><p>(804) 368-5488 | emily.mybirthrva@gmail.com | www.mybirthrva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/114"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Robin Allman</h3>Pediatric Associates of Richmond, Inc.</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: International Board Certified Lactation Consultant (IBCLC)</p><p>Payment: Private Insurance</p></div><p>4300 Pouncey Tract Rd., Glen Allen 23060 8485 Bell Creek Rd, Suite B-3, Mechanicsville, VA 23116  VA </p><p>(804) 282-4205 | n/a | https://parpeds.com/</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/118"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Sara Krivanec</h3>MyBirth LLC </span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD), Certified Lactation Counselor (CLC)</p><p>Payment: Private Insurance, Fee for Service</p></div><p>1726 Altamont Ave Suite 2  Richmond , VA 23230</p><p>(804) 387-8847 | sara.mybirthrva@gmail.com | mybirthrva.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/115"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Jennifer Sestak</h3>Strength and Dignity Birth Services</span><span><div><p>Type of care: Doula Support</p><p>Payment: Fee for Service</p></div><p>8339 Wetherden Dr.  Mechanicsville , VA 23111</p><p>(804) 437-1492 | jennifer@strengthanddignitybirth.com | Www.strengthanddignitybirth.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/109"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Kayley Mayhew</h3>Central Virginia Doulas</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD), La Leche League Leader (LLL)</p><p>Payment: Fee for Service</p></div><p>4411 GOODVIEW ST  LYNCHBURG, VA 24502</p><p>(434) 214-3034 | kayley@cvadoulas.com | www.cvadoulas.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/107"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Heather McLees-Frazier</h3>Open Arms Birth Collective, LLC</span><span><div><p>Type of care: Doula Support</p><p>Payment: Fee for Service, Sliding Scale</p></div><p>8404 Chamerlayne Ave.   Richmond, VA 23227</p><p>(804) 833-4474 | hmfdoula@gmail.com | openarmsbc.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/110"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Hunter Moore</h3>The Mindful Birth</span><span><div><p>Type of care: Lactation Support, Doula Support</p><p>Certifications: Certified Doula (CD), Certified Lactation Counselor (CLC)</p><p>Payment: Fee for Service</p></div><p>  North Chesterfield, VA 23235</p><p>(804) 362-8176 | themindfulbirth@gmail.com | Themindfulbirth.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/98"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Karli Shank</h3>Healing Circle Counseling</span><span><div><p>Type of care: Perinatal Mental Health</p><p>Certifications: Licensed Clinical Social Worker (LCSW)</p></div><p>1525 Huguenot Rd Suite 100 Midlothian, VA 23112</p><p>(804) 924-7600 | kshank@healingcirclecounseling.com | https://healingcirclecounseling.com/</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/104"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Cara Meyer</h3>HCA Chippenham Hospital</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p></div><p>7101 Jahnke Rd  Richmond , VA 23225</p><p>(804) 483-2253 | cara.meyer@hcahealthcare.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/102"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Valerie Coleman</h3>VCUHS</span><span><div><p>Type of care: Perinatal Mental Health, Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p></div><p>1250 East Marshal street    Richmond, VA 23298</p><p>(804) 828-4634 | valerie.coleman@vcuhealth.org | www.vcuhealth.org</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/47"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Stephanie Lee</h3>VCU Health Dept OBGYN</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Medical Degree (MD)</p></div><p>1250 E. Marshall St.   Richmond, VA 23219</p><p>stephanie.lee@vcuhealth.org | www.vcumom.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/77"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Theresa Termine</h3>Postpartum Support Virginia </span><span><div><p>Type of care: Perinatal Mental Health</p></div><p>Post Office Box 7521  Arlington, VA 22207</p><p>(703) 829-7152 | info@postpartumva.org | https://postpartumva.org/</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/13"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Elizabeth Rowe</h3>Henrico WIC Program</span><span><div><p>Type of care: Lactation Support</p></div><p>7740 Shrader Rd Ste B  Henrico, VA 23228</p><p>(804) 501-1610 | elizabeth.rowe@vdh.virginia.gov</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/112"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Nancy Raines</h3>Johnston Willis Hospital</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p></div><p>1401 Johnston Willis Dr  Richmond, VA 23113</p><p>(804) 483-6342 | nancy.raines@hcahealthcare.com | www.johnstonwillismed.com</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/100"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Lisa Hileman</h3>Children's Hospital of Richmond</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p></div><p>1001 East Marshall Street  Richmond, VA 23298</p><p>(804) 828-2467 | lisa.hileman@vcuhealth.org | https://www.chrichmond.org/services/primary-care/lactation/lactation-services</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/36"><img src="./Nurture _ Directory_files/profile-1.png"><span class="provider-details"><span class="provider-name"><h3>Rachel Pfab</h3>Bon Secours St. Francis Medical Center</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p></div><p>13700 St. Francis Blvd.  Midlothian, VA 23114</p><p>(804) 594-3267 | rachel_pfab@bshsi.org</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/44"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Sharon Filegar</h3>Bon Secours Mercy Health St. Mary's Hospital</span><span><div><p>Type of care: Lactation Support</p><p>Certifications: Nursing Degree (RN, BSN), International Board Certified Lactation Consultant (IBCLC)</p></div><p>5801 Bremo Road  Richmond, VA 23226</p><p>(804) 218-3301 | sharon_filegar@bshsi.org</p></span></span></a></div><div><a class="provider-container list" href="http://localhost:5173/results/45"><img src="./Nurture _ Directory_files/profile-2.png"><span class="provider-details"><span class="provider-name"><h3>Keisha Graham</h3></span><span><div><p>Type of care: Lactation Support, Doula Support</p></div><p>   VA </p><p>(804) 564-5008 | keisha.mybirthrva@gmail.com | https://www.facebook.com/KeishaDoesWork</p></span></span></a></div></div></div></div></div><footer><img src="./Nurture _ Directory_files/nurture-logo-1.png"><ul><li><a href="http://localhost:5173/">Home</a></li><li><a href="http://localhost:5173/find-care">Find Care</a></li><li><a href="http://localhost:5173/results">Directory</a></li><li><a href="http://localhost:5173/provider-home">Care Provider Home</a></li></ul><ul><li><a>Education Center</a></li><li><a>FAQ</a></li><li><a>Contact</a></li></ul></footer></div>
+    <script type="module" src="./Nurture _ Directory_files/index.tsx"></script>
+  
+
+</body></html>

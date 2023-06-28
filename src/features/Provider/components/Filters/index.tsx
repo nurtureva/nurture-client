@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Option, OptionsObject } from '@/types';
+import './filters.scss';
+import { toggleFilterMenu } from '@/utils/helpers';
 
 const Filters = ({
   options,
@@ -27,7 +29,11 @@ const Filters = ({
   }, [serviceFilters, paymentFilters, bookmarkFilter]);
   return (
     <div className="provider-filters">
-      <h4>Filters</h4>
+      <i className="icon-clear" onClick={toggleFilterMenu} />
+      <span>
+        <h4>Filter Results</h4>
+        <a onClick={clearFilters}>clear filters</a>
+      </span>
       <FilterList
         optionList={services}
         title={'Type of care'}
@@ -40,17 +46,23 @@ const Filters = ({
         setFilterGroup={setPaymentFilters}
         filterGroup={paymentFilters}
       />
-      <label>
-        <input
-          type="checkbox"
-          onChange={(e) => {
-            setBookmarkFilter(e.target.checked);
-          }}
-          checked={bookmarkFilter}
-        />
-        Bookmarks
-      </label>
-      <button onClick={clearFilters}>clear filters</button>
+      <div>
+        <label>My bookmarks</label>
+        <ul>
+          <li>
+            <label>
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  setBookmarkFilter(e.target.checked);
+                }}
+                checked={bookmarkFilter}
+              />
+              Bookmarked profiles
+            </label>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

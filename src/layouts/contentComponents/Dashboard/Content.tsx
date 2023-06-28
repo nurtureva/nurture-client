@@ -6,7 +6,8 @@ import lactationImage from '@/assets/lactation-illustration.svg';
 import mentalHealthImage from '@/assets/mental-health-illustration.svg';
 import locationImage from '@/assets/location-splash.png';
 import bottomSplash from '@/assets/bottom-splash.png';
-import { Card } from '@/features/UI/components/Card/Card';
+import { Card } from '@/components/Card/Card';
+import { Button } from '@/components/Button/Button';
 
 export const Content = () => {
   return (
@@ -42,9 +43,9 @@ export const Content = () => {
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit officia consequat duis enim velit mollit.{' '}
           </p>
-          <Link to="provider-form" className="secondary-button">
+          <Button to="provider-form" type="secondary">
             List your practice
-          </Link>
+          </Button>
           <p>
             Or head to our <Link to="/provider-home">Care Provider Home</Link>{' '}
             for more resources.
