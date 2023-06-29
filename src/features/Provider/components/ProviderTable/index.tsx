@@ -66,62 +66,62 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
     <div>
       <Bookmark provider={provider} />
       <Link to={`/results/${provider.id}`} className="provider-container list">
-        <img src={photoSrc} />
-        <div className="provider-details">
-          <span className="provider-name">
-            <h3>{name}</h3>
-            {businessName}
-          </span>
-          <span>
-            <div>
-              {services?.length ? (
-                <p>
-                  Type of care:
-                  {services?.map((service, index) => {
-                    const comma = index !== services.length - 1 ? ',' : '';
-                    return ` ${service.name}${comma}`;
-                  })}
-                </p>
-              ) : (
-                ''
-              )}
-              {certifications?.length ? (
-                <p>
-                  Certifications:
-                  {certifications?.map((service, index) => {
-                    const comma =
-                      index !== certifications.length - 1 ? ',' : '';
-                    return ` ${service.name}${comma}`;
-                  })}
-                </p>
-              ) : (
-                ''
-              )}
-              {paymentOptions?.length ? (
-                <p>
-                  Payment:
-                  {paymentOptions?.map((service, index) => {
-                    const comma =
-                      index !== paymentOptions.length - 1 ? ',' : '';
-                    return ` ${service.name}${comma}`;
-                  })}
-                </p>
-              ) : (
-                ''
-              )}
-            </div>
-            <Address provider={provider} />
-            <p>
-              {provider.phone ? provider.phone : ''}
-              {provider.phone && (provider.email || provider.website)
-                ? ' | '
-                : ''}
-              {provider.email ? provider.email : ''}
-              {/* {provider.email && provider.website ? ' | ' : ''} */}
-              {/* {provider.website ? provider.website : ''} */}
-            </p>
-          </span>
-        </div>
+        <span className="photo-container">
+          <img src={photoSrc} />
+        </span>
+        {/* <div className="provider-details"> */}
+        <span className="provider-name">
+          <h3>{name}</h3>
+          {businessName}
+        </span>
+        <span>
+          <div>
+            {services?.length ? (
+              <p>
+                Type of care:
+                {services?.map((service, index) => {
+                  const comma = index !== services.length - 1 ? ',' : '';
+                  return ` ${service.name}${comma}`;
+                })}
+              </p>
+            ) : (
+              ''
+            )}
+            {certifications?.length ? (
+              <p>
+                Certifications:
+                {certifications?.map((service, index) => {
+                  const comma = index !== certifications.length - 1 ? ',' : '';
+                  return ` ${service.name}${comma}`;
+                })}
+              </p>
+            ) : (
+              ''
+            )}
+            {paymentOptions?.length ? (
+              <p>
+                Payment:
+                {paymentOptions?.map((service, index) => {
+                  const comma = index !== paymentOptions.length - 1 ? ',' : '';
+                  return ` ${service.name}${comma}`;
+                })}
+              </p>
+            ) : (
+              ''
+            )}
+          </div>
+          <Address provider={provider} />
+          <p>
+            {provider.phone ? provider.phone : ''}
+            {provider.phone && (provider.email || provider.website)
+              ? ' | '
+              : ''}
+            {provider.email ? provider.email : ''}
+            {/* {provider.email && provider.website ? ' | ' : ''} */}
+            {/* {provider.website ? provider.website : ''} */}
+          </p>
+        </span>
+        {/* </div> */}
       </Link>
       <div className="provider-button-group">
         <Button type="primary">View Profile</Button>

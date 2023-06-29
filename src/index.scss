@@ -392,10 +392,13 @@ p {
   padding: 15px;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 700px) {
   .bg-yellow,
   .content-header {
     background-color: var(--white);
+  }
+  .content-header {
+    padding: 40px 10px;
   }
 }
 
@@ -430,7 +433,7 @@ p {
   margin: 5px 0;
   display: none;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1000px) {
   .provider-filters .icon-clear {
     display: block;
   }

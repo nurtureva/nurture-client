@@ -1,0 +1,24 @@
+.input-group label {
+  color: var(--brand-gray);
+  font-size: 0.7em;
+}
+
+.input-container {
+  border-radius: 8px;
+  border: 1px solid var(--brand-gray);
+  background-color: white;
+  display: flex !important;
+  align-items: center;
+
+  i {
+    padding-left: 13px;
+    font-size: 1.4em;
+    color: var(--brand-gray);
+  }
+  input {
+    height: 100%;
+    border-radius: 8px;
+    padding: 13px 8px;
+    border: none;
+  }
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/Button/Button';
+import Input from '@/components/Input';
 
 export default function Search({ type, updateSearch }: { type?: string }) {
   const [keyword, setKeyword] = useState('');
@@ -8,7 +9,9 @@ export default function Search({ type, updateSearch }: { type?: string }) {
   return (
     <div className="search-container">
       <div className="provider-search">
-        <input
+        <Input
+          icon="search"
+          label="Keyword, type of care, practitioner name"
           onFocus={() => {
             setKeyword('');
             updateSearch('', distance);
@@ -17,18 +20,21 @@ export default function Search({ type, updateSearch }: { type?: string }) {
           value={keyword}
           onChange={(e) => {
             setKeyword(e.target.value);
-          }}></input>
+          }}
+        />
         {type === 'verbose' ? '' : <p>near </p>}
-        <input
+        <Input
+          icon="map"
+          label="Zip code"
           placeholder="zip code"
           onChange={(e) => {
             setDistance(e.target.value);
-          }}></input>
+          }}
+        />
         <Button
           type="primary"
           search
           onClick={() => {
-            console.log({ keyword, distance });
             updateSearch(keyword, distance);
           }}>
           {type === 'verbose' ? 'Find care providers' : ''}
