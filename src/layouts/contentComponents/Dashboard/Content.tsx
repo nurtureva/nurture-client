@@ -29,10 +29,8 @@ export const Content = () => {
       </section>
 
       <section className="bg-yellow">
-        <div className="search-container">
-          <h2>Let's find you the help you need:</h2>
-          <Search type="verbose" updateSearch={() => {}} />
-        </div>
+        <h2>Let's find you the help you need:</h2>
+        <Search type="verbose" />
       </section>
 
       <section className="bottom-section">

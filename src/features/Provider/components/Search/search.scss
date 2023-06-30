@@ -1,19 +1,31 @@
 .provider-search {
-  max-width: 800px;
+  max-width: 1200px;
+  padding: 25px;
   margin: auto;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   p {
     color: var(--light-gray);
   }
-  input {
+  .input-container {
     &:first-of-type {
-      flex: 1;
+      flex: 2 1 50%;
+    }
+    &:last-of-type {
+      flex: 2 1 140px;
     }
   }
   & > * {
     margin: 0 7px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .provider-search {
+    padding: 0 5px;
+    & > * {
+      margin: 0 3px;
+    }
   }
 }

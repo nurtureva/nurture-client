@@ -36,10 +36,46 @@
   }
 }
 
+.provider-container.full {
+  h2,
+  h3 {
+    text-align: left;
+  }
+  h3 {
+    color: var(--brand-pink);
+  }
+  & > * {
+    padding: 40px 100px;
+  }
+  .provider-actions {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    span {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .provider-header {
+    display: flex;
+    // width: 80%;
+    margin: auto;
+    background-color: var(--primary-tan);
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      height: 150px;
+      border-radius: 50%;
+    }
+  }
+}
+
 .provider-button-group {
   display: flex;
   flex-direction: column;
-  width: 231px;
+  padding: 20px;
   .primary {
     padding: 5px 10px;
     width: 100%;
@@ -95,7 +131,7 @@
     display: none;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .provider-container.list {
     flex-direction: row;
     align-items: center;
@@ -118,8 +154,15 @@
       width: 100%;
     }
   }
-  .bookmark-label {
+  .provider-table-container .bookmark-label {
     right: 10px;
     margin: 8px;
+  }
+  .provider-container.full > * {
+    padding: 15px;
+  }
+  .provider-header {
+    flex-direction: column;
+    justify-content: center;
   }
 }

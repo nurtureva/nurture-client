@@ -1,25 +1,70 @@
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { ProviderObject } from '@/types';
+import samplePhoto1 from '@/assets/profile-1.png';
+import samplePhoto2 from '@/assets/profile-2.png';
 import Contact from '../components/Contact';
 import Name from '../components/Name';
 import Bookmark from '../components/Bookmark';
+import { Button } from '@/components/Button/Button';
 
 export default function ProviderPage() {
   const { provider } = useLoaderData() as { provider: ProviderObject };
   const navigate = useNavigate();
+  const photoList = [samplePhoto1, samplePhoto2];
+  const firstName = provider.name.split(' ')[0];
+  const photoSrc = provider.profile_photo
+    ? import.meta.env.VITE_S3_URL + provider.profile_photo
+    : photoList[Math.floor(Math.random() * photoList.length)];
   return (
-    <div className="provider-container">
-      <div className="provider-header">
-        <button
-          onClick={() => {
-            navigate('/results');
-          }}>
-          {'< back'}
-        </button>
+    <div className="provider-container full">
+      <div className="provider-actions">
+        <span>
+          <i className="icon-arrow_back" />
+          <a
+            onClick={() => {
+              navigate('/results');
+            }}>
+            back
+          </a>
+        </span>
         <Bookmark provider={provider} />
-        <button>request an edit</button>
+        <a>request an edit</a>
+      </div>
+      <div className="provider-header">
+        <img src={photoSrc} />
+        <span>
+          <h2>{provider.name}</h2>
+          <p>{provider.business_name}</p>
+          <p>
+            Type of care:{' '}
+            {provider.services?.map((service) => service.name + ', ')}
+          </p>
+        </span>
+        <span>
+          <Button type="primary">test</Button>
+        </span>
       </div>
       <div>
+        <h3>About {firstName}</h3>
+        <p>{provider.role}</p>
+        <p>{provider.overview}</p>
+        <h3>Professional Details</h3>
+        <p>
+          Payment Accepted:{' '}
+          {provider.paymentOptions?.map((payment) => payment.name + ', ')}
+        </p>
+        <p>
+          Certifications:{' '}
+          {provider.certifications?.map(
+            (certification) => certification.name + ', '
+          )}
+        </p>
+        <h3>Personal Details</h3>
+        {provider.pronouns}
+        {provider.languages_spoken}
+        <h3>Contact</h3>
+      </div>
+      {/* <div>
         <Name provider={provider}>
           <p>{provider.overview}</p>
         </Name>
@@ -42,7 +87,7 @@ export default function ProviderPage() {
           </span>
         </div>
         <Contact provider={provider} title={provider.name.split(' ')[0]} />
-      </div>
+      </div> */}
     </div>
   );
 }

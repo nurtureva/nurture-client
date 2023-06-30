@@ -6,16 +6,18 @@ type ButtonProps = React.HTMLProps<HTMLButtonElement> &
     type: 'primary' | 'secondary' | 'tertiary';
     to?: string;
     search?: boolean;
+    size?: 'small';
     icon?: 'web' | 'email' | 'call' | 'map' | 'search';
   }>;
 
 export const Button = (props: ButtonProps) => {
-  const { type, children, search, icon, className, ...buttonProps } = props;
+  const { type, children, search, icon, size, className, ...buttonProps } =
+    props;
   const Element = props.to ? Link : ('button' as HTMLButtonElement);
 
   return (
     <Element
-      className={`btn ${type} ${!children ? 'icon' : ''} ${className}`}
+      className={`btn ${type} ${size} ${!children ? 'icon' : ''} ${className}`}
       {...{ ...buttonProps }}>
       {search ? <i className="icon-search" /> : ''}
       {icon ? <i className={`icon-${icon}`} /> : ''}

@@ -4,12 +4,19 @@
 }
 
 .input-container {
+  position: relative;
   border-radius: 8px;
   border: 1px solid var(--brand-gray);
   background-color: white;
   display: flex !important;
   align-items: center;
-
+  label {
+    position: absolute;
+    top: -20px;
+    font-size: 0.7em;
+    left: 5px;
+    color: var(--brand-gray);
+  }
   i {
     padding-left: 13px;
     font-size: 1.4em;
@@ -17,8 +24,23 @@
   }
   input {
     height: 100%;
+    width: 100%;
     border-radius: 8px;
     padding: 13px 8px;
     border: none;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .input-container {
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--brand-gray);
+    label {
+      display: none;
+    }
+    i {
+      padding-left: 0px;
+    }
   }
 }

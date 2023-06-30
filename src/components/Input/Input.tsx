@@ -3,12 +3,12 @@ import './input.scss';
 export const Input = (props) => {
   const { icon, label, ...inputProps } = props;
   return (
-    <div className="input-group">
+    // <div className="input-group">
+    <span className="input-container">
       {label && <label>{label}</label>}
-      <span className="input-container">
-        {icon ? <i className={`icon-${icon}`} /> : ''}
-        <input {...inputProps} />
-      </span>
-    </div>
+      {icon ? <i className={`icon-${icon}`} /> : ''}
+      <input {...inputProps} />
+    </span>
+    // </div>
   );
 };

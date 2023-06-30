@@ -1,8 +1,9 @@
 .btn {
   cursor: pointer;
   width: fit-content;
-  font-size: 0.85em;
-  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  // font-size: 0.1em;
+  white-space: nowrap;
   height: 45px;
   justify-content: center;
   align-items: center;
@@ -17,6 +18,12 @@
   i {
     font-size: 1.5em;
     margin-right: 5px;
+  }
+  &.small {
+    height: 30px;
+    &.icon {
+      width: 30px;
+    }
   }
 }
 .secondary {

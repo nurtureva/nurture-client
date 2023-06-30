@@ -59,6 +59,7 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
     paymentOptions
   } = provider;
   const photoList = [samplePhoto1, samplePhoto2];
+  const buttonProps = { type: 'secondary', size: 'small ' };
   const photoSrc = profile_photo
     ? import.meta.env.VITE_S3_URL + profile_photo
     : photoList[Math.floor(Math.random() * photoList.length)];
@@ -124,12 +125,14 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
         {/* </div> */}
       </Link>
       <div className="provider-button-group">
-        <Button type="primary">View Profile</Button>
+        <Button size="small" type="primary">
+          View Profile
+        </Button>
         <span>
-          <Button type="secondary" icon="call" />
-          <Button type="secondary" icon="email" />
-          <Button type="secondary" icon="web" />
-          <Button type="secondary" icon="map" />
+          <Button {...buttonProps} icon="call" />
+          <Button {...buttonProps} icon="email" />
+          <Button {...buttonProps} icon="web" />
+          <Button {...buttonProps} icon="map" />
         </span>
       </div>
     </div>
