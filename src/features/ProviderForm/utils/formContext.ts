@@ -10,6 +10,7 @@ export type Pictures = {
 type UpdateStateFn = (props: {
   newProvider?: FormProvider;
   error?: any;
+  submissionResponse?: any;
   initialProvider?: ProviderObject | FormProvider;
   pictures?: Pictures;
 }) => void;
@@ -18,6 +19,7 @@ interface FormContextObject {
   initialProvider?: ProviderObject | FormProvider;
   newProvider?: FormProvider;
   error: any;
+  submissionResponse: any;
   pictures: Pictures;
   updateState: UpdateStateFn;
 }
@@ -38,16 +40,20 @@ export const useContextInitializer: ContextInitializer = () => {
   const [newProvider, setNewProvider] = useState<FormProvider>();
   const [pictures, setPictures] = useState<Pictures>({});
   const [error, setError] = useState();
+  const [submissionResponse, setSubmissionResponse] = useState();
 
   const updateState: UpdateStateFn = (props) => {
     if (props?.error) setError(props.error);
     if (props?.newProvider) setNewProvider(props.newProvider);
     if (props?.initialProvider) setInitialProvider(props.initialProvider);
+    if (props?.submissionResponse)
+      setSubmissionResponse(props.submissionResponse);
     if (props?.pictures) setPictures(props.pictures);
   };
 
   const value: FormContextObject = {
     initialProvider,
+    submissionResponse,
     newProvider,
     error,
     pictures,

@@ -17,7 +17,6 @@ export default function ProviderTablePage() {
   const filterOptions = { services, paymentOptions, certifications };
   const { updateSearch, updateFilters, filteredProviders } =
     useFilterReducer(providers);
-  // const filteredProviders = useFilters(providers);
 
   return (
     <>

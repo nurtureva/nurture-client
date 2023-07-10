@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useNavigation } from 'react-router-dom';
+
 import { FiltersContainerObject, Option, ProviderObject } from '../types';
 import { accessDatabase } from '@/api';
 
-const checkMultiple = (activeFilters: string[], providerValues: Option[]) => {
+const checkMultiple = (activeFilters: number[], providerValues: Option[]) => {
   let evaluator = false;
   for (const value of providerValues) {
     for (const option of activeFilters) {
-      evaluator = value.id.toString() === option;
+      evaluator = value.id === option;
       if (evaluator) {
         //remove filter from the activeFilters search array since we found it
         const index = activeFilters.indexOf(option);
@@ -28,7 +28,6 @@ export const useFilters = (
   filters: FiltersContainerObject
 ) => {
   const [zipArray, setZipArray] = useState<string[]>([]);
-  const navigation = useNavigation();
   useEffect(() => {
     (async () => {
       if (filters.searchTerm.distance) {

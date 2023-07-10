@@ -12,7 +12,7 @@
   align-items: center;
   label {
     position: absolute;
-    top: -20px;
+    top: -19px;
     font-size: 0.7em;
     left: 5px;
     color: var(--brand-gray);
@@ -28,6 +28,34 @@
     border-radius: 8px;
     padding: 13px 8px;
     border: none;
+  }
+}
+
+.photo-input-container {
+  border: 1px dashed black;
+  height: 140px;
+  width: 100%;
+  display: block;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  button {
+    cursor: pointer;
+  }
+  .secondary {
+    pointer-events: none;
+  }
+  label {
+    display: block;
+    cursor: pointer;
+  }
+  input {
+    display: none;
+  }
+  img {
+    height: 100%;
   }
 }
 

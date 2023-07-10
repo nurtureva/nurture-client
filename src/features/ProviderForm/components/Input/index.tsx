@@ -1,6 +1,7 @@
+import Input from '@/components/Input';
 import { FormProvider } from '@/types';
 import { UseFormRegister } from 'react-hook-form';
-export default function Input({
+export default function FormInput({
   register,
   dbName,
   type = 'text',
@@ -11,6 +12,8 @@ export default function Input({
   type?: React.HTMLInputTypeAttribute;
   element?: 'textarea';
 }) {
-  const Element = element || 'input';
-  return <Element type={type} {...register(`general.${dbName}`)} />;
+  const { ref, ...registerProps } = register(`general.${dbName}`);
+
+  if (element) return <textarea {...{ ref, ...registerProps }} />;
+  return <Input {...{ type, ...registerProps }} innerRef={ref} />;
 }

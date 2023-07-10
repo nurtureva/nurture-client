@@ -10,12 +10,12 @@ export default function FormItem({
   description
 }: FormItemWrapperObject) {
   return (
-    <span className="input-container">
+    <span className="form-input-container">
       <label>
-        <p>{name}</p>
-        {description && <p>{description}</p>}
+        {name}
+        {children}
       </label>
-      {children}
+      {description && <p>{description}</p>}
     </span>
   );
 }

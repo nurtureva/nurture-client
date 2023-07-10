@@ -1,14 +1,13 @@
 import './input.scss';
 
 export const Input = (props) => {
-  const { icon, label, ...inputProps } = props;
+  const { icon, label, ...otherInputProps } = props;
+  const { innerRef, ...inputProps } = otherInputProps;
   return (
-    // <div className="input-group">
     <span className="input-container">
       {label && <label>{label}</label>}
       {icon ? <i className={`icon-${icon}`} /> : ''}
-      <input {...inputProps} />
+      <input ref={innerRef} {...inputProps} />
     </span>
-    // </div>
   );
 };

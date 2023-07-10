@@ -21,7 +21,6 @@ import FormManager from '@/features/ProviderForm';
 import pageNotFoundContent from '@/layouts/content/404';
 import errorContent from '@/layouts/content/error';
 import Dashboard from '@/layouts/contentComponents/Dashboard';
-import FindCarePage from '@/layouts/contentComponents/FindCarePage';
 
 const navRoutes: Endpoint[] = [
   {
@@ -30,13 +29,15 @@ const navRoutes: Endpoint[] = [
     element: <Dashboard />
   },
   {
-    name: 'Find Care',
-    path: 'find-care',
-    element: <FindCarePage />
-  },
-  {
     name: 'Directory',
     path: 'results',
+    loader: useMainPageLoader,
+    element: <PageLayout {...providerTableContent} />,
+    errorElement: <PageLayout {...errorContent} />
+  },
+  {
+    name: 'Bookmarks',
+    path: 'bookmarks',
     loader: useMainPageLoader,
     element: <PageLayout {...providerTableContent} />,
     errorElement: <PageLayout {...errorContent} />

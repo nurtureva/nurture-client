@@ -2,8 +2,6 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import { ProviderObject } from '@/types';
 import samplePhoto1 from '@/assets/profile-1.png';
 import samplePhoto2 from '@/assets/profile-2.png';
-import Contact from '../components/Contact';
-import Name from '../components/Name';
 import Bookmark from '../components/Bookmark';
 import { Button } from '@/components/Button/Button';
 
@@ -22,7 +20,7 @@ export default function ProviderPage() {
           <i className="icon-arrow_back" />
           <a
             onClick={() => {
-              navigate('/results');
+              navigate(-1);
             }}>
             back
           </a>

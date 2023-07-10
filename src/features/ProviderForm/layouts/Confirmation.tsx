@@ -7,9 +7,9 @@ import { useFormContext } from '../utils/formContext';
 export default function Confirmation() {
   const { services, paymentOptions, certifications } =
     useLoaderData() as ProviderOptions;
-  const { newProvider: provider, updateState } = useFormContext();
+  const { newProvider: provider, updateState, pictures } = useFormContext();
   const formFunction = useFormAction();
-
+  console.log(provider, pictures);
   if (!provider) return null;
   return (
     <>
@@ -41,6 +41,16 @@ export default function Confirmation() {
           fullList={certifications}
           title="certifications"
         />
+        {Object.entries(pictures).map((pictureEntry) => {
+          const [label, picture] = pictureEntry;
+          if (picture)
+            return (
+              <li key={label}>
+                {label}: <img src={URL.createObjectURL(picture)} />
+              </li>
+            );
+          return '';
+        })}
       </ul>
       <button
         onClick={async () => {

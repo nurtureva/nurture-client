@@ -61,7 +61,7 @@ export interface FormProvider extends ProviderOptionsGenerator<string> {
 export type FilterType = Exclude<OptionType, 'certifications'>;
 
 export type FilterObject = {
-  [filterName in FilterType]?: string[];
+  [filterName in FilterType]?: number[];
 } & { bookmarkFilter: boolean };
 
 export interface SearchObject {

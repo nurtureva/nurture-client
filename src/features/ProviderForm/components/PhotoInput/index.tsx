@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useFormContext } from '../../utils/formContext';
 import { confirmChoice } from '@/features/Admin/utils/helpers';
 import { deletePhoto } from '../../utils/api';
+import FormItem from '../FormItem';
+import { Button } from '@/components/Button/Button';
 
 interface ParamsObject {
   dbName: 'logo' | 'profile_photo';
@@ -13,10 +15,13 @@ interface ParamsObject {
 }
 const PhotoInput = ({ dbName, imageState, initialImage }: ParamsObject) => {
   const [image, setImage] = imageState;
-  const didMountRef = useRef(false);
   const [imageSrc, setImageSrc] = useState(
     initialImage ? import.meta.env.VITE_S3_URL + initialImage : ''
   );
+
+  useEffect(() => {
+    console.log(imageSrc);
+  }, [imageSrc]);
 
   const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -25,21 +30,19 @@ const PhotoInput = ({ dbName, imageState, initialImage }: ParamsObject) => {
   };
 
   useEffect(() => {
-    if (didMountRef.current)
-      setImageSrc(image ? URL.createObjectURL(image) : '');
-    didMountRef.current = true;
+    if (!initialImage) setImageSrc(image ? URL.createObjectURL(image) : '');
   }, [image]);
   return (
-    <>
+    <span className="photo-input-container">
       <input
         type="file"
+        id={`file-${dbName}`}
         name={dbName}
         accept="image/*"
         onChange={(e) => {
           onImageChange(e);
         }}
       />
-
       {imageSrc ? (
         <>
           <img src={imageSrc} />
@@ -63,9 +66,11 @@ const PhotoInput = ({ dbName, imageState, initialImage }: ParamsObject) => {
           </button>
         </>
       ) : (
-        ''
+        <label htmlFor={`file-${dbName}`}>
+          <Button type="secondary">Upload File</Button>
+        </label>
       )}
-    </>
+    </span>
   );
 };
 
@@ -94,16 +99,26 @@ const PhotosContainer = () => {
 
   return (
     <>
-      <PhotoInput
-        dbName="profile_photo"
-        imageState={profilePhotoState}
-        {...(initialProfilePhoto ? { initialImage: initialProfilePhoto } : {})}
-      />
-      <PhotoInput
-        dbName="logo"
-        imageState={logoState}
-        {...(initialLogo ? { initialImage: initialLogo } : {})}
-      />
+      <FormItem
+        name="Profile photo"
+        description="A square photo or a photo with your face centered works best (.jpg, max file size ___)">
+        <PhotoInput
+          dbName="profile_photo"
+          imageState={profilePhotoState}
+          {...(initialProfilePhoto
+            ? { initialImage: initialProfilePhoto }
+            : {})}
+        />
+      </FormItem>
+      <FormItem
+        name="Logo"
+        description="A square or circular file works best (.jpg, max file size ___)">
+        <PhotoInput
+          dbName="logo"
+          imageState={logoState}
+          {...(initialLogo ? { initialImage: initialLogo } : {})}
+        />
+      </FormItem>
     </>
   );
 };

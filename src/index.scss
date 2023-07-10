@@ -87,7 +87,6 @@ p {
 // }
 
 .content-header {
-  padding: 40px 150px;
   background-color: var(--primary-tan);
   span {
     position: relative;
@@ -178,74 +177,42 @@ p {
 
 // /********************************* ELEMENTS ********************************************/
 
-// form {
-//   max-width: 600px;
-//   margin: auto;
-//   input[type='text'] {
-//     height: 35px;
-//   }
-//   textarea {
-//     height: 100px;
-//   }
-//   .input-container {
-//     display: flex;
-//     justify-content: space-between;
-//     max-height: 200px;
-//     margin: 20px 0;
-//     & > label {
-//       display: flex;
-//       flex-direction: column;
-//       align-items: flex-end;
-//       width: 30%;
-//       padding: 0 20px;
-//       p {
-//         margin: 0;
-//       }
-//       p:last-child {
-//         color: grey;
-//         font-size: 0.9em;
-//       }
-//     }
-//     ul {
-//       list-style: none;
-//       padding: 20px;
-//       margin: 0;
-//       overflow-y: auto;
-//       display: flex;
-//       flex-direction: column;
-//       border: 1px solid gray;
-//       li {
-//         padding: 10px;
-//       }
-//     }
-//     & > input,
-//     textarea,
-//     ul {
-//       width: 70%;
-//     }
-//   }
-//   .options-group-container {
-//     justify-content: space-between;
-//     fieldset {
-//       width: 30%;
-//     }
-//     legend {
-//       font-size: 1.3em;
-//       margin: 0;
-//     }
-//     input {
-//       margin-right: 6px;
-//     }
-//     ul {
-//       list-style: none;
-//       width: 100%;
-//       padding: 4px 12px;
-//       border: 1px solid black;
-//       height: 300px;
-//       overflow-y: scroll;
-//     }
-//   }
-// }
+form {
+  max-width: 600px;
+  margin: auto;
+  textarea {
+    height: 100px;
+    width: 100%;
+    border-radius: 8px;
+  }
+  .form-input-container {
+    display: block;
+    margin: 15px 0;
+    p {
+      margin: 0;
+      font-size: 0.8em;
+      color: gray;
+    }
+  }
+  ul {
+    list-style: none;
+    max-height: 250px;
+    overflow-y: scroll;
+    padding: 20px;
+    margin: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    border: 1px solid gray;
+    input {
+      margin-right: 10px;
+    }
+    li {
+      padding: 10px;
+    }
+  }
+}
 
 // .provider-name {
 //   display: flex;
@@ -357,7 +324,7 @@ p {
 
 .directory {
   .content-header {
-    padding: 40px 0;
+    padding: 10px 0;
   }
 }
 .results-page {
@@ -377,6 +344,9 @@ p {
   h2 {
     text-align: left;
     padding: 0;
+  }
+  form {
+    padding: 20px;
   }
 }
 

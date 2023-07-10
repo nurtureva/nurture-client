@@ -49,6 +49,16 @@ export default function ProviderTable({
   );
 }
 
+const sanitizeURL = (url: string) => {
+  if (url.includes('https') || url.includes('http')) {
+    return url;
+  }
+  if (!(url.includes('.com') || url.includes('.net') || url.includes('org'))) {
+    return undefined;
+  }
+  return 'https://' + url;
+};
+
 const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
   const {
     profile_photo,
@@ -60,6 +70,7 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
   } = provider;
   const photoList = [samplePhoto1, samplePhoto2];
   const buttonProps = { type: 'secondary', size: 'small ' };
+
   const photoSrc = profile_photo
     ? import.meta.env.VITE_S3_URL + profile_photo
     : photoList[Math.floor(Math.random() * photoList.length)];
@@ -125,14 +136,32 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
         {/* </div> */}
       </Link>
       <div className="provider-button-group">
-        <Button size="small" type="primary">
+        <Button type="primary" to={`/results/${provider.id}`} size="small">
           View Profile
         </Button>
         <span>
-          <Button {...buttonProps} icon="call" />
-          <Button {...buttonProps} icon="email" />
-          <Button {...buttonProps} icon="web" />
-          <Button {...buttonProps} icon="map" />
+          <Button {...buttonProps} to={`tel:${provider.phone}`} icon="call" />
+          <Button
+            {...buttonProps}
+            to={`mailto:${provider.email}`}
+            icon="email"
+          />
+          {provider.website && (
+            <Button
+              {...buttonProps}
+              to={sanitizeURL(provider.website)}
+              icon="web"
+            />
+          )}
+          <Button
+            {...buttonProps}
+            to={`https://www.google.com/maps/search/${provider.address_1} ${
+              provider.address_2
+            } ${provider.city ? provider.city + ',' : ''} ${provider.state} ${
+              provider.zip
+            }`}
+            icon="map"
+          />
         </span>
       </div>
     </div>

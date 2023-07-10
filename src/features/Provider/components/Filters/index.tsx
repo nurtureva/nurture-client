@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Option, OptionsObject } from '@/types';
 import './filters.scss';
 import { toggleFilterMenu } from '@/utils/helpers';
+import { useLocation } from 'react-router-dom';
 
 const Filters = ({
   options,
@@ -10,10 +11,16 @@ const Filters = ({
   options: OptionsObject;
   updateFilters: Function;
 }) => {
+  const location = useLocation();
+  const filters = location.state?.filters;
   const { services, paymentOptions } = options;
-  const [serviceFilters, setServiceFilters] = useState<string[]>([]);
-  const [paymentFilters, setPaymentFilters] = useState<string[]>([]);
-  const [bookmarkFilter, setBookmarkFilter] = useState(false);
+  const [serviceFilters, setServiceFilters] = useState<number[]>(
+    filters?.services || []
+  );
+  const [paymentFilters, setPaymentFilters] = useState<number[]>([]);
+  const [bookmarkFilter, setBookmarkFilter] = useState(
+    location.pathname === '/bookmarks' ? true : false
+  );
   const clearFilters = () => {
     setPaymentFilters([]);
     setServiceFilters([]);
@@ -46,7 +53,7 @@ const Filters = ({
         setFilterGroup={setPaymentFilters}
         filterGroup={paymentFilters}
       />
-      <div>
+      {/* <div>
         <label>My bookmarks</label>
         <ul>
           <li>
@@ -62,7 +69,7 @@ const Filters = ({
             </label>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -75,10 +82,10 @@ const FilterList = ({
 }: {
   optionList: Option[];
   title: string;
-  filterGroup: string[];
-  setFilterGroup: React.Dispatch<React.SetStateAction<string[]>>;
+  filterGroup: number[];
+  setFilterGroup: React.Dispatch<React.SetStateAction<number[]>>;
 }) => {
-  const updateFilterList = (value: string, checked: boolean) => {
+  const updateFilterList = (value: number, checked: boolean) => {
     if (checked) setFilterGroup([...filterGroup, value]);
     else {
       const index = filterGroup.indexOf(value);
@@ -99,9 +106,9 @@ const FilterList = ({
                 <input
                   type="checkbox"
                   onChange={(e) => {
-                    updateFilterList(e.target.value, e.target.checked);
+                    updateFilterList(Number(e.target.value), e.target.checked);
                   }}
-                  checked={filterGroup.includes(`${choice.id}`)}
+                  checked={filterGroup.includes(choice.id)}
                   value={choice.id}
                 />
                 {choice.name}

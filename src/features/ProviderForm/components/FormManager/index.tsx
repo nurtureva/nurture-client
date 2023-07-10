@@ -6,7 +6,7 @@ import { useContextInitializer, useFormContext } from '../../utils/formContext';
 
 const FormPageSwitcher = () => {
   const [content, setContent] = useState(formContent);
-  const { newProvider, initialProvider } = useFormContext();
+  const { newProvider, initialProvider, submissionResponse } = useFormContext();
 
   useEffect(() => {
     //when newProvider changes, that means the form was just submitted –– move on to confirmation page.
@@ -17,6 +17,11 @@ const FormPageSwitcher = () => {
     //when initial provider is set, that means initial page load or the user wants to edit their form data. –– move to Form page.
     setContent(formContent);
   }, [initialProvider]);
+
+  useEffect(() => {
+    if (submissionResponse?.status === 'goood or something')
+      setContent(submissionContent);
+  }, [submissionResponse]);
 
   if (!content) return null;
 

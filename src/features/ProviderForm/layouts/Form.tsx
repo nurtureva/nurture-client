@@ -7,6 +7,7 @@ import { useFormContext } from '../utils/formContext';
 import { FormProvider } from '@/types';
 
 import PhotosContainer from '../components/PhotoInput';
+import { Button } from '@/components/Button/Button';
 
 export default function ProviderForm() {
   const { updateState } = useFormContext();
@@ -18,6 +19,7 @@ export default function ProviderForm() {
   return (
     <form
       onSubmit={handleSubmit((data) => {
+        console.log(data);
         updateState({ newProvider: data });
       })}>
       {formInputList.map((input, i) => {
@@ -36,7 +38,7 @@ export default function ProviderForm() {
         );
       })}
       <PhotosContainer />
-      <input type="submit" />
+      <Button type="primary">Submit</Button>
     </form>
   );
 }
