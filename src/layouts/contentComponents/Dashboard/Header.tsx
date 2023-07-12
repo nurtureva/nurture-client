@@ -14,7 +14,7 @@ export const Header = () => {
             One or two sentences explaining what this directory is an why it
             exists
           </p>
-          <Button type="primary" to="/directory">
+          <Button type="primary" to="/results">
             Find Care
           </Button>
           <Button type="secondary" to="/provider-home">

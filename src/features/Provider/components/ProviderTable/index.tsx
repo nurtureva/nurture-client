@@ -135,7 +135,7 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
         </span>
         {/* </div> */}
       </Link>
-      <div className="provider-button-group">
+      {/* <div className="provider-button-group">
         <Button type="primary" to={`/results/${provider.id}`} size="small">
           View Profile
         </Button>
@@ -163,7 +163,7 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
             icon="map"
           />
         </span>
-      </div>
+      </div> */}
     </div>
   );
 };
