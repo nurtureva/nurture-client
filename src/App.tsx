@@ -11,14 +11,14 @@ import { Endpoint } from '@/types';
 //page layouts
 import LayoutWrapper from '@/layouts/LayoutWrapper';
 import PageLayout from '@/layouts/PageLayout';
-import careProviderContent from '@/layouts/content/careProvider';
 //features
 import { providerPageContent, providerTableContent } from '@/features/Provider';
 import { adminContent } from '@/features/Admin';
 import { FormManager } from '@/features/ProviderForm';
-import pageNotFoundContent from '@/layouts/content/404';
-import errorContent from '@/layouts/content/error';
+import pageNotFoundContent from '@/layouts/404';
+import errorContent from '@/layouts/error';
 import Dashboard from '@/layouts/contentComponents/Dashboard';
+import CareProvider from '@/layouts/contentComponents/CareProvider';
 
 const navRoutes: Endpoint[] = [
   {
@@ -43,7 +43,7 @@ const navRoutes: Endpoint[] = [
   {
     name: 'Care Provider Home',
     path: 'provider-home',
-    element: <PageLayout {...careProviderContent} />
+    element: <CareProvider />
   }
 ];
 

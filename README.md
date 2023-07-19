@@ -1,4 +1,4 @@
-# Nurture Resource Directory###
+# Nurture Resource Directory
 #### File structure:
 ```
 /src
