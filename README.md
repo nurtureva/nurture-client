@@ -1,6 +1,6 @@
-###Nurture Resource Directory###
----------------------------------------------------
-File structure:
+# Nurture Resource Directory###
+#### File structure:
+```
 /src
   /api
   /assets
@@ -27,5 +27,5 @@ File structure:
     ...
     index.scss
   /utils
-
+  ```
 the root directory is treated like a feature (with a few extra features). In each feature directory (and the root directory) stores helper functions (like hooks) in the utils directory. Each feature can have a components/ directory to keep all the reusable components.  
