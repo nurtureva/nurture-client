@@ -1,1 +1,1 @@
-export { default } from './OptionCenter';
+export * from './OptionCenter';

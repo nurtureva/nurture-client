@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import splashImage from '@/assets/dashboard-splash.png';
+import splashImage from '@/assets/images/dashboard-splash.png';
 import { Card } from '@/components/Card/Card';
 import { Button } from '@/components/Button/Button';
 

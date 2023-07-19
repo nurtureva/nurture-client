@@ -1,9 +1,9 @@
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { ProviderObject } from '@/types';
-import samplePhoto1 from '@/assets/profile-1.png';
-import samplePhoto2 from '@/assets/profile-2.png';
-import Bookmark from '../components/Bookmark';
-import { Button } from '@/components/Button/Button';
+import samplePhoto1 from '@/assets/images/profile-1.png';
+import samplePhoto2 from '@/assets/images/profile-2.png';
+import { Bookmark } from '../components/Bookmark';
+import { Button } from '@/components';
 
 export default function ProviderPage() {
   const { provider } = useLoaderData() as { provider: ProviderObject };

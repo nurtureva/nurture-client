@@ -1,15 +1,9 @@
-import {
-  Link,
-  useLocation,
-  useNavigate,
-  useNavigation
-} from 'react-router-dom';
-import logo from '@/assets/nurture-logo-1.png';
-import './header.scss';
+import { Link, useLocation } from 'react-router-dom';
+import logo from '@/assets/images/nurture-logo-1.png';
 import { EndpointPropWrapper } from '@/types';
 import { useEffect, useRef, useState } from 'react';
 
-export default function Header({ navRoutes }: EndpointPropWrapper) {
+export const Header = ({ navRoutes }: EndpointPropWrapper) => {
   const location = useLocation();
 
   const [mobileNav, setMobileNav] = useState(
@@ -62,4 +56,4 @@ export default function Header({ navRoutes }: EndpointPropWrapper) {
       />
     </header>
   );
-}
+};

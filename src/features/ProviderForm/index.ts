@@ -1,2 +1,1 @@
-import FormManager from './components/FormManager';
-export default FormManager;
+export * from './components/FormManager';

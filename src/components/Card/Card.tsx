@@ -1,5 +1,3 @@
-import './card.scss';
-
 export const Card = (
   props: React.PropsWithChildren<{ color?: string; className?: string }>
 ) => {

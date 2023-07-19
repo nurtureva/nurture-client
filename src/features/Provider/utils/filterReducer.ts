@@ -6,7 +6,6 @@ import {
   ProviderObject,
   ReducerAction
 } from '@/types';
-import { useLocation } from 'react-router-dom';
 const reducer = (state: FiltersContainerObject, action: ReducerAction) => {
   switch (action.type) {
     case 'UPDATE_SEARCH':

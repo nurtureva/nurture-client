@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import './optionCenter.scss';
-import doulaImage from '@/assets/doula-illustration.svg';
-import lactationImage from '@/assets/lactation-illustration.svg';
-import mentalHealthImage from '@/assets/mental-health-illustration.svg';
+import doulaImage from '@/assets/images/doula-illustration.svg';
+import lactationImage from '@/assets/images/lactation-illustration.svg';
+import mentalHealthImage from '@/assets/images/mental-health-illustration.svg';
 
-function OptionCard({
+const OptionCard = ({
   img,
   title,
   id,
@@ -14,7 +13,7 @@ function OptionCard({
   title: string;
   id: number;
   children: JSX.Element;
-}) {
+}) => {
   const depluralize = (string: string) => {
     let newString = string.toLowerCase();
     if (string[string.length - 1] === 's') {
@@ -41,9 +40,9 @@ function OptionCard({
       </Link>
     </div>
   );
-}
+};
 
-const OptionCenter = () => {
+export const OptionCenter = () => {
   return (
     <div className="option-center-container">
       <OptionCard title="Doulas" img={doulaImage} id={1}>
@@ -75,5 +74,3 @@ const OptionCenter = () => {
     </div>
   );
 };
-
-export default OptionCenter;

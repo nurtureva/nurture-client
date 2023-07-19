@@ -1,2 +1,1 @@
-import './search.scss';
-export { default } from './Search';
+export * from './Search';

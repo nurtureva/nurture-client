@@ -1,6 +1,6 @@
 import { Option } from '@/types';
 
-const FindCare = (paymentOptions: Option[]) => {
+export const FindCare = (paymentOptions: Option[]) => {
   return (
     <>
       <h2>More ways to find care</h2>

@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { Button } from '@/components/Button/Button';
-import Input from '@/components/Input';
+import './search.scss';
+import { Input, Button } from '@/components';
 
-export default function Search({ type, updateSearch }: { type?: string }) {
+export const Search = ({ updateSearch }: { updateSearch?: Function }) => {
   const [keyword, setKeyword] = useState('');
   const [distance, setDistance] = useState('');
-
+  const searchFunction = (keyword: string, distance: string) => {
+    if (updateSearch) updateSearch(keyword, distance);
+  };
   return (
     <div className="provider-search">
       <Input
@@ -13,7 +15,7 @@ export default function Search({ type, updateSearch }: { type?: string }) {
         label="Keyword, type of care, practitioner name"
         onFocus={() => {
           setKeyword('');
-          updateSearch('', distance);
+          searchFunction('', distance);
         }}
         placeholder="keyword"
         value={keyword}
@@ -32,14 +34,14 @@ export default function Search({ type, updateSearch }: { type?: string }) {
       />
       <Button
         type="primary"
-        search
+        icon="search"
         onClick={() => {
-          updateSearch(keyword, distance);
+          searchFunction(keyword, distance);
         }}>
         {/* {type === 'verbose' ? 'Find care providers' : ''} */}
       </Button>
     </div>
   );
-}
+};
 
 //search either navigates to results page with an optional history object, or updates

@@ -1,3 +1,4 @@
+import { Button } from '@/components/Button/Button';
 import { Link } from 'react-router-dom';
 
 const title = 'Care Provider Home';
@@ -10,10 +11,12 @@ const Header = () => {
           List your practice in this directory for free! Help new and expecting
           parents find and hire you.
         </p>
-        <Link className="link-button" to="/provider-form">
+        <Button type="primary" to="/provider-form">
           List your practice
+        </Button>
+        <Link to="" className="link-button">
+          Update your listing
         </Link>
-        <button className="link-button">Update your listing</button>
       </span>
       <span>
         <img></img>

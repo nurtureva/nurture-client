@@ -1,7 +1,6 @@
 import { useLoaderData } from 'react-router-dom';
-import CheckboxOptionGroup from '../components/CheckboxOptionGroup';
+import { CheckboxOptionGroup } from '../components/CheckboxOptionGroup';
 import { InputObject, Option } from '@/types';
-import PhotoInput from '../components/PhotoInput';
 
 const useFormInputList = () => {
   const appointmentOptions = [

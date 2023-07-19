@@ -1,7 +1,6 @@
 import { Button } from 'antd';
 import { useState } from 'react';
 import { DeleteFilled } from '@ant-design/icons';
-import './OptionList.scss';
 import { OptionEndpoint, OptionsObject } from '@/types';
 import { accessDatabase } from '@/api';
 import { useLoaderData } from 'react-router-dom';

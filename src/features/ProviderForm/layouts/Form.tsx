@@ -1,13 +1,13 @@
 import { useForm } from 'react-hook-form';
-import FormItem from '../components/FormItem';
-import Input from '../components/Input';
+import { FormItem } from '../components/FormItem';
+import { FormInput } from '../components/FormInput';
 import { useFormInputList } from '../utils/formInputList';
 import { createPageContent, useDefaultValues } from '../utils/helpers';
 import { useFormContext } from '../utils/formContext';
 import { FormProvider } from '@/types';
 
-import PhotosContainer from '../components/PhotoInput';
-import { Button } from '@/components/Button/Button';
+import { PhotosContainer } from '../components/PhotoInput';
+import { Button } from '@/components';
 
 export default function ProviderForm() {
   const { updateState } = useFormContext();
@@ -28,7 +28,7 @@ export default function ProviderForm() {
             {'Element' in input ? (
               <input.Element register={register} {...input.props} />
             ) : (
-              <Input
+              <FormInput
                 register={register}
                 dbName={input.dbName}
                 {...input.props}

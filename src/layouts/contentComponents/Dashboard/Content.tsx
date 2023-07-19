@@ -1,11 +1,8 @@
-import { default as OptionCenter } from '@/components/OptionCenter';
-import Search from '@/features/Provider/components/Search';
+import { OptionCenter } from '@/components';
+import { Search } from '@/features/Provider/components/Search';
 import { Link } from 'react-router-dom';
-import doulaImage from '@/assets/doula-illustration.svg';
-import lactationImage from '@/assets/lactation-illustration.svg';
-import mentalHealthImage from '@/assets/mental-health-illustration.svg';
-import locationImage from '@/assets/location-splash.png';
-import bottomSplash from '@/assets/bottom-splash.png';
+import locationImage from '@/assets/images/location-splash.png';
+import bottomSplash from '@/assets/images/bottom-splash.png';
 import { Card } from '@/components/Card/Card';
 import { Button } from '@/components/Button/Button';
 
@@ -30,7 +27,7 @@ export const Content = () => {
 
       <section className="bg-yellow">
         <h2>Let's find you the help you need:</h2>
-        <Search type="verbose" />
+        <Search />
       </section>
 
       <section className="bottom-section">

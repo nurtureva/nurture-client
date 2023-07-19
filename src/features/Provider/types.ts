@@ -1,5 +1,3 @@
-import { Url } from 'url';
-
 export interface ProviderNoOptions {
   date_created: Date;
   id: number;
