@@ -1,6 +1,6 @@
 export const Content = () => {
   return (
-    <>
+    <section>
       <h3>About the Birth and Early Parenting Resource Directory</h3>
       <p>
         Paragraph describing what we want practitioners to know about this
@@ -10,6 +10,6 @@ export const Content = () => {
         enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut
         voluptate aute id deserunt nisi.
       </p>
-    </>
+    </section>
   );
 };

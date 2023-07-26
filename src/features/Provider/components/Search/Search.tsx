@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './search.scss';
 import { Input, Button } from '@/components';
 
 export const Search = ({ updateSearch }: { updateSearch?: Function }) => {

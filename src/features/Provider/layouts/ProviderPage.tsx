@@ -3,7 +3,7 @@ import { ProviderObject } from '@/types';
 import samplePhoto1 from '@/assets/images/profile-1.png';
 import samplePhoto2 from '@/assets/images/profile-2.png';
 import { Bookmark } from '../components/Bookmark';
-import { Button } from '@/components';
+import { Button, Icon } from '@/components';
 
 export default function ProviderPage() {
   const { provider } = useLoaderData() as { provider: ProviderObject };
@@ -17,7 +17,7 @@ export default function ProviderPage() {
     <div className="provider-container full">
       <div className="provider-actions">
         <span>
-          <i className="icon-arrow_back" />
+          <Icon type="arrow_back" />
           <a
             onClick={() => {
               navigate(-1);

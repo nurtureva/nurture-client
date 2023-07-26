@@ -1,7 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
 import logo from '@/assets/images/nurture-logo-1.png';
 import { EndpointPropWrapper } from '@/types';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Icon } from '..';
+
+type NavIconType = 'menu' | 'clear';
 
 export const Header = ({ navRoutes }: EndpointPropWrapper) => {
   const location = useLocation();
@@ -9,7 +12,7 @@ export const Header = ({ navRoutes }: EndpointPropWrapper) => {
   const [mobileNav, setMobileNav] = useState(
     window.innerWidth < 700 ? false : true
   );
-  const [navIcon, setNavIcon] = useState('menu');
+  const [navIcon, setNavIcon] = useState<NavIconType>('menu');
 
   useEffect(() => {
     if (mobileNav) setNavIcon('clear');
@@ -48,8 +51,8 @@ export const Header = ({ navRoutes }: EndpointPropWrapper) => {
         ''
       )}
 
-      <i
-        className={`icon-${navIcon}`}
+      <Icon
+        type={navIcon}
         onClick={() => {
           setMobileNav(!mobileNav);
         }}

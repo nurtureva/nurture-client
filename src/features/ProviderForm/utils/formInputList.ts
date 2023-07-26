@@ -82,16 +82,6 @@ const useFormInputList = () => {
       dbName: 'bio',
       props: { element: 'textarea' }
     }
-    // {
-    //   name: 'Profile Photo',
-    //   Element: PhotoInput,
-    //   props: { dbName: 'profile_photo' }
-    // },
-    // {
-    //   name: 'Logo',
-    //   Element: PhotoInput,
-    //   props: { dbName: 'logo' }
-    // }
   ];
   return formContent;
 };

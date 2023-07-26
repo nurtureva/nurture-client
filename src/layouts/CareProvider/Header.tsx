@@ -13,12 +13,9 @@ export const Header = () => {
         <Button type="primary" to="/provider-form">
           List your practice
         </Button>
-        <Link to="" className="link-button">
+        {/* <Link to="" className="link-button">
           Update your listing
-        </Link>
-      </span>
-      <span>
-        <img></img>
+        </Link> */}
       </span>
     </>
   );

@@ -11,14 +11,14 @@ import { Endpoint } from '@/types';
 //page layouts
 import LayoutWrapper from '@/layouts/LayoutWrapper';
 import PageLayout from '@/layouts/PageLayout';
+import pageNotFoundContent from '@/layouts/404';
+import errorContent from '@/layouts/error';
+import Dashboard from '@/layouts/Dashboard';
+import CareProvider from '@/layouts/CareProvider';
 //features
 import { providerPageContent, providerTableContent } from '@/features/Provider';
 import { adminContent } from '@/features/Admin';
 import { FormManager } from '@/features/ProviderForm';
-import pageNotFoundContent from '@/layouts/404';
-import errorContent from '@/layouts/error';
-import Dashboard from '@/layouts/contentComponents/Dashboard';
-import CareProvider from '@/layouts/contentComponents/CareProvider';
 
 const navRoutes: Endpoint[] = [
   {
