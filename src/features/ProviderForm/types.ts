@@ -1,9 +1,18 @@
 import { FormProvider, Option } from '@/types';
 import { UseFormRegister } from 'react-hook-form';
 
+export type PageStateTitle =
+  | 'Basic Details'
+  | 'Contact'
+  | 'About'
+  | 'Professional Details'
+  | 'Demographics'
+  | 'Confirmation';
+
 interface BaseInputObject {
   name: string;
   description?: string;
+  stubName: PageStateTitle;
 }
 
 export interface GenericInputObject extends BaseInputObject {

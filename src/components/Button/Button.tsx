@@ -4,7 +4,8 @@ import { Icon } from '../Icon';
 
 export const Button = (props: ButtonProps) => {
   const {
-    type,
+    type = 'primary',
+    isSubmit,
     children,
     icon,
     size,
@@ -12,7 +13,7 @@ export const Button = (props: ButtonProps) => {
     ...buttonProps
   } = props;
   const className = `btn 
-    ${type === 'submit' ? 'primary' : type} 
+    ${type} 
     ${!children ? 'icon' : ''} 
     ${size ? size : ''} 
     ${instanceClassName ? instanceClassName : ''}
@@ -25,7 +26,9 @@ export const Button = (props: ButtonProps) => {
       </Link>
     );
   return (
-    <button {...{ ...buttonProps, className }}>
+    <button
+      type={isSubmit ? 'submit' : 'button'}
+      {...{ ...buttonProps, className }}>
       {icon ? <Icon type={icon} /> : ''}
       {children}
     </button>

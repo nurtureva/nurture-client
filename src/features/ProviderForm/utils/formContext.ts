@@ -1,4 +1,4 @@
-import { FormProvider, ProviderObject } from '@/types';
+import { FormProvider, PageStateTitle, ProviderObject } from '@/types';
 import { Context, createContext, useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ type UpdateStateFn = (props: {
   submissionResponse?: any;
   initialProvider?: ProviderObject | FormProvider;
   pictures?: Pictures;
+  pageState?: number;
 }) => void;
 
 interface FormContextObject {
@@ -21,6 +22,10 @@ interface FormContextObject {
   error: any;
   submissionResponse: any;
   pictures: Pictures;
+  pageState: number;
+  pageStateTitles: PageStateTitle[];
+  next: () => void;
+  back: () => void;
   updateState: UpdateStateFn;
 }
 
@@ -41,6 +46,7 @@ export const useContextInitializer: ContextInitializer = () => {
   const [pictures, setPictures] = useState<Pictures>({});
   const [error, setError] = useState();
   const [submissionResponse, setSubmissionResponse] = useState();
+  const [pageState, setPageState] = useState(1);
 
   const updateState: UpdateStateFn = (props) => {
     if (props?.error) setError(props.error);
@@ -49,6 +55,26 @@ export const useContextInitializer: ContextInitializer = () => {
     if (props?.submissionResponse)
       setSubmissionResponse(props.submissionResponse);
     if (props?.pictures) setPictures(props.pictures);
+    if (props?.pageState) setPageState(props.pageState);
+  };
+
+  const pageStateTitles: PageStateTitle[] = [
+    'Basic Details',
+    'Contact',
+    'About',
+    'Professional Details',
+    'Demographics',
+    'Confirmation'
+  ];
+
+  const back = () => {
+    if (pageState < 2) return;
+    setPageState(pageState - 1);
+  };
+
+  const next = () => {
+    if (pageState > 5) return;
+    setPageState(pageState + 1);
   };
 
   const value: FormContextObject = {
@@ -57,6 +83,10 @@ export const useContextInitializer: ContextInitializer = () => {
     newProvider,
     error,
     pictures,
+    pageState,
+    pageStateTitles,
+    next,
+    back,
     updateState
   };
   return [FormContext, value];

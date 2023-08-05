@@ -80,6 +80,29 @@ body .content-main .location-section {
     margin: auto;
   }
 }
+.form-container {
+  ol {
+    margin: 0;
+    padding: 0;
+    flex: 0 0 225px;
+    border-top: 1px solid var(--brand-green);
+  }
+  section {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: auto;
+    h3 {
+      text-align: left;
+      padding: 5px;
+    }
+    & > div {
+      flex: 1 0 0;
+      margin-left: 10%;
+      border-top: 1px solid var(--brand-green);
+    }
+  }
+}
 @media only screen and (max-width: 750px) {
   .dashboard {
     .content-header .card {

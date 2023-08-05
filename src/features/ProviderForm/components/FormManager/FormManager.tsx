@@ -1,46 +1,20 @@
-import { useEffect, useState } from 'react';
-import { confirmationContent } from '../../layouts/Confirmation';
-import { submissionContent } from '../../layouts/FormSubmissionResults';
-import { formContent } from '../../layouts/Form';
-import { useContextInitializer, useFormContext } from '../../utils/formContext';
-
-const FormPageSwitcher = () => {
-  const [content, setContent] = useState(formContent);
-  const { newProvider, initialProvider, submissionResponse } = useFormContext();
-
-  useEffect(() => {
-    //when newProvider changes, that means the form was just submitted –– move on to confirmation page.
-    setContent(confirmationContent);
-  }, [newProvider]);
-
-  useEffect(() => {
-    //when initial provider is set, that means initial page load or the user wants to edit their form data. –– move to Form page.
-    setContent(formContent);
-  }, [initialProvider]);
-
-  useEffect(() => {
-    if (submissionResponse?.status === 'goood or something')
-      setContent(submissionContent);
-  }, [submissionResponse]);
-
-  if (!content) return null;
-
-  return (
-    <div className="content-wrapper">
-      {content.title && <h1>{content.title}</h1>}
-      {content.description && <p>{content.description}</p>}
-      <div>
-        <content.Content />
-      </div>
-    </div>
-  );
-};
+import { useContextInitializer } from '../../utils/formContext';
+import { FormPageSwitcher } from '../FormPageSwitcher';
+import { PageStateIndicatorList } from '../PageStateIndicatorList';
 
 export const FormManager = () => {
   const [FormContext, value] = useContextInitializer();
   return (
     <FormContext.Provider value={value}>
-      <FormPageSwitcher />
+      <div className="content-wrapper">
+        <h2>Add your information to the Directory</h2>
+        <div className="content-main form-container">
+          <section>
+            <PageStateIndicatorList />
+            <FormPageSwitcher />
+          </section>
+        </div>
+      </div>
     </FormContext.Provider>
   );
 };

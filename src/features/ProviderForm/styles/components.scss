@@ -17,17 +17,29 @@
   }
 }
 form {
-  max-width: 600px;
-  margin: auto;
+  margin: 0 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   textarea {
     height: 100px;
     width: 100%;
     border-radius: 8px;
   }
   .form-input-container {
+    width: 100%;
     display: block;
     margin: 15px 0;
-    p {
+    &.half {
+      width: 48%;
+    }
+    &.large {
+      width: 65%;
+    }
+    &.small {
+      width: 30%;
+    }
+    & p {
       margin: 0;
       font-size: 0.8em;
       color: gray;
@@ -60,4 +72,36 @@ form {
 .results-page {
   display: flex;
   padding: 15px;
+}
+
+.page-state-indicator {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 0;
+  &.active span {
+    background-color: var(--brand-green);
+    color: white;
+  }
+  &.complete {
+    color: var(--brand-gray);
+    span {
+      background-color: var(--menu-green);
+      border: none;
+      color: var(--brand-gray);
+    }
+  }
+  span {
+    border-radius: 50%;
+    width: 40px;
+    border: 2px solid var(--brand-green);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin-right: 15px;
+    color: var(--brand-green);
+    font-size: 1.5em;
+    height: 40px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
 }

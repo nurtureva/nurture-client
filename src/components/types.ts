@@ -44,7 +44,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export type ButtonProps = React.HTMLProps<HTMLButtonElement> &
   React.PropsWithChildren<{
-    type: 'primary' | 'secondary' | 'tertiary' | 'submit';
+    type?: 'primary' | 'secondary' | 'tertiary';
+    isSubmit?: boolean;
     size?: 'small';
     to?: string;
     icon?: Icon;

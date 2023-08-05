@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useFormContext } from '../../utils/formContext';
 import { confirmChoice } from '@/features/Admin/utils/helpers';
 import { deletePhoto } from '../../utils/api';
-import { FormItem } from '../FormItem';
 import { Button } from '@/components';
 
 interface ParamsObject {
@@ -13,11 +12,26 @@ interface ParamsObject {
     React.Dispatch<React.SetStateAction<File | undefined>>
   ];
 }
-const PhotoInput = ({ dbName, imageState, initialImage }: ParamsObject) => {
-  const [image, setImage] = imageState;
+export const PhotoInput = ({ dbName }: ParamsObject) => {
+  const { pictures, updateState, initialProvider } = useFormContext();
+  const photo = pictures[dbName];
+  const [image, setImage] = useState(photo);
+  const initialProviderGeneralInfo =
+    initialProvider && !('general' in initialProvider)
+      ? initialProvider
+      : undefined;
+  const initialImage = initialProviderGeneralInfo
+    ? initialProviderGeneralInfo[dbName]
+    : '';
   const [imageSrc, setImageSrc] = useState(
     initialImage ? import.meta.env.VITE_S3_URL + initialImage : ''
   );
+
+  useEffect(() => {
+    updateState({
+      pictures: { [dbName]: image }
+    });
+  }, [image]);
 
   useEffect(() => {
     console.log(imageSrc);
@@ -71,54 +85,5 @@ const PhotoInput = ({ dbName, imageState, initialImage }: ParamsObject) => {
         </label>
       )}
     </span>
-  );
-};
-
-export const PhotosContainer = () => {
-  const { initialProvider, pictures, updateState } = useFormContext();
-  const { logo, profile_photo } = pictures;
-  const logoState = useState(logo);
-  const profilePhotoState = useState(profile_photo);
-
-  const initialProviderGeneralInfo =
-    initialProvider && !('general' in initialProvider)
-      ? initialProvider
-      : undefined;
-  const initialLogo = initialProviderGeneralInfo
-    ? initialProviderGeneralInfo['logo']
-    : '';
-  const initialProfilePhoto = initialProviderGeneralInfo
-    ? initialProviderGeneralInfo['profile_photo']
-    : '';
-
-  useEffect(() => {
-    updateState({
-      pictures: { profile_photo: profilePhotoState[0], logo: logoState[0] }
-    });
-  }, [logoState[0], profilePhotoState[0]]);
-
-  return (
-    <>
-      <FormItem
-        name="Profile photo"
-        description="A square photo or a photo with your face centered works best (.jpg, max file size ___)">
-        <PhotoInput
-          dbName="profile_photo"
-          imageState={profilePhotoState}
-          {...(initialProfilePhoto
-            ? { initialImage: initialProfilePhoto }
-            : {})}
-        />
-      </FormItem>
-      <FormItem
-        name="Logo"
-        description="A square or circular file works best (.jpg, max file size ___)">
-        <PhotoInput
-          dbName="logo"
-          imageState={logoState}
-          {...(initialLogo ? { initialImage: initialLogo } : {})}
-        />
-      </FormItem>
-    </>
   );
 };
