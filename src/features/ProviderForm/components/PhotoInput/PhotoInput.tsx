@@ -13,7 +13,10 @@ interface ParamsObject {
   ];
 }
 export const PhotoInput = ({ dbName }: ParamsObject) => {
-  const { pictures, updateState, initialProvider } = useFormContext();
+  const {
+    formState: { updateState },
+    formData: { initialProvider, pictures }
+  } = useFormContext();
   const photo = pictures[dbName];
   const [image, setImage] = useState(photo);
   const initialProviderGeneralInfo =

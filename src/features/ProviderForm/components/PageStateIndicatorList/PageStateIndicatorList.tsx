@@ -2,7 +2,9 @@ import { useFormContext } from '../../utils/formContext';
 import { PageStateIndicator } from './PageStateIndicator';
 
 export const PageStateIndicatorList = () => {
-  const { pageState, pageStateTitles } = useFormContext();
+  const {
+    formState: { pageState, pageStateTitles, updateState }
+  } = useFormContext();
 
   return (
     <ol>
@@ -11,11 +13,11 @@ export const PageStateIndicatorList = () => {
         const state =
           id < pageState ? 'complete' : id === pageState ? 'active' : '';
         const indicatorProps = { id, state };
-        const props = {};
         return (
           <li
             className={`page-state-indicator ${state}`}
-            key={`PageStateIndicator${id}`}>
+            key={`PageStateIndicator${id}`}
+            onClick={() => updateState({ pageState: id })}>
             <PageStateIndicator {...indicatorProps} />
             {pageStateTitle}
           </li>

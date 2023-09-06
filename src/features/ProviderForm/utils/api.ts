@@ -40,7 +40,9 @@ const submitProvider = async (provider: FormProvider) => {
 };
 
 export const useFormAction = () => {
-  const { pictures } = useFormContext();
+  const {
+    formData: { pictures }
+  } = useFormContext();
   const formFuncton = window.location.pathname.includes('provider-form')
     ? submitProvider
     : editProvider;

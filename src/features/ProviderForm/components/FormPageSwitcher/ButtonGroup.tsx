@@ -2,26 +2,25 @@ import { Button } from '@/components';
 import { useFormContext } from '../../utils/formContext';
 import { ButtonProps } from '@/types';
 
-export const ButtonGroup = ({
-  isConfirmation
-}: {
-  isConfirmation?: boolean;
-}) => {
-  const { back, next, newProvider } = useFormContext();
-
+export const ButtonGroup = ({ disabled }: { disabled?: boolean }) => {
+  const {
+    formState: { back, next, pageState, pageStateTitles },
+    formData: { newProvider }
+  } = useFormContext();
+  const isConfirmation = pageStateTitles[pageState] === 'Confirmation';
   const buttonProps: ButtonProps = isConfirmation
     ? {
         children: 'Submit',
         onClick: () => {
-          console.log(newProvider);
+          console.log('submit', newProvider);
         }
       }
     : { onClick: next, children: 'Save and Continue', isSubmit: true };
 
   return (
-    <span>
-      <p onClick={back}>back</p>
-      <Button {...buttonProps} />
-    </span>
+    <div>
+      <p onClick={back}>Back</p>
+      <Button className={disabled ? 'disabled' : ''} {...buttonProps} />
+    </div>
   );
 };

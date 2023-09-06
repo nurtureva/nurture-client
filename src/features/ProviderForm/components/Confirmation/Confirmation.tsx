@@ -6,7 +6,9 @@ import { OptionList } from '../OptionList';
 export const Confirmation = () => {
   const { services, paymentOptions, certifications } =
     useLoaderData() as ProviderOptions;
-  const { newProvider: provider, pictures } = useFormContext();
+  const {
+    formData: { newProvider: provider, pictures }
+  } = useFormContext();
   console.log(pictures);
   if (!provider) return null;
 

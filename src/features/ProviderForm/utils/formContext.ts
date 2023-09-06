@@ -1,5 +1,6 @@
 import { FormProvider, PageStateTitle, ProviderObject } from '@/types';
 import { Context, createContext, useContext, useEffect, useState } from 'react';
+import { UseFormHandleSubmit, UseFormRegister, useForm } from 'react-hook-form';
 import { useLoaderData } from 'react-router-dom';
 
 export type Pictures = {
@@ -14,19 +15,29 @@ type UpdateStateFn = (props: {
   initialProvider?: ProviderObject | FormProvider;
   pictures?: Pictures;
   pageState?: number;
+  canProceed?: boolean;
 }) => void;
 
 interface FormContextObject {
-  initialProvider?: ProviderObject | FormProvider;
-  newProvider?: FormProvider;
+  formData: {
+    initialProvider?: ProviderObject | FormProvider;
+    newProvider?: FormProvider;
+    pictures: Pictures;
+  };
+  formState: {
+    pageState: number;
+    pageStateTitles: PageStateTitle[];
+    canProceed: boolean;
+    next: () => void;
+    back: () => void;
+    updateState: UpdateStateFn;
+  };
+  formFunctions: {
+    register: UseFormRegister<FormProvider>;
+    handleSubmit: UseFormHandleSubmit<FormProvider>;
+  };
   error: any;
   submissionResponse: any;
-  pictures: Pictures;
-  pageState: number;
-  pageStateTitles: PageStateTitle[];
-  next: () => void;
-  back: () => void;
-  updateState: UpdateStateFn;
 }
 
 type ContextInitializer = () => [Context<FormContextObject>, FormContextObject];
@@ -36,6 +47,8 @@ const FormContext = createContext({} as FormContextObject);
 export const useFormContext = () => useContext(FormContext);
 
 export const useContextInitializer: ContextInitializer = () => {
+  const { register, handleSubmit } = useForm<FormProvider>();
+
   const { provider } = useLoaderData() as {
     provider: ProviderObject;
   };
@@ -47,6 +60,7 @@ export const useContextInitializer: ContextInitializer = () => {
   const [error, setError] = useState();
   const [submissionResponse, setSubmissionResponse] = useState();
   const [pageState, setPageState] = useState(1);
+  const [canProceed, setCanProceed] = useState(true);
 
   const updateState: UpdateStateFn = (props) => {
     if (props?.error) setError(props.error);
@@ -56,6 +70,7 @@ export const useContextInitializer: ContextInitializer = () => {
       setSubmissionResponse(props.submissionResponse);
     if (props?.pictures) setPictures(props.pictures);
     if (props?.pageState) setPageState(props.pageState);
+    if (props?.canProceed) setCanProceed(props.canProceed);
   };
 
   const pageStateTitles: PageStateTitle[] = [
@@ -78,16 +93,25 @@ export const useContextInitializer: ContextInitializer = () => {
   };
 
   const value: FormContextObject = {
-    initialProvider,
+    formData: {
+      initialProvider,
+      newProvider,
+      pictures
+    },
+    formState: {
+      pageState,
+      pageStateTitles,
+      canProceed,
+      next,
+      back,
+      updateState
+    },
+    formFunctions: {
+      register,
+      handleSubmit
+    },
     submissionResponse,
-    newProvider,
-    error,
-    pictures,
-    pageState,
-    pageStateTitles,
-    next,
-    back,
-    updateState
+    error
   };
   return [FormContext, value];
 };

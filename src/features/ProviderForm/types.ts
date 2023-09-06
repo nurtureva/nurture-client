@@ -1,4 +1,4 @@
-import { FormProvider, Option } from '@/types';
+import { FormProvider, Option, ProviderObject } from '@/types';
 import { UseFormRegister } from 'react-hook-form';
 
 export type PageStateTitle =
@@ -10,6 +10,7 @@ export type PageStateTitle =
   | 'Confirmation';
 
 interface BaseInputObject {
+  size?: 'half' | 'full' | 'large' | 'small';
   name: string;
   description?: string;
   stubName: PageStateTitle;
@@ -25,12 +26,13 @@ interface GenericInputProps {
 }
 
 interface CustomInputObject extends BaseInputObject {
-  Element: React.FC<CustomInputParamsObject>;
+  Element: React.FC<any>;
   props: CustomInputProps;
 }
 interface CustomInputProps {
-  formKey: keyof FormProvider;
-  optionsArray: Option[];
+  formKey?: keyof FormProvider;
+  dbName?: keyof ProviderObject;
+  optionsArray?: Option[];
 }
 
 export type InputObject = GenericInputObject | CustomInputObject;
@@ -39,5 +41,5 @@ export interface CustomInputParamsObject {
   formKey: keyof FormProvider;
   register: UseFormRegister<FormProvider>;
   optionsArray?: Option[];
-  dbName?: keyof FormProvider['general'];
+  dbName?: keyof ProviderObject;
 }

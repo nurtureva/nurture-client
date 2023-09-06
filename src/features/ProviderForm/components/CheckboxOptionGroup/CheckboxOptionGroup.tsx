@@ -1,10 +1,13 @@
 import { CustomInputParamsObject } from '@/types';
+import { useFormContext } from '../../utils/formContext';
 
 export const CheckboxOptionGroup = ({
   formKey,
-  register,
   optionsArray
 }: CustomInputParamsObject) => {
+  const {
+    formFunctions: { register }
+  } = useFormContext();
   return (
     <ul>
       {optionsArray?.map((option) => {

@@ -18,7 +18,9 @@ export const createPageContent = (
 };
 
 export const useDefaultValues = (): { defaultValues: FormProvider } | {} => {
-  const { initialProvider, newProvider } = useFormContext();
+  const {
+    formData: { initialProvider, newProvider }
+  } = useFormContext();
   const provider = newProvider || initialProvider;
   if (!provider)
     return {

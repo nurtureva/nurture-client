@@ -19,12 +19,11 @@ const useFormInputList = () => {
       name: 'Name',
       dbName: 'name',
       description: 'First & Last',
-      size: 'small',
       stubName: 'Basic Details'
+      // rules: { required: true }
     },
     {
       name: 'Business Name',
-      size: 'small',
       dbName: 'business_name',
       stubName: 'Basic Details'
     },
@@ -32,12 +31,24 @@ const useFormInputList = () => {
       name: 'Email',
       dbName: 'email',
       description: 'example@example.com',
-      stubName: 'Basic Details'
+      stubName: 'Basic Details',
+      size: 'large'
     },
     {
       name: 'Phone',
       dbName: 'phone',
       description: '(xxx) xxx-xxxx',
+      stubName: 'Basic Details',
+      size: 'small'
+    },
+    {
+      name: 'Type of care provided',
+      Element: CheckboxOptionGroup,
+      props: {
+        formKey: 'services',
+        optionsArray: services
+      },
+      description: 'Select all that apply',
       stubName: 'Basic Details'
     },
     {
@@ -48,7 +59,19 @@ const useFormInputList = () => {
       },
       description:
         'A square photo or a photo with your face centered works best (.jpg, max file size ___)',
-      stubName: 'Basic Details'
+      stubName: 'Basic Details',
+      size: 'half'
+    },
+    {
+      name: 'Logo (optional)',
+      Element: PhotoInput,
+      props: {
+        dbName: 'logo'
+      },
+      description:
+        'A square or circular file works best (.jpg, max file size ___)',
+      stubName: 'Basic Details',
+      size: 'half'
     },
     {
       name: 'Website',
@@ -60,16 +83,31 @@ const useFormInputList = () => {
       name: 'Address 1',
       dbName: 'address_1',
       description: '1234 example street',
-      stubName: 'Contact'
+      stubName: 'Contact',
+      size: 'large'
     },
     {
       name: 'Address 2',
       dbName: 'address_2',
       description: 'apartment, floor, suite',
-      stubName: 'Contact'
+      stubName: 'Contact',
+      size: 'small'
     },
-    { name: 'City', dbName: 'city', stubName: 'Contact' },
-    { name: 'State', dbName: 'state', stubName: 'Contact' },
+    { name: 'City', dbName: 'city', stubName: 'Contact', size: 'small' },
+    { name: 'State', dbName: 'state', stubName: 'Contact', size: 'small' },
+    { name: 'Zip code', dbName: 'zip', stubName: 'Contact', size: 'small' },
+    {
+      name: 'Overview',
+      dbName: 'overview',
+      props: { element: 'textarea' },
+      stubName: 'About'
+    },
+    {
+      name: 'Bio',
+      dbName: 'bio',
+      props: { element: 'textarea' },
+      stubName: 'About'
+    },
     {
       name: 'Languages spoken',
       dbName: 'languages_spoken',
@@ -79,17 +117,8 @@ const useFormInputList = () => {
       name: 'Pronouns',
       dbName: 'pronouns',
       description: 'she/her, they/them',
-      stubName: 'About'
-    },
-    {
-      name: 'Services',
-      Element: CheckboxOptionGroup,
-      props: {
-        formKey: 'services',
-        optionsArray: services
-      },
-      description: 'Select all that apply',
-      stubName: 'Basic Details'
+      stubName: 'About',
+      size: 'large'
     },
     {
       name: 'Payment Options',
@@ -120,18 +149,6 @@ const useFormInputList = () => {
       },
       description: 'Select all that apply',
       stubName: 'Professional Details'
-    },
-    {
-      name: 'Overview',
-      dbName: 'overview',
-      props: { element: 'textarea' },
-      stubName: 'About'
-    },
-    {
-      name: 'Bio',
-      dbName: 'bio',
-      props: { element: 'textarea' },
-      stubName: 'About'
     }
   ];
   return formContent;

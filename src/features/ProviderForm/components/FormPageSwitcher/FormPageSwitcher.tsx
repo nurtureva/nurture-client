@@ -4,27 +4,29 @@ import { Confirmation } from '../Confirmation';
 import { FormStub } from '../FormStub';
 import { FormProvider } from '@/types';
 import { ButtonGroup } from './ButtonGroup';
+import { useState } from 'react';
 
 export const FormPageSwitcher = () => {
-  const { pageStateTitles, pageState, updateState } = useFormContext();
+  const {
+    formState: { pageStateTitles, pageState, updateState, canProceed },
+    formFunctions: { handleSubmit }
+  } = useFormContext();
   const currentPageStateTitle = pageStateTitles[pageState - 1];
-  const { register, handleSubmit } = useForm<FormProvider>();
 
   return (
     <div>
       <h3>{currentPageStateTitle}</h3>
       <form
         onSubmit={handleSubmit((data) => {
+          console.log(data);
           updateState({ newProvider: data });
         })}>
         {currentPageStateTitle === 'Confirmation' ? (
           <Confirmation />
         ) : (
-          <FormStub register={register} type={currentPageStateTitle} />
+          <FormStub type={currentPageStateTitle} />
         )}
-        <ButtonGroup
-          isConfirmation={currentPageStateTitle === 'Confirmation'}
-        />
+        <ButtonGroup disabled={canProceed} />
       </form>
     </div>
   );
