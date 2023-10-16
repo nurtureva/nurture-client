@@ -1,17 +1,30 @@
 import { useState } from 'react';
 import { Input, Button } from '@/components';
 
-export const Search = ({ updateSearch }: { updateSearch?: Function }) => {
+export const Search = ({
+  updateSearch,
+  type = 'standard'
+}: {
+  updateSearch?: Function;
+  type?: 'fancy' | 'standard' | 'compressed';
+}) => {
   const [keyword, setKeyword] = useState('');
   const [distance, setDistance] = useState('');
   const searchFunction = (keyword: string, distance: string) => {
     if (updateSearch) updateSearch(keyword, distance);
   };
+
+  const isMobile = () => window.innerWidth < 700;
+
   return (
-    <div className="provider-search">
+    <div className={`provider-search ${isMobile() ? 'mobile' : type}`}>
       <Input
         icon="search"
-        label="Keyword, type of care, practitioner name"
+        label={
+          type === 'fancy'
+            ? undefined
+            : 'Keyword, type of care, practitioner name'
+        }
         onFocus={() => {
           setKeyword('');
           searchFunction('', distance);
@@ -22,10 +35,10 @@ export const Search = ({ updateSearch }: { updateSearch?: Function }) => {
           setKeyword(e.target.value);
         }}
       />
-      <p>near</p>
+      {type === 'standard' ? <p>near</p> : ''}
       <Input
         icon="map"
-        label="Zip code"
+        label={type === 'fancy' ? undefined : 'Zip code'}
         placeholder="zip code"
         onChange={(e) => {
           setDistance(e.target.value);
@@ -37,7 +50,7 @@ export const Search = ({ updateSearch }: { updateSearch?: Function }) => {
         onClick={() => {
           searchFunction(keyword, distance);
         }}>
-        {/* {type === 'verbose' ? 'Find care providers' : ''} */}
+        {type !== 'compressed' && !isMobile() ? 'Find care providers' : ''}
       </Button>
     </div>
   );

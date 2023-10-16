@@ -8,7 +8,12 @@ import { useState } from 'react';
 
 export const FormPageSwitcher = () => {
   const {
-    formState: { pageStateTitles, pageState, updateState, canProceed },
+    formState: {
+      pageState,
+      updateState,
+      canProceed,
+      formType: { pageStateTitles }
+    },
     formFunctions: { handleSubmit }
   } = useFormContext();
   const currentPageStateTitle = pageStateTitles[pageState - 1];

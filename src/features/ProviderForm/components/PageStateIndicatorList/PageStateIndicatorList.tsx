@@ -3,7 +3,11 @@ import { PageStateIndicator } from './PageStateIndicator';
 
 export const PageStateIndicatorList = () => {
   const {
-    formState: { pageState, pageStateTitles, updateState }
+    formState: {
+      pageState,
+      updateState,
+      formType: { pageStateTitles }
+    }
   } = useFormContext();
 
   return (

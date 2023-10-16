@@ -12,7 +12,7 @@ export const Button = (props: ButtonProps) => {
     className: instanceClassName,
     ...buttonProps
   } = props;
-  const className = `btn 
+  const className = `button 
     ${type} 
     ${!children ? 'icon' : ''} 
     ${size ? size : ''} 

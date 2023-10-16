@@ -43,3 +43,5 @@ export interface CustomInputParamsObject {
   optionsArray?: Option[];
   dbName?: keyof ProviderObject;
 }
+
+export type FormType = 'individual' | 'organization';

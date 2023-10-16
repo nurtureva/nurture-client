@@ -1,13 +1,16 @@
+import { useFormContext } from 'react-hook-form';
+import { Initializer } from '../..';
+import { FormType } from '../../types';
 import { useContextInitializer } from '../../utils/formContext';
 import { FormPageSwitcher } from '../FormPageSwitcher';
 import { PageStateIndicatorList } from '../PageStateIndicatorList';
 
-export const FormManager = () => {
-  const [FormContext, value] = useContextInitializer();
+export const FormManager = ({ formType }: { formType: FormType }) => {
+  const [FormContext, value] = useContextInitializer(formType);
+
   return (
     <FormContext.Provider value={value}>
       <div className="content-wrapper">
-        <h2>Add your information to the Directory</h2>
         <div className="content-main form-container">
           <section>
             <PageStateIndicatorList />

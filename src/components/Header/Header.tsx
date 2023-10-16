@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import logo from '@/assets/images/nurture-logo-1.png';
 import { EndpointPropWrapper } from '@/types';
 import { useEffect, useState } from 'react';
-import { Icon } from '..';
+import { Button, Icon } from '..';
 
 type NavIconType = 'menu' | 'clear';
 
@@ -45,6 +45,11 @@ export const Header = ({ navRoutes }: EndpointPropWrapper) => {
                 </li>
               );
             })}
+            <li>
+              <Button type="secondary" size="small">
+                Donate
+              </Button>
+            </li>
           </ul>
         </nav>
       ) : (

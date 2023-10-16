@@ -1,13 +1,103 @@
-import { FormProvider, PageStateTitle, ProviderObject } from '@/types';
+import {
+  FormProvider,
+  FormType,
+  InputObject,
+  PageStateTitle,
+  ProviderObject
+} from '@/types';
 import { Context, createContext, useContext, useEffect, useState } from 'react';
 import { UseFormHandleSubmit, UseFormRegister, useForm } from 'react-hook-form';
 import { useLoaderData } from 'react-router-dom';
+import { useFormInputList } from './formInputList';
+
+const FormContext = createContext({} as FormContextObject);
+
+export const useFormContext = () => useContext(FormContext);
+
+export const useContextInitializer: ContextInitializer = (formType) => {
+  const { register, handleSubmit } = useForm<FormProvider>();
+  const [inputList, pageStateTitles, formTitle] = useFormInputList(formType);
+  const { provider } = useLoaderData() as {
+    provider: ProviderObject;
+  };
+
+  const [state, setState] = useState<StateObject>({
+    initialProvider: provider,
+    newProvider: undefined,
+    pictures: {},
+    error: undefined,
+    submissionResponse: undefined,
+    pageState: 1,
+    canProceed: true
+  });
+
+  const updateState = (newState: Partial<StateObject>) => {
+    setState((previousState) => ({ ...previousState, ...newState }));
+  };
+
+  const back = () => {
+    if (state.pageState < 2) return;
+    updateState({ pageState: state.pageState - 1 });
+  };
+
+  const next = () => {
+    if (state.pageState > pageStateTitles.length - 1) return;
+    updateState({ pageState: state.pageState + 1 });
+  };
+
+  const {
+    initialProvider,
+    newProvider,
+    pictures,
+    pageState,
+    canProceed,
+    submissionResponse,
+    error
+  } = state;
+
+  const value: FormContextObject = {
+    formData: {
+      initialProvider,
+      newProvider,
+      pictures
+    },
+    formState: {
+      formType: {
+        type: formType,
+        title: formTitle,
+        inputList,
+        pageStateTitles: [...pageStateTitles, 'Confirmation']
+      },
+      pageState,
+      canProceed,
+      next,
+      back,
+      updateState
+    },
+    formFunctions: {
+      register,
+      handleSubmit
+    },
+    submissionResponse,
+    error
+  };
+  return [FormContext, value];
+};
 
 export type Pictures = {
   profile_photo?: File;
   logo?: File;
 };
 
+interface StateObject {
+  newProvider?: FormProvider;
+  error?: any;
+  submissionResponse?: any;
+  initialProvider: ProviderObject | FormProvider;
+  pictures: Pictures;
+  pageState: number;
+  canProceed: boolean;
+}
 type UpdateStateFn = (props: {
   newProvider?: FormProvider;
   error?: any;
@@ -25,8 +115,13 @@ interface FormContextObject {
     pictures: Pictures;
   };
   formState: {
+    formType: {
+      type: FormType;
+      title: string;
+      inputList: InputObject[];
+      pageStateTitles: PageStateTitle[];
+    };
     pageState: number;
-    pageStateTitles: PageStateTitle[];
     canProceed: boolean;
     next: () => void;
     back: () => void;
@@ -40,78 +135,6 @@ interface FormContextObject {
   submissionResponse: any;
 }
 
-type ContextInitializer = () => [Context<FormContextObject>, FormContextObject];
-
-const FormContext = createContext({} as FormContextObject);
-
-export const useFormContext = () => useContext(FormContext);
-
-export const useContextInitializer: ContextInitializer = () => {
-  const { register, handleSubmit } = useForm<FormProvider>();
-
-  const { provider } = useLoaderData() as {
-    provider: ProviderObject;
-  };
-  const [initialProvider, setInitialProvider] = useState<
-    FormProvider | ProviderObject
-  >(provider);
-  const [newProvider, setNewProvider] = useState<FormProvider>();
-  const [pictures, setPictures] = useState<Pictures>({});
-  const [error, setError] = useState();
-  const [submissionResponse, setSubmissionResponse] = useState();
-  const [pageState, setPageState] = useState(1);
-  const [canProceed, setCanProceed] = useState(true);
-
-  const updateState: UpdateStateFn = (props) => {
-    if (props?.error) setError(props.error);
-    if (props?.newProvider) setNewProvider(props.newProvider);
-    if (props?.initialProvider) setInitialProvider(props.initialProvider);
-    if (props?.submissionResponse)
-      setSubmissionResponse(props.submissionResponse);
-    if (props?.pictures) setPictures(props.pictures);
-    if (props?.pageState) setPageState(props.pageState);
-    if (props?.canProceed) setCanProceed(props.canProceed);
-  };
-
-  const pageStateTitles: PageStateTitle[] = [
-    'Basic Details',
-    'Contact',
-    'About',
-    'Professional Details',
-    'Demographics',
-    'Confirmation'
-  ];
-
-  const back = () => {
-    if (pageState < 2) return;
-    setPageState(pageState - 1);
-  };
-
-  const next = () => {
-    if (pageState > 5) return;
-    setPageState(pageState + 1);
-  };
-
-  const value: FormContextObject = {
-    formData: {
-      initialProvider,
-      newProvider,
-      pictures
-    },
-    formState: {
-      pageState,
-      pageStateTitles,
-      canProceed,
-      next,
-      back,
-      updateState
-    },
-    formFunctions: {
-      register,
-      handleSubmit
-    },
-    submissionResponse,
-    error
-  };
-  return [FormContext, value];
-};
+type ContextInitializer = (
+  formType: FormType
+) => [Context<FormContextObject>, FormContextObject];

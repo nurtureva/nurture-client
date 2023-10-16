@@ -1,3 +1,4 @@
+import './optionList.scss';
 import { Button } from 'antd';
 import { useState } from 'react';
 import { DeleteFilled } from '@ant-design/icons';

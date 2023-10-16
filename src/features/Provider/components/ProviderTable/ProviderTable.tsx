@@ -77,7 +77,6 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
         <span className="photo-container">
           <img src={photoSrc} />
         </span>
-        {/* <div className="provider-details"> */}
         <span className="provider-name">
           <h3>{name}</h3>
           {businessName}
@@ -129,37 +128,7 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
             {/* {provider.website ? provider.website : ''} */}
           </p>
         </span>
-        {/* </div> */}
       </Link>
-      {/* <div className="provider-button-group">
-        <Button type="primary" to={`/results/${provider.id}`} size="small">
-          View Profile
-        </Button>
-        <span>
-          <Button {...buttonProps} to={`tel:${provider.phone}`} icon="call" />
-          <Button
-            {...buttonProps}
-            to={`mailto:${provider.email}`}
-            icon="email"
-          />
-          {provider.website && (
-            <Button
-              {...buttonProps}
-              to={sanitizeURL(provider.website)}
-              icon="web"
-            />
-          )}
-          <Button
-            {...buttonProps}
-            to={`https://www.google.com/maps/search/${provider.address_1} ${
-              provider.address_2
-            } ${provider.city ? provider.city + ',' : ''} ${provider.state} ${
-              provider.zip
-            }`}
-            icon="map"
-          />
-        </span>
-      </div> */}
     </div>
   );
 };

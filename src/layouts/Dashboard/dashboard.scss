@@ -1,0 +1,52 @@
+.dashboard {
+  .search-container {
+    position: relative;
+    padding-bottom: 100px;
+    & + section {
+      padding-top: 100px;
+    }
+    .provider-search {
+      position: absolute;
+      width: 75%;
+      left: 0;
+      bottom: 0;
+      transform: translateY(50%);
+      margin: 0 12.5%;
+    }
+  }
+  h1 {
+    padding: 40px;
+    color: var(--brand-pink);
+    text-align: left;
+    padding: 0;
+    color: var(--brand-pink);
+    font-weight: 300;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 300;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .dashboard {
+    .content-header .card {
+      background-color: var(--white) !important;
+    }
+    .card {
+      width: 100% !important;
+    }
+    .provider-search.mobile {
+      width: 100%;
+      margin: 0;
+    }
+    .location-section {
+      text-align: center;
+      flex-direction: column-reverse;
+      h2 {
+        text-align: center !important;
+      }
+      img {
+        width: 100% !important;
+      }
+    }
+  }
+}

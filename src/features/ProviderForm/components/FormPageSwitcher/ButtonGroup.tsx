@@ -4,7 +4,12 @@ import { ButtonProps } from '@/types';
 
 export const ButtonGroup = ({ disabled }: { disabled?: boolean }) => {
   const {
-    formState: { back, next, pageState, pageStateTitles },
+    formState: {
+      back,
+      next,
+      pageState,
+      formType: { pageStateTitles }
+    },
     formData: { newProvider }
   } = useFormContext();
   const isConfirmation = pageStateTitles[pageState] === 'Confirmation';

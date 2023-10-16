@@ -19,7 +19,7 @@ export default function ProviderTablePage() {
 
   return (
     <>
-      <div className="content-header">
+      <div className="bg-tan">
         <Search updateSearch={updateSearch} />
       </div>
       {/* <div className="results-description">

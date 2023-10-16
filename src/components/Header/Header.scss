@@ -1,0 +1,82 @@
+/******************************* HEADER *********************************/
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 40px;
+  a {
+    text-decoration: none;
+    text-underline-offset: 5px;
+    color: var(--brand-gray);
+    &:hover {
+      color: var(--black);
+    }
+  }
+  .active {
+    color: var(--brand-pink);
+    text-decoration: underline;
+    &:hover {
+      color: var(--brand-pink);
+      text-decoration: underline;
+    }
+  }
+  img {
+    height: 40px;
+    padding: 0 24px;
+  }
+  nav {
+    ul {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      padding: 0;
+      li {
+        margin: 0 10px;
+        line-height: 20px;
+        font-size: 0.87em;
+      }
+      button {
+        margin: 0 !important;
+      }
+    }
+  }
+  i {
+    font-size: 1.8em;
+    display: none;
+  }
+}
+
+/******************************* MOBILE *********************************/
+@media only screen and (max-width: 750px) {
+  header {
+    padding: 12px;
+    img {
+      padding: 0;
+    }
+    nav {
+      z-index: 100;
+      position: absolute;
+      left: 0;
+      top: 70px;
+      width: 100%;
+    }
+    i {
+      display: block;
+    }
+    ul {
+      box-shadow: 1px 1px 50px var(--brand-gray);
+      background-color: var(--lighter-green);
+      flex-direction: column;
+      align-items: center;
+      li {
+        width: 80%;
+        padding: 40px;
+        text-align: center;
+        &:not(:last-child) {
+          border-bottom: 1px solid var(--brand-green);
+        }
+      }
+    }
+  }
+}

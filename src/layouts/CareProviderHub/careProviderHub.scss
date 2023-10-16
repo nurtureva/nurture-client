@@ -1,0 +1,16 @@
+.share-directory {
+  h2 {
+    text-align: center;
+  }
+  & > span {
+    display: flex;
+    margin: 50px auto 0;
+    width: 85%;
+    align-items: center;
+    height: 35px;
+    & .input-container {
+      margin-right: 20px;
+      flex: 1;
+    }
+  }
+}

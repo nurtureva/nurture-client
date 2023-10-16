@@ -14,11 +14,12 @@ import PageLayout from '@/layouts/PageLayout';
 import pageNotFoundContent from '@/layouts/404';
 import errorContent from '@/layouts/error';
 import Dashboard from '@/layouts/Dashboard';
-import CareProvider from '@/layouts/CareProvider';
+import CareProvider from '@/layouts/CareProviderHub';
 //features
 import { providerPageContent, providerTableContent } from '@/features/Provider';
 import { adminContent } from '@/features/Admin';
-import { FormManager } from '@/features/ProviderForm';
+import { FormManager, IntakeForm } from '@/features/ProviderForm';
+import { LearnMore } from './layouts/LearnMore';
 
 const navRoutes: Endpoint[] = [
   {
@@ -27,7 +28,7 @@ const navRoutes: Endpoint[] = [
     element: <Dashboard />
   },
   {
-    name: 'Directory',
+    name: 'Find Care',
     path: 'results',
     loader: useMainPageLoader,
     element: <PageLayout {...providerTableContent} />,
@@ -41,9 +42,14 @@ const navRoutes: Endpoint[] = [
     errorElement: <PageLayout {...errorContent} />
   },
   {
-    name: 'Care Provider Home',
+    name: 'Care Provider Hub',
     path: 'provider-home',
     element: <CareProvider />
+  },
+  {
+    name: 'Learn More',
+    path: 'learn-more',
+    element: <LearnMore />
   }
 ];
 
@@ -65,7 +71,7 @@ export default function App() {
         {
           path: 'provider-form',
           loader: useOptionsLoader,
-          element: <FormManager />,
+          element: <IntakeForm />,
           errorElement: <PageLayout {...errorContent} />
         },
         {

@@ -1,0 +1,64 @@
+body div .picture-split-container {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: stretch; /* This ensures both spans have the same height. */
+  grid-template-areas: 'left right';
+  .children-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10% 15%;
+    justify-content: center;
+    &.reverse {
+      grid-area: right;
+    }
+  }
+  p {
+    margin: 32px 0;
+    font-size: 0.95em;
+  }
+}
+
+.service-description-section {
+  h2 {
+    color: var(--primary-pink);
+  }
+  button {
+    margin: initial 0;
+  }
+}
+
+/************************ PICTURE CONTAINER *************************/
+
+.picture-container {
+  background-image: url('/src/assets/images/dashboard-hero.png'); /* Replace with your image URL */
+  background-size: cover; /* Resize the background image to cover the container */
+  background-repeat: no-repeat; /* Prevent image repetition */
+  background-position: center; /* Center the image */
+}
+
+@media only screen and (max-width: 700px) {
+  .picture-split-container.full .picture-container {
+    height: 350px;
+  }
+  body div .picture-split-container {
+    display: flex;
+    flex-direction: column;
+    &.top {
+      flex-direction: column-reverse;
+      .picture-container {
+        height: 275px;
+      }
+    }
+    .children-container {
+      padding: 20px;
+    }
+  }
+  .picture-container {
+    display: block;
+    height: 200px;
+    &.full {
+      height: 350px;
+    }
+  }
+}
