@@ -139,3 +139,15 @@ form {
     }
   }
 }
+
+@media only screen and (max-width: 700px) {
+  .results-page {
+    padding: 0;
+    .provider-table-container > span:first-of-type {
+      padding: 15px;
+    }
+    .provider-container {
+      padding: 20px;
+    }
+  }
+}

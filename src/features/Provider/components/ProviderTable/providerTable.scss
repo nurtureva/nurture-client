@@ -103,11 +103,7 @@
     position: relative;
     justify-content: space-between;
     transition: box-shadow 250ms, border-radius 250ms;
-    &:hover {
-      box-shadow: 1px 1px 5px var(--primary-gray);
-      border-radius: 8px;
-      z-index: 12;
-    }
+
     &:nth-child(odd) {
       background-color: var(--off-white);
     }
@@ -146,5 +142,43 @@
   .provider-header {
     flex-direction: column;
     justify-content: center;
+  }
+  .directory {
+    .content-main div:first-of-type {
+      background-color: var(--white);
+    }
+    .provider-search {
+      display: flex;
+      font-size: 0.8em;
+      padding: 0 5px;
+      height: auto;
+      & > * {
+        margin: 0 3px;
+      }
+      .input-container {
+        margin: 0 10px;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid var(--brand-gray);
+        flex: 2 1 20%;
+        &:first-of-type {
+          flex: 2 1 40%;
+        }
+        label {
+          display: none;
+        }
+        i {
+          padding-left: 0px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .provider-table-container > div:hover {
+    box-shadow: 1px 1px 5px var(--primary-gray);
+    border-radius: 8px;
+    z-index: 12;
   }
 }

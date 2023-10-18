@@ -29,19 +29,18 @@
 @media only screen and (max-width: 750px) {
   .dashboard {
     h1 {
-      font-size: 2.8em;
-      line-height: 1.05em;
+      font-size: 2.4em;
       font-weight: 200;
     }
     .picture-split-container.full {
       p {
-        font-size: 1.2em;
+        font-size: 1.15em;
         font-weight: 500;
       }
       .button-group-container {
         flex-direction: column;
         .button {
-          font-size: 1.2em;
+          font-size: 1.1em;
           width: 100%;
           margin: 10px;
         }
