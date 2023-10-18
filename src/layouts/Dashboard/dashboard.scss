@@ -28,25 +28,56 @@
 }
 @media only screen and (max-width: 750px) {
   .dashboard {
-    .content-header .card {
+    h1 {
+      font-size: 2.8em;
+      line-height: 1.05em;
+      font-weight: 200;
+    }
+    .picture-split-container.full {
+      p {
+        font-size: 1.2em;
+        font-weight: 500;
+      }
+      .button-group-container {
+        flex-direction: column;
+        .button {
+          font-size: 1.2em;
+          width: 100%;
+          margin: 10px;
+        }
+      }
+    }
+    h2,
+    h3 {
+      text-align: center !important;
+    }
+    .bg-tan {
       background-color: var(--white) !important;
     }
-    .card {
-      width: 100% !important;
-    }
-    .provider-search.mobile {
-      width: 100%;
-      margin: 0;
+    .content-main > .provider-search.mobile {
+      &::before {
+        font-family: Plus Jakarta Sans;
+        font-size: 1.4em;
+        content: 'Find care providers:';
+        padding: 20px 0 40px;
+        text-align: center;
+        width: 100%;
+      }
+
+      background-color: var(--off-white);
     }
     .location-section {
       text-align: center;
       flex-direction: column-reverse;
-      h2 {
-        text-align: center !important;
-      }
+
       img {
         width: 100% !important;
       }
+    }
+    .content-main > .picture-split-container:nth-child(2) {
+      background-color: blue;
+    }
+    section:last-of-type {
     }
   }
 }

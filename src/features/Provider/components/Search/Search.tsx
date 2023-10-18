@@ -15,7 +15,7 @@ export const Search = ({
   };
 
   const isMobile = () => window.innerWidth < 700;
-
+  if (isMobile()) type = 'standard';
   return (
     <div className={`provider-search ${isMobile() ? 'mobile' : type}`}>
       <Input
@@ -35,7 +35,7 @@ export const Search = ({
           setKeyword(e.target.value);
         }}
       />
-      {type === 'standard' ? <p>near</p> : ''}
+      {type === 'standard' && !isMobile() ? <p>near</p> : ''}
       <Input
         icon="map"
         label={type === 'fancy' ? undefined : 'Zip code'}

@@ -11,6 +11,7 @@ import {
   TypeOfCare
 } from '@/components/PictureSplitContainer';
 import { InformationSection } from '@/components/InformationSection';
+const isMobile = () => window.innerWidth < 700;
 
 export const Content = () => {
   return (
@@ -47,8 +48,9 @@ export const Content = () => {
           resources and connections you need to navigate this remarkable chapter
           with confidence and care.
         </p>
-        <Search type="fancy" />
+        {isMobile() ? '' : <Search type="fancy" />}
       </InformationSection>
+      {isMobile() ? <Search type="fancy" /> : ''}
 
       <section className="bg-tan">
         <h2>What you'll find here</h2>
