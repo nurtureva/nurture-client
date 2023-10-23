@@ -7,10 +7,24 @@
     margin: 50px auto 0;
     width: 85%;
     align-items: center;
-    height: 35px;
     & .input-container {
       margin-right: 20px;
       flex: 1;
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .share-directory > span {
+    flex-direction: column;
+    .button {
+      margin-top: 0;
+      width: 100%;
+    }
+    & > .input-container {
+      margin: 0;
+      width: 100%;
+      margin-bottom: 20px;
     }
   }
 }

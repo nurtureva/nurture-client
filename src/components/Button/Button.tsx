@@ -12,12 +12,9 @@ export const Button = (props: ButtonProps) => {
     className: instanceClassName,
     ...buttonProps
   } = props;
-  const className = `button 
-    ${type} 
-    ${!children ? 'icon' : ''} 
-    ${size ? size : ''} 
-    ${instanceClassName ? instanceClassName : ''}
-  `;
+  const className = `button ${type}${!children ? ' icon' : ''}${
+    size ? ' ' + size : ''
+  }${instanceClassName ? ' ' + instanceClassName : ''}`;
 
   if (props.to)
     return (

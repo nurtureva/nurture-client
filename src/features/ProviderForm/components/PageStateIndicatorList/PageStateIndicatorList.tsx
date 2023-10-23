@@ -9,6 +9,7 @@ export const PageStateIndicatorList = () => {
       formType: { pageStateTitles }
     }
   } = useFormContext();
+  const isMobile = () => window.innerWidth < 700;
 
   return (
     <ol>
@@ -23,7 +24,7 @@ export const PageStateIndicatorList = () => {
             key={`PageStateIndicator${id}`}
             onClick={() => updateState({ pageState: id })}>
             <PageStateIndicator {...indicatorProps} />
-            {pageStateTitle}
+            {isMobile() && state !== 'active' ? '' : pageStateTitle}
           </li>
         );
       })}

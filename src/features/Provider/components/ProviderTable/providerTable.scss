@@ -1,4 +1,11 @@
 /************************ PROVIDER TABLE ************************/
+.directory {
+  .provider-search {
+    width: 80%;
+    margin: auto;
+  }
+}
+
 .provider-container.list {
   height: fit-content;
   display: flex;
@@ -148,10 +155,8 @@
       background-color: var(--white);
     }
     .provider-search {
-      display: flex;
       font-size: 0.8em;
       padding: 0 5px;
-      height: auto;
       & > * {
         margin: 0 3px;
       }

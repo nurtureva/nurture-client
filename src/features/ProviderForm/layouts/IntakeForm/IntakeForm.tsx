@@ -2,12 +2,13 @@ import { ButtonGroup, ButtonPropArray } from '@/components';
 import { useState } from 'react';
 import { FormManager } from '../..';
 import { FormType, InputObject } from '../../types';
+import './intakeForm.scss';
 
 export type Initializer = () => InputObject[] | undefined;
 export const IntakeForm = () => {
   const [formType, setFormType] = useState<FormType>();
   return (
-    <div>
+    <div className="form">
       <h2>Add your information to the Directory</h2>
       {formType ? (
         <FormManager formType={formType} />

@@ -81,6 +81,7 @@ export const Content = () => {
       <PictureSplitContainer
         backgroundColor="tan"
         reverse
+        pictureType="icon"
         picture={researchImage}>
         <h3>Our research project</h3>
         <p>

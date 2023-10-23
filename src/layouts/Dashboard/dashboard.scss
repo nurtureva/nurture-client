@@ -1,4 +1,11 @@
 .dashboard {
+  h2,
+  h3 {
+    text-align: center;
+  }
+  .content-main .picture-split-container:last-child {
+    display: none;
+  }
   .search-container {
     position: relative;
     padding-bottom: 100px;
@@ -15,23 +22,21 @@
     }
   }
   h1 {
+    font-weight: 200;
+    line-height: 1.1em;
     padding: 40px;
     color: var(--brand-pink);
     text-align: left;
     padding: 0;
     color: var(--brand-pink);
     font-weight: 300;
-    font-size: 35px;
+    font-size: 2.5em;
     font-style: normal;
     font-weight: 300;
   }
 }
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 700px) {
   .dashboard {
-    h1 {
-      font-size: 2.4em;
-      font-weight: 200;
-    }
     .picture-split-container.full {
       p {
         font-size: 1.15em;
@@ -46,10 +51,7 @@
         }
       }
     }
-    h2,
-    h3 {
-      text-align: center !important;
-    }
+
     .bg-tan {
       background-color: var(--white) !important;
     }
