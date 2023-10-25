@@ -156,12 +156,13 @@
       width: 100%;
     }
   }
-  .provider-table-container .bookmark-label {
-    right: 10px;
-    margin: 8px;
-  }
-  .provider-container.full > * {
-    padding: 15px;
+  .provider-container.full {
+    .bookmark-label {
+      margin: 10px 0;
+    }
+    & > * {
+      padding: 15px;
+    }
   }
   .provider-header {
     flex-direction: column;
