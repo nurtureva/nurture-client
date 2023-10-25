@@ -4,6 +4,7 @@ import samplePhoto1 from '@/assets/images/profile-1.png';
 import samplePhoto2 from '@/assets/images/profile-2.png';
 import { Bookmark } from '../components/Bookmark';
 import { Button, Icon } from '@/components';
+import { Address } from '../components/Address';
 
 export default function ProviderPage() {
   const { provider } = useLoaderData() as { provider: ProviderObject };
@@ -13,6 +14,7 @@ export default function ProviderPage() {
   const photoSrc = provider.profile_photo
     ? import.meta.env.VITE_S3_URL + provider.profile_photo
     : photoList[Math.floor(Math.random() * photoList.length)];
+  console.log(provider);
   return (
     <div className="provider-container full">
       <div className="provider-actions">
@@ -29,17 +31,22 @@ export default function ProviderPage() {
         <a>request an edit</a>
       </div>
       <div className="provider-header">
-        <img src={photoSrc} />
         <span>
-          <h2>{provider.name}</h2>
-          <p>{provider.business_name}</p>
-          <p>
-            Type of care:{' '}
-            {provider.services?.map((service) => service.name + ', ')}
-          </p>
+          <img src={photoSrc} />
+          <span>
+            <h2>{provider.name}</h2>
+            <p>{provider.business_name}</p>
+            <p>
+              Type of care:{' '}
+              {provider.services?.map((service) => service.name + ', ')}
+            </p>
+            <Address provider={provider} />
+          </span>
         </span>
         <span>
-          <Button type="primary">test</Button>
+          <p>Phone number: {provider.phone}</p>
+          <p>Email: {provider.email}</p>
+          <p>Website: {provider.email}</p>
         </span>
       </div>
       <div>

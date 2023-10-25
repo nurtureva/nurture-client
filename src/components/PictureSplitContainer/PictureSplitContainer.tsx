@@ -21,7 +21,6 @@ export const PictureSplitContainer = ({
   const pictureContainerStyles: React.CSSProperties = {
     backgroundImage: `url(${picture})`
   };
-  console.log(pictureType);
   const iconPictureStyles: React.CSSProperties = {
     backgroundSize: 'contain',
     backgroundColor: 'var(--off-white)',

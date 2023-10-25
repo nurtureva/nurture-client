@@ -5,6 +5,7 @@ import { ProviderObject } from '@/types';
 import { Bookmark } from '../Bookmark';
 import { Button } from '@/components/Button/Button';
 import { toggleFilterMenu } from '@/utils/helpers';
+import { Address } from '../Address';
 
 export const ProviderTable = ({
   providers
@@ -72,9 +73,9 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
     : photoList[Math.floor(Math.random() * photoList.length)];
   return (
     <div>
-      <Bookmark provider={provider} />
       <Link to={`/results/${provider.id}`} className="provider-container list">
         <span className="photo-container">
+          <Bookmark provider={provider} />
           <img src={photoSrc} />
         </span>
         <span className="provider-name">
@@ -130,19 +131,5 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
         </span>
       </Link>
     </div>
-  );
-};
-
-const Address = ({ provider }: { provider: ProviderObject }) => {
-  const address_1 = provider.address_1 || '';
-  const address_2 = provider.address_2 || '';
-  const city = provider.city || '';
-  const state = provider.state || '';
-  const zip = provider.zip || '';
-
-  return (
-    <p>
-      {`${address_1} ${address_2} ${city ? city + ',' : ''} ${state} ${zip}`}
-    </p>
   );
 };
