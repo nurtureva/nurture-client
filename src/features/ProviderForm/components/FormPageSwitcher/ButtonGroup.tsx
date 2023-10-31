@@ -9,18 +9,26 @@ export const ButtonGroup = ({ disabled }: { disabled?: boolean }) => {
       next,
       pageState,
       formType: { pageStateTitles }
-    },
-    formData: { newProvider }
+    }
   } = useFormContext();
-  const isConfirmation = pageStateTitles[pageState] === 'Confirmation';
+
+  const isConfirmation = pageStateTitles[pageState - 1] === 'Confirmation';
+
   const buttonProps: ButtonProps = isConfirmation
     ? {
         children: 'Submit',
         onClick: () => {
-          console.log('submit', newProvider);
-        }
+          console.log('submit');
+        },
+        isSubmit: true
       }
-    : { onClick: next, children: 'Save and Continue', isSubmit: true };
+    : {
+        onClick: (e) => {
+          e.preventDefault();
+          next();
+        },
+        children: 'Save and Continue'
+      };
 
   return (
     <div>

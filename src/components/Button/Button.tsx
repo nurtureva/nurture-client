@@ -9,6 +9,7 @@ export const Button = (props: ButtonProps) => {
     children,
     icon,
     size,
+    state,
     className: instanceClassName,
     ...buttonProps
   } = props;
@@ -18,7 +19,7 @@ export const Button = (props: ButtonProps) => {
 
   if (props.to)
     return (
-      <Link to={props.to} {...{ className }}>
+      <Link to={props.to} state={state || {}} {...{ className }}>
         {children}
       </Link>
     );

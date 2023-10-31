@@ -36,7 +36,7 @@ export const ServiceDescriptionSection = ({
           })}
         </ul>
         {postscript ? <p>{postscript}</p> : ''}
-        <Button>Find {title}</Button>
+        <Button to="/results">Find {title}</Button>
       </PictureSplitContainer>
     </section>
   );

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FormManager } from '../..';
 import { FormType, InputObject } from '../../types';
 import './intakeForm.scss';
+import { useLoaderData } from 'react-router-dom';
 
 export type Initializer = () => InputObject[] | undefined;
 export const IntakeForm = () => {

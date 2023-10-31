@@ -6,10 +6,14 @@ import { Icon } from '@/components';
 
 export const Filters = ({
   options,
-  updateFilters
+  updateFilters,
+  setProviderType,
+  providerType
 }: {
   options: OptionsObject;
   updateFilters: Function;
+  setProviderType: Function;
+  providerType: string;
 }) => {
   const location = useLocation();
   const filters = location.state?.filters;
@@ -40,6 +44,30 @@ export const Filters = ({
       <span>
         <h4>Filter Results</h4>
         <a onClick={clearFilters}>clear filters</a>
+      </span>
+      <span className="provider-type-toggle">
+        <label htmlFor="individual">Individual</label>
+        <input
+          type="radio"
+          value="individual"
+          name="provider-type"
+          id="individual"
+          checked={providerType === 'individual'}
+          onChange={(e) => {
+            setProviderType(e.target.value);
+          }}
+        />
+        <label htmlFor="organization">Organization</label>
+        <input
+          type="radio"
+          value="organization"
+          name="provider-type"
+          id="organization"
+          checked={providerType === 'organization'}
+          onChange={(e) => {
+            setProviderType(e.target.value);
+          }}
+        />
       </span>
       <FilterList
         optionList={services}

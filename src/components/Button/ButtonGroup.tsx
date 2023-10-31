@@ -1,13 +1,9 @@
 import { Button } from '.';
+import { ButtonProps } from '../types';
 
 type ButtonGroupProps = {
   converse?: boolean; //flex row reverse
   buttonProps: ButtonPropArray;
-};
-type ButtonProps = {
-  children: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  to?: string;
 };
 export type ButtonPropArray = [ButtonProps, ButtonProps];
 

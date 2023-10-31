@@ -6,10 +6,12 @@ import { accessDatabase } from '@/api';
 
 const ProviderList = ({
   providers,
-  isPending
+  isPending,
+  endpoint
 }: {
   providers: ProviderObject[];
   isPending: boolean;
+  endpoint: 'providers' | 'organizations';
 }) => {
   const [providerList, setProviderList] = useState(providers);
 
@@ -30,7 +32,7 @@ const ProviderList = ({
               <a
                 onClick={async () => {
                   confirmChoice(() => {
-                    approveProvider(provider.id);
+                    approveProvider(provider.id, endpoint);
                     removeProviderFromList(provider.id);
                   });
                 }}>
@@ -43,7 +45,7 @@ const ProviderList = ({
               className="delete-icon"
               onClick={() => {
                 confirmChoice(() => {
-                  accessDatabase('DELETE', 'providers', { id: provider.id });
+                  accessDatabase('DELETE', endpoint, { id: provider.id });
                   removeProviderFromList(provider.id);
                 });
               }}

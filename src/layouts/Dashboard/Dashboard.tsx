@@ -110,7 +110,9 @@ export const Content = () => {
           parents find and hire you while contributing to the creation of a
           comprehensive, accessible resource network.
         </p>
-        <Button type="primary">List your practice</Button>
+        <Button type="primary" to="/provider-form">
+          List your practice
+        </Button>
         <p>Or head to our Care Provider Home for more resources.</p>
       </PictureSplitContainer>
       <section className="bg-yellow">

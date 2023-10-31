@@ -76,7 +76,9 @@ export const Content = () => {
           demographic information we collect will be used only to further our
           research, and will not be displayed on your public profile.{' '}
         </p>
-        <Button type="secondary">Register in the directory</Button>
+        <Button type="secondary" to="/provider-form">
+          Register in the directory
+        </Button>
       </PictureSplitContainer>
       <PictureSplitContainer
         backgroundColor="tan"

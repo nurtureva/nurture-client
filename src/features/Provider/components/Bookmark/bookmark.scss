@@ -3,8 +3,16 @@
 }
 .bookmark-label {
   position: absolute;
+  padding: 8px;
+  border-radius: 100%;
+  background-color: var(--off-white);
   font-family: 'icomoon';
-  font-size: 1.5em;
+  font-size: 1.4em;
+  transition: box-shadow 200ms;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 4px 0px rgba(50, 50, 50, 0.12);
+  }
 }
 .bookmark-checkbox + .bookmark-label:before {
   color: var(--brand-pink);

@@ -81,7 +81,7 @@ export default function App() {
         },
         {
           path: ':userId/edit/:hash',
-          element: <FormManager />,
+          element: <FormManager formType="individual" />,
           loader: useEditFormLoader
         },
         {

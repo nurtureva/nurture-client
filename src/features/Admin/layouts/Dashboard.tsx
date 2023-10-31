@@ -1,13 +1,21 @@
 import { useLoaderData } from 'react-router-dom';
-import { ProviderObject } from '@/types';
+import { OrganizationObject, ProviderObject } from '@/types';
 import OptionList from '../components/OptionList';
 import ProviderList from '../components/ProviderList';
 
 export default function AdminDashboard() {
   //extend main page loader to also get reports as well as pending providers !!!!!!!!!!!!!
-  const { pendingProviders, providers, currentReports } = useLoaderData() as {
+  const {
+    pendingProviders,
+    providers,
+    currentReports,
+    organizations,
+    pendingOrganizations
+  } = useLoaderData() as {
     pendingProviders: ProviderObject[];
+    pendingOrganizations: OrganizationObject[];
     providers: ProviderObject[];
+    organizations: OrganizationObject[];
     currentReports: any;
   };
 
@@ -21,9 +29,29 @@ export default function AdminDashboard() {
       <OptionList endpoint="certifications" title="Certifications" />
       <OptionList endpoint="payment-options" title="Payment Options" />
       <h4>Pending Providers</h4>
-      <ProviderList providers={pendingProviders} isPending={true} />
+      <ProviderList
+        providers={pendingProviders}
+        isPending={true}
+        endpoint="providers"
+      />
       <h4>Current Providers</h4>
-      <ProviderList providers={providers} isPending={false} />
+      <ProviderList
+        providers={providers}
+        isPending={false}
+        endpoint="providers"
+      />
+      <h4>Pending Organizations</h4>
+      <ProviderList
+        providers={pendingOrganizations}
+        isPending={true}
+        endpoint="organizations"
+      />
+      <h4>Current Organizations</h4>
+      <ProviderList
+        providers={organizations}
+        isPending={false}
+        endpoint="organizations"
+      />
     </div>
   );
 }

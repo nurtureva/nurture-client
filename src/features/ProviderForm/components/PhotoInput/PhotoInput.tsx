@@ -32,13 +32,9 @@ export const PhotoInput = ({ dbName }: ParamsObject) => {
 
   useEffect(() => {
     updateState({
-      pictures: { [dbName]: image }
+      pictures: { ...pictures, [dbName]: image }
     });
   }, [image]);
-
-  useEffect(() => {
-    console.log(imageSrc);
-  }, [imageSrc]);
 
   const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {

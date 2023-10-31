@@ -31,6 +31,11 @@ export const Bookmark = ({ provider }: { provider: ProviderObject }) => {
         onChange={(e) => {
           setIsBookmarked(e.target.checked);
         }}
+        onClick={(e) => {
+          e.stopPropagation();
+          // e.preventDefault();
+          console.log(e);
+        }}
       />
       <label htmlFor={`${provider.id}-bookmark`} className="bookmark-label" />
     </>

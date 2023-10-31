@@ -49,4 +49,5 @@ export type ButtonProps = React.HTMLProps<HTMLButtonElement> &
     size?: 'small';
     to?: string;
     icon?: Icon;
+    state?: Object;
   }>;

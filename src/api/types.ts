@@ -1,6 +1,8 @@
 import {
   FormProvider,
+  FormOrganization,
   Option,
+  OrganizationObject,
   ProviderNoOptions,
   ProviderObject,
   Reports,
@@ -10,12 +12,14 @@ import {
 
 export type OptionEndpoint = 'services' | 'certifications' | 'payment-options';
 export type ProviderEndpoint = `providers`;
+export type OrganizationEndpoint = 'organizations';
 export type ReportsEndpoint = 'admin/reports';
 export type ZipCodeEndpoint = 'zip-codes';
 export type UploadEndpoint = 'upload';
 export type EndpointType =
   | OptionEndpoint
   | ProviderEndpoint
+  | OrganizationEndpoint
   | ReportsEndpoint
   | ZipCodeEndpoint
   | UploadEndpoint;
@@ -45,6 +49,11 @@ export interface FetchFunction {
     endpoint: ProviderEndpoint,
     props?: { params?: { isPending: boolean } }
   ): Promise<ProviderObject[]>;
+  (
+    method: 'GET',
+    endpoint: OrganizationEndpoint,
+    props?: { params?: { isPending: boolean } }
+  ): Promise<OrganizationObject[]>;
   (method: 'GET', endpoint: ReportsEndpoint, props?: never): Promise<Reports>;
   (
     method: 'GET',
@@ -63,6 +72,11 @@ export interface FetchFunction {
   ): Promise<{ id: number }>;
   (
     method: 'POST',
+    endpoint: OrganizationEndpoint,
+    props: { body: FormOrganization }
+  ): Promise<{ id: number }>;
+  (
+    method: 'POST',
     endpoint: UploadEndpoint,
     props: { body: FormData }
   ): Promise<number>;
@@ -75,8 +89,16 @@ export interface FetchFunction {
     }
   ): Promise<number>;
   (
+    method: 'PATCH',
+    endpoint: OrganizationEndpoint,
+    props: {
+      id: number;
+      body: Subset<FormOrganization>;
+    }
+  ): Promise<number>;
+  (
     method: 'DELETE',
-    endpoint: OptionEndpoint | ProviderEndpoint,
+    endpoint: OptionEndpoint | ProviderEndpoint | OrganizationEndpoint,
     props: { id: number }
   ): void;
 }

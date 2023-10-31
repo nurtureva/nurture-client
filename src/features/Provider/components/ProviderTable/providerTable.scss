@@ -8,31 +8,22 @@
 
 .provider-container.list {
   height: fit-content;
+  padding: 20px;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  padding: 20px 0;
-  height: 270px;
   width: 100%;
   text-decoration: none;
-  h3 {
-    text-align: left;
+  .bookmark-label {
+    padding: inherit;
+  }
+  h2 {
+    margin-bottom: 3px;
   }
   .photo-container {
-    position: relative;
-    padding: 20px;
-    flex-basis: 100%;
-    height: 100%;
-    display: block;
-
-    .bookmark-label {
-      left: -8px;
-      top: -5px;
-      padding: inherit;
-    }
+    width: 180px;
+    margin-right: 20px;
     img {
       border-radius: 50%;
-      height: 80%;
+      width: 100%;
     }
   }
   p {
@@ -45,11 +36,6 @@
     max-width: 500px;
     // min-width: 300px;
   }
-  .provider-name {
-    display: block;
-    width: 100%;
-    margin-bottom: 15px;
-  }
 }
 .provider-container.full {
   h2,
@@ -59,12 +45,8 @@
   h3 {
     color: var(--brand-pink);
   }
-  .bookmark-label {
-    top: 100%;
-    margin: 20px;
-  }
   & > * {
-    padding: 40px 100px;
+    padding: 20px 100px;
   }
   .provider-actions {
     position: relative;
@@ -79,16 +61,21 @@
     }
   }
   .provider-header {
+    position: relative;
     display: flex;
     margin: auto;
     background-color: var(--primary-tan);
     align-items: center;
-    justify-content: space-around;
     & > span:first-of-type {
       display: flex;
+      margin-right: 50px;
       p {
         margin: 10px 0;
       }
+    }
+    .bookmark-label {
+      top: 20px;
+      left: 100px;
     }
     img {
       height: 150px;
@@ -122,12 +109,9 @@
     }
   }
   & > div {
-    display: flex;
     overflow: hidden;
     position: relative;
-    justify-content: space-between;
     transition: box-shadow 250ms, border-radius 250ms;
-
     &:nth-child(odd) {
       background-color: var(--off-white);
     }
@@ -135,30 +119,22 @@
 }
 @media only screen and (max-width: 700px) {
   .provider-container.list {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: fit-content;
-    .provider-name {
-      flex-basis: 60%;
-    }
-    .photo-container {
-      flex-basis: 20%;
-      height: 120px;
-      padding: 0;
-      margin-right: 15px;
-      img {
-        height: 100%;
-      }
+    flex-wrap: wrap;
+    & > span:first-of-type {
+      display: flex;
     }
     span:last-child {
       margin-top: 20px;
       width: 100%;
     }
   }
+  .provider-header span:first-of-type {
+    margin-right: 0 !important;
+  }
   .provider-container.full {
-    .bookmark-label {
-      margin: 10px 0;
+    label.bookmark-label {
+      top: 15px !important;
+      left: 15px !important;
     }
     & > * {
       padding: 15px;
@@ -169,7 +145,7 @@
     justify-content: center;
   }
   .directory {
-    .content-main div:first-of-type {
+    .content-main > div:first-of-type {
       background-color: var(--white);
     }
     .provider-search {

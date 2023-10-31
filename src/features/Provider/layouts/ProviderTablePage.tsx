@@ -1,26 +1,31 @@
 import { useLoaderData } from 'react-router-dom';
-import { Option, ProviderObject } from '@/types';
+import { Option, OrganizationObject, ProviderObject } from '@/types';
 import { ProviderTable } from '../components/ProviderTable';
 import { Filters } from '../components/Filters';
 import { Search } from '../components/Search';
 import { useFilterReducer } from '../utils/filterReducer';
+import { useState } from 'react';
+
+type ProviderType = 'individual' | 'organization';
 
 export default function ProviderTablePage() {
-  const { providers, services, paymentOptions, certifications } =
+  const { providers, organizations, services, paymentOptions, certifications } =
     useLoaderData() as {
       providers: ProviderObject[];
+      organizations: OrganizationObject[];
       services: Option[];
       paymentOptions: Option[];
       certifications: Option[];
     };
+  const [providerType, setProviderType] = useState<ProviderType>('individual');
   const filterOptions = { services, paymentOptions, certifications };
-  const { updateSearch, updateFilters, filteredProviders } =
-    useFilterReducer(providers);
+  const { updateSearch, updateFilters, initialSearch, filteredProviders } =
+    useFilterReducer(providerType === 'individual' ? providers : organizations);
 
   return (
     <>
       <div className="bg-tan">
-        <Search updateSearch={updateSearch} />
+        <Search updateSearch={updateSearch} initialTerms={initialSearch} />
       </div>
       {/* <div className="results-description">
         <h2>Doulas</h2>
@@ -48,7 +53,12 @@ export default function ProviderTablePage() {
         </div>
       </div> */}
       <div className="results-page">
-        <Filters updateFilters={updateFilters} options={filterOptions} />
+        <Filters
+          updateFilters={updateFilters}
+          setProviderType={setProviderType}
+          providerType={providerType}
+          options={filterOptions}
+        />
         <ProviderTable providers={filteredProviders} />
       </div>
     </>

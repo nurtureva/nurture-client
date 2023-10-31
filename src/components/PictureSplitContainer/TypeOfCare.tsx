@@ -36,12 +36,12 @@ export const TypeOfCare = ({
         buttonProps={[
           {
             children: `Find ${depluralize(title)}`,
-            // state: { filters: { services: [id] } },
+            state: { filters: { services: [1] } },
             to: '/results'
           },
           {
             children: 'Learn More',
-            to: '/'
+            to: '/learn-more'
           }
         ]}
       />

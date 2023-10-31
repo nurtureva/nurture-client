@@ -51,6 +51,8 @@ export const useFilters = (
   ) => {
     //any time a filter changes, we start with all providers.
     let newProviders = [...providers];
+    console.log('newProviders', newProviders);
+
     // const closestZipCodes = searchTerm.distance
     //   ? getClosestZipCodes(searchTerm.distance)
     //   : '';

@@ -12,10 +12,11 @@ export const useOptionsLoader = async () => {
 
 export const useMainPageLoader = async () => {
   const providers = await accessDatabase('GET', 'providers');
+  const organizations = await accessDatabase('GET', 'organizations');
   mergeLocalStorage(providers);
   const options = await useOptionsLoader();
 
-  return { providers, ...options };
+  return { providers, organizations, ...options };
 };
 
 export const useAdminLoader = async () => {
@@ -23,10 +24,13 @@ export const useAdminLoader = async () => {
   const pendingProviders = await accessDatabase('GET', 'providers', {
     params: { isPending: true }
   });
+  const pendingOrganizations = await accessDatabase('GET', 'organizations', {
+    params: { isPending: true }
+  });
 
   // const reports = await accessDatabase('GET', 'admin/reports');
 
-  return { ...mainPageLoader, pendingProviders };
+  return { ...mainPageLoader, pendingProviders, pendingOrganizations };
 };
 
 export const useProviderLoader = async ({ params }: LoaderFunctionArgs) => {

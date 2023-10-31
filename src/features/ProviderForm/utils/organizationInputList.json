@@ -101,7 +101,7 @@
     },
     {
       "name": "In practice since",
-      "dbName": "startingYear",
+      "dbName": "year_established",
       "description": "Enter year",
       "stubName": "Professional Details"
     }

@@ -6,20 +6,29 @@ import {
   ProviderObject
 } from '@/types';
 import { Context, createContext, useContext, useEffect, useState } from 'react';
-import { UseFormHandleSubmit, UseFormRegister, useForm } from 'react-hook-form';
+import {
+  UseFormGetValues,
+  UseFormHandleSubmit,
+  UseFormRegister,
+  useForm
+} from 'react-hook-form';
 import { useLoaderData } from 'react-router-dom';
 import { useFormInputList } from './formInputList';
+import { useDefaultValues } from './helpers';
 
 const FormContext = createContext({} as FormContextObject);
 
 export const useFormContext = () => useContext(FormContext);
 
 export const useContextInitializer: ContextInitializer = (formType) => {
-  const { register, handleSubmit } = useForm<FormProvider>();
   const [inputList, pageStateTitles, formTitle] = useFormInputList(formType);
   const { provider } = useLoaderData() as {
     provider: ProviderObject;
   };
+  const defaultProvider = useDefaultValues();
+  const { register, handleSubmit, getValues } = useForm<FormProvider>({
+    defaultValues: defaultProvider
+  });
 
   const [state, setState] = useState<StateObject>({
     initialProvider: provider,
@@ -41,7 +50,7 @@ export const useContextInitializer: ContextInitializer = (formType) => {
   };
 
   const next = () => {
-    if (state.pageState > pageStateTitles.length - 1) return;
+    if (state.pageState > pageStateTitles.length) return;
     updateState({ pageState: state.pageState + 1 });
   };
 
@@ -76,6 +85,7 @@ export const useContextInitializer: ContextInitializer = (formType) => {
     },
     formFunctions: {
       register,
+      getValues,
       handleSubmit
     },
     submissionResponse,
@@ -129,6 +139,7 @@ interface FormContextObject {
   };
   formFunctions: {
     register: UseFormRegister<FormProvider>;
+    getValues: UseFormGetValues<FormProvider>;
     handleSubmit: UseFormHandleSubmit<FormProvider>;
   };
   error: any;

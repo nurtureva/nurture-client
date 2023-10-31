@@ -1,5 +1,5 @@
 import { accessDatabase } from '@/api';
-import { FormProvider } from '@/types';
+import { FormOrganization, FormProvider } from '@/types';
 import { Pictures, useFormContext } from './formContext';
 
 const uploadPhotos = async (id: number, pictures: Pictures) => {
@@ -31,18 +31,41 @@ const editProvider = async (provider: FormProvider) => {
 
   return id;
 };
+const editOrganization = async (organization: FormOrganization) => {
+  organization.general.needs_review = true;
+  const id = Number(window.location.pathname.split('/')[1]);
+  await accessDatabase('PATCH', 'organizations', {
+    id,
+    body: organization
+  });
 
-const submitProvider = async (provider: FormProvider) => {
+  return id;
+};
+
+export const submitProvider = async (provider: FormProvider) => {
   const { id } = await accessDatabase('POST', 'providers', {
     body: provider
   });
   return id;
 };
+export const submitOrganization = async (organization: FormOrganization) => {
+  const { id } = await accessDatabase('POST', 'organizations', {
+    body: organization
+  });
+  return id;
+};
 
-export const useFormAction = () => {
+export const useFormAction = (providerType: 'individual' | 'organization') => {
   const {
     formData: { pictures }
   } = useFormContext();
+
+  if (providerType === 'organization') {
+    return window.location.pathname.includes('provider-form')
+      ? submitOrganization
+      : editOrganization;
+  }
+
   const formFuncton = window.location.pathname.includes('provider-form')
     ? submitProvider
     : editProvider;

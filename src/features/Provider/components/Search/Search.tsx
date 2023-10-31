@@ -1,17 +1,27 @@
 import { useState } from 'react';
 import { Input, Button } from '@/components';
+import { useNavigate } from 'react-router-dom';
 
 export const Search = ({
   updateSearch,
+  initialTerms,
   type = 'standard'
 }: {
   updateSearch?: Function;
+  initialTerms?: { keyword?: string; distance: string };
   type?: 'fancy' | 'standard' | 'compressed';
 }) => {
-  const [keyword, setKeyword] = useState('');
-  const [distance, setDistance] = useState('');
+  const navigate = useNavigate();
+  const [keyword, setKeyword] = useState(initialTerms?.keyword || '');
+  const [distance, setDistance] = useState(initialTerms?.distance || '');
+  console.log(distance);
   const searchFunction = (keyword: string, distance: string) => {
-    if (updateSearch) updateSearch(keyword, distance);
+    if (location.pathname !== '/results') {
+      navigate('/results', { state: { search: { keyword, distance } } });
+    }
+    if (updateSearch) {
+      updateSearch(keyword, distance);
+    }
   };
 
   const isMobile = () => window.innerWidth < 700;
@@ -25,10 +35,10 @@ export const Search = ({
             ? undefined
             : 'Keyword, type of care, practitioner name'
         }
-        onFocus={() => {
-          setKeyword('');
-          searchFunction('', distance);
-        }}
+        // onFocus={() => {
+        //   setKeyword('');
+        //   searchFunction('', distance);
+        // }}  ******* this needs to be moved to an 'x' clear button
         placeholder="keyword"
         value={keyword}
         onChange={(e) => {

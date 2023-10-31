@@ -4,6 +4,7 @@ import { FormType } from '../../types';
 import { useContextInitializer } from '../../utils/formContext';
 import { FormPageSwitcher } from '../FormPageSwitcher';
 import { PageStateIndicatorList } from '../PageStateIndicatorList';
+import { useLoaderData } from 'react-router-dom';
 
 export const FormManager = ({ formType }: { formType: FormType }) => {
   const [FormContext, value] = useContextInitializer(formType);

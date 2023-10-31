@@ -27,10 +27,10 @@ export default function ProviderPage() {
             back
           </a>
         </span>
-        <Bookmark provider={provider} />
         <a>request an edit</a>
       </div>
       <div className="provider-header">
+        <Bookmark provider={provider} />
         <span>
           <img src={photoSrc} />
           <span>

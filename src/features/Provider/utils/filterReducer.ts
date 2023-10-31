@@ -6,6 +6,7 @@ import {
   ProviderObject,
   ReducerAction
 } from '@/types';
+import { useLocation } from 'react-router-dom';
 const reducer = (state: FiltersContainerObject, action: ReducerAction) => {
   switch (action.type) {
     case 'UPDATE_SEARCH':
@@ -21,10 +22,12 @@ const reducer = (state: FiltersContainerObject, action: ReducerAction) => {
 };
 
 export const useFilterReducer = (providers: ProviderObject[]) => {
+  const location = useLocation();
+  const initialSearch = location.state?.search;
   const initialState: FiltersContainerObject = {
     searchTerm: {
-      keyword: '',
-      distance: ''
+      keyword: initialSearch?.keyword || '',
+      distance: initialSearch?.distance || ''
     },
     filters: {
       services: [],
@@ -63,6 +66,7 @@ export const useFilterReducer = (providers: ProviderObject[]) => {
   return {
     updateSearch,
     updateFilters,
+    initialSearch,
     filteredProviders: useFilters(providers, state)
   };
 };

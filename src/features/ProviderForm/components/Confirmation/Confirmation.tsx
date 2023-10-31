@@ -7,9 +7,11 @@ export const Confirmation = () => {
   const { services, paymentOptions, certifications } =
     useLoaderData() as ProviderOptions;
   const {
-    formData: { newProvider: provider, pictures }
+    formData: { pictures },
+    formFunctions: { getValues }
   } = useFormContext();
-  console.log(pictures);
+  const provider = getValues();
+
   if (!provider) return null;
 
   return (
@@ -42,7 +44,7 @@ export const Confirmation = () => {
           fullList={certifications}
           title="certifications"
         />
-        {/* {Object.entries(pictures).map((pictureEntry) => {
+        {Object.entries(pictures).map((pictureEntry) => {
           const [label, picture] = pictureEntry;
           if (picture)
             return (
@@ -51,7 +53,7 @@ export const Confirmation = () => {
               </li>
             );
           return '';
-        })} */}
+        })}
       </ul>
     </>
   );
