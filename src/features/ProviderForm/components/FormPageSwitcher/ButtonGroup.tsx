@@ -17,9 +17,6 @@ export const ButtonGroup = ({ disabled }: { disabled?: boolean }) => {
   const buttonProps: ButtonProps = isConfirmation
     ? {
         children: 'Submit',
-        onClick: () => {
-          console.log('submit');
-        },
         isSubmit: true
       }
     : {

@@ -22,7 +22,10 @@ export const FormManager = ({ formType }: { formType: FormType }) => {
               {submissionResponse === 'error' ? (
                 'something went wrong. Probably the name you entered has already been taken'
               ) : (
-                <Button to={`/provider/${submissionResponse}`}>
+                <Button
+                  to={`/${
+                    formType === 'individual' ? 'provider' : formType
+                  }/${submissionResponse}`}>
                   Check out your new profile!
                 </Button>
               )}
