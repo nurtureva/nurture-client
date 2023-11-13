@@ -69,9 +69,12 @@ export const useFormAction = (providerType: 'individual' | 'organization') => {
   const formFuncton = window.location.pathname.includes('provider-form')
     ? submitProvider
     : editProvider;
+
   return async (provider: FormProvider) => {
     const newId = await formFuncton(provider);
     uploadPhotos(newId, pictures);
+
+    return newId;
   };
 };
 

@@ -7,7 +7,7 @@ import { ButtonGroup } from './ButtonGroup';
 import { submitProvider, useFormAction } from '../../utils/api';
 import { useState } from 'react';
 
-export const FormPageSwitcher = () => {
+export const FormPageSwitcher = ({ setSubmissionResponse }) => {
   const {
     formState: {
       pageState,
@@ -28,6 +28,7 @@ export const FormPageSwitcher = () => {
           console.log(data);
           const submissionConfirmation = await submitProviderData(data);
           console.log(submissionConfirmation);
+          setSubmissionResponse(submissionConfirmation || 'error');
         })}>
         {currentPageStateTitle === 'Confirmation' ? (
           <Confirmation />

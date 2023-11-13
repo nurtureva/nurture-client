@@ -26,14 +26,15 @@ export const accessDatabase: FetchFunction = async (
     url.search = params.toString();
   }
 
-  const data = await fetch(url, {
-    ...requestOptions,
-    method,
-    body
-  });
-  if (!data.ok) {
-    return Promise.reject(data.clone());
-  } else {
+  try {
+    const data = await fetch(url, {
+      ...requestOptions,
+      method,
+      body
+    });
     return data.json();
+  } catch (error) {
+    console.log(error);
+    return error;
   }
 };
