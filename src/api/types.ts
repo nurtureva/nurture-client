@@ -46,6 +46,11 @@ export interface FetchFunction {
   ): Promise<ProviderObject>;
   (
     method: 'GET',
+    endpoint: OrganizationEndpoint,
+    props: { id: number }
+  ): Promise<OrganizationObject>;
+  (
+    method: 'GET',
     endpoint: ProviderEndpoint,
     props?: { params?: { isPending: boolean } }
   ): Promise<ProviderObject[]>;

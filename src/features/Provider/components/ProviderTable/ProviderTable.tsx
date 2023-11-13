@@ -10,14 +10,22 @@ import { Identity } from '../Identity';
 import { Information } from '../Information';
 
 export const ProviderTable = ({
-  providers
+  providers,
+  providerType
 }: {
   providers: ProviderObject[];
+  providerType: string;
 }) => {
   const renderProviders = () => {
     return providers.map((provider) => {
       if (provider.name) {
-        return <ProviderContainer provider={provider} key={provider.id} />;
+        return (
+          <ProviderContainer
+            providerType={providerType}
+            provider={provider}
+            key={provider.id}
+          />
+        );
       }
     });
   };
@@ -58,15 +66,14 @@ const sanitizeURL = (url: string) => {
   return 'https://' + url;
 };
 
-const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
-  const {
-    profile_photo,
-    name,
-    business_name: businessName,
-    services,
-    certifications,
-    paymentOptions
-  } = provider;
+const ProviderContainer = ({
+  provider,
+  providerType
+}: {
+  provider: ProviderObject;
+  providerType: string;
+}) => {
+  const { profile_photo } = provider;
   const photoList = [samplePhoto1, samplePhoto2];
   const buttonProps = { type: 'secondary', size: 'small ' };
   const isMobile = () => window.innerWidth < 700;
@@ -90,7 +97,11 @@ const ProviderContainer = ({ provider }: { provider: ProviderObject }) => {
   return (
     <div>
       <Bookmark provider={provider} />
-      <Link to={`/results/${provider.id}`} className="provider-container list">
+      <Link
+        to={`/${providerType === 'individual' ? 'provider' : providerType}/${
+          provider.id
+        }`}
+        className="provider-container list">
         {isMobile() ? (
           <PhotoContainerWithIdentity />
         ) : (

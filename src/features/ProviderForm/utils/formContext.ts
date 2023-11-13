@@ -21,7 +21,7 @@ const FormContext = createContext({} as FormContextObject);
 export const useFormContext = () => useContext(FormContext);
 
 export const useContextInitializer: ContextInitializer = (formType) => {
-  const [inputList, pageStateTitles, formTitle] = useFormInputList(formType);
+  const [formFields, pageStateTitles, formTitle] = useFormInputList(formType);
   const { provider } = useLoaderData() as {
     provider: ProviderObject;
   };
@@ -74,7 +74,7 @@ export const useContextInitializer: ContextInitializer = (formType) => {
       formType: {
         type: formType,
         title: formTitle,
-        inputList,
+        formFields,
         pageStateTitles: [...pageStateTitles, 'Confirmation']
       },
       pageState,
@@ -128,7 +128,7 @@ interface FormContextObject {
     formType: {
       type: FormType;
       title: string;
-      inputList: InputObject[];
+      formFields: FormFields;
       pageStateTitles: PageStateTitle[];
     };
     pageState: number;
@@ -145,6 +145,8 @@ interface FormContextObject {
   error: any;
   submissionResponse: any;
 }
+
+export type FormFields = { [key in Partial<PageStateTitle>]: InputObject[] };
 
 type ContextInitializer = (
   formType: FormType

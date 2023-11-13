@@ -118,6 +118,11 @@
   }
 }
 @media only screen and (max-width: 700px) {
+  .bookmark-label {
+    padding: 5px;
+    top: 15px !important;
+    left: 15px !important;
+  }
   .provider-container.list {
     flex-wrap: wrap;
     & > span:first-of-type {
@@ -132,10 +137,6 @@
     margin-right: 0 !important;
   }
   .provider-container.full {
-    label.bookmark-label {
-      top: 15px !important;
-      left: 15px !important;
-    }
     & > * {
       padding: 15px;
     }

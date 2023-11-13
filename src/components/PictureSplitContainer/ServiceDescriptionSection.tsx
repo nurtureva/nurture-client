@@ -19,7 +19,9 @@ export const ServiceDescriptionSection = ({
   postscript
 }: ServiceDescriptionProps) => {
   return (
-    <section className="service-description-section">
+    <section
+      id={title.replace(/\s+/g, '-')}
+      className="service-description-section">
       <h2>{title}</h2>
       <p>{description}</p>
       <PictureSplitContainer picture={imageSource} type="top">

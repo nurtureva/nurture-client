@@ -78,6 +78,25 @@ export const Content = () => {
     postscript:
       'These illnesses can be mild, moderate or severe, requiring different kinds of care or treatment.'
   };
+
+  const JumpTo = ({ children }: React.PropsWithChildren<{}>) => {
+    return (
+      <p
+        onClick={(e) => {
+          console.log(
+            document.getElementById(
+              e.currentTarget.innerText.replace(/\s+/g, '-')
+            ),
+            e.currentTarget.innerText
+          );
+          // document
+          //   ?.getElementById(e.currentTarget.innerText.replace(/\s+/g, '-'))
+          //   .scroll(0, 0);
+        }}>
+        {children}
+      </p>
+    );
+  };
   return (
     <>
       <section className="bg-tan">
@@ -91,13 +110,13 @@ export const Content = () => {
         <span>
           <ul title="Jump to:">
             <li>
-              <a>Doulas</a>
+              <JumpTo>Doulas</JumpTo>
             </li>
             <li>
-              <a>Lactation</a>
+              <JumpTo>Lactation Support</JumpTo>
             </li>
             <li>
-              <a>Mental Health</a>
+              <JumpTo>Mental Health Care</JumpTo>
             </li>
           </ul>
         </span>

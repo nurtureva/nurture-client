@@ -41,6 +41,14 @@ export const useProviderLoader = async ({ params }: LoaderFunctionArgs) => {
   mergeLocalStorage(provider);
   return { provider };
 };
+export const useOrganizationLoader = async ({ params }: LoaderFunctionArgs) => {
+  const { userId } = params;
+  const organization = await accessDatabase('GET', 'organizations', {
+    id: Number(userId)
+  });
+  // mergeLocalStorage(organization);
+  return { organization };
+};
 
 export const useEditFormLoader = async ({ params }: LoaderFunctionArgs) => {
   const { userId } = params;

@@ -4,7 +4,8 @@ import {
   useMainPageLoader,
   useOptionsLoader,
   useAdminLoader,
-  useEditFormLoader
+  useEditFormLoader,
+  useOrganizationLoader
 } from '@/api/loaders';
 import { initBookmarkedProviders } from '@/utils/helpers';
 import { Endpoint } from '@/types';
@@ -63,10 +64,16 @@ export default function App() {
       children: [
         ...navRoutes,
         {
-          path: 'results/:userId',
+          path: 'provider/:userId',
           element: <PageLayout {...providerPageContent} />,
           errorElement: <PageLayout {...errorContent} />,
           loader: useProviderLoader
+        },
+        {
+          path: 'organization/:userId',
+          element: <PageLayout {...providerPageContent} />,
+          errorElement: <PageLayout {...errorContent} />,
+          loader: useOrganizationLoader
         },
         {
           path: 'provider-form',

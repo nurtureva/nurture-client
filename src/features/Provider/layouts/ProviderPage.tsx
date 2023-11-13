@@ -1,5 +1,5 @@
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import { ProviderObject } from '@/types';
+import { OrganizationObject, ProviderObject } from '@/types';
 import samplePhoto1 from '@/assets/images/profile-1.png';
 import samplePhoto2 from '@/assets/images/profile-2.png';
 import { Bookmark } from '../components/Bookmark';
@@ -7,8 +7,12 @@ import { Button, Icon } from '@/components';
 import { Address } from '../components/Address';
 
 export default function ProviderPage() {
-  const { provider } = useLoaderData() as { provider: ProviderObject };
+  const { provider: individualProvider, organization } = useLoaderData() as {
+    provider: ProviderObject;
+    organization: OrganizationObject;
+  };
   const navigate = useNavigate();
+  const provider = individualProvider || organization;
   const photoList = [samplePhoto1, samplePhoto2];
   const firstName = provider.name.split(' ')[0];
   const photoSrc = provider.profile_photo

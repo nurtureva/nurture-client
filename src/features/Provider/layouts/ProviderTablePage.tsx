@@ -59,7 +59,10 @@ export default function ProviderTablePage() {
           providerType={providerType}
           options={filterOptions}
         />
-        <ProviderTable providers={filteredProviders} />
+        <ProviderTable
+          providerType={providerType}
+          providers={filteredProviders}
+        />
       </div>
     </>
   );

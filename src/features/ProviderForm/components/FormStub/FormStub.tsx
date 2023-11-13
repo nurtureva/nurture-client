@@ -6,13 +6,12 @@ import { PageStateTitle } from '@/types';
 export const FormStub = ({ type }: { type: PageStateTitle }) => {
   const {
     formState: {
-      formType: { inputList }
+      formType: { formFields }
     }
   } = useFormContext();
-
   return (
     <>
-      {inputList.map((input, i) => {
+      {formFields.map((input, i) => {
         if (input.stubName === type) return <FormItem input={input} key={i} />;
       })}
     </>

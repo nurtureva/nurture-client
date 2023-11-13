@@ -33,15 +33,15 @@ interface CustomInputProps {
   formKey?: keyof FormProvider;
   dbName?: keyof ProviderObject;
   optionsArray?: Option[];
+  isTogglable?: boolean;
 }
 
 export type InputObject = GenericInputObject | CustomInputObject;
 
 export interface CustomInputParamsObject {
   formKey: keyof FormProvider;
-  register: UseFormRegister<FormProvider>;
   optionsArray?: Option[];
-  dbName?: keyof ProviderObject;
+  isTogglable?: boolean;
 }
 
 export type FormType = 'individual' | 'organization';
