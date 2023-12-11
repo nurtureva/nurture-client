@@ -4,3 +4,6 @@ export * from './Footer';
 export * from './Header';
 export * from './Icon';
 export * from './Input';
+export * from './InformationSection';
+export * from './PictureSplitContainer';
+export * from './WaysToFindCare';
