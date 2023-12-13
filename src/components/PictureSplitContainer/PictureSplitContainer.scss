@@ -1,5 +1,4 @@
 body div .picture-split-container {
-  padding: 0;
   display: grid;
   grid-template-columns: 50% 50%;
   align-items: stretch; /* This ensures both spans have the same height. */
@@ -7,10 +6,15 @@ body div .picture-split-container {
   .children-container {
     display: flex;
     flex-direction: column;
-    padding: 10% 20%;
+    padding: 40px;
     justify-content: center;
     &.reverse {
       grid-area: right;
+    }
+  }
+  &.full {
+    .children-container {
+      padding: 64px 64px 120px 64px;
     }
   }
   p {
