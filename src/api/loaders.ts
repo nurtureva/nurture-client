@@ -6,8 +6,22 @@ export const useOptionsLoader = async () => {
   const services = await accessDatabase('GET', 'services');
   const paymentOptions = await accessDatabase('GET', 'payment-options');
   const certifications = await accessDatabase('GET', 'certifications');
+  const appointmentTypes = await accessDatabase('GET', 'appointment-types');
+  const languages = await accessDatabase('GET', 'languages');
+  const gender = await accessDatabase('GET', 'gender');
+  const pronouns = await accessDatabase('GET', 'pronouns');
+  const ethnicity = await accessDatabase('GET', 'ethnicity');
 
-  return { services, certifications, paymentOptions };
+  return {
+    services,
+    certifications,
+    paymentOptions,
+    appointmentTypes,
+    languages,
+    gender,
+    pronouns,
+    ethnicity
+  };
 };
 
 export const useMainPageLoader = async () => {

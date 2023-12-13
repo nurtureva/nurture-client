@@ -1,32 +1,27 @@
 {
   "input": [
     {
-      "name": "Organization Name",
+      "name": "Organization name",
       "dbName": "name",
       "stubName": "Basic Details"
     },
     {
-      "name": "Email",
+      "name": "Email address",
       "dbName": "email",
-      "description": "example@example.com",
+      "props": {
+        "placeholder": "example@example.com"
+      },
       "stubName": "Basic Details",
       "size": "large"
     },
     {
-      "name": "Phone",
+      "name": "Phone number",
       "dbName": "phone",
-      "description": "(xxx) xxx-xxxx",
+      "props": {
+        "placeholder": "(xxx) xxx-xxxx"
+      },
       "stubName": "Basic Details",
       "size": "small"
-    },
-    {
-      "name": "Type of care provided",
-      "Element": "CHECKBOX",
-      "props": {
-        "formKey": "services"
-      },
-      "description": "Select all that apply",
-      "stubName": "Basic Details"
     },
     {
       "name": "Logo",
@@ -34,19 +29,23 @@
       "props": {
         "dbName": "logo"
       },
-      "description": "A square or circular file works best (.jpg, max file size ___)",
+      "description": "A square or circular file works best (use .jpg, .png, .tif, .heic, .psd)",
       "stubName": "Basic Details"
     },
     {
-      "name": "Website",
+      "name": "Organization website",
       "dbName": "website",
-      "description": "www.example.com",
+      "props": {
+        "placeholder": "www.example.com"
+      },
       "stubName": "Contact"
     },
     {
       "name": "Address 1",
       "dbName": "address_1",
-      "description": "1234 example street",
+      "props": {
+        "placeholder": "1234 example street"
+      },
       "stubName": "Contact",
       "size": "large"
     },
@@ -76,8 +75,9 @@
       "size": "small"
     },
     {
-      "name": "Overview",
+      "name": "Overview of your services",
       "dbName": "overview",
+      "description": "Describe the type of care you provide (500 characters max)",
       "props": { "element": "textarea" },
       "stubName": "About"
     },

@@ -21,7 +21,7 @@ export const Content = () => {
         </h2>
         <p>
           List your practice in this directory for free! Help new and expecting
-          parents find and hire you while contributing to the creation of a
+          parents find and hire you while contributing to the creation of
           comprehensive, accessible resource network.
         </p>
         <ButtonGroup buttonProps={providerButtonProps} />
@@ -31,28 +31,25 @@ export const Content = () => {
         <p>
           {' '}
           The Birth and Early Parenting Resource Directory came about in
-          response to community surveys and focus groups with parents and
-          providers that yielded recurring themes of challenges in accessing
-          accurate information and resources, and a fragmented perinatal health
-          and early parenting ecosystem. This directory is predicated on the
-          idea that pregnancy, birth, and early parenting comprise a critical
-          life transition that requires specific resources and supports. Our
-          goal is to create a regional hub for Greater Richmond that connects
-          parents to resources and provides a pathway for communication and
-          collaboration among perinatal and early childhood support providers.
+          response to multiple community surveys and focus groups with parents
+          and providers. These yielded recurring themes of 1) challenges in
+          accessing accurate information and resources and 2) a fragmented
+          perinatal health and early parenting ecosystem. Our goal is to create
+          a regional hub for Greater Richmond that connects parents to resources
+          and provides a pathway for communication and collaboration among
+          perinatal and early childhood support providers.
         </p>
         <p>
           {' '}
-          In 2021, Nurture conducted a statewide survey of pregnant and
-          postpartum parents, who indicated that their top needs were for mental
-          health, lactation, and doula support across nearly every demographic
-          category. We are piloting the directory with these parent-informed
-          categories, with the goal of adding more resource categories as
-          funding allows. As we go, we are also collecting demographic data on
-          providers to capture a snapshot of how our providers reflect the
-          communities they serve, and to measure change over time in provider
-          demographics. This de-identified data will be shared publicly to help
-          inform collective efforts to build a truly diverse and responsive
+          In 2021, Nurture and Postpartum Support Virginia conducted a statewide
+          survey of pregnant and postpartum parents, who indicated that their
+          top needs were for mental health, lactation, and doula support. We are
+          piloting the directory with these parent-informed categories, with the
+          goal of adding more resource categories as funding allows. As we go,
+          we are also collecting demographic data on providers to capture
+          snapshots of how our providers reflect the communities they serve.
+          This de-identified data will be shared publicly to help inform
+          collective efforts to build a truly diverse and responsive
           pregnancy/early childhood support ecosystem.
         </p>
         <p>
@@ -61,8 +58,8 @@ export const Content = () => {
           build a culture of support for Richmond’s newest families. In order to
           ensure equitable access to all, there is no fee to be listed in the
           directory. If you would like to contribute to expanding this
-          initiative, please consider a donation in any amount to Nurture to
-          support our ecosystem building work.
+          initiative, please consider a donation to support Nurture's systems
+          building work.
         </p>
       </InformationSection>
       <PictureSplitContainer backgroundColor="tan" picture={howItWorksImage}>
@@ -85,14 +82,18 @@ export const Content = () => {
         reverse
         pictureType="icon"
         picture={researchImage}>
-        <h3>Our research project</h3>
+        <h3>Our asset mapping project</h3>
         <p>
           Over the past several years, Nurture has been conducting research into
-          both the needs of parents and the currently available resources to
-          them. Our 2022 Perinatal Resource Mapping Project looked at the
+          the needs of parents and the resources currently available to them.
+          Our 2021 Perinatal Resource Mapping Project looked at the
           distribution, demographics, and accessibility of Perinatal Mental
-          Health, Lactation, and Doula support providers in Planning District 15
-          in Richmond, Virginia.
+          Health, Lactation, and Doula support providers in Planning District
+          15, which includes the City of Richmond and the counties of Henrico,
+          Chesterfield, Hanover, Goochland, Powhatan, New Kent, and Charles
+          City. Listing your practice or organization in this directory helps us
+          continue to measure and map the resources available to pregnant and
+          postpartum families in Greater Richmond.
         </p>
         <Button type="secondary">Read our full research report</Button>
       </PictureSplitContainer>

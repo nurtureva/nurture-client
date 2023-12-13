@@ -47,13 +47,19 @@ const Initializer = ({
         searchable profile in the directory. You may enter information as an
         Individual Practitioner to create a profile page for your own practice.
         Administrators of organizations like hospitals, agencies, and other
-        working groups can also create a profile for the organization. Note:
+        working groups can also create a profile for their organization. Note:
         individual practitioners who are affiliated with or employed by a group
         should click the Individual Practitioner button below.{' '}
       </p>
       <p>
-        We also collect this data for our research. For more information, please
-        see our Privacy Policy and read more about our research.{' '}
+        We also collect this data for our research to better understand the
+        local perinatal health ecosystem. For more information, please see our
+        Privacy Policy and read more about our asset mapping activities.{' '}
+      </p>
+      <p>
+        Once submitted, a Nurture staff member will review the listing to make
+        sure it is complete and reach out to you with any questions. Listings
+        usually go live on the directory within two weeks of submission.
       </p>
       <p>
         This form is for practicing providers wanting to include their

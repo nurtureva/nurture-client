@@ -1,27 +1,30 @@
 {
   "input": [
     {
-      "name": "Name",
+      "name": "Full name",
       "dbName": "name",
-      "description": "First & Last",
       "stubName": "Basic Details"
     },
     {
-      "name": "Business Name",
+      "name": "Your practice name",
       "dbName": "business_name",
       "stubName": "Basic Details"
     },
     {
-      "name": "Email",
+      "name": "Email address",
       "dbName": "email",
-      "description": "example@example.com",
+      "props": {
+        "placeholder": "example@example.com"
+      },
       "stubName": "Basic Details",
       "size": "large"
     },
     {
-      "name": "Phone",
+      "name": "Phone number",
       "dbName": "phone",
-      "description": "(xxx) xxx-xxxx",
+      "props": {
+        "placeholder": "(xxx) xxx-xxxx"
+      },
       "stubName": "Basic Details",
       "size": "small"
     },
@@ -45,7 +48,7 @@
       "size": "half"
     },
     {
-      "name": "Logo (optional)",
+      "name": "Logo",
       "Element": "PHOTO",
       "props": {
         "dbName": "logo"
@@ -55,20 +58,24 @@
       "size": "half"
     },
     {
-      "name": "Website",
+      "name": "Your website",
       "dbName": "website",
-      "description": "www.example.com",
+      "props": {
+        "placeholder": "www.example.com"
+      },
       "stubName": "Contact"
     },
     {
-      "name": "Address 1",
+      "name": "Work address",
       "dbName": "address_1",
-      "description": "1234 example street",
+      "props": {
+        "placeholder": "1234 example street"
+      },
       "stubName": "Contact",
       "size": "large"
     },
     {
-      "name": "Address 2",
+      "name": "Work address line 2",
       "dbName": "address_2",
       "description": "apartment, floor, suite",
       "stubName": "Contact",
@@ -93,28 +100,36 @@
       "size": "small"
     },
     {
-      "name": "Overview",
+      "name": "Overview of your services",
       "dbName": "overview",
+      "description": "Describe the type of care you provide (500 characters max)",
       "props": { "element": "textarea" },
       "stubName": "About"
     },
     {
-      "name": "Bio",
+      "name": "About me",
       "dbName": "bio",
+      "description": "Brief introduction about yourself (500 characters max)",
       "props": { "element": "textarea" },
       "stubName": "About"
     },
     {
-      "name": "Languages spoken",
-      "dbName": "languages_spoken",
+      "name": "Language(s) spoken",
+      "Element": "CHECKBOX",
+      "props": {
+        "formKey": "languages"
+      },
+      "description": "Select all that apply",
       "stubName": "About"
     },
     {
       "name": "Pronouns",
-      "dbName": "pronouns",
+      "Element": "CHECKBOX",
+      "props": {
+        "formKey": "pronouns"
+      },
       "description": "she/her, they/them",
-      "stubName": "About",
-      "size": "large"
+      "stubName": "About"
     },
     {
       "name": "Payment Options",
@@ -138,10 +153,33 @@
       "name": "Appointment Options",
       "Element": "CHECKBOX",
       "props": {
-        "formKey": "appointmentOptions"
+        "formKey": "appointmentTypes"
       },
       "description": "Select all that apply",
       "stubName": "Professional Details"
+    },
+    {
+      "name": "What is your race/ethnicity? Check all that apply.",
+      "Element": "CHECKBOX",
+      "props": {
+        "formKey": "ethnicity"
+      },
+      "description": "Select all that apply",
+      "stubName": "Demographics"
+    },
+    {
+      "name": "How would you describe your gender? Check all that apply.",
+      "Element": "CHECKBOX",
+      "props": {
+        "formKey": "gender"
+      },
+      "description": "Select all that apply",
+      "stubName": "Demographics"
+    },
+    {
+      "name": "Age",
+      "dbName": "age",
+      "stubName": "Demographics"
     }
   ]
 }

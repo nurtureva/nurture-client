@@ -22,6 +22,7 @@ export const TypeOfCare = ({
   picture,
   title,
   children,
+  id,
   isRegularPostioning = true
 }: TypeOfCareProps) => {
   return (
@@ -36,7 +37,7 @@ export const TypeOfCare = ({
         buttonProps={[
           {
             children: `Find ${depluralize(title)}`,
-            state: { filters: { services: [1] } },
+            state: { filters: { services: [id] } },
             to: '/results'
           },
           {

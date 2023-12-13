@@ -9,9 +9,9 @@ export const Content = () => {
   const doulaProps = {
     imageSource: doulaImage,
     title: 'Doulas',
-    bulletTitle: 'Different services that doulas provide:',
+    bulletTitle: 'Services doulas may provide include:',
     description:
-      'Doulas are professionally trained birth coaches who support and advocate for expecting parents. Many pregnant people, especially those giving birth for the first time, choose to hire a birth doula, who offers prenatal education and emotional support, and advocates for the pregnant parent.',
+      'Doulas are trained professionals who provide support, education, and advocacy for birthing parents and their families.',
     bulletArray: [
       {
         title: 'Birth Doulas',
@@ -19,8 +19,7 @@ export const Content = () => {
       },
       {
         title: 'Postpartum Doulas',
-        description:
-          'Assist after the baby is born. Often provide lactation support.'
+        description: 'Assist after the baby is born.'
       },
       {
         title: 'Antepartum Doulas:',
@@ -30,6 +29,11 @@ export const Content = () => {
         title: 'Full Spectrum Doulas:',
         description:
           'Assists with all stages of reproduction including fertility, pregnancy, loss, abortion, birth, and postpartum.'
+      },
+      {
+        title: 'Community Doulas',
+        description:
+          'Assist pregnant and postpartum parents through their grounding within the community, languages, and value systems of the populations they serve. In Virginia, Medicaid may cover the cost of a state-certified community doula. Visit https://www.dmas.virginia.gov/for-members/for-pregnant-women/ to learn more.'
       }
     ]
   };
@@ -37,29 +41,29 @@ export const Content = () => {
     imageSource: lactationImage,
     title: 'Lactation Support',
     bulletTitle:
-      'There are many types of lactation support providers, with many different  types of certification, such as:',
+      'There are many types of lactation support providers, with different types of certification, such as:',
     description:
-      'Lactation support encompasses a range of services for individuals who are breastfeeding or chestfeeding. A lactation support provider, such as a lactation consultant or lactation counselor, is a trained professional who provides information, practical techniques, and emotional support to address issues such as low milk supply, latch difficulties, nipple pain, and infant weight gain concerns.',
+      'Lactation support encompasses a range of services for individuals who are breast or chestfeeding. Lactation support providers are trained professionals who provides information, practical techniques, and emotional support to address issues such as low milk supply, latch difficulties, nipple pain, and infant weight gain concerns.',
     bulletArray: [
       {
         title: 'IBCLCs',
         description:
-          'International Board Certified Lactation Consultants go through a rigorous certification program including classes and clinical practice'
+          'International Board Certified Lactation Consultants go through a rigorous certification program including classes and clinical practice.'
       },
       {
         title: 'CLC',
         description:
-          'Certified Lactation Counselors go through a certification process similar to that of an IBCLC, but less rigorous'
+          'Certified Lactation Counselors go through a certification process similar to that of an IBCLC, but less rigorous.'
+      },
+      {
+        title: 'Peer Counselors',
+        description:
+          'Peer Counselors: Individuals who can provide assistance and guidance based on personal experience.'
       },
       {
         title: 'Doulas, Midwives, Nurses',
         description:
           'Many health care professionals have additional training in lactation'
-      },
-      {
-        title: 'Peer Counselors',
-        description:
-          'Individuals who can provide assistance and guidance based on personal experience'
       }
     ]
   };
@@ -70,7 +74,8 @@ export const Content = () => {
     description:
       'The terms perinatal and maternal are often used interchangeably. Perinatal mental health refers to mental health during pregnancy and the first postnatal years. This includes mental illness that existed before pregnancy, as well as illnesses that develop for the first time or are exacerbated in the perinatal period.',
     bulletArray: [
-      'Antenatal and/or postnatal anxiety',
+      'Prenatal and/or postnatal depression',
+      'Prenatal and/or postnatal anxiety',
       'Obsessive compulsive disorder',
       'Postpartum psychosis',
       'Post-traumatic stress disorder (PTSD)'
@@ -131,13 +136,12 @@ export const Content = () => {
         <h2>Why these categories?</h2>
         <p>
           Currently, this directory focuses on three essential categories of
-          care: doula services, lactation support, and perinatal mental health
-          care. This selection is based on our research on parents’ and
-          expecting parents’ core needs during pregnancy, birth, and early
-          childhood. As this project grows, we hope to expand to add even more
-          types of care. Our goal is for every aspect of your journey into
-          parenthood to be met with the guidance and expertise you deserve. Read
-          on to learn about our current offerings.
+          care: doula, lactation, and perinatal mental health supports. This
+          selection is based on our surveys of parents’ core needs during
+          pregnancy, birth, and early childhood. As this project grows, we hope
+          to expand to add more categories of care. Our goal is for every aspect
+          of your journey into parenthood to be met with the guidance and
+          expertise you deserve. Read on to learn about our current offerings.
         </p>
         <Button>Read the full research report</Button>
       </section>

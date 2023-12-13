@@ -11,6 +11,7 @@ import {
   TypeOfCare
 } from '@/components/PictureSplitContainer';
 import { InformationSection } from '@/components/InformationSection';
+import { Link } from 'react-router-dom';
 const isMobile = () => window.innerWidth < 700;
 
 export const Content = () => {
@@ -31,22 +32,18 @@ export const Content = () => {
       </PictureSplitContainer>
 
       <InformationSection className="search-container">
-        <p className="header-label">
-          The Birth and Early Parenting Resource Directory
-        </p>
         <h2>Pregnancy, birth, and early childhood - the right care for you.</h2>
         <p>
           Welcome to the Birth and Early Parenting Resource Directory! We
           understand that the journey to parenthood is a transformative one,
           filled with both joys and challenges. Our directory is designed to
-          connect parents and expecting parents with a network of trusted
-          professionals, including doulas for expert birth guidance, lactation
-          consultants for nurturing breastfeeding/chestfeeding experiences, and
-          perinatal mental health care professionals for emotional well-being.
-          Whether you're embarking on the adventure of parenthood for the first
-          time or expanding your family, our aim is to provide you with the
-          resources and connections you need to navigate this remarkable chapter
-          with confidence and care.
+          connect expecting and new parents with resources in our community,
+          including doulas for expert birth guidance, lactation consultants for
+          nurturing breastfeeding/chestfeeding experiences, and perinatal mental
+          health care professionals for emotional well-being. Whether you're
+          embarking on the adventure of parenthood for the first time or
+          expanding your family, our aim is to ease the process of navigating
+          this remarkable life chapter.
         </p>
         {isMobile() ? '' : <Search type="fancy" />}
       </InformationSection>
@@ -57,20 +54,28 @@ export const Content = () => {
         <p>
           Currently, this directory focuses on three essential categories of
           care: doula services, lactation support, and perinatal mental health
-          care. This selection is based on our research on parents’ and
-          expecting parents’ core needs during pregnancy, birth, and early
-          childhood. As this project grows, we hope to expand to add even more
-          types of care. Our goal is for every aspect of your journey into
-          parenthood to be met with the guidance and expertise you deserve. Read
-          on to learn about our current offerings.
+          care. This selection is based on our surveys of expecting and new
+          parents' core needs during pregnancy, birth, and early childhood. As
+          this project grows, we hope to add more types of care and resources
+          for pregnancy, birth, and early parenting.
+        </p>
+        <p>
+          <strong>Disclaimer:</strong> Individuals and organizations listed in
+          this directory are for informational purposes only. Nurture does not
+          endorse or guarantee the quality of services of any of these
+          individuals or organizations. While we do our best to keep information
+          updated, there may have been changes since this information was
+          posted. Always contact the providers to verify all information before
+          making appointments or using services to ensure that you receive
+          services and support appropriate for your needs.
         </p>
       </section>
       <TypeOfCare picture={doulaImage} title="Doulas" id={1}>
-        Trained professionals offering support to expectant parents throughout
-        pregnancy, childbirth, and after childbirth. They provide non-medical
-        support such as education, advocacy, and emotional and physical comfort
-        measures to help the birthing person and their partner have a positive
-        birth experience.
+        Trained professionals offering support during pregnancy, childbirth, and
+        after childbirth. Doulas provide non-medical support such as education,
+        advocacy, and emotional and physical comfort measures to help the
+        birthing person and their partner have a positive birth and postpartum
+        experience.
       </TypeOfCare>
       <TypeOfCare
         picture={lactationImage}
@@ -79,41 +84,39 @@ export const Content = () => {
         id={2}>
         Guidance, education, and assistance to help breastfeeding/chestfeeding
         parents overcome challenges and ensure the health and well-being of both
-        the parent and baby. This support can include advice, emotional support,
+        parent and baby. This support can include advice, emotional support,
         one-on-one assistance, and more.
       </TypeOfCare>
       <TypeOfCare picture={mentalHealthImage} title="Mental Health Care" id={3}>
-        Support for emotional well-being during the perinatal period (pregnancy
-        and the first year after childbirth). These care providers address
-        mental health concerns that may arise during this time such as
-        depression and anxiety, and can support the transition to parenthood and
-        the development of healthy parent-child relationships.
+        Support for emotional well-being during the perinatal period (generally
+        considered pregnancy, birth, and the one to two years after childbirth).
       </TypeOfCare>
 
       <InformationSection>
-        <p className="header-label">
-          The Birth and Early Parenting Resource Directory
-        </p>
         <h2>Serving Richmond, VA</h2>
         <p>
-          This directory currently lists care providers in the Richmond, VA,
-          area. We're starting with this focus to ensure high-quality local
-          care. As the project grows and develops, we hope to expand
-          geographically, with a strong foundation built on communities of
-          parents and care providers.
+          This directory currently lists care providers in Greater Richmond,
+          Virginia, including the City of Richmond, and the counties of Hanover,
+          Henrico, Chesterfield, Goochland, Powhatan, New Kent, and Charles
+          City. As the project grows, we hope to expand geographically, with a
+          strong foundation built on local communities of parents and care
+          providers.
         </p>
       </InformationSection>
       <PictureSplitContainer picture={careProviderImage} backgroundColor="tan">
         <h2>Are you a care provider?</h2>
         <p>
           List your practice in this directory for free! Help new and expecting
-          parents find and hire you while contributing to the creation of a
+          parents find your services while contributing to the creation of a
           comprehensive, accessible resource network.
         </p>
         <Button type="primary" to="/provider-form">
           List your practice
         </Button>
-        <p>Or head to our Care Provider Home for more resources.</p>
+        <p>
+          Or head to our <Link to="/provider-home">Care Provider Home</Link> for
+          more resources.
+        </p>
       </PictureSplitContainer>
       <section className="bg-yellow">
         <h2>Find the help you need.</h2>

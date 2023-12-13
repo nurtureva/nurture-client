@@ -46,7 +46,10 @@ export const Header = ({ navRoutes }: EndpointPropWrapper) => {
               );
             })}
             <li>
-              <Button type="secondary" size="small">
+              <Button
+                type="secondary"
+                size="small"
+                to="https://nurturerva.networkforgood.com/projects/150819-nurture-general-fund">
                 Donate
               </Button>
             </li>

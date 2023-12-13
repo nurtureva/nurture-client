@@ -13,7 +13,6 @@ export const FormInput = (props: {
     formFunctions: { register }
   } = useFormContext();
   const { ref, ...registerProps } = register(`general.${dbName}`);
-
   if (element) return <textarea {...{ ref, ...registerProps }} />;
   return <Input {...{ ...registerProps, ...inputProps }} innerRef={ref} />;
 };
