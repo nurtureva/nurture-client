@@ -24,7 +24,8 @@ export const Content = () => {
           parents find and hire you while contributing to the creation of
           comprehensive, accessible resource network.
         </p>
-        <ButtonGroup buttonProps={providerButtonProps} />
+        <Button to="/provider-form">List your practice</Button>
+        {/* <ButtonGroup buttonProps={providerButtonProps} /> */}
       </PictureSplitContainer>
       <InformationSection>
         <h2>About the Birth and Early Parenting Resource Directory</h2>
@@ -95,13 +96,17 @@ export const Content = () => {
           continue to measure and map the resources available to pregnant and
           postpartum families in Greater Richmond.
         </p>
-        <Button type="secondary">Read our full research report</Button>
+        <Button
+          to="https://www.canva.com/design/DAE512OqBZ4/XR-kvBgRHHrQZSs0vrRcOg/view?utm_content=DAE512OqBZ4&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"
+          type="secondary">
+          Read our full research report
+        </Button>
       </PictureSplitContainer>
       <PictureSplitContainer backgroundColor="tan" picture={getListed}>
         <h3>Get listed!</h3>
         <p>
-          Help new and expecting parents find your practice by adding a listing
-          to the Birth and Early Parenting Resource Directory! Or update your
+          Help new and expecting parents find your tice by adding a listing to
+          the Birth and Early Parenting Resource Directory! Or update your
           existing listing to keep your information current.
         </p>
         <ButtonGroup buttonProps={providerButtonProps} />
@@ -115,8 +120,8 @@ export const Content = () => {
           to list their practice in the directory.
         </p>
         <span>
-          <Input label="Pracitioner's name" />
-          <Input label="Pracitioner's email address" />
+          <Input label="Practitioner's name" />
+          <Input label="Practitioner's email address" />
           <Button>Send invite</Button>
         </span>
       </section>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ScriptHTMLAttributes, useState } from 'react';
 import { Input, Button } from '@/components';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,13 +14,19 @@ export const Search = ({
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState(initialTerms?.keyword || '');
   const [distance, setDistance] = useState(initialTerms?.distance || '');
-  console.log(distance);
   const searchFunction = (keyword: string, distance: string) => {
     if (location.pathname !== '/results') {
       navigate('/results', { state: { search: { keyword, distance } } });
     }
     if (updateSearch) {
       updateSearch(keyword, distance);
+    }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      searchFunction(keyword, distance);
     }
   };
 
@@ -41,6 +47,7 @@ export const Search = ({
         // }}  ******* this needs to be moved to an 'x' clear button
         placeholder="keyword"
         value={keyword}
+        onKeyDown={handleKeyPress}
         onChange={(e) => {
           setKeyword(e.target.value);
         }}

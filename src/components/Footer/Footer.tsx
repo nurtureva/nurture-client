@@ -23,7 +23,9 @@ export const Footer = ({ navRoutes }: EndpointPropWrapper) => {
           <a>FAQ</a>
         </li>
         <li>
-          <a>Contact</a>
+          <a href="mailto:info@nurturerva.org?subject=Directory question">
+            Contact
+          </a>
         </li>
       </ul>
     </footer>

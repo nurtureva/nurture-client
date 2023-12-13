@@ -17,12 +17,24 @@ export const Button = (props: ButtonProps) => {
     size ? ' ' + size : ''
   }${instanceClassName ? ' ' + instanceClassName : ''}`;
 
-  if (props.to)
+  if (props.to) {
+    if (props.to.includes('http')) {
+      return (
+        <a
+          href={props.to}
+          target="_blank"
+          rel="noopener noreferrer"
+          {...{ className }}>
+          {children}
+        </a>
+      );
+    }
     return (
       <Link to={props.to} state={state || {}} {...{ className }}>
         {children}
       </Link>
     );
+  }
   return (
     <button
       type={isSubmit ? 'submit' : 'button'}

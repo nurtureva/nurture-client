@@ -143,7 +143,9 @@ export const Content = () => {
           of your journey into parenthood to be met with the guidance and
           expertise you deserve. Read on to learn about our current offerings.
         </p>
-        <Button>Read the full research report</Button>
+        <Button to="https://www.canva.com/design/DAE512OqBZ4/XR-kvBgRHHrQZSs0vrRcOg/view?utm_content=DAE512OqBZ4&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">
+          Read the full research report
+        </Button>
       </section>
       <section className="bg-yellow">
         <h2>Search the directory</h2>

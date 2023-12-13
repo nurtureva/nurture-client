@@ -9,16 +9,16 @@ header {
   a {
     text-decoration: none;
     text-underline-offset: 5px;
-    color: var(--brand-gray);
+    color: var(--darker-gray);
     &:hover {
       color: var(--black);
     }
   }
   .active {
-    color: var(--brand-pink);
+    color: var(--primary-pink);
     text-decoration: underline;
     &:hover {
-      color: var(--brand-pink);
+      color: var(--primary-pink);
       text-decoration: underline;
     }
   }
