@@ -10,7 +10,7 @@ export const IntakeForm = () => {
   const [formType, setFormType] = useState<FormType>();
   return (
     <div className="form">
-      <h2>Add your information to the Directory</h2>
+      <h1>Add your information to the Directory</h1>
       {formType ? (
         <FormManager formType={formType} />
       ) : (
@@ -40,7 +40,7 @@ const Initializer = ({
     }
   ];
   return (
-    <>
+    <section className="form-selector">
       <p>
         Enter your information to be added to the Birth and Early Parenting
         Resource Directory. The information you enter will be used to create a
@@ -67,8 +67,15 @@ const Initializer = ({
         providers, click here.
       </p>
       <div className="bg-tan">
+        <h2>Start your registration</h2>
+        <p>
+          Are you an individual practitioner or an organization such as a
+          hospital, agency, or group practice? (Note: if you are an individual
+          practitioner who is affiliated with or employed by a group, please
+          select the Individual Practitioner button below.)
+        </p>
         <ButtonGroup buttonProps={{ ...buttonProps }} />
       </div>
-    </>
+    </section>
   );
 };

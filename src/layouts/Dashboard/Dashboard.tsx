@@ -70,28 +70,33 @@ export const Content = () => {
           services and support appropriate for your needs.
         </p>
       </section>
-      <TypeOfCare picture={doulaImage} title="Doulas" id={1}>
-        Trained professionals offering support during pregnancy, childbirth, and
-        after childbirth. Doulas provide non-medical support such as education,
-        advocacy, and emotional and physical comfort measures to help the
-        birthing person and their partner have a positive birth and postpartum
-        experience.
-      </TypeOfCare>
-      <TypeOfCare
-        picture={lactationImage}
-        title="Lactation Support"
-        isRegularPostioning={false}
-        id={2}>
-        Guidance, education, and assistance to help breastfeeding/chestfeeding
-        parents overcome challenges and ensure the health and well-being of both
-        parent and baby. This support can include advice, emotional support,
-        one-on-one assistance, and more.
-      </TypeOfCare>
-      <TypeOfCare picture={mentalHealthImage} title="Mental Health Care" id={3}>
-        Support for emotional well-being during the perinatal period (generally
-        considered pregnancy, birth, and the one to two years after childbirth).
-      </TypeOfCare>
-
+      <section className="bg-tan type-of-care">
+        <TypeOfCare picture={doulaImage} title="Doulas" id={1}>
+          Trained professionals offering support during pregnancy, childbirth,
+          and after childbirth. Doulas provide non-medical support such as
+          education, advocacy, and emotional and physical comfort measures to
+          help the birthing person and their partner have a positive birth and
+          postpartum experience.
+        </TypeOfCare>
+        <TypeOfCare
+          picture={lactationImage}
+          title="Lactation Support"
+          isRegularPostioning={false}
+          id={2}>
+          Guidance, education, and assistance to help breastfeeding/chestfeeding
+          parents overcome challenges and ensure the health and well-being of
+          both parent and baby. This support can include advice, emotional
+          support, one-on-one assistance, and more.
+        </TypeOfCare>
+        <TypeOfCare
+          picture={mentalHealthImage}
+          title="Mental Health Care"
+          id={3}>
+          Support for emotional well-being during the perinatal period
+          (generally considered pregnancy, birth, and the one to two years after
+          childbirth).
+        </TypeOfCare>
+      </section>
       <InformationSection>
         <h2>Serving Richmond, VA</h2>
         <p>

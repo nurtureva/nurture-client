@@ -48,7 +48,6 @@ const useFormInputList: (
   const formFields = (
     formType === 'individual' ? individualList : organizationList
   )['input'];
-  console.log(formFields);
 
   formFields.forEach((input) => {
     if (input.Element === 'CHECKBOX') {

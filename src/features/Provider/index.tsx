@@ -1,10 +1,13 @@
+import BookmarksPage from './layouts/BookmarksPage';
 import ProviderPage from './layouts/ProviderPage';
 import ProviderTablePage from './layouts/ProviderTablePage';
 
-const providerTableContent = {
+export const providerTableContent = {
   Content: ProviderTablePage,
   className: 'directory'
 };
-const providerPageContent = { Content: ProviderPage };
-
-export { providerTableContent, providerPageContent };
+export const bookmarkTableContent = {
+  Content: BookmarksPage,
+  className: 'bookmarks'
+};
+export const providerPageContent = { Content: ProviderPage };

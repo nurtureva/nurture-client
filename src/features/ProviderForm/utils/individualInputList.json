@@ -162,7 +162,8 @@
       "name": "What is your race/ethnicity? Check all that apply.",
       "Element": "CHECKBOX",
       "props": {
-        "formKey": "ethnicity"
+        "formKey": "ethnicity",
+        "parentObjectName": "demographics"
       },
       "description": "Select all that apply",
       "stubName": "Demographics"
@@ -171,7 +172,8 @@
       "name": "How would you describe your gender? Check all that apply.",
       "Element": "CHECKBOX",
       "props": {
-        "formKey": "gender"
+        "formKey": "gender",
+        "parentObjectName": "demographics"
       },
       "description": "Select all that apply",
       "stubName": "Demographics"
@@ -179,6 +181,7 @@
     {
       "name": "Age",
       "dbName": "age",
+      "parentObjectName": "demographics",
       "stubName": "Demographics"
     }
   ]

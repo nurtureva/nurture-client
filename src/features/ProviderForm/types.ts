@@ -17,6 +17,7 @@ interface BaseInputObject {
 }
 
 export interface GenericInputObject extends BaseInputObject {
+  parentObjectName?: 'string';
   dbName: keyof FormProvider['general'];
   props?: GenericInputProps;
 }
@@ -40,6 +41,7 @@ export type InputObject = GenericInputObject | CustomInputObject;
 
 export interface CustomInputParamsObject {
   formKey: keyof FormProvider;
+  parentObjectName: string;
   optionsArray?: Option[];
   isTogglable?: boolean;
 }

@@ -1,11 +1,8 @@
-import { useForm } from 'react-hook-form';
 import { useFormContext } from '../../utils/formContext';
 import { Confirmation } from '../Confirmation';
 import { FormStub } from '../FormStub';
-import { FormProvider } from '@/types';
 import { ButtonGroup } from './ButtonGroup';
-import { submitProvider, useFormAction } from '../../utils/api';
-import { useState } from 'react';
+import { useFormAction } from '../../utils/api';
 
 export const FormPageSwitcher = ({ setSubmissionResponse }) => {
   const {

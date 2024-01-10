@@ -16,9 +16,9 @@ export const Content = () => {
       <PictureSplitContainer
         backgroundColor="yellow"
         picture={careProviderHeroImage}>
-        <h2>
+        <h1>
           Care Providers: Join the Birth and Early Parenting Resource Directory!
-        </h2>
+        </h1>
         <p>
           List your practice in this directory for free! Help new and expecting
           parents find and hire you while contributing to the creation of

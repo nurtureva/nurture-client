@@ -26,10 +26,10 @@ export const useContextInitializer: ContextInitializer = (formType) => {
     provider: ProviderObject;
   };
   const defaultProvider = useDefaultValues();
+  //this should be updated for demographics
   const { register, handleSubmit, getValues } = useForm<FormProvider>({
     defaultValues: defaultProvider
   });
-
   const [state, setState] = useState<StateObject>({
     initialProvider: provider,
     newProvider: undefined,

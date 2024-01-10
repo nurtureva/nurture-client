@@ -1,8 +1,17 @@
 .form {
   padding: 40px;
-  h2 {
+  .form-selector {
+    & > p,
+    div {
+      // max-width: 762px;
+      margin: 20px auto;
+    }
+    div {
+      padding: 40px 64px;
+    }
+  }
+  h1 {
     margin-bottom: 40px;
-    text-align: center;
   }
   .bg-tan {
     padding: 20px 40px;

@@ -1,10 +1,9 @@
 import { accessDatabase } from '@/api';
-import { FormOrganization, FormProvider } from '@/types';
+import { FormOrganization, FormProvider, OptionsObject } from '@/types';
 import { Pictures, useFormContext } from './formContext';
 
 const uploadPhotos = async (id: number, pictures: Pictures) => {
   const formData = new FormData();
-  if (!Object.keys(pictures).length) return;
   Object.keys(pictures).forEach((pictureType) => {
     const file = pictures[pictureType as keyof Pictures];
     if (!file) return;
@@ -42,6 +41,18 @@ const editOrganization = async (organization: FormOrganization) => {
   return id;
 };
 
+export const uploadDemographics = async (
+  demographics: OptionsObject,
+  id: number
+) => {
+  const { ethnicity, gender, ...general } = demographics;
+  general.provider_id = id;
+  const foo = await accessDatabase('POST', 'demographic-profiles', {
+    body: { general, ethnicity, gender }
+  });
+  console.log('demographic response:', foo, '\n id:', id);
+};
+
 export const submitProvider = async (provider: FormProvider) => {
   const { id } = await accessDatabase('POST', 'providers', {
     body: provider
@@ -70,9 +81,17 @@ export const useFormAction = (providerType: 'individual' | 'organization') => {
     ? submitProvider
     : editProvider;
 
-  return async (provider: FormProvider) => {
+  return async (
+    providerWithDemographics: FormProvider & { demographics: OptionsObject }
+  ) => {
+    const { demographics, ...provider } = providerWithDemographics;
     const newId = await formFuncton(provider);
-    uploadPhotos(newId, pictures);
+
+    if (demographics) uploadDemographics(demographics, newId);
+    if (Object.keys(pictures).length) {
+      console.log(pictures);
+      uploadPhotos(newId, pictures);
+    }
 
     return newId;
   };

@@ -17,7 +17,11 @@ import errorContent from '@/layouts/error';
 import Dashboard from '@/layouts/Dashboard';
 import CareProvider from '@/layouts/CareProviderHub';
 //features
-import { providerPageContent, providerTableContent } from '@/features/Provider';
+import {
+  bookmarkTableContent,
+  providerPageContent,
+  providerTableContent
+} from '@/features/Provider';
 import { adminContent } from '@/features/Admin';
 import { FormManager, IntakeForm } from '@/features/ProviderForm';
 import { LearnMore } from './layouts/LearnMore';
@@ -39,7 +43,7 @@ const navRoutes: Endpoint[] = [
     name: 'Bookmarks',
     path: 'bookmarks',
     loader: useMainPageLoader,
-    element: <PageLayout {...providerTableContent} />,
+    element: <PageLayout {...bookmarkTableContent} />,
     errorElement: <PageLayout {...errorContent} />
   },
   {
@@ -98,5 +102,9 @@ export default function App() {
       ]
     }
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }

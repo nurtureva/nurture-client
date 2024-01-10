@@ -23,12 +23,12 @@ export const Filters = ({
   );
   const [paymentFilters, setPaymentFilters] = useState<number[]>([]);
   const [bookmarkFilter, setBookmarkFilter] = useState(
-    location.pathname === '/bookmarks' ? true : false
+    location.pathname.includes('/bookmarks') ? true : false
   );
   const clearFilters = () => {
     setPaymentFilters([]);
     setServiceFilters([]);
-    setBookmarkFilter(false);
+    // setBookmarkFilter(false);
   };
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export const Filters = ({
         setFilterGroup={setPaymentFilters}
         filterGroup={paymentFilters}
       />
-      {/* <div>
+      <div>
         <label>My bookmarks</label>
         <ul>
           <li>
@@ -97,7 +97,7 @@ export const Filters = ({
             </label>
           </li>
         </ul>
-      </div> */}
+      </div>
     </div>
   );
 };

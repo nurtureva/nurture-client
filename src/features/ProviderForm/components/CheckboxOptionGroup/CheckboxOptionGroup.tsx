@@ -3,6 +3,7 @@ import { useFormContext } from '../../utils/formContext';
 
 export const CheckboxOptionGroup = ({
   formKey,
+  parentObjectName,
   optionsArray
 }: CustomInputParamsObject) => {
   const {
@@ -18,7 +19,12 @@ export const CheckboxOptionGroup = ({
                 <input
                   type="checkbox"
                   value={option.id}
-                  {...register(`${formKey}`)}
+                  {...register(
+                    // @ts-ignore
+                    `${
+                      parentObjectName ? `${parentObjectName}.` : ''
+                    }${formKey}`
+                  )}
                 />
                 {option.name}
               </label>

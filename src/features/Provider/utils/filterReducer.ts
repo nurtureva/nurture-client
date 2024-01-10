@@ -32,7 +32,7 @@ export const useFilterReducer = (providers: ProviderObject[]) => {
     filters: {
       services: [],
       paymentOptions: [],
-      bookmarkFilter: false
+      bookmarkFilter: location.pathname.includes('/bookmarks') ? true : false
     }
   };
 

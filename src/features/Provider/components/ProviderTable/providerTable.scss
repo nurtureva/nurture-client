@@ -28,13 +28,11 @@
   }
   p {
     font-size: 0.85em;
-    // white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     line-height: 1.5em;
-    margin: 0;
+    margin: 0 !important;
     max-width: 500px;
-    // min-width: 300px;
   }
 }
 .provider-container.full {
@@ -70,7 +68,7 @@
       display: flex;
       margin-right: 50px;
       p {
-        margin: 10px 0;
+        margin: 10px 0 !important;
       }
     }
     .bookmark-label {
@@ -85,6 +83,8 @@
   }
 }
 .provider-table-container {
+  margin: auto;
+  padding: 0;
   width: 100%;
   & > span {
     padding-bottom: 15px;

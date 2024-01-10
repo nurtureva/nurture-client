@@ -11,25 +11,14 @@ import { Button } from '@/components';
 export const FormManager = ({ formType }: { formType: FormType }) => {
   const [FormContext, value] = useContextInitializer(formType);
   const [submissionResponse, setSubmissionResponse] = useState('');
-  console.log(submissionResponse);
+  // console.log(submissionResponse);
 
   return (
     <FormContext.Provider value={value}>
       <div className="content-wrapper">
         <div className="content-main form-container">
           {submissionResponse ? (
-            <div>
-              {submissionResponse === 'error' ? (
-                'something went wrong. Probably the name you entered has already been taken'
-              ) : (
-                <Button
-                  to={`/${
-                    formType === 'individual' ? 'provider' : formType
-                  }/${submissionResponse}`}>
-                  Check out your new profile!
-                </Button>
-              )}
-            </div>
+            <SubmissionPage {...{ submissionResponse, formType }} />
           ) : (
             <section>
               <>
@@ -41,5 +30,28 @@ export const FormManager = ({ formType }: { formType: FormType }) => {
         </div>
       </div>
     </FormContext.Provider>
+  );
+};
+
+const SubmissionPage = ({
+  submissionResponse,
+  formType
+}: {
+  submissionResponse: any;
+  formType: string;
+}) => {
+  return (
+    <div>
+      {submissionResponse === 'error' ? (
+        'something went wrong. Probably the name you entered has already been taken'
+      ) : (
+        <Button
+          to={`/${
+            formType === 'individual' ? 'provider' : formType
+          }/${submissionResponse}`}>
+          Check out your new profile!
+        </Button>
+      )}
+    </div>
   );
 };

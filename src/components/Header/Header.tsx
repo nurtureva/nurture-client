@@ -41,39 +41,41 @@ export const Header = ({ navRoutes }: EndpointPropWrapper) => {
     <>
       <header {...{ className }}>
         <span className="logo-container">
-          <img src={logo} />
+          <Link to="/">
+            <img src={logo} />
+          </Link>
         </span>
         {mobileNav ? (
-          <nav>
-            <ul>
-              {navRoutes.map((path) => {
-                return (
-                  <li key={path.path}>
-                    <Link
-                      to={path.path}
-                      onClick={() => {
-                        if (window.innerWidth < 700) setMobileNav(!mobileNav);
-                      }}
-                      className={
-                        location.pathname.split('/')[1] == path.path
-                          ? 'active'
-                          : ''
-                      }>
-                      {path.name}
-                    </Link>
-                  </li>
-                );
-              })}
-              <li>
-                <Button
-                  type="secondary"
-                  size="small"
-                  to="https://nurturerva.networkforgood.com/projects/150819-nurture-general-fund">
-                  Donate
-                </Button>
-              </li>
-            </ul>
-          </nav>
+          <>
+            <nav>
+              <ul>
+                {navRoutes.map((path) => {
+                  return (
+                    <li key={path.path}>
+                      <Link
+                        to={path.path}
+                        onClick={() => {
+                          if (window.innerWidth < 700) setMobileNav(!mobileNav);
+                        }}
+                        className={
+                          location.pathname.split('/')[1] == path.path
+                            ? 'active'
+                            : ''
+                        }>
+                        {path.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+            <Button
+              type="secondary"
+              size="small"
+              to="https://nurturerva.networkforgood.com/projects/150819-nurture-general-fund">
+              Donate
+            </Button>
+          </>
         ) : (
           ''
         )}

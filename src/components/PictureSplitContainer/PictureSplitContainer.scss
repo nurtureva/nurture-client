@@ -3,22 +3,29 @@ body div .picture-split-container {
   grid-template-columns: 50% 50%;
   align-items: stretch; /* This ensures both spans have the same height. */
   grid-template-areas: 'left right';
+  h1 {
+    text-align: left;
+  }
   .children-container {
+    margin: auto;
+    max-width: 424px !important;
     display: flex;
     flex-direction: column;
-    padding: 40px;
     justify-content: center;
+    & > .button {
+      width: 100%;
+    }
     &.reverse {
       grid-area: right;
     }
   }
   &.full {
     .children-container {
+      max-width: none !important;
       padding: 64px 64px 120px 64px;
     }
   }
   p {
-    margin: 32px 0;
     font-size: 0.95em;
   }
 }
@@ -35,6 +42,8 @@ body div .picture-split-container {
 /************************ PICTURE CONTAINER *************************/
 
 .picture-container {
+  max-width: none !important;
+  min-height: 440px;
   background-image: url('/src/assets/images/dashboard-hero.png'); /* Replace with your image URL */
   background-size: cover; /* Resize the background image to cover the container */
   background-repeat: no-repeat; /* Prevent image repetition */

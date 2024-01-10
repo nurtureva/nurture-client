@@ -1,4 +1,4 @@
-import React, { EventHandler, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FormInput } from '../FormInput';
 import { useFormContext } from '../../utils/formContext';
 import { InputObject } from '../../types';
@@ -26,6 +26,9 @@ export const FormItem = ({ input }: { input: InputObject }) => {
     else setIsValid(true);
   };
 
+  const formItemName: string =
+    //@ts-ignore
+    input.dbName || input.props?.dbName || input.props?.formKey;
   return (
     <span className={`form-input-container ${input.size}`}>
       <label>
@@ -33,10 +36,18 @@ export const FormItem = ({ input }: { input: InputObject }) => {
         {'Element' in input ? (
           <input.Element {...input.props} />
         ) : (
-          <FormInput dbName={input.dbName} {...input.props} onBlur={onBlur} />
+          <FormInput
+            dbName={input.dbName}
+            id={formItemName}
+            parentObjectName={input.parentObjectName}
+            {...input.props}
+            onBlur={onBlur}
+          />
         )}
       </label>
-      {input.description && <p>{input.description}</p>}
+      {input.description && (
+        <label htmlFor={formItemName}>{input.description}</label>
+      )}
       {!isValid && <span>error!</span>}
     </span>
   );

@@ -1,12 +1,4 @@
 .learn-more {
-  h1 {
-    color: var(--primary-pink);
-    font-weight: 400;
-  }
-  h2,
-  h1 {
-    text-align: center;
-  }
   ul[title]::before {
     content: attr(title);
     display: block;

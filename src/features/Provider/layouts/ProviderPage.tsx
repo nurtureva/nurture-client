@@ -18,7 +18,6 @@ export default function ProviderPage() {
   const photoSrc = provider.profile_photo
     ? import.meta.env.VITE_S3_URL + provider.profile_photo
     : photoList[Math.floor(Math.random() * photoList.length)];
-  console.log(provider);
   return (
     <div className="provider-container full">
       <div className="provider-actions">

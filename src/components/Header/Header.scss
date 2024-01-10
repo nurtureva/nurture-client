@@ -7,7 +7,7 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 12px 64px;
   position: fixed;
   width: 100%;
@@ -38,6 +38,7 @@ header {
   }
   .logo-container {
     height: 80px;
+    margin-right: auto;
     transition: height 300ms;
     img {
       height: 100%;
@@ -57,10 +58,10 @@ header {
         line-height: 20px;
         font-size: 0.87em;
       }
-      button {
-        margin: 0 !important;
-      }
     }
+  }
+  & > a {
+    margin-left: 20px;
   }
   i {
     font-size: 1.8em;
@@ -81,6 +82,9 @@ header {
       left: 0;
       top: 70px;
       width: 100%;
+      button {
+        display: none;
+      }
     }
     i {
       display: block;

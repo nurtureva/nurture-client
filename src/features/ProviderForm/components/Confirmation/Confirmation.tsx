@@ -1,60 +1,62 @@
 import { useLoaderData } from 'react-router-dom';
 import { useFormContext } from '../../utils/formContext';
 import { ProviderOptions } from '@/types';
-import { OptionList } from '../OptionList';
 
 export const Confirmation = () => {
-  const { services, paymentOptions, certifications } =
-    useLoaderData() as ProviderOptions;
+  const providerOptions = useLoaderData() as ProviderOptions;
+
   const {
     formData: { pictures },
-    formFunctions: { getValues }
+    formFunctions: { getValues },
+    formState: {
+      formType: { formFields, pageStateTitles }
+    }
   } = useFormContext();
+  pageStateTitles.pop();
+  pageStateTitles.pop();
   const provider = getValues();
 
   if (!provider) return null;
+  const { demographics, general, ...otherStuff } = provider;
+  //flatten general
+  const providerList = { ...general, ...otherStuff };
+  console.log(Object.entries(providerList));
+  const tesdt = pageStateTitles
+    .map((title) => {
+      const currentSection = formFields.filter(
+        (field) => field.stubName === title
+      );
+      return currentSection.map((field) => {
+        const dbName: string =
+          field.dbName || field.props.dbName || field.props.formKey;
+
+        if (providerList[dbName]) {
+          const userResponse =
+            typeof providerList[dbName] !== 'string'
+              ? providerOptions[dbName]
+                  .filter((optionObject) =>
+                    providerList[dbName].includes(optionObject.id.toString())
+                  )
+                  .map((optionObject) => optionObject.name)
+                  .join()
+              : providerList[dbName];
+          return [field.name, userResponse];
+        }
+      });
+    })
+    .flat()
+    .filter((item) => item !== undefined);
 
   return (
-    <>
-      <ul>
-        {Object.entries(provider.general).map((inputValue) => {
-          const [label, userResponse] = inputValue;
-
-          if (userResponse) {
-            const value = userResponse;
-            return (
-              <li key={label}>
-                {label}: {value.toString()}
-              </li>
-            );
-          }
-        })}
-        <OptionList
-          idList={provider.services}
-          fullList={services}
-          title="services"
-        />
-        <OptionList
-          idList={provider.paymentOptions}
-          fullList={paymentOptions}
-          title="payment options"
-        />
-        <OptionList
-          idList={provider.certifications}
-          fullList={certifications}
-          title="certifications"
-        />
-        {Object.entries(pictures).map((pictureEntry) => {
-          const [label, picture] = pictureEntry;
-          if (picture)
-            return (
-              <li key={label}>
-                {label}: <img src={URL.createObjectURL(picture)} />
-              </li>
-            );
-          return '';
-        })}
-      </ul>
-    </>
+    <ul>
+      {Object.entries(providerList).map((entry) => {
+        if (!!entry[0])
+          return (
+            <li>
+              {entry[0]}: {entry[1]}
+            </li>
+          );
+      })}
+    </ul>
   );
 };

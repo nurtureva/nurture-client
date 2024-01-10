@@ -1,4 +1,4 @@
-import { Outlet, useNavigation } from 'react-router-dom';
+import { Outlet, ScrollRestoration, useNavigation } from 'react-router-dom';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Footer, Header } from '@/components';
@@ -10,6 +10,7 @@ const LayoutWrapper: React.FC<EndpointPropWrapper> = ({ navRoutes }) => {
 
   return (
     <>
+      <ScrollRestoration />
       <Header navRoutes={navRoutes} />
       {navigation.state === 'loading' ? (
         <Spin indicator={antIcon} />
