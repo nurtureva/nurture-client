@@ -1,5 +1,5 @@
 import { ProviderObject } from '@/types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const toggleFilterMenu = () => {
@@ -60,4 +60,26 @@ export const ScrollToTop = () => {
   }, [pathname]);
 
   return null;
+};
+
+export const isMobile = () => window.innerWidth < 700;
+
+export const useMobileViewportChecker = () => {
+  const [isMobileViewport, setIsMobileViewport] = useState(
+    window.innerWidth <= 700
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileViewport(window.innerWidth <= 700);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      // Clean up the event listener when the component unmounts
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return isMobileViewport;
 };

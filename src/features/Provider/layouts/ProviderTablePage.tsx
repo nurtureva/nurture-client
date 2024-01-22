@@ -28,21 +28,22 @@ export default function ProviderTablePage() {
         <h1>Find Care</h1>
         <p>
           The Birth and Early Parenting Resource Directory will help connect you
-          with doulas, lactation consultants, and mental health care
+          with doulas, lactation support providers, and mental health care
           professionals in the Richmond, Virginia area. Jump to one of our main
           categories of care, use the search bar to enter a keyword or a
           practitioner’s name, or browse our full directory below.
         </p>
-        <p>Jump to:</p>
         <p>
-          NOTE: The providers in this directory have not been vetted by Nurture
-          RVA. The credentials listed after their names, and their listed
-          services, are presented as the individual requested. The information
-          provided by the individual has not been verified by Nurture RVA. It is
-          imperative that you review and research any vendor you wish to
-          contact. When contacting a provider from this list, please indicate
-          that you received their name from this breastfeeding resource
-          directory.
+          <strong>Disclaimer:</strong> Individuals and organizations listed in
+          this directory are for informational purposes only. Nurture does not
+          endorse or guarantee the quality of services of any of these
+          individuals or organizations. While we do our best to keep information
+          updated, there may have been changes since this information was
+          posted. Always contact the providers to verify all information before
+          making appointments or using services to ensure that you receive
+          services and support appropriate for your needs. <div></div>
+          <div></div>When contacting a provider from this list, please indicate
+          that you received their name from this directory.
         </p>
       </section>
       <div className="bg-tan">

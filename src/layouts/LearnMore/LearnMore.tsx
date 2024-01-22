@@ -32,8 +32,11 @@ export const Content = () => {
       },
       {
         title: 'Community Doulas',
-        description:
-          'Assist pregnant and postpartum parents through their grounding within the community, languages, and value systems of the populations they serve. In Virginia, Medicaid may cover the cost of a state-certified community doula. Visit https://www.dmas.virginia.gov/for-members/for-pregnant-women/ to learn more.'
+        description: `Assist pregnant and postpartum parents through their grounding within the community, languages, and value systems of the populations they serve. In Virginia, Medicaid may cover the cost of a state-certified community doula. ${(
+          <a href="https://www.dmas.virginia.gov/for-members/for-pregnant-women/">
+            Visit this link to learn more.
+          </a>
+        )}`
       }
     ]
   };

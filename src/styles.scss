@@ -64,6 +64,9 @@ p {
 
 /************************* COLOR VARIABLES *************************/
 :root {
+  --mobile-breakpoint: 700px;
+  --tablet-breakpoint: 1000px;
+
   --brand-gray: #676764;
   --brand-pink: #c4005b;
   --brand-green: #82aa8e;
@@ -75,13 +78,13 @@ p {
   --primary-yellow: #f9e3bd;
   --primary-tan: #fbf2e4;
 
-  --error: #b3261e;
   --lighter-green: #caded0;
   --lighter-gray: #c2c2c2;
   --darker-gray: #575757;
   --off-white: #fcfbf7;
   --black: #000;
   --white: #fff;
+  --error: #b3261e;
 }
 
 .bg-tan {
@@ -116,11 +119,15 @@ section {
   }
   & > *:not(.picture-container):not(section) {
     max-width: 762px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 .content-main {
+  & > p {
+    text-align: center;
+  }
   & > section {
     padding: 80px 0;
     h2 {
@@ -130,8 +137,8 @@ section {
 }
 
 p {
-  margin-top: 32px !important;
-  margin-bottom: 32px !important;
+  margin-top: 32px;
+  margin-bottom: 32px;
 }
 
 a {
@@ -168,12 +175,8 @@ a {
 }
 
 @media only screen and (max-width: 700px) {
-  .bg-yellow,
-  .content-header {
+  .bg-yellow {
     background-color: var(--white);
-  }
-  .content-header {
-    padding: 0px 10px !important;
   }
   .dashboard h1,
   h2 {
@@ -185,14 +188,14 @@ a {
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: var(--mobile-breakpoint)) {
   .content-main {
     & > section {
       padding: 20px;
     }
   }
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: var(--tablet-breakpoint)) {
   .provider-filters .icon-clear {
     display: block;
   }

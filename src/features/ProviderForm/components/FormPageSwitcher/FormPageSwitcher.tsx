@@ -32,7 +32,10 @@ export const FormPageSwitcher = ({ setSubmissionResponse }) => {
         ) : (
           <FormStub type={currentPageStateTitle} />
         )}
-        <ButtonGroup disabled={!canProceed} />
+        <ButtonGroup
+          isConfirmation={currentPageStateTitle === 'Confirmation'}
+          disabled={!canProceed}
+        />
       </form>
     </div>
   );

@@ -8,7 +8,7 @@ body div .picture-split-container {
   }
   .children-container {
     margin: auto;
-    max-width: 424px !important;
+    max-width: 424px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,12 +17,6 @@ body div .picture-split-container {
     }
     &.reverse {
       grid-area: right;
-    }
-  }
-  &.full {
-    .children-container {
-      max-width: none !important;
-      padding: 64px 64px 120px 64px;
     }
   }
   p {
@@ -42,7 +36,7 @@ body div .picture-split-container {
 /************************ PICTURE CONTAINER *************************/
 
 .picture-container {
-  max-width: none !important;
+  max-width: none;
   min-height: 440px;
   background-image: url('/src/assets/images/dashboard-hero.png'); /* Replace with your image URL */
   background-size: cover; /* Resize the background image to cover the container */
@@ -50,6 +44,11 @@ body div .picture-split-container {
   background-position: center; /* Center the image */
 }
 
+@media only screen and (min-width: 700px) {
+  .children-container.full .children-container {
+    padding: 64px 64px 120px 64px;
+  }
+}
 @media only screen and (max-width: 700px) {
   .picture-split-container.full .picture-container {
     height: 350px;

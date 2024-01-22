@@ -3,6 +3,7 @@
     {
       "name": "Full name",
       "dbName": "name",
+      "required": "true",
       "stubName": "Basic Details"
     },
     {
@@ -13,6 +14,7 @@
     {
       "name": "Email address",
       "dbName": "email",
+      "required": "true",
       "props": {
         "placeholder": "example@example.com"
       },
@@ -22,6 +24,7 @@
     {
       "name": "Phone number",
       "dbName": "phone",
+      "required": "true",
       "props": {
         "placeholder": "(xxx) xxx-xxxx"
       },
@@ -31,6 +34,7 @@
     {
       "name": "Type of care provided",
       "Element": "CHECKBOX",
+      "required": "true",
       "props": {
         "formKey": "services"
       },
@@ -43,7 +47,7 @@
       "props": {
         "dbName": "profile_photo"
       },
-      "description": "A square photo or a photo with your face centered works best (.jpg, max file size ___)",
+      "description": "A square photo or a photo with your face centered works best (use .jpg, .jpeg, .png, .svg, .webp)",
       "stubName": "Basic Details",
       "size": "half"
     },
@@ -53,7 +57,7 @@
       "props": {
         "dbName": "logo"
       },
-      "description": "A square or circular file works best (.jpg, max file size ___)",
+      "description": "A square or circular file works best (use .jpg, .jpeg, .png, .svg, .webp)",
       "stubName": "Basic Details",
       "size": "half"
     },
@@ -84,24 +88,28 @@
     {
       "name": "City",
       "dbName": "city",
+      "required": "true",
       "stubName": "Contact",
       "size": "small"
     },
     {
       "name": "State",
       "dbName": "state",
+      "required": "true",
       "stubName": "Contact",
       "size": "small"
     },
     {
       "name": "Zip code",
       "dbName": "zip",
+      "required": "true",
       "stubName": "Contact",
       "size": "small"
     },
     {
       "name": "Overview of your services",
       "dbName": "overview",
+      "required": "true",
       "description": "Describe the type of care you provide (500 characters max)",
       "props": { "element": "textarea" },
       "stubName": "About"
@@ -116,6 +124,7 @@
     {
       "name": "Language(s) spoken",
       "Element": "CHECKBOX",
+      "required": "true",
       "props": {
         "formKey": "languages"
       },
@@ -125,15 +134,17 @@
     {
       "name": "Pronouns",
       "Element": "CHECKBOX",
+      "required": "true",
       "props": {
         "formKey": "pronouns"
       },
-      "description": "she/her, they/them",
+      "description": "Select all that apply",
       "stubName": "About"
     },
     {
       "name": "Payment Options",
       "Element": "CHECKBOX",
+      "required": "true",
       "props": {
         "formKey": "paymentOptions"
       },
@@ -156,6 +167,12 @@
         "formKey": "appointmentTypes"
       },
       "description": "Select all that apply",
+      "stubName": "Professional Details"
+    },
+    {
+      "name": "In practice since",
+      "dbName": "year_established",
+      "description": "Enter year",
       "stubName": "Professional Details"
     },
     {

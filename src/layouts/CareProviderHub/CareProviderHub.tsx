@@ -20,9 +20,10 @@ export const Content = () => {
           Care Providers: Join the Birth and Early Parenting Resource Directory!
         </h1>
         <p>
-          List your practice in this directory for free! Help new and expecting
-          parents find and hire you while contributing to the creation of
-          comprehensive, accessible resource network.
+          List your practice in this directory for free! If you are a care
+          provider in the Greater Richmond, VA area, you can help new and
+          expecting parents find and hire you while contributing to the creation
+          of comprehensive, accessible resource network.
         </p>
         <Button to="/provider-form">List your practice</Button>
         {/* <ButtonGroup buttonProps={providerButtonProps} /> */}
@@ -30,37 +31,53 @@ export const Content = () => {
       <InformationSection>
         <h2>About the Birth and Early Parenting Resource Directory</h2>
         <p>
-          {' '}
           The Birth and Early Parenting Resource Directory came about in
-          response to multiple community surveys and focus groups with parents
-          and providers. These yielded recurring themes of 1) challenges in
-          accessing accurate information and resources and 2) a fragmented
-          perinatal health and early parenting ecosystem. Our goal is to create
-          a regional hub for Greater Richmond that connects parents to resources
-          and provides a pathway for communication and collaboration among
-          perinatal and early childhood support providers.
+          response to multiple community surveys of parents and providers. These
+          yielded recurring themes of
+          <ol>
+            <li>
+              challenges in accessing accurate information and resources, and
+            </li>{' '}
+            <li>
+              a fragmented perinatal health and early parenting ecosystem.
+            </li>
+          </ol>
+          <strong>
+            Our goal is to create a regional hub for Greater Richmond that
+            connects parents to resources and provides a pathway for
+            communication and collaboration among perinatal and early childhood
+            support providers.
+          </strong>
         </p>
         <p>
-          {' '}
-          In 2021, Nurture and Postpartum Support Virginia conducted a statewide
-          survey of pregnant and postpartum parents, who indicated that their
-          top needs were for mental health, lactation, and doula support. We are
-          piloting the directory with these parent-informed categories, with the
-          goal of adding more resource categories as funding allows. As we go,
-          we are also collecting demographic data on providers to capture
-          snapshots of how our providers reflect the communities they serve.
-          This de-identified data will be shared publicly to help inform
-          collective efforts to build a truly diverse and responsive
+          In 2021, <a href="https://nurturerva.org/">Nurture</a> and{' '}
+          <a href="https://postpartumva.org/">Postpartum Support Virginia</a>
+          conducted a{' '}
+          <a href="https://www.canva.com/design/DAEiCTRvO7Q/CUXZOJf9792LLcvd3Muk5Q/edit?utm_content=DAEiCTRvO7Q&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">
+            statewide survey
+          </a>{' '}
+          of pregnant and postpartum parents, who indicated that their top needs
+          were for mental health, lactation, and doula support. We are piloting
+          the directory with these parent-informed categories, with the goal of
+          adding more resource categories as funding allows. As we go, we are
+          also collecting demographic data on providers to capture snapshots of
+          how our providers reflect the communities they serve. This
+          de-identified data will be shared with community partners to help
+          inform collective efforts to build a truly diverse and responsive
           pregnancy/early childhood support ecosystem.
         </p>
         <p>
-          {' '}
           We hope you will join us by listing your services here, as we work to
           build a culture of support for Richmond’s newest families. In order to
           ensure equitable access to all, there is no fee to be listed in the
-          directory. If you would like to contribute to expanding this
-          initiative, please consider a donation to support Nurture's systems
-          building work.
+          directory.
+        </p>
+        <p>
+          <strong>Help expand the directory!</strong>
+          <a href="https://nurturerva.networkforgood.com/projects/150819-nurture-general-fund">
+            Please consider a donation to support Nurture's systems building
+            work.
+          </a>
         </p>
       </InformationSection>
       <PictureSplitContainer backgroundColor="tan" picture={howItWorksImage}>
@@ -83,7 +100,7 @@ export const Content = () => {
         reverse
         pictureType="icon"
         picture={researchImage}>
-        <h3>Our asset mapping project</h3>
+        <h3>The Perinatal Resource Mapping Project</h3>
         <p>
           Over the past several years, Nurture has been conducting research into
           the needs of parents and the resources currently available to them.
@@ -99,15 +116,20 @@ export const Content = () => {
         <Button
           to="https://www.canva.com/design/DAE512OqBZ4/XR-kvBgRHHrQZSs0vrRcOg/view?utm_content=DAE512OqBZ4&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"
           type="secondary">
-          Read our full research report
+          Read our full report
         </Button>
       </PictureSplitContainer>
       <PictureSplitContainer backgroundColor="tan" picture={getListed}>
         <h3>Get listed!</h3>
         <p>
-          Help new and expecting parents find your tice by adding a listing to
-          the Birth and Early Parenting Resource Directory! Or update your
-          existing listing to keep your information current.
+          Help new and expecting parents find your practice by adding a listing
+          to the Birth and Early Parenting Resource Directory! Or update your
+          existing listing to keep your information current. We are currently
+          working with providers in the Greater Richmond, VA area; please
+          register only if you work in Virginia's Planning District 15, which
+          includes the City of Richmond and the counties of Henrico,
+          Chesterfield, Hanover, Goochland, Powhatan, New Kent, and Charles
+          City.
         </p>
         <ButtonGroup buttonProps={providerButtonProps} />
       </PictureSplitContainer>

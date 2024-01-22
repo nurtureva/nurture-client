@@ -12,9 +12,10 @@ import {
 } from '@/components/PictureSplitContainer';
 import { InformationSection } from '@/components/InformationSection';
 import { Link } from 'react-router-dom';
-const isMobile = () => window.innerWidth < 700;
+import { isMobile, useMobileViewportChecker } from '@/utils/helpers';
 
 export const Content = () => {
+  const isMobileViewport = useMobileViewportChecker();
   return (
     <>
       <PictureSplitContainer
@@ -38,16 +39,48 @@ export const Content = () => {
           understand that the journey to parenthood is a transformative one,
           filled with both joys and challenges. Our directory is designed to
           connect expecting and new parents with resources in our community,
-          including doulas for expert birth guidance, lactation consultants for
-          nurturing breastfeeding/chestfeeding experiences, and perinatal mental
-          health care professionals for emotional well-being. Whether you're
-          embarking on the adventure of parenthood for the first time or
-          expanding your family, our aim is to ease the process of navigating
-          this remarkable life chapter.
+          including doulas for expert birth guidance, lactation support
+          providers for nurturing breastfeeding/chestfeeding experiences, and
+          perinatal mental health care professionals for emotional well-being.
+          <div></div>
+          Whether you're embarking on the adventure of parenthood for the first
+          time or expanding your family, our aim is to ease the process of
+          navigating this remarkable life chapter.
+          <div className="values-section">
+            <p>
+              In creating this directory, we hold ourselves accountable to the
+              following values:
+            </p>
+            <h2>Purpose</h2>
+            <p>
+              We believe that easy, equitable, and transparent access to
+              available education, resources, and opportunities is an essential
+              component of a healthy birth and early parenting ecosystem.
+            </p>
+            <h2>Our Values</h2>
+            <ul>
+              <li>
+                Every birthing parent deserves a safe, respectful birth and
+                early parenting experience.
+              </li>
+              <li>
+                Every child deserves to be born and raised in a safe,
+                respectful, and nurturing environment.
+              </li>
+              <li>
+                All families have access to culturally appropriate care and
+                support.
+              </li>
+              <li>
+                Collaboration and communication among providers who serve
+                expecting and new parents is valued and supported.
+              </li>
+            </ul>
+          </div>
         </p>
-        {isMobile() ? '' : <Search type="fancy" />}
+        {isMobileViewport ? '' : <Search type="fancy" />}
       </InformationSection>
-      {isMobile() ? <Search type="fancy" /> : ''}
+      {isMobileViewport ? <Search type="fancy" /> : ''}
 
       <section className="bg-tan">
         <h2>What you'll find here</h2>
@@ -58,16 +91,6 @@ export const Content = () => {
           parents' core needs during pregnancy, birth, and early childhood. As
           this project grows, we hope to add more types of care and resources
           for pregnancy, birth, and early parenting.
-        </p>
-        <p>
-          <strong>Disclaimer:</strong> Individuals and organizations listed in
-          this directory are for informational purposes only. Nurture does not
-          endorse or guarantee the quality of services of any of these
-          individuals or organizations. While we do our best to keep information
-          updated, there may have been changes since this information was
-          posted. Always contact the providers to verify all information before
-          making appointments or using services to ensure that you receive
-          services and support appropriate for your needs.
         </p>
       </section>
       <section className="bg-tan type-of-care">

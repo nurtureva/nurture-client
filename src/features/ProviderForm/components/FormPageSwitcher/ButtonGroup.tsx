@@ -2,7 +2,13 @@ import { Button } from '@/components';
 import { useFormContext } from '../../utils/formContext';
 import { ButtonProps } from '@/types';
 
-export const ButtonGroup = ({ disabled }: { disabled?: boolean }) => {
+export const ButtonGroup = ({
+  disabled,
+  isConfirmation
+}: {
+  disabled?: boolean;
+  isConfirmation: boolean;
+}) => {
   const {
     formState: {
       back,
@@ -11,8 +17,6 @@ export const ButtonGroup = ({ disabled }: { disabled?: boolean }) => {
       formType: { pageStateTitles }
     }
   } = useFormContext();
-
-  const isConfirmation = pageStateTitles[pageState - 1] === 'Confirmation';
 
   const buttonProps: ButtonProps = isConfirmation
     ? {

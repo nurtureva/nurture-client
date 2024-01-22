@@ -30,9 +30,9 @@ export const FormItem = ({ input }: { input: InputObject }) => {
     //@ts-ignore
     input.dbName || input.props?.dbName || input.props?.formKey;
   return (
-    <span className={`form-input-container ${input.size}`}>
+    <span className={`form-input-container ${input.size ? input.size : ''} `}>
       <label>
-        {input.name}
+        {input.name} {input.required ? '*' : '(optional)'}
         {'Element' in input ? (
           <input.Element {...input.props} />
         ) : (

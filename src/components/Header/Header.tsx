@@ -3,14 +3,14 @@ import logo from '@/assets/images/nurture-logo-1.png';
 import { EndpointPropWrapper } from '@/types';
 import { useEffect, useState } from 'react';
 import { Button, Icon } from '..';
+import { isMobile, useMobileViewportChecker } from '@/utils/helpers';
 
 type NavIconType = 'menu' | 'clear';
 
 export const Header = ({ navRoutes }: EndpointPropWrapper) => {
   const location = useLocation();
-  const [mobileNav, setMobileNav] = useState(
-    window.innerWidth < 700 ? false : true
-  );
+  const [isMobileNavActive, setIsMobileNavActive] = useState(false);
+  const isMobileViewport = useMobileViewportChecker();
   const [navIcon, setNavIcon] = useState<NavIconType>('menu');
   const [className, setClassName] = useState('');
 
@@ -24,18 +24,20 @@ export const Header = ({ navRoutes }: EndpointPropWrapper) => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-
+    if (!isMobileViewport) {
+      setIsMobileNavActive(false);
+      window.addEventListener('scroll', handleScroll);
+    }
     return () => {
       // Clean up the event listener when the component unmounts
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isMobileViewport]);
 
   useEffect(() => {
-    if (mobileNav) setNavIcon('clear');
+    if (isMobileNavActive) setNavIcon('clear');
     else setNavIcon('menu');
-  }, [mobileNav]);
+  }, [isMobileNavActive]);
 
   return (
     <>
@@ -45,7 +47,7 @@ export const Header = ({ navRoutes }: EndpointPropWrapper) => {
             <img src={logo} />
           </Link>
         </span>
-        {mobileNav ? (
+        {!isMobileViewport || isMobileNavActive ? (
           <>
             <nav>
               <ul>
@@ -55,7 +57,7 @@ export const Header = ({ navRoutes }: EndpointPropWrapper) => {
                       <Link
                         to={path.path}
                         onClick={() => {
-                          if (window.innerWidth < 700) setMobileNav(!mobileNav);
+                          setIsMobileNavActive(!isMobileNavActive);
                         }}
                         className={
                           location.pathname.split('/')[1] == path.path
@@ -69,12 +71,16 @@ export const Header = ({ navRoutes }: EndpointPropWrapper) => {
                 })}
               </ul>
             </nav>
-            <Button
-              type="secondary"
-              size="small"
-              to="https://nurturerva.networkforgood.com/projects/150819-nurture-general-fund">
-              Donate
-            </Button>
+            {!isMobileViewport ? (
+              <Button
+                type="secondary"
+                size="small"
+                to="https://nurturerva.networkforgood.com/projects/150819-nurture-general-fund">
+                Donate
+              </Button>
+            ) : (
+              ''
+            )}
           </>
         ) : (
           ''
@@ -83,7 +89,7 @@ export const Header = ({ navRoutes }: EndpointPropWrapper) => {
         <Icon
           type={navIcon}
           onClick={() => {
-            setMobileNav(!mobileNav);
+            setIsMobileNavActive(!isMobileNavActive);
           }}
         />
       </header>

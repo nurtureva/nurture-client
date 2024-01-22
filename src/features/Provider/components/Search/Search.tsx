@@ -1,6 +1,7 @@
 import { ScriptHTMLAttributes, useState } from 'react';
 import { Input, Button } from '@/components';
 import { useNavigate } from 'react-router-dom';
+import { isMobile, useMobileViewportChecker } from '@/utils/helpers';
 
 export const Search = ({
   updateSearch,
@@ -11,6 +12,7 @@ export const Search = ({
   initialTerms?: { keyword?: string; distance: string };
   type?: 'fancy' | 'standard' | 'compressed';
 }) => {
+  const isMobileViewport = useMobileViewportChecker();
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState(initialTerms?.keyword || '');
   const [distance, setDistance] = useState(initialTerms?.distance || '');
@@ -30,10 +32,9 @@ export const Search = ({
     }
   };
 
-  const isMobile = () => window.innerWidth < 700;
-  if (isMobile()) type = 'standard';
+  if (isMobileViewport) type = 'standard';
   return (
-    <div className={`provider-search ${isMobile() ? 'mobile' : type}`}>
+    <div className={`provider-search ${isMobileViewport ? 'mobile' : type}`}>
       <Input
         icon="search"
         label={
@@ -52,7 +53,7 @@ export const Search = ({
           setKeyword(e.target.value);
         }}
       />
-      {type === 'standard' && !isMobile() ? <p>near</p> : ''}
+      {type === 'standard' && !isMobileViewport ? <p>near</p> : ''}
       <Input
         icon="map"
         label={type === 'fancy' ? undefined : 'Zip code'}
@@ -67,7 +68,9 @@ export const Search = ({
         onClick={() => {
           searchFunction(keyword, distance);
         }}>
-        {type !== 'compressed' && !isMobile() ? 'Find care providers' : ''}
+        {type !== 'compressed' && !isMobileViewport
+          ? 'Find care providers'
+          : ''}
       </Button>
     </div>
   );

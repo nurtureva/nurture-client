@@ -12,7 +12,7 @@ import {
   UseFormRegister,
   useForm
 } from 'react-hook-form';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { useFormInputList } from './formInputList';
 import { useDefaultValues } from './helpers';
 
@@ -21,6 +21,7 @@ const FormContext = createContext({} as FormContextObject);
 export const useFormContext = () => useContext(FormContext);
 
 export const useContextInitializer: ContextInitializer = (formType) => {
+  const navigate = useNavigate();
   const [formFields, pageStateTitles, formTitle] = useFormInputList(formType);
   const { provider } = useLoaderData() as {
     provider: ProviderObject;
@@ -45,7 +46,7 @@ export const useContextInitializer: ContextInitializer = (formType) => {
   };
 
   const back = () => {
-    if (state.pageState < 2) return;
+    if (state.pageState < 2) return navigate('/provider-form');
     updateState({ pageState: state.pageState - 1 });
   };
 
@@ -146,7 +147,7 @@ interface FormContextObject {
   submissionResponse: any;
 }
 
-export type FormFields = { [key in Partial<PageStateTitle>]: InputObject[] };
+export type FormFields = InputObject[];
 
 type ContextInitializer = (
   formType: FormType

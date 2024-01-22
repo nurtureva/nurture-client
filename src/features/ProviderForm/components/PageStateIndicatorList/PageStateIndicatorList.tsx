@@ -1,3 +1,4 @@
+import { useMobileViewportChecker } from '@/utils/helpers';
 import { useFormContext } from '../../utils/formContext';
 import { PageStateIndicator } from './PageStateIndicator';
 
@@ -9,7 +10,7 @@ export const PageStateIndicatorList = () => {
       formType: { pageStateTitles }
     }
   } = useFormContext();
-  const isMobile = () => window.innerWidth < 700;
+  const isMobileViewport = useMobileViewportChecker();
 
   return (
     <ol>
@@ -24,7 +25,7 @@ export const PageStateIndicatorList = () => {
             key={`PageStateIndicator${id}`}
             onClick={() => updateState({ pageState: id })}>
             <PageStateIndicator {...indicatorProps} />
-            {isMobile() && state !== 'active' ? '' : pageStateTitle}
+            {isMobileViewport && state !== 'active' ? '' : pageStateTitle}
           </li>
         );
       })}

@@ -3,11 +3,13 @@
     {
       "name": "Organization name",
       "dbName": "name",
+      "required": "true",
       "stubName": "Basic Details"
     },
     {
       "name": "Email address",
       "dbName": "email",
+      "required": "true",
       "props": {
         "placeholder": "example@example.com"
       },
@@ -17,6 +19,7 @@
     {
       "name": "Phone number",
       "dbName": "phone",
+      "required": "true",
       "props": {
         "placeholder": "(xxx) xxx-xxxx"
       },
@@ -33,6 +36,16 @@
       "stubName": "Basic Details"
     },
     {
+      "name": "Type of care provided",
+      "Element": "CHECKBOX",
+      "required": "true",
+      "props": {
+        "formKey": "services"
+      },
+      "description": "Select all that apply",
+      "stubName": "Basic Details"
+    },
+    {
       "name": "Organization website",
       "dbName": "website",
       "props": {
@@ -41,7 +54,7 @@
       "stubName": "Contact"
     },
     {
-      "name": "Address 1",
+      "name": "Address line 1",
       "dbName": "address_1",
       "props": {
         "placeholder": "1234 example street"
@@ -50,7 +63,7 @@
       "size": "large"
     },
     {
-      "name": "Address 2",
+      "name": "Address line 2",
       "dbName": "address_2",
       "description": "apartment, floor, suite",
       "stubName": "Contact",
@@ -59,24 +72,28 @@
     {
       "name": "City",
       "dbName": "city",
+      "required": "true",
       "stubName": "Contact",
       "size": "small"
     },
     {
       "name": "State",
       "dbName": "state",
+      "required": "true",
       "stubName": "Contact",
       "size": "small"
     },
     {
       "name": "Zip code",
       "dbName": "zip",
+      "required": "true",
       "stubName": "Contact",
       "size": "small"
     },
     {
       "name": "Overview of your services",
       "dbName": "overview",
+      "required": "true",
       "description": "Describe the type of care you provide (500 characters max)",
       "props": { "element": "textarea" },
       "stubName": "About"
@@ -84,6 +101,7 @@
     {
       "name": "Payment Options",
       "Element": "CHECKBOX",
+      "required": "true",
       "props": {
         "formKey": "paymentOptions"
       },

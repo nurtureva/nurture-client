@@ -17,46 +17,54 @@ export const Confirmation = () => {
   const provider = getValues();
 
   if (!provider) return null;
-  const { demographics, general, ...otherStuff } = provider;
+  const { general, ...otherStuff } = provider;
   //flatten general
   const providerList = { ...general, ...otherStuff };
-  console.log(Object.entries(providerList));
-  const tesdt = pageStateTitles
-    .map((title) => {
-      const currentSection = formFields.filter(
-        (field) => field.stubName === title
-      );
-      return currentSection.map((field) => {
-        const dbName: string =
-          field.dbName || field.props.dbName || field.props.formKey;
+  //page state titles
+  console.log(formFields);
+  const test = formFields
+    .map((field) => {
+      // const dbName = field.dbName || field.props.dbName || field.props.formKey;
+      const dbName =
+        'dbName' in field
+          ? field.dbName
+          : 'dbName' in field.props
+          ? field.props.dbName
+          : field.props.formKey;
 
-        if (providerList[dbName]) {
-          const userResponse =
-            typeof providerList[dbName] !== 'string'
-              ? providerOptions[dbName]
-                  .filter((optionObject) =>
-                    providerList[dbName].includes(optionObject.id.toString())
-                  )
-                  .map((optionObject) => optionObject.name)
-                  .join()
-              : providerList[dbName];
-          return [field.name, userResponse];
-        }
-      });
+      if (dbName && providerList[dbName]) {
+        const userResponse =
+          typeof providerList[dbName] !== 'string'
+            ? providerOptions[dbName]
+                .filter((optionObject) =>
+                  providerList[dbName].includes(optionObject.id.toString())
+                )
+                .map((optionObject) => optionObject.name)
+                .join(', ')
+            : providerList[dbName];
+        // console.log(field.name, userResponse);
+        return [field.name, userResponse];
+      }
     })
-    .flat()
     .filter((item) => item !== undefined);
 
   return (
-    <ul>
-      {Object.entries(providerList).map((entry) => {
-        if (!!entry[0])
-          return (
-            <li>
-              {entry[0]}: {entry[1]}
-            </li>
-          );
-      })}
-    </ul>
+    <>
+      <p>
+        Please take a moment to review your responses before submitting. To make
+        changes, click the “back” button below, or use the numbered links to
+        jump to a section.
+      </p>
+      <ul className="confirmation-list">
+        {test.map((entry: string[], i: number) => {
+          if (!!entry[0])
+            return (
+              <li key={i}>
+                <span>{entry[0]}:</span> {entry[1]}
+              </li>
+            );
+        })}
+      </ul>
+    </>
   );
 };

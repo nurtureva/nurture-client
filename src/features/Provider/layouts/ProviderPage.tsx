@@ -7,6 +7,7 @@ import { Button, Icon } from '@/components';
 import { Address } from '../components/Address';
 
 export default function ProviderPage() {
+  console.log('SANITY');
   const { provider: individualProvider, organization } = useLoaderData() as {
     provider: ProviderObject;
     organization: OrganizationObject;
@@ -18,6 +19,7 @@ export default function ProviderPage() {
   const photoSrc = provider.profile_photo
     ? import.meta.env.VITE_S3_URL + provider.profile_photo
     : photoList[Math.floor(Math.random() * photoList.length)];
+  console.log(provider.pronouns);
   return (
     <div className="provider-container full">
       <div className="provider-actions">
@@ -49,7 +51,7 @@ export default function ProviderPage() {
         <span>
           <p>Phone number: {provider.phone}</p>
           <p>Email: {provider.email}</p>
-          <p>Website: {provider.email}</p>
+          <p>Website: {provider.website}</p>
         </span>
       </div>
       <div>
@@ -68,7 +70,7 @@ export default function ProviderPage() {
           )}
         </p>
         <h3>Personal Details</h3>
-        {provider.pronouns}
+        {/* {provider.pronouns} */}
         {provider.languages_spoken}
         <h3>Contact</h3>
       </div>

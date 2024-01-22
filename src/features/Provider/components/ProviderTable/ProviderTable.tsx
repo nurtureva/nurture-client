@@ -4,7 +4,11 @@ import samplePhoto2 from '@/assets/images/profile-2.png';
 import { ProviderObject } from '@/types';
 import { Bookmark } from '../Bookmark';
 import { Button } from '@/components/Button/Button';
-import { toggleFilterMenu } from '@/utils/helpers';
+import {
+  isMobile,
+  toggleFilterMenu,
+  useMobileViewportChecker
+} from '@/utils/helpers';
 import { Address } from '../Address';
 import { Identity } from '../Identity';
 import { Information } from '../Information';
@@ -73,10 +77,11 @@ const ProviderContainer = ({
   provider: ProviderObject;
   providerType: string;
 }) => {
+  const isMobileViewport = useMobileViewportChecker();
+
   const { profile_photo } = provider;
   const photoList = [samplePhoto1, samplePhoto2];
   const buttonProps = { type: 'secondary', size: 'small ' };
-  const isMobile = () => window.innerWidth < 700;
 
   const photoSrc = profile_photo
     ? import.meta.env.VITE_S3_URL + profile_photo
@@ -102,7 +107,7 @@ const ProviderContainer = ({
           provider.id
         }`}
         className="provider-container list">
-        {isMobile() ? (
+        {isMobileViewport ? (
           <PhotoContainerWithIdentity />
         ) : (
           <span className="photo-container">
@@ -110,7 +115,7 @@ const ProviderContainer = ({
           </span>
         )}
         <span>
-          {isMobile() ? '' : <Identity provider={provider} />}
+          {isMobileViewport ? '' : <Identity provider={provider} />}
           <Information provider={provider} />
           <p>
             {provider.phone ? provider.phone : ''}
