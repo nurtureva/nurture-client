@@ -50,10 +50,25 @@ export const Content = () => {
           </strong>
         </p>
         <p>
-          In 2021, <a href="https://nurturerva.org/">Nurture</a> and{' '}
-          <a href="https://postpartumva.org/">Postpartum Support Virginia</a>
+          In 2021,{' '}
+          <a
+            href="https://nurturerva.org/"
+            target="_blank"
+            rel="noopener noreferrer">
+            Nurture
+          </a>{' '}
+          and{' '}
+          <a
+            href="https://postpartumva.org/"
+            target="_blank"
+            rel="noopener noreferrer">
+            Postpartum Support Virginia
+          </a>{' '}
           conducted a{' '}
-          <a href="https://www.canva.com/design/DAEiCTRvO7Q/CUXZOJf9792LLcvd3Muk5Q/edit?utm_content=DAEiCTRvO7Q&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">
+          <a
+            href="https://www.canva.com/design/DAEiCTRvO7Q/CUXZOJf9792LLcvd3Muk5Q/edit?utm_content=DAEiCTRvO7Q&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+            target="_blank"
+            rel="noopener noreferrer">
             statewide survey
           </a>{' '}
           of pregnant and postpartum parents, who indicated that their top needs
@@ -73,8 +88,11 @@ export const Content = () => {
           directory.
         </p>
         <p>
-          <strong>Help expand the directory!</strong>
-          <a href="https://nurturerva.networkforgood.com/projects/150819-nurture-general-fund">
+          <strong>Help expand the directory!</strong>{' '}
+          <a
+            href="https://nurturerva.networkforgood.com/projects/150819-nurture-general-fund"
+            target="_blank"
+            rel="noopener noreferrer">
             Please consider a donation to support Nurture's systems building
             work.
           </a>

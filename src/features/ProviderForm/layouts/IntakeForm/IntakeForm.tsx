@@ -55,9 +55,11 @@ const Initializer = ({
       </p>
       <p>
         We also collect this data for our research to better understand the
-        local perinatal health ecosystem. For more information, please see our
-        <a href="">Privacy Policy</a> and read more about our{' '}
-        <a href="">asset mapping activities. </a>
+        local perinatal health ecosystem. For more information, please read more
+        about our{' '}
+        <a href="" target="_blank" rel="noopener noreferrer">
+          asset mapping activities.
+        </a>
       </p>
       <p>
         Once submitted, a Nurture staff member will review the listing to make
