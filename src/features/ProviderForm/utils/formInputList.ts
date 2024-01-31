@@ -18,7 +18,8 @@ const useFormInputList: (
     languages,
     gender,
     pronouns,
-    ethnicity
+    ethnicity,
+    organizationTypes
   } = useLoaderData() as {
     services: Option[];
     paymentOptions: Option[];
@@ -28,6 +29,7 @@ const useFormInputList: (
     gender: Option[];
     pronouns: Option[];
     ethnicity: Option[];
+    organizationTypes: Option[];
   };
   const options = {
     services,
@@ -37,7 +39,8 @@ const useFormInputList: (
     languages,
     gender,
     pronouns,
-    ethnicity
+    ethnicity,
+    organizationTypes
   };
 
   const title =

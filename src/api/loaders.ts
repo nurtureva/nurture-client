@@ -11,6 +11,7 @@ export const useOptionsLoader = async () => {
   const gender = await accessDatabase('GET', 'gender');
   const pronouns = await accessDatabase('GET', 'pronouns');
   const ethnicity = await accessDatabase('GET', 'ethnicity');
+  const organizationTypes = await accessDatabase('GET', 'organization-types');
 
   return {
     services,
@@ -20,7 +21,8 @@ export const useOptionsLoader = async () => {
     languages,
     gender,
     pronouns,
-    ethnicity
+    ethnicity,
+    organizationTypes
   };
 };
 

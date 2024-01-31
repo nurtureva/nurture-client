@@ -197,6 +197,7 @@
     },
     {
       "name": "Age",
+      "Element": "RADIO",
       "dbName": "age",
       "parentObjectName": "demographics",
       "stubName": "Demographics"

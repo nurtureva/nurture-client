@@ -34,7 +34,11 @@ export const FormItem = ({ input }: { input: InputObject }) => {
       <label>
         {input.name} {input.required ? '*' : '(optional)'}
         {'Element' in input ? (
-          <input.Element {...input.props} />
+          input.Element === 'RADIO' ? (
+            <Radio />
+          ) : (
+            <input.Element {...input.props} />
+          )
         ) : (
           <FormInput
             dbName={input.dbName}
@@ -50,5 +54,48 @@ export const FormItem = ({ input }: { input: InputObject }) => {
       )}
       {!isValid && <span>error!</span>}
     </span>
+  );
+};
+
+const Radio = () => {
+  return (
+    <ul>
+      <li>
+        <label>
+          <input type="radio" name="age" value="18" />
+          18 - 20
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="radio" name="age" value="21" />
+          21-29
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="radio" name="age" value="30" />
+          30-39
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="radio" name="age" value="40" />
+          40-49
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="radio" name="age" value="50" />
+          50-59
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="radio" name="age" value="60" />
+          60 or older
+        </label>
+      </li>
+    </ul>
   );
 };

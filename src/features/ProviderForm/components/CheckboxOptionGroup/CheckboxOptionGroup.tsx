@@ -9,6 +9,7 @@ export const CheckboxOptionGroup = ({
   const {
     formFunctions: { register }
   } = useFormContext();
+  console.log(formKey, optionsArray);
   return (
     <>
       <ul>

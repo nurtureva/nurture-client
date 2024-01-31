@@ -27,6 +27,16 @@
       "size": "small"
     },
     {
+      "name": "Which of the following terms best describes your organization?",
+      "Element": "CHECKBOX",
+      "required": "true",
+      "props": {
+        "formKey": "organizationTypes"
+      },
+      "description": "Select all that apply",
+      "stubName": "Basic Details"
+    },
+    {
       "name": "Logo",
       "Element": "PHOTO",
       "props": {

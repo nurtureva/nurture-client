@@ -25,6 +25,7 @@ import {
 import { adminContent } from '@/features/Admin';
 import { FormManager, IntakeForm } from '@/features/ProviderForm';
 import { LearnMore } from './layouts/LearnMore';
+import AboutPage from './layouts/About';
 
 const navRoutes: Endpoint[] = [
   {
@@ -55,6 +56,11 @@ const navRoutes: Endpoint[] = [
     name: 'Learn More',
     path: 'learn-more',
     element: <LearnMore />
+  },
+  {
+    name: 'About',
+    path: 'about',
+    element: <AboutPage />
   }
 ];
 
