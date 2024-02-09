@@ -1,206 +1,232 @@
 {
-  "input": [
+  "Basic Details": [
     {
       "name": "Full name",
-      "dbName": "name",
-      "required": "true",
-      "stubName": "Basic Details"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "name",
+        "required": true
+      }
     },
     {
       "name": "Your practice name",
-      "dbName": "business_name",
-      "stubName": "Basic Details"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "business_name"
+      }
     },
     {
       "name": "Email address",
-      "dbName": "email",
-      "required": "true",
+      "Element": "INPUT",
       "props": {
+        "dbName": "email",
+        "required": true,
+        "size": "large",
         "placeholder": "example@example.com"
-      },
-      "stubName": "Basic Details",
-      "size": "large"
+      }
     },
     {
       "name": "Phone number",
-      "dbName": "phone",
-      "required": "true",
+      "Element": "INPUT",
       "props": {
+        "dbName": "phone",
+        "required": true,
+        "size": "small",
         "placeholder": "(xxx) xxx-xxxx"
-      },
-      "stubName": "Basic Details",
-      "size": "small"
+      }
     },
     {
       "name": "Type of care provided",
-      "Element": "CHECKBOX",
-      "required": "true",
-      "props": {
-        "formKey": "services"
-      },
       "description": "Select all that apply",
-      "stubName": "Basic Details"
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "services",
+        "required": true,
+        "selection": "multiple"
+      }
     },
     {
       "name": "Profile photo",
+      "description": "A square photo or a photo with your face centered works best (use .jpg, .jpeg, .png, .svg, .webp)",
       "Element": "PHOTO",
       "props": {
-        "dbName": "profile_photo"
-      },
-      "description": "A square photo or a photo with your face centered works best (use .jpg, .jpeg, .png, .svg, .webp)",
-      "stubName": "Basic Details",
-      "size": "half"
+        "dbName": "profile_photo",
+        "size": "half"
+      }
     },
     {
       "name": "Logo",
+      "description": "A square or circular file works best (use .jpg, .jpeg, .png, .svg, .webp)",
       "Element": "PHOTO",
       "props": {
-        "dbName": "logo"
-      },
-      "description": "A square or circular file works best (use .jpg, .jpeg, .png, .svg, .webp)",
-      "stubName": "Basic Details",
-      "size": "half"
-    },
+        "dbName": "logo",
+        "size": "half"
+      }
+    }
+  ],
+  "Contact": [
     {
       "name": "Your website",
-      "dbName": "website",
+      "Element": "INPUT",
       "props": {
+        "dbName": "website",
         "placeholder": "www.example.com"
-      },
-      "stubName": "Contact"
+      }
     },
     {
       "name": "Work address",
-      "dbName": "address_1",
+      "Element": "INPUT",
       "props": {
+        "dbName": "address_1",
+        "size": "large",
         "placeholder": "1234 example street"
-      },
-      "stubName": "Contact",
-      "size": "large"
+      }
     },
     {
       "name": "Work address line 2",
-      "dbName": "address_2",
       "description": "apartment, floor, suite",
-      "stubName": "Contact",
-      "size": "small"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "address_2",
+        "size": "small"
+      }
     },
     {
       "name": "City",
-      "dbName": "city",
-      "required": "true",
-      "stubName": "Contact",
-      "size": "small"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "city",
+        "required": true,
+        "size": "small"
+      }
     },
     {
       "name": "State",
-      "dbName": "state",
-      "required": "true",
-      "stubName": "Contact",
-      "size": "small"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "state",
+        "required": true,
+        "size": "small"
+      }
     },
     {
       "name": "Zip code",
-      "dbName": "zip",
-      "required": "true",
-      "stubName": "Contact",
-      "size": "small"
-    },
+      "Element": "INPUT",
+      "props": {
+        "dbName": "zip",
+        "required": true,
+        "size": "small"
+      }
+    }
+  ],
+  "About": [
     {
       "name": "Overview of your services",
-      "dbName": "overview",
-      "required": "true",
       "description": "Describe the type of care you provide (500 characters max)",
-      "props": { "element": "textarea" },
-      "stubName": "About"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "overview",
+        "required": true,
+        "isTextArea": true
+      }
     },
     {
       "name": "About me",
-      "dbName": "bio",
       "description": "Brief introduction about yourself (500 characters max)",
-      "props": { "element": "textarea" },
-      "stubName": "About"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "bio",
+        "isTextArea": true
+      }
     },
     {
       "name": "Language(s) spoken",
-      "Element": "CHECKBOX",
-      "required": "true",
-      "props": {
-        "formKey": "languages"
-      },
       "description": "Select all that apply",
-      "stubName": "About"
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "languages",
+        "required": true,
+        "selection": "multiple"
+      }
     },
     {
       "name": "Pronouns",
-      "Element": "CHECKBOX",
-      "required": "true",
-      "props": {
-        "formKey": "pronouns"
-      },
       "description": "Select all that apply",
-      "stubName": "About"
-    },
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "pronouns",
+        "required": true,
+        "selection": "multiple"
+      }
+    }
+  ],
+  "Professional Details": [
     {
       "name": "Payment Options",
-      "Element": "CHECKBOX",
-      "required": "true",
-      "props": {
-        "formKey": "paymentOptions"
-      },
       "description": "Select all that apply",
-      "stubName": "Professional Details"
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "paymentOptions",
+        "required": true,
+        "selection": "multiple"
+      }
     },
     {
       "name": "Certifications",
-      "Element": "CHECKBOX",
-      "props": {
-        "formKey": "certifications"
-      },
       "description": "Select all that apply",
-      "stubName": "Professional Details"
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "certifications",
+        "selection": "multiple"
+      }
     },
     {
       "name": "Appointment Options",
-      "Element": "CHECKBOX",
-      "props": {
-        "formKey": "appointmentTypes"
-      },
       "description": "Select all that apply",
-      "stubName": "Professional Details"
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "appointmentTypes",
+        "selection": "multiple"
+      }
     },
     {
       "name": "In practice since",
-      "dbName": "year_established",
       "description": "Enter year",
-      "stubName": "Professional Details"
-    },
+      "Element": "INPUT",
+      "props": {
+        "dbName": "year_established"
+      }
+    }
+  ],
+  "Demographics": [
     {
       "name": "What is your race/ethnicity? Check all that apply.",
-      "Element": "CHECKBOX",
-      "props": {
-        "formKey": "ethnicity",
-        "parentObjectName": "demographics"
-      },
       "description": "Select all that apply",
-      "stubName": "Demographics"
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "ethnicity",
+        "selection": "multiple",
+        "isDemographics": true
+      }
     },
     {
       "name": "How would you describe your gender? Check all that apply.",
-      "Element": "CHECKBOX",
-      "props": {
-        "formKey": "gender",
-        "parentObjectName": "demographics"
-      },
       "description": "Select all that apply",
-      "stubName": "Demographics"
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "gender",
+        "selection": "multiple",
+        "isDemographics": true
+      }
     },
     {
       "name": "Age",
-      "Element": "RADIO",
-      "dbName": "age",
-      "parentObjectName": "demographics",
-      "stubName": "Demographics"
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "age",
+        "selection": "single",
+        "isDemographics": true
+      }
     }
   ]
 }

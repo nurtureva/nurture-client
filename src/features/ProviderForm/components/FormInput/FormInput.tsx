@@ -1,29 +1,14 @@
 import { Input } from '@/components';
-import { FormProvider } from '@/types';
+import { InputProps } from '@/types';
 import { useFormContext } from '../../utils/formContext';
-export const FormInput = (props: {
-  dbName: keyof FormProvider['general'];
-  type?: React.HTMLInputTypeAttribute;
-  id?: string;
-  element?: 'textarea';
-  onBlur?: Function;
-  parentObjectName?: 'string';
-}) => {
-  const {
-    dbName,
-    type = 'text',
-    element,
-    parentObjectName = 'general',
-    ...otherInputProps
-  } = props;
 
-  const {
-    formFunctions: { register }
-  } = useFormContext();
+export const FormInput = (props: InputProps) => {
+  const { dbName, isTextArea, register, ...otherInputProps } = props;
+
   // @ts-ignore
-  const { ref, ...registerProps } = register(`${parentObjectName}.${dbName}`);
-  const inputProps = { type, ...otherInputProps, ...registerProps };
+  const { ref, ...registerProps } = register(`general.${dbName}`);
+  const inputProps = { ...otherInputProps, ...registerProps };
 
-  if (element) return <textarea {...{ ref, ...inputProps }} />;
+  if (isTextArea) return <textarea {...{ ref, ...inputProps }} />;
   return <Input {...inputProps} innerRef={ref} />;
 };

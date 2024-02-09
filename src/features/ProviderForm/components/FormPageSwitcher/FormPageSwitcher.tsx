@@ -8,35 +8,28 @@ export const FormPageSwitcher = ({ setSubmissionResponse }) => {
   const {
     formState: {
       pageState,
-      canProceed,
       formType: { pageStateTitles, type }
     },
-    formFunctions: { handleSubmit }
+    // formFunctions: { handleSubmit },
+    formData: { pictures }
   } = useFormContext();
   const submitProviderData = useFormAction(type);
 
   const currentPageStateTitle = pageStateTitles[pageState - 1];
-
   return (
     <div>
       <h3>{currentPageStateTitle}</h3>
-      <form
-        onSubmit={handleSubmit(async (data) => {
-          console.log(data);
-          const submissionConfirmation = await submitProviderData(data);
-          console.log(submissionConfirmation);
-          setSubmissionResponse(submissionConfirmation || 'error');
-        })}>
+      <div
+      // onSubmit={handleSubmit(async (data) => {
+      //   const submissionConfirmation = await submitProviderData(data);
+      // })}
+      >
         {currentPageStateTitle === 'Confirmation' ? (
-          <Confirmation />
+          <Confirmation {...{ setSubmissionResponse }} />
         ) : (
           <FormStub type={currentPageStateTitle} />
         )}
-        <ButtonGroup
-          isConfirmation={currentPageStateTitle === 'Confirmation'}
-          disabled={!canProceed}
-        />
-      </form>
+      </div>
     </div>
   );
 };

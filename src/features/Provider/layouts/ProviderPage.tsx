@@ -5,9 +5,10 @@ import samplePhoto2 from '@/assets/images/profile-2.png';
 import { Bookmark } from '../components/Bookmark';
 import { Button, Icon } from '@/components';
 import { Address } from '../components/Address';
+import { confirmChoice } from '@/features/Admin/utils/helpers';
+import { addHash } from '@/features/ProviderForm/utils/api';
 
 export default function ProviderPage() {
-  console.log('SANITY');
   const { provider: individualProvider, organization } = useLoaderData() as {
     provider: ProviderObject;
     organization: OrganizationObject;
@@ -19,7 +20,7 @@ export default function ProviderPage() {
   const photoSrc = provider.profile_photo
     ? import.meta.env.VITE_S3_URL + provider.profile_photo
     : photoList[Math.floor(Math.random() * photoList.length)];
-  console.log(provider.pronouns);
+
   return (
     <div className="provider-container full">
       <div className="provider-actions">
@@ -32,7 +33,19 @@ export default function ProviderPage() {
             back
           </a>
         </span>
-        <a>request an edit</a>
+        <a
+          onClick={(e) => {
+            const message = prompt(
+              "Leave a note for the provider so they can fix what's wrong."
+            );
+
+            if (message)
+              confirmChoice(() => {
+                addHash(provider.id, message);
+              }, `send "${message}" to ${provider.name}?`);
+          }}>
+          request an edit
+        </a>
       </div>
       <div className="provider-header">
         <Bookmark provider={provider} />

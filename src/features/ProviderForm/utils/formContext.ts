@@ -1,17 +1,11 @@
 import {
+  FormFields,
   FormProvider,
   FormType,
-  InputObject,
   PageStateTitle,
   ProviderObject
 } from '@/types';
 import { Context, createContext, useContext, useEffect, useState } from 'react';
-import {
-  UseFormGetValues,
-  UseFormHandleSubmit,
-  UseFormRegister,
-  useForm
-} from 'react-hook-form';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { useFormInputList } from './formInputList';
 import { useDefaultValues } from './helpers';
@@ -23,26 +17,44 @@ export const useFormContext = () => useContext(FormContext);
 export const useContextInitializer: ContextInitializer = (formType) => {
   const navigate = useNavigate();
   const [formFields, pageStateTitles, formTitle] = useFormInputList(formType);
-  const { provider } = useLoaderData() as {
-    provider: ProviderObject;
-  };
-  const defaultProvider = useDefaultValues();
-  //this should be updated for demographics
-  const { register, handleSubmit, getValues } = useForm<FormProvider>({
-    defaultValues: defaultProvider
-  });
+  const { provider: initialProvider, ...providerOptions } = useLoaderData();
+
+  //this should be updated for demographics — probably just an overhaul
+  const defaultProvider = useDefaultValues(initialProvider);
+
   const [state, setState] = useState<StateObject>({
-    initialProvider: provider,
-    newProvider: undefined,
+    newProvider: defaultProvider,
     pictures: {},
-    error: undefined,
     submissionResponse: undefined,
-    pageState: 1,
-    canProceed: true
+    pageState: 1
   });
 
   const updateState = (newState: Partial<StateObject>) => {
     setState((previousState) => ({ ...previousState, ...newState }));
+  };
+
+  const getFormValues = () => {
+    const { general, ...otherStuff } = newProvider;
+    const providerList = { ...general, ...otherStuff };
+    return Object.keys(formFields)
+      .flatMap((fieldName) => {
+        return formFields[fieldName].map((field) => {
+          const dbName = field.props.dbName;
+          if (dbName && providerList[dbName]) {
+            const userResponse =
+              typeof providerList[dbName] !== 'string'
+                ? providerOptions[dbName]
+                    .filter((optionObject) =>
+                      providerList[dbName].includes(optionObject.id.toString())
+                    )
+                    .map((optionObject) => optionObject.name)
+                    .join(', ')
+                : providerList[dbName];
+            return [field.name, userResponse];
+          }
+        });
+      })
+      .filter((item) => item !== undefined);
   };
 
   const back = () => {
@@ -55,19 +67,10 @@ export const useContextInitializer: ContextInitializer = (formType) => {
     updateState({ pageState: state.pageState + 1 });
   };
 
-  const {
-    initialProvider,
-    newProvider,
-    pictures,
-    pageState,
-    canProceed,
-    submissionResponse,
-    error
-  } = state;
+  const { newProvider, pictures, pageState, submissionResponse } = state;
 
   const value: FormContextObject = {
     formData: {
-      initialProvider,
       newProvider,
       pictures
     },
@@ -79,18 +82,12 @@ export const useContextInitializer: ContextInitializer = (formType) => {
         pageStateTitles: [...pageStateTitles, 'Confirmation']
       },
       pageState,
-      canProceed,
+      submissionResponse,
       next,
       back,
-      updateState
-    },
-    formFunctions: {
-      register,
-      getValues,
-      handleSubmit
-    },
-    submissionResponse,
-    error
+      updateState,
+      getFormValues
+    }
   };
   return [FormContext, value];
 };
@@ -102,21 +99,16 @@ export type Pictures = {
 
 interface StateObject {
   newProvider?: FormProvider;
-  error?: any;
   submissionResponse?: any;
-  initialProvider: ProviderObject | FormProvider;
   pictures: Pictures;
   pageState: number;
-  canProceed: boolean;
 }
 type UpdateStateFn = (props: {
   newProvider?: FormProvider;
-  error?: any;
   submissionResponse?: any;
   initialProvider?: ProviderObject | FormProvider;
   pictures?: Pictures;
   pageState?: number;
-  canProceed?: boolean;
 }) => void;
 
 interface FormContextObject {
@@ -133,21 +125,13 @@ interface FormContextObject {
       pageStateTitles: PageStateTitle[];
     };
     pageState: number;
-    canProceed: boolean;
+    submissionResponse: any;
     next: () => void;
     back: () => void;
     updateState: UpdateStateFn;
+    getFormValues: Function;
   };
-  formFunctions: {
-    register: UseFormRegister<FormProvider>;
-    getValues: UseFormGetValues<FormProvider>;
-    handleSubmit: UseFormHandleSubmit<FormProvider>;
-  };
-  error: any;
-  submissionResponse: any;
 }
-
-export type FormFields = InputObject[];
 
 type ContextInitializer = (
   formType: FormType

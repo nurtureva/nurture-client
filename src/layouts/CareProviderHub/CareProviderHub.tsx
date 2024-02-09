@@ -151,7 +151,7 @@ export const Content = () => {
         </p>
         <ButtonGroup buttonProps={providerButtonProps} />
       </PictureSplitContainer>
-      <section className="bg-yellow share-directory">
+      {/* <section className="bg-yellow share-directory">
         <h2>Share the directory</h2>
         <p>
           Do you know another care practitioner who should join the Birth and
@@ -164,7 +164,7 @@ export const Content = () => {
           <Input label="Practitioner's email address" />
           <Button>Send invite</Button>
         </span>
-      </section>
+      </section> */}
     </>
   );
 };

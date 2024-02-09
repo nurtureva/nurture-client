@@ -43,11 +43,10 @@ export interface OrganizationNoOptions {
 }
 
 export type OptionType =
-  | 'appointmentOptions'
+  | 'appointmentTypes'
   | 'paymentOptions'
   | 'services'
-  | 'certifications'
-  | 'appointmentType';
+  | 'certifications';
 
 export type OrganizationOptionType = Exclude<OptionType, 'certifications'>;
 

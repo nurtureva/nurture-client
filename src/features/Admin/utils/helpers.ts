@@ -1,7 +1,7 @@
 import { accessDatabase } from '@/api';
 
-export const confirmChoice = (callback: CallableFunction) => {
-  if (confirm('Are you sure?')) return callback();
+export const confirmChoice = (callback: CallableFunction, message?: string) => {
+  if (confirm(message || 'Are you sure?')) return callback();
 };
 
 export const approveProvider = (

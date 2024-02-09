@@ -10,7 +10,7 @@ export const IntakeForm = () => {
   const [formType, setFormType] = useState<FormType>();
   return (
     <div className="form">
-      <h1>Add your practice to the Directory</h1>
+      {/* <h1>Add your practice to the Directory</h1> */}
       {formType ? (
         <FormManager formType={formType} />
       ) : (

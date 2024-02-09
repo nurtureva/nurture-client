@@ -1,10 +1,12 @@
 import { Button } from '@/components';
 import { useFormContext } from '../../utils/formContext';
 import { ButtonProps } from '@/types';
+import { useFormAction } from '../../utils/api';
 
 export const ButtonGroup = ({
   disabled,
-  isConfirmation
+  isConfirmation,
+  setSubmissionResponse
 }: {
   disabled?: boolean;
   isConfirmation: boolean;
@@ -12,27 +14,33 @@ export const ButtonGroup = ({
   const {
     formState: {
       back,
-      next,
-      pageState,
-      formType: { pageStateTitles }
-    }
+      formType: { pageStateTitles, type }
+    },
+    formData: { newProvider }
   } = useFormContext();
+  const submitProviderData = useFormAction(type);
 
   const buttonProps: ButtonProps = isConfirmation
     ? {
         children: 'Submit',
-        isSubmit: true
+        onClick: async (e) => {
+          e.preventDefault();
+          const submissionConfirmation = await submitProviderData(newProvider);
+          const message = window.location.pathname.includes('provider-form')
+            ? 'Your information has been submitted. Please allow two weeks for us to review and add you to the database.'
+            : 'Your new information has been submitted. Your information should be live now.';
+          setSubmissionResponse(message || 'error');
+
+          console.log(submissionConfirmation);
+        }
       }
     : {
-        onClick: (e) => {
-          e.preventDefault();
-          next();
-        },
-        children: 'Save and Continue'
+        children: 'Save and Continue',
+        isSubmit: true
       };
 
   return (
-    <div>
+    <div className="button-group">
       <p onClick={back}>Back</p>
       <Button className={disabled ? 'disabled' : ''} {...buttonProps} />
     </div>

@@ -13,15 +13,18 @@ const uploadPhotos = async (id: number, pictures: Pictures) => {
       `${id}-${pictureType}.${file.type.split('/')[1]}`
     );
   });
-  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/s3/${id}`, {
-    method: 'POST',
-    body: formData
-  });
+
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/providers/${id}/upload`,
+    {
+      method: 'PATCH',
+      body: formData
+    }
+  );
   return res.json();
 };
 
 const editProvider = async (provider: FormProvider) => {
-  provider.general.needs_review = true;
   const id = Number(window.location.pathname.split('/')[1]);
   await accessDatabase('PATCH', 'providers', {
     id,
@@ -30,8 +33,17 @@ const editProvider = async (provider: FormProvider) => {
 
   return id;
 };
+
+export const addHash = async (id: number, note: string) => {
+  await accessDatabase('PATCH', 'providers', {
+    id: id + '?addHash=true',
+    body: { note }
+  });
+
+  return id;
+};
+
 const editOrganization = async (organization: FormOrganization) => {
-  organization.general.needs_review = true;
   const id = Number(window.location.pathname.split('/')[1]);
   await accessDatabase('PATCH', 'organizations', {
     id,
@@ -86,11 +98,12 @@ export const useFormAction = (providerType: 'individual' | 'organization') => {
   ) => {
     const { demographics, ...provider } = providerWithDemographics;
     const newId = await formFuncton(provider);
-
-    if (demographics) uploadDemographics(demographics, newId);
+    if (demographics) {
+      const demo = uploadDemographics(demographics, newId);
+    }
     if (Object.keys(pictures).length) {
-      console.log(pictures);
-      uploadPhotos(newId, pictures);
+      const photo = uploadPhotos(newId, pictures);
+      console.log(photo);
     }
 
     return newId;

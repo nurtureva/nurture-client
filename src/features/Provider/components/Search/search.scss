@@ -28,12 +28,12 @@
     &:last-of-type {
       flex: 2 1 140px;
     }
-    &:focus-within {
-      outline: 2px solid var(--brand-green);
-    }
-    input:focus {
-      outline: none;
-    }
+    // &:focus-within {
+    //   outline: 2px solid var(--brand-green);
+    // }
+    // input:focus {
+    //   outline: none;
+    // }
   }
   & > * {
     margin-right: 7px;

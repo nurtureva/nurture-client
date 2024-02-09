@@ -4,15 +4,11 @@ import { confirmChoice } from '@/features/Admin/utils/helpers';
 import { deletePhoto } from '../../utils/api';
 import { Button } from '@/components';
 
-interface ParamsObject {
+export const PhotoInput = ({
+  dbName
+}: {
   dbName: 'logo' | 'profile_photo';
-  initialImage?: string;
-  imageState: [
-    File | undefined,
-    React.Dispatch<React.SetStateAction<File | undefined>>
-  ];
-}
-export const PhotoInput = ({ dbName }: ParamsObject) => {
+}) => {
   const {
     formState: { updateState },
     formData: { initialProvider, pictures }
@@ -31,9 +27,10 @@ export const PhotoInput = ({ dbName }: ParamsObject) => {
   );
 
   useEffect(() => {
-    updateState({
-      pictures: { ...pictures, [dbName]: image }
-    });
+    if (image)
+      updateState({
+        pictures: { ...pictures, [dbName]: image }
+      });
   }, [image]);
 
   const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {

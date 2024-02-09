@@ -1,16 +1,30 @@
 import { useFormContext } from '../../utils/formContext';
 import { FormItem } from '../FormItem';
 import { PageStateTitle } from '@/types';
+import { ButtonGroup } from '../FormPageSwitcher/ButtonGroup';
+import { useForm } from 'react-hook-form';
+import { useDefaultValues } from '../../utils/helpers';
 
 export const FormStub = ({ type }: { type: PageStateTitle }) => {
   const {
+    formData: { newProvider },
     formState: {
-      formType: { formFields }
+      formType: { formFields },
+      updateState,
+      next
     }
   } = useFormContext();
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: newProvider
+  });
   return (
-    <>
-      {type === 'Demographics' ? (
+    <form
+      onSubmit={handleSubmit(async (data) => {
+        updateState({ newProvider: data });
+        next();
+      })}>
+      {type === 'Demographics' && (
         <>
           <p>
             Why are we collecting demographic data?
@@ -38,12 +52,12 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
             data collection, please reach out.
           </p>
         </>
-      ) : (
-        ''
       )}
-      {formFields.map((input, i) => {
-        if (input.stubName === type) return <FormItem input={input} key={i} />;
+      {formFields[type].map((input) => {
+        input.props.register = register;
+        return <FormItem input={input} key={input.props.dbName} />;
       })}
-    </>
+      <ButtonGroup isConfirmation={false} />
+    </form>
   );
 };

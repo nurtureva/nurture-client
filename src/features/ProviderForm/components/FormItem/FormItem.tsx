@@ -1,22 +1,8 @@
 import React, { useState } from 'react';
-import { FormInput } from '../FormInput';
 import { useFormContext } from '../../utils/formContext';
-import { InputObject } from '../../types';
+import { FormItem as FormItemObject } from '../../types';
 
-interface FormItemWrapperObject {
-  input: {
-    name: string;
-    children: React.ReactNode;
-    description?: string;
-    size?: 'full' | 'large' | 'half' | 'small';
-    Element?: any;
-    dbName?: string;
-    props?: any;
-    rules?: any;
-  };
-}
-
-export const FormItem = ({ input }: { input: InputObject }) => {
+export const FormItem = ({ input }: { input: FormItemObject }) => {
   const [isValid, setIsValid] = useState(true);
   const {
     formState: { canProceed, updateState }
@@ -25,29 +11,20 @@ export const FormItem = ({ input }: { input: InputObject }) => {
     if (!e.target.value) setIsValid(false);
     else setIsValid(true);
   };
+  //todo update FormItem type to more accurately assert type for Element (string in JSON, FC any other time)
+  const Element = input.Element as React.FC<any>;
 
-  const formItemName: string =
-    //@ts-ignore
-    input.dbName || input.props?.dbName || input.props?.formKey;
+  //we just use this for a unique id for each form item, that way we have accesible and semantic labels
+  //todo factor this out to json input lists
+  const formItemName: string = input.props.dbName;
+
+  //todo remove required prop from being passed down, check on other unnecessary prop drilling
+  const { required, size, ...props } = input.props;
   return (
-    <span className={`form-input-container ${input.size ? input.size : ''} `}>
+    <span className={`form-input-container${!!size ? ' ' + size : ''} `}>
       <label>
-        {input.name} {input.required ? '*' : '(optional)'}
-        {'Element' in input ? (
-          input.Element === 'RADIO' ? (
-            <Radio />
-          ) : (
-            <input.Element {...input.props} />
-          )
-        ) : (
-          <FormInput
-            dbName={input.dbName}
-            id={formItemName}
-            parentObjectName={input.parentObjectName}
-            {...input.props}
-            onBlur={onBlur}
-          />
-        )}
+        {input.name} {!!required ? '*' : '(optional)'}
+        <Element id={formItemName} onBlur={onBlur} {...props} />
       </label>
       {input.description && (
         <label htmlFor={formItemName}>{input.description}</label>

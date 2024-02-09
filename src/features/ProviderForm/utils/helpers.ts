@@ -1,6 +1,4 @@
 import { FormProvider, Option, ProviderObject } from '@/types';
-import { useFormContext } from './formContext';
-import { useLoaderData } from 'react-router-dom';
 
 const flattenArray = (array: Option[] | string[] | undefined) => {
   if (!array) return array;
@@ -18,11 +16,7 @@ export const createPageContent = (
   return { title, description, Content };
 };
 
-export const useDefaultValues = (): FormProvider | {} => {
-  const { provider: initialProvider } = useLoaderData() as {
-    provider: ProviderObject;
-  };
-  const provider = initialProvider;
+export const useDefaultValues = (provider?: FormProvider) => {
   if (!provider)
     return {
       general: {
@@ -30,14 +24,19 @@ export const useDefaultValues = (): FormProvider | {} => {
         logo: undefined
       }
     };
-  const { services, paymentOptions, certifications, ...providerDetails } =
-    provider;
 
-  return {
-    general:
-      'general' in providerDetails ? providerDetails.general : providerDetails,
-    services: flattenArray(services),
-    paymentOptions: flattenArray(paymentOptions),
-    certifications: flattenArray(certifications)
-  };
+  const defaultProvider = Object.entries(provider).reduce(
+    (result, [key, value]) => {
+      if (!value) return result;
+      if (Array.isArray(value)) {
+        result[key as keyof FormProvider] = flattenArray(value);
+      } else {
+        result.general[key as keyof FormProvider['general']] = value;
+      }
+      return result;
+    },
+    { general: {} } as FormProvider
+  );
+
+  return defaultProvider;
 };

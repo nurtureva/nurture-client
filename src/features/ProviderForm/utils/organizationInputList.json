@@ -1,137 +1,156 @@
 {
-  "input": [
+  "Basic Details": [
     {
       "name": "Organization name",
-      "dbName": "name",
-      "required": "true",
-      "stubName": "Basic Details"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "name",
+        "required": true
+      }
     },
     {
       "name": "Email address",
-      "dbName": "email",
-      "required": "true",
+      "Element": "INPUT",
       "props": {
+        "dbName": "email",
+        "required": true,
+        "size": "large",
         "placeholder": "example@example.com"
-      },
-      "stubName": "Basic Details",
-      "size": "large"
+      }
     },
     {
       "name": "Phone number",
-      "dbName": "phone",
-      "required": "true",
+      "Element": "INPUT",
       "props": {
+        "dbName": "phone",
+        "required": true,
+        "size": "small",
         "placeholder": "(xxx) xxx-xxxx"
-      },
-      "stubName": "Basic Details",
-      "size": "small"
+      }
     },
     {
       "name": "Which of the following terms best describes your organization?",
-      "Element": "CHECKBOX",
-      "required": "true",
-      "props": {
-        "formKey": "organizationTypes"
-      },
       "description": "Select all that apply",
-      "stubName": "Basic Details"
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "organizationTypes",
+        "required": true,
+        "selection": "multiple"
+      }
     },
     {
       "name": "Logo",
+      "description": "A square or circular file works best (use .jpg, .png, .tif, .heic, .psd)",
       "Element": "PHOTO",
       "props": {
         "dbName": "logo"
-      },
-      "description": "A square or circular file works best (use .jpg, .png, .tif, .heic, .psd)",
-      "stubName": "Basic Details"
+      }
     },
     {
       "name": "Type of care provided",
-      "Element": "CHECKBOX",
-      "required": "true",
-      "props": {
-        "formKey": "services"
-      },
       "description": "Select all that apply",
-      "stubName": "Basic Details"
-    },
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "services",
+        "required": true,
+        "selection": "multiple"
+      }
+    }
+  ],
+  "Contact": [
     {
       "name": "Organization website",
-      "dbName": "website",
+      "Element": "INPUT",
       "props": {
+        "dbName": "website",
         "placeholder": "www.example.com"
-      },
-      "stubName": "Contact"
+      }
     },
     {
       "name": "Address line 1",
-      "dbName": "address_1",
+      "Element": "INPUT",
       "props": {
+        "dbName": "address_1",
+        "size": "large",
         "placeholder": "1234 example street"
-      },
-      "stubName": "Contact",
-      "size": "large"
+      }
     },
     {
       "name": "Address line 2",
-      "dbName": "address_2",
       "description": "apartment, floor, suite",
-      "stubName": "Contact",
-      "size": "small"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "address_2",
+        "size": "small"
+      }
     },
     {
       "name": "City",
-      "dbName": "city",
-      "required": "true",
-      "stubName": "Contact",
-      "size": "small"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "city",
+        "required": true,
+        "size": "small"
+      }
     },
     {
       "name": "State",
-      "dbName": "state",
-      "required": "true",
-      "stubName": "Contact",
-      "size": "small"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "state",
+        "required": true,
+        "size": "small"
+      }
     },
     {
       "name": "Zip code",
-      "dbName": "zip",
-      "required": "true",
-      "stubName": "Contact",
-      "size": "small"
-    },
+      "Element": "INPUT",
+      "props": {
+        "dbName": "zip",
+        "required": true,
+        "size": "small"
+      }
+    }
+  ],
+  "About": [
     {
       "name": "Overview of your services",
-      "dbName": "overview",
-      "required": "true",
       "description": "Describe the type of care you provide (500 characters max)",
-      "props": { "element": "textarea" },
-      "stubName": "About"
-    },
+      "Element": "INPUT",
+      "props": {
+        "dbName": "overview",
+        "required": true,
+        "isTextArea": true
+      }
+    }
+  ],
+  "Professional Details": [
     {
       "name": "Payment Options",
-      "Element": "CHECKBOX",
-      "required": "true",
-      "props": {
-        "formKey": "paymentOptions"
-      },
       "description": "Select all that apply",
-      "stubName": "Professional Details"
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "paymentOptions",
+        "required": true,
+        "selection": "multiple"
+      }
     },
     {
-      "name": "Appointment Options",
-      "Element": "CHECKBOX",
-      "props": {
-        "formKey": "appointmentOptions"
-      },
+      "name": "Appointment Types",
       "description": "Select all that apply",
-      "stubName": "Professional Details"
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "appointmentTypes",
+        "selection": "multiple"
+      }
     },
     {
       "name": "In practice since",
-      "dbName": "year_established",
       "description": "Enter year",
-      "stubName": "Professional Details"
+      "Element": "INPUT",
+      "props": {
+        "dbName": "year_established"
+      }
     }
   ]
 }
