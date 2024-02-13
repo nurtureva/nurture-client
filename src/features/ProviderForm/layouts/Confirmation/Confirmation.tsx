@@ -1,8 +1,8 @@
 import { useLoaderData } from 'react-router-dom';
 import { useFormContext } from '../../utils/formContext';
-import { ButtonGroup } from '../FormPageSwitcher/ButtonGroup';
+import { ButtonGroup } from '../../components/ButtonGroup';
 
-export const Confirmation = ({ setSubmissionResponse }) => {
+export const Confirmation = () => {
   const {
     formData: { pictures, newProvider: provider },
     formState: {
@@ -32,7 +32,7 @@ export const Confirmation = ({ setSubmissionResponse }) => {
             );
         })}
       </ul>
-      <ButtonGroup isConfirmation={true} {...{ setSubmissionResponse }} />
+      <ButtonGroup isConfirmation={true} />
     </div>
   );
 };

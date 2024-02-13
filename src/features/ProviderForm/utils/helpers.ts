@@ -1,4 +1,4 @@
-import { FormProvider, Option, ProviderObject } from '@/types';
+import { FormProvider, Option } from '@/types';
 
 const flattenArray = (array: Option[] | string[] | undefined) => {
   if (!array) return array;
@@ -16,15 +16,10 @@ export const createPageContent = (
   return { title, description, Content };
 };
 
-export const useDefaultValues = (provider?: FormProvider) => {
-  if (!provider)
-    return {
-      general: {
-        profile_photo: undefined,
-        logo: undefined
-      }
-    };
-
+export const useDefaultValues = (
+  provider?: FormProvider
+): Partial<FormProvider> => {
+  if (!provider) return;
   const defaultProvider = Object.entries(provider).reduce(
     (result, [key, value]) => {
       if (!value) return result;
@@ -37,6 +32,5 @@ export const useDefaultValues = (provider?: FormProvider) => {
     },
     { general: {} } as FormProvider
   );
-
   return defaultProvider;
 };

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormContext } from '../../utils/formContext';
 import { confirmChoice } from '@/features/Admin/utils/helpers';
 import { deletePhoto } from '../../utils/api';
@@ -11,17 +11,15 @@ export const PhotoInput = ({
 }) => {
   const {
     formState: { updateState },
-    formData: { initialProvider, pictures }
+    formData: { newProvider: initialProvider, pictures }
   } = useFormContext();
   const photo = pictures[dbName];
   const [image, setImage] = useState(photo);
-  const initialProviderGeneralInfo =
-    initialProvider && !('general' in initialProvider)
-      ? initialProvider
-      : undefined;
-  const initialImage = initialProviderGeneralInfo
-    ? initialProviderGeneralInfo[dbName]
+  const initialImage = initialProvider?.general[dbName]
+    ? initialProvider.general[dbName]
     : '';
+
+  console.log(initialProvider);
   const [imageSrc, setImageSrc] = useState(
     initialImage ? import.meta.env.VITE_S3_URL + initialImage : ''
   );
@@ -61,7 +59,7 @@ export const PhotoInput = ({
               e.preventDefault();
               if (initialImage) {
                 confirmChoice(() => {
-                  deletePhoto(initialImage);
+                  deletePhoto(initialProvider.general.id, initialImage);
                   setImageSrc('');
                 });
               } else {

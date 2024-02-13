@@ -79,7 +79,7 @@ interface FormProviderGeneralObject
 }
 
 export interface FormProvider extends OptionsGenerator<string, OptionType> {
-  general: Omit<ProviderNoOptions, 'logo' | 'profile_photo'>;
+  general: ProviderNoOptions;
 }
 export interface FormOrganization
   extends OptionsGenerator<string, OrganizationOptionType> {

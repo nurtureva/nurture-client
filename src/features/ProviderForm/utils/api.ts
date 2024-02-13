@@ -110,9 +110,16 @@ export const useFormAction = (providerType: 'individual' | 'organization') => {
   };
 };
 
-export const deletePhoto = async (key: string) => {
-  const res = await fetch(`${import.meta.env.VITE_BASE_URL}/s3/${key}`, {
-    method: 'DELETE'
-  });
+export const deletePhoto = async (id: number, key: string) => {
+  const body = JSON.stringify({ key });
+  console.log(body);
+  const res = await fetch(
+    `${import.meta.env.VITE_BASE_URL}/providers/delete-photo`,
+    {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ key })
+    }
+  );
   return res.json();
 };

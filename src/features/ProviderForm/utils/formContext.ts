@@ -19,16 +19,14 @@ export const useContextInitializer: ContextInitializer = (formType) => {
   const [formFields, pageStateTitles, formTitle] = useFormInputList(formType);
   const { provider: initialProvider, ...providerOptions } = useLoaderData();
 
-  //this should be updated for demographics — probably just an overhaul
   const defaultProvider = useDefaultValues(initialProvider);
 
   const [state, setState] = useState<StateObject>({
     newProvider: defaultProvider,
     pictures: {},
-    submissionResponse: undefined,
+    submissionResponse: { message: '', id: undefined },
     pageState: 1
   });
-
   const updateState = (newState: Partial<StateObject>) => {
     setState((previousState) => ({ ...previousState, ...newState }));
   };
@@ -72,6 +70,7 @@ export const useContextInitializer: ContextInitializer = (formType) => {
   const value: FormContextObject = {
     formData: {
       newProvider,
+      submissionResponse,
       pictures
     },
     formState: {
@@ -82,7 +81,6 @@ export const useContextInitializer: ContextInitializer = (formType) => {
         pageStateTitles: [...pageStateTitles, 'Confirmation']
       },
       pageState,
-      submissionResponse,
       next,
       back,
       updateState,
@@ -99,7 +97,7 @@ export type Pictures = {
 
 interface StateObject {
   newProvider?: FormProvider;
-  submissionResponse?: any;
+  submissionResponse: { message?: string; id?: number };
   pictures: Pictures;
   pageState: number;
 }
@@ -113,8 +111,8 @@ type UpdateStateFn = (props: {
 
 interface FormContextObject {
   formData: {
-    initialProvider?: ProviderObject | FormProvider;
     newProvider?: FormProvider;
+    submissionResponse: { message?: string; id?: number };
     pictures: Pictures;
   };
   formState: {
@@ -125,7 +123,6 @@ interface FormContextObject {
       pageStateTitles: PageStateTitle[];
     };
     pageState: number;
-    submissionResponse: any;
     next: () => void;
     back: () => void;
     updateState: UpdateStateFn;

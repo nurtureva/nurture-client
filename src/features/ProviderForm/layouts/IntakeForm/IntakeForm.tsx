@@ -1,11 +1,10 @@
-import { Button, ButtonGroup, ButtonPropArray } from '@/components';
+import { ButtonGroup, ButtonPropArray } from '@/components';
 import { useState } from 'react';
 import { FormManager } from '../..';
-import { FormType, InputObject } from '../../types';
+import { FormType } from '../../types';
 import './intakeForm.scss';
 import { Link, useLoaderData } from 'react-router-dom';
 
-export type Initializer = () => InputObject[] | undefined;
 export const IntakeForm = () => {
   const [formType, setFormType] = useState<FormType>();
   return (

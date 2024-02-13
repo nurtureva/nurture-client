@@ -1,31 +1,22 @@
 import { useFormContext } from '../../utils/formContext';
-import { Confirmation } from '../Confirmation';
-import { FormStub } from '../FormStub';
-import { ButtonGroup } from './ButtonGroup';
-import { useFormAction } from '../../utils/api';
+import { Confirmation } from '../../layouts/Confirmation';
+import { FormStub } from '../../layouts/FormStub';
 
-export const FormPageSwitcher = ({ setSubmissionResponse }) => {
+export const FormPageSwitcher = () => {
   const {
     formState: {
       pageState,
-      formType: { pageStateTitles, type }
-    },
-    // formFunctions: { handleSubmit },
-    formData: { pictures }
+      formType: { pageStateTitles }
+    }
   } = useFormContext();
-  const submitProviderData = useFormAction(type);
 
   const currentPageStateTitle = pageStateTitles[pageState - 1];
   return (
     <div>
       <h3>{currentPageStateTitle}</h3>
-      <div
-      // onSubmit={handleSubmit(async (data) => {
-      //   const submissionConfirmation = await submitProviderData(data);
-      // })}
-      >
+      <div>
         {currentPageStateTitle === 'Confirmation' ? (
-          <Confirmation {...{ setSubmissionResponse }} />
+          <Confirmation />
         ) : (
           <FormStub type={currentPageStateTitle} />
         )}

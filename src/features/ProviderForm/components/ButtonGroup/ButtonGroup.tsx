@@ -5,8 +5,7 @@ import { useFormAction } from '../../utils/api';
 
 export const ButtonGroup = ({
   disabled,
-  isConfirmation,
-  setSubmissionResponse
+  isConfirmation
 }: {
   disabled?: boolean;
   isConfirmation: boolean;
@@ -14,7 +13,8 @@ export const ButtonGroup = ({
   const {
     formState: {
       back,
-      formType: { pageStateTitles, type }
+      updateState,
+      formType: { type }
     },
     formData: { newProvider }
   } = useFormContext();
@@ -25,13 +25,15 @@ export const ButtonGroup = ({
         children: 'Submit',
         onClick: async (e) => {
           e.preventDefault();
-          const submissionConfirmation = await submitProviderData(newProvider);
+          const id = await submitProviderData(newProvider);
           const message = window.location.pathname.includes('provider-form')
             ? 'Your information has been submitted. Please allow two weeks for us to review and add you to the database.'
             : 'Your new information has been submitted. Your information should be live now.';
-          setSubmissionResponse(message || 'error');
+          updateState({
+            submissionResponse: { message: message || 'error', id }
+          });
 
-          console.log(submissionConfirmation);
+          console.log(id);
         }
       }
     : {

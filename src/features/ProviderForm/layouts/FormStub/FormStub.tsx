@@ -1,9 +1,8 @@
 import { useFormContext } from '../../utils/formContext';
-import { FormItem } from '../FormItem';
+import { FormItem } from '../../components/FormItem';
 import { PageStateTitle } from '@/types';
-import { ButtonGroup } from '../FormPageSwitcher/ButtonGroup';
+import { ButtonGroup } from '../../components/ButtonGroup';
 import { useForm } from 'react-hook-form';
-import { useDefaultValues } from '../../utils/helpers';
 
 export const FormStub = ({ type }: { type: PageStateTitle }) => {
   const {
