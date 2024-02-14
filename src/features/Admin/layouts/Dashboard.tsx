@@ -3,9 +3,13 @@ import { OrganizationObject, ProviderObject } from '@/types';
 import './dashboard.scss';
 import OptionList from '../components/OptionList';
 import ProviderList from '../components/ProviderList';
+import { useState } from 'react';
+import { Input } from '@/components';
 
 export default function AdminDashboard() {
   //extend main page loader to also get reports as well as pending providers !!!!!!!!!!!!!
+
+  const [accessGranted, setAccessGranted] = useState(false);
   const {
     pendingProviders,
     providers,
@@ -19,7 +23,18 @@ export default function AdminDashboard() {
     organizations: OrganizationObject[];
     currentReports: any;
   };
-
+  if (!accessGranted)
+    return (
+      <section>
+        <h2>Enter the admin password</h2>
+        <Input
+          onChange={(e) => {
+            e.preventDefault();
+            console.log(e.target.value);
+            if (e.target.value === 'password') setAccessGranted(true);
+          }}></Input>
+      </section>
+    );
   return (
     <div className="admin-wrapper">
       {/* <span className="analytics-container"> */}
