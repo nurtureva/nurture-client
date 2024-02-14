@@ -13,23 +13,27 @@ export const PhotoInput = ({
     formState: { updateState },
     formData: { newProvider: initialProvider, pictures }
   } = useFormContext();
-  const photo = pictures[dbName];
-  const [image, setImage] = useState(photo);
-  const initialImage = initialProvider?.general[dbName]
-    ? initialProvider.general[dbName]
-    : '';
+  const [image, setImage] = useState(pictures[dbName]);
+  const initialImage = initialProvider?.general[dbName];
 
-  console.log(initialProvider);
   const [imageSrc, setImageSrc] = useState(
     initialImage ? import.meta.env.VITE_S3_URL + initialImage : ''
   );
 
   useEffect(() => {
-    if (image)
+    if (image) {
+      setImageSrc(image ? URL.createObjectURL(image) : '');
       updateState({
         pictures: { ...pictures, [dbName]: image }
       });
+    } else if (!initialImage) {
+      setImageSrc('');
+    }
   }, [image]);
+
+  useEffect(() => {
+    console.log(imageSrc);
+  }, [imageSrc]);
 
   const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -37,9 +41,6 @@ export const PhotoInput = ({
     }
   };
 
-  useEffect(() => {
-    if (!initialImage) setImageSrc(image ? URL.createObjectURL(image) : '');
-  }, [image]);
   return (
     <span className="photo-input-container">
       <input
@@ -60,6 +61,12 @@ export const PhotoInput = ({
               if (initialImage) {
                 confirmChoice(() => {
                   deletePhoto(initialProvider.general.id, initialImage);
+                  updateState({
+                    newProvider: {
+                      ...initialProvider,
+                      general: { [dbName]: undefined }
+                    }
+                  });
                   setImageSrc('');
                 });
               } else {
@@ -67,8 +74,8 @@ export const PhotoInput = ({
                   dbName
                 )[0] as HTMLInputElement;
                 imageInput.value = '';
-                setImage(undefined);
               }
+              setImage(undefined);
             }}>
             X
           </button>
