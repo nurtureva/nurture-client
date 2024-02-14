@@ -25,7 +25,7 @@ const ProviderList = ({
         return (
           <li key={provider.id}>
             <h5>{provider.name}</h5>
-            <a href={`${window.location.origin}/results/${provider.id}`}>
+            <a href={`${window.location.origin}/provider/${provider.id}`}>
               details
             </a>
             {isPending ? (

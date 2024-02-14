@@ -1,0 +1,13 @@
+.admin-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  div {
+    border: 1px solid black;
+    padding: 20px;
+    width: 20%;
+    ul {
+      max-height: 400px;
+      overflow-y: scroll;
+    }
+  }
+}
