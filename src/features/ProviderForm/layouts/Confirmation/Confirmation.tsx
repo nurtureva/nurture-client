@@ -14,7 +14,7 @@ export const Confirmation = () => {
   pageStateTitles.pop();
   const formValues = getFormValues();
   if (!provider) return null;
-
+  console.log(provider);
   return (
     <div className="confirmation-section">
       <p>
