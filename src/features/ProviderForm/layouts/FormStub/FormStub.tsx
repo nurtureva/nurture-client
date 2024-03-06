@@ -3,6 +3,7 @@ import { FormItem } from '../../components/FormItem';
 import { PageStateTitle } from '@/types';
 import { ButtonGroup } from '../../components/ButtonGroup';
 import { useForm } from 'react-hook-form';
+import { FormSelector } from '../../components/FormSelector';
 
 export const FormStub = ({ type }: { type: PageStateTitle }) => {
   const {
@@ -24,6 +25,40 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
     defaultValues: newProvider,
     mode: 'onBlur'
   });
+
+  const profilePhotoMessage =
+    'While not required, we highly recommend uploading a profile picture for your listing. From the perspective of parents seeking services, profile pictures can help create a visual connection with prospective providers.';
+  const PreItem = ({ input }) => {
+    if ((input.name !== 'Profile photo') && (type !== 'Demographics')) return null
+    if (input.name === 'Profile photo') return (
+      <FormItem>
+        <p>{profilePhotoMessage}</p>
+      </FormItem>
+    )
+    const testName = `${input.name}permission`;
+    return (
+      <FormItem
+        input={{
+          name: 'Would you like to display this on your public-facing profile?',
+          Element: FormSelector,
+          props: {
+            dbName: { testName },
+            optionsArray: [{ name: 'yes' }, { name: 'no' }],
+            register: register,
+            getValues: () => {},
+            selection: 'single'
+          }
+        }}>
+        {input.name === 'Profile photo' ? (
+          <p>{profilePhotoMessage}</p>
+        ) : (
+          <label>
+            <input type="checkbox"></input>
+          </label>
+        )}
+      </FormItem>
+    );
+  };
   return (
     <form
       onSubmit={handleSubmit(async (data) => {
@@ -60,21 +95,10 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
       )}
       {formFields[type].map((input) => {
         input.props = { ...input.props, register, errors, setValue, getValues };
-        if (input.name === 'Profile photo')
-          return (
-            <>
-              <FormItem>
-                <p>
-                  While not required, we highly recommend uploading a profile
-                  picture for your listing. From the perspective of parents
-                  seeking services, profile pictures can help create a visual
-                  connection with prospective providers.
-                </p>
-              </FormItem>
-              <FormItem input={input} key={input.props.dbName} />
-            </>
-          );
-        return <FormItem input={input} key={input.props.dbName} />;
+        return <>
+          <PreItem input={input} />
+          <FormItem input={input} key={input.props.dbName} />
+        </>;
       })}
       <ButtonGroup isConfirmation={false} />
     </form>
