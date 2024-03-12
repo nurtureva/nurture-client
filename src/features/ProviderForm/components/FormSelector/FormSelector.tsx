@@ -1,20 +1,7 @@
 import { SelectorProps } from '@/types';
 import { useFormContext } from '../../utils/formContext';
 import { Icon } from '@/components';
-import { useState } from 'react';
-
-/**
- * dbName --> dbOptionTableName
- * dbOptionTableName: keyof FormProvider
- * parentObjectName --> dataGroup
- * dataGroup: 'general' | 'demographics'
- * optionsArray: Option[];
- * selection: 'single' | 'multiple'
- * style: 'input' | 'dropdown' <--- input is checkbox/radio dropdown is dropdown. both can be single or multiple select
- * includeDescription: boolean;
- * includeOther: boolean; <--- this should actually come from the database
- * otherLabel: 'other' | string; <--- and so will this
- */
+import { useEffect, useState } from 'react';
 
 export const FormSelector = ({
   dbName,
@@ -22,35 +9,28 @@ export const FormSelector = ({
   optionsArray,
   selection,
   selectorType,
-  register
+  register,
+  setValue,
+  getValues
 }: // isDropdown
 SelectorProps) => {
   const [optionsVisible, setOptionsVisible] = useState(
     selectorType !== 'dropdown'
   );
-
   const isDropdown = selectorType === 'dropdown';
   const optionsList = optionsArray?.map((option) => {
     return (
       <li key={option.id}>
-        {/* <label>
-          <input
-            type={selection === 'single' ? 'radio' : 'checkbox'}
-            value={option.id}
-            {...register(
-              // @ts-ignore
-              `${isDemographics ? 'demographics.' : ''}${dbName}`
-            )}
-          />
-          {option.name}
-        </label> */}
         <Checkbox
           id={option.id}
           name={option.name}
+          isOther={option.name.includes('please specify')}
           type={selection === 'single' ? 'radio' : 'checkbox'}
           isDemographics={isDemographics}
           register={register}
           dbName={dbName}
+          setValue={setValue}
+          getValues={getValues}
         />
       </li>
     );
@@ -66,7 +46,6 @@ SelectorProps) => {
               <Icon
                 type="carrot_down"
                 onClick={() => {
-                  console.log('test');
                   setOptionsVisible(!optionsVisible);
                 }}
               />
@@ -87,7 +66,10 @@ const Checkbox = ({
   name,
   register,
   isDemographics,
-  dbName
+  dbName,
+  isOther,
+  setValue,
+  getValues
 }: {
   type: string;
   id: number;
@@ -95,18 +77,31 @@ const Checkbox = ({
   register: Function;
   isDemographics: boolean;
   dbName: string;
+  isOther: boolean;
 }) => {
-  const isOther = true;
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState();
   const [userDescription, setUserDescription] = useState('');
+  useEffect(()=>{
+    const init = getValues(dbName) || [];
+    const newOne = [...init, {userDescription, id}];
+    // if(userDescription) setValue(dbName, {userDescription, id})
+  }, [userDescription])
   return (
     <label>
       <input
         type={type}
-        value={id}
-        {...register(`${isDemographics ? 'demographics.' : ''}${dbName}`)} // @ts-ignore
+        onClick={(e) => {
+          setChecked(e.currentTarget.checked);
+        }}
+        value={type === 'radio' ? name : id}
+        {...register(`${isDemographics ? 'demographics.' : ''}${dbName}`)}
+
       />
-      {checked ? <input /> : name}
+      {checked && isOther ? (
+        <input onChange={e=>{setUserDescription(e.target.value)}}/>
+      ) : (
+        name
+      )}
     </label>
   );
-};
+  };

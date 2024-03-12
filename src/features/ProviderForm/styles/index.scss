@@ -60,6 +60,7 @@ form {
   justify-content: space-between;
 
   textarea {
+    padding:8px;
     height: 100px;
     width: 100%;
     border-radius: 8px;
@@ -101,8 +102,10 @@ form {
     input {
       margin-right: 10px;
     }
-    li {
-      padding: 10px;
+    label {
+      display: block;
+      padding:10px;
+      width: 100%;
     }
   }
 }
@@ -115,6 +118,7 @@ form {
 .page-state-indicator {
   display: flex;
   align-items: center;
+  cursor: pointer;
   padding: 10px;
   margin: 0;
   &.active span {
@@ -188,6 +192,7 @@ form {
     }
   }
 }
+
 
 @media only screen and (max-width: 860px) {
   .small {

@@ -3,6 +3,14 @@ import { useFormContext } from '../../utils/formContext';
 import { ButtonProps } from '@/types';
 import { useFormAction } from '../../utils/api';
 
+
+function removeUndefinedKeys(obj) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([key, value]) => value !== false)
+  );
+}
+
+
 export const ButtonGroup = ({
   disabled,
   isConfirmation
@@ -25,7 +33,7 @@ export const ButtonGroup = ({
         children: 'Submit',
         onClick: async (e) => {
           e.preventDefault();
-          const id = await submitProviderData(newProvider);
+          const id = await submitProviderData(removeUndefinedKeys(newProvider));
           const message = window.location.pathname.includes('provider-form')
             ? 'Your information has been submitted. Please allow two weeks for us to review and add you to the database.'
             : 'Your new information has been submitted. Your information should be live now.';

@@ -114,7 +114,7 @@
   ],
   "About": [
     {
-      "name": "Overview of your services",
+      "name": "Overview of services",
       "description": "Describe the type of care you provide (500 characters max)",
       "Element": "INPUT",
       "props": {

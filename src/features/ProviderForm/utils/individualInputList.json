@@ -9,7 +9,7 @@
       }
     },
     {
-      "name": "Your practice name",
+      "name": "Name of practice/business",
       "Element": "INPUT",
       "props": {
         "dbName": "business_name"
@@ -22,7 +22,7 @@
         "dbName": "email",
         "required": true,
         "size": "large",
-        "placeholder": "example@example.com"
+        "placeholder": "yourname@example.com"
       }
     },
     {
@@ -121,7 +121,7 @@
   ],
   "About": [
     {
-      "name": "Overview of your services",
+      "name": "Overview of services",
       "description": "Describe the type of care you provide (500 characters max)",
       "Element": "INPUT",
       "props": {
@@ -131,7 +131,7 @@
       }
     },
     {
-      "name": "About me",
+      "name": "Personal bio",
       "description": "Brief introduction about yourself (500 characters max)",
       "Element": "INPUT",
       "props": {
@@ -181,7 +181,7 @@
       }
     },
     {
-      "name": "Appointment Options",
+      "name": "Appointment Types",
       "description": "Select all that apply",
       "Element": "SELECTOR",
       "props": {
