@@ -5,3 +5,11 @@
   justify-content: space-around;
   padding: 64px;
 }
+
+@media only screen and (max-width: 860px) {
+  .sponsors-section {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 375px;
+  }
+}
