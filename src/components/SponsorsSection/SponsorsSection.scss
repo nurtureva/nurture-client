@@ -4,4 +4,8 @@
   align-items: center;
   justify-content: space-around;
   padding: 64px;
+  img {
+    max-height: 150px;
+    max-width: 150px;
+  }
 }
