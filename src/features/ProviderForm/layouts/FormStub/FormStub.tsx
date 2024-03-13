@@ -94,11 +94,18 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
         </>
       )}
       {formFields[type].map((input) => {
-        input.props = { ...input.props, register, errors, setValue, getValues };
-        return <>
-          <PreItem input={input} />
-          <FormItem input={input} key={input.props.dbName} />
-        </>;
+        const needsConsent = type === "Demographics";
+        input.props = { ...input.props, register, errors, setValue, getValues, needsConsent };
+        return (
+          <>
+            {(input.name === 'Profile photo') ? (
+            <FormItem>
+              <p>{profilePhotoMessage}</p>
+            </FormItem>
+            ) : ''}
+            <FormItem input={input} key={input.props.dbName} />
+          </>
+        );
       })}
       <ButtonGroup isConfirmation={false} />
     </form>

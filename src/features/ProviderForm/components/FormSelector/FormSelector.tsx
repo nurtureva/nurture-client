@@ -11,7 +11,8 @@ export const FormSelector = ({
   selectorType,
   register,
   setValue,
-  getValues
+  getValues,
+  needsConsent
 }: // isDropdown
 SelectorProps) => {
   const [optionsVisible, setOptionsVisible] = useState(
@@ -35,9 +36,20 @@ SelectorProps) => {
       </li>
     );
   });
-
+console.log(dbName)
   return (
     <>
+      {needsConsent ? (
+        <div className='consent-question'>
+          <label>
+            <input type="checkbox" />
+            Display your {dbName} on your public-facing
+            profile?
+          </label>
+        </div>
+      ) : (
+        ''
+      )}
       <ul className={selectorType}>
         {isDropdown ? (
           <>
