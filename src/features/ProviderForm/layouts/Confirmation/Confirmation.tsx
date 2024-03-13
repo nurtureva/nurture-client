@@ -2,6 +2,12 @@ import { useLoaderData } from 'react-router-dom';
 import { useFormContext } from '../../utils/formContext';
 import { ButtonGroup } from '../../components/ButtonGroup';
 
+function removeUndefinedKeys(obj) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([key, value]) => value !== false)
+  );
+}
+
 export const Confirmation = () => {
   const {
     formData: { pictures, newProvider: provider },
@@ -14,7 +20,7 @@ export const Confirmation = () => {
   pageStateTitles.pop();
   const formValues = getFormValues();
   if (!provider) return null;
-
+  console.log(provider);
   return (
     <div className="confirmation-section">
       <p>
@@ -23,14 +29,14 @@ export const Confirmation = () => {
         jump to a section.
       </p>
       <ul className="confirmation-list">
-        {formValues.map((entry: string[], i: number) => {
+        {/* {formValues.map((entry: string[], i: number) => {
           if (!!entry[0])
             return (
               <li key={i}>
                 <span>{entry[0]}:</span> {entry[1]}
               </li>
             );
-        })}
+        })} */}
       </ul>
       <ButtonGroup isConfirmation={true} />
     </div>
