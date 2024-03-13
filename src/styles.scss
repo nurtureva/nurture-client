@@ -138,7 +138,6 @@ section {
 p {
   margin-top: 32px;
   margin-bottom: 32px;
-  padding: 0 15px;
 }
 
 a {
@@ -193,6 +192,9 @@ a {
     & > section {
       padding: 20px;
     }
+  }
+  p {
+    padding: 0 15px;
   }
 }
 @media only screen and (max-width: var(--tablet-breakpoint)) {

@@ -190,13 +190,9 @@ form {
 }
 
 @media only screen and (max-width: 860px) {
-  .small {
-    width: 100% !important;
-  }
+  .small,
+  .half,
   .large {
-    width: 100% !important;
-  }
-  .half {
     width: 100% !important;
   }
 }
