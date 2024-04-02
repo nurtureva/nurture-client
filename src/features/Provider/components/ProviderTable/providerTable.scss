@@ -71,15 +71,26 @@
         margin: 10px 0 !important;
       }
     }
-    .bookmark-label {
-      top: 20px;
-      left: 100px;
-    }
+    // .bookmark-label {
+    //   top: 20px;
+    //   left: 100px;
+    // }
     img {
       height: 150px;
       border-radius: 50%;
       margin-right: 20px;
     }
+    span {
+      padding-right: 15px;
+    }
+  }
+}
+.provider-image {
+  position: relative;
+  .bookmark-label {
+    position: absolute;
+    top: 10px;
+    left: 7px;
   }
 }
 .provider-table-container {
@@ -117,6 +128,10 @@
     }
   }
 }
+.information-container {
+  display: flex;
+  align-items: end;
+}
 @media only screen and (max-width: 700px) {
   .bookmark-label {
     padding: 5px;
@@ -144,6 +159,17 @@
   .provider-header {
     flex-direction: column;
     justify-content: center;
+    text-align: center !important;
+    .information-container {
+      flex-direction: column;
+    }
+    img {
+      margin: 0 !important;
+      height: 250px !important;
+    }
+    h2 {
+      text-align: center !important;
+    }
   }
   .directory {
     .content-main > div:first-of-type {
@@ -173,6 +199,10 @@
         }
       }
     }
+  }
+  p {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
   }
 }
 
