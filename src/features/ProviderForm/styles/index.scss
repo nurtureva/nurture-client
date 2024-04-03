@@ -135,13 +135,13 @@ form {
   }
   span {
     border-radius: 50%;
-    width: 40px;
+    width: 30px;
     border: 2px solid var(--brand-green);
     font-family: 'Plus Jakarta Sans', sans-serif;
     margin-right: 15px;
     color: var(--brand-green);
     font-size: 1.5em;
-    height: 40px;
+    height: 30px;
     justify-content: center;
     display: flex;
     align-items: center;
@@ -193,7 +193,16 @@ form {
   }
 }
 
-@media only screen and (max-width: var(--mobile-breakpoint)) {
+
+@media only screen and (max-width: 860px) {
+  .small,
+  .half,
+  .large {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 700px) {
   .results-page {
     padding: 0;
     .provider-table-container > span:first-of-type {

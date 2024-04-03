@@ -9,3 +9,13 @@
     max-width: 150px;
   }
 }
+
+@media only screen and (max-width: 860px) {
+  .sponsors-section {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .sponsors-section a {
+    padding: 15px 0;
+  }
+}
