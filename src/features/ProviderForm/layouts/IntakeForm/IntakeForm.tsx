@@ -40,31 +40,65 @@ const Initializer = ({
   ];
   return (
     <section className="form-selector">
-      <p>
-        Enter your information to be added to the Birth and Early Parenting
-        Resource Directory. The information you enter will be used to create a
-        searchable profile in the directory. You may enter information as an
-        Individual Practitioner to create a profile page for your own practice.
-        Administrators of organizations like hospitals, agencies, and other
-        working groups can also create a profile for their organization. We are
-        currently working with providers in the Greater Richmond, VA area;
-        please register only if you work in Virginia's Planning District 15,
-        which includes the City of Richmond and the counties of Henrico,
-        Chesterfield, Hanover, Goochland, Powhatan, New Kent, and Charles City.
-      </p>
-      <p>
-        We also collect this data for our research to better understand the
-        local perinatal health ecosystem. For more information, please read more
-        about our{' '}
-        <a href="" target="_blank" rel="noopener noreferrer">
-          asset mapping activities.
-        </a>
-      </p>
-      <p>
-        Once submitted, a Nurture staff member will review the listing to make
-        sure it is complete and reach out to you with any questions. Listings
-        usually go live on the directory within two weeks of submission.
-      </p>
+      <section className="header-section">
+        <h1>Get listed in the directory</h1>
+        <h3>Read the following before you start!</h3>
+        <a>Skip the intructions-take me to the registration form</a>
+      </section>
+      <section className="container">
+        <section className="info-section large">
+          <aside>
+            <h2>
+              <span>Q.</span>Who's eligible?
+            </h2>
+          </aside>
+          <section>
+            <p>We work with providers in the Greater Ricmond, VA area.</p>
+            <p>
+              You may register if you work in Virginia's Planning District 15,
+              which includes the City of Richmond and the counties of Henrico,
+              Chesterfield, Hanover, Goochland, Powhatan, New Kent, and Charles
+              City.
+            </p>
+          </section>
+        </section>
+        <section className="info-section medium">
+          <aside>
+            <h2>
+              <span>Q.</span>What should I prepare?
+            </h2>
+            <p>
+              We’ll ask for some things that you may want to prepare ahead of
+              time. All of these are optional but strongly recommended!
+            </p>
+          </aside>
+          <section>
+            <ul>
+              <li>An overview of your services, up to 1000 characters.</li>
+              <li>A personal bio, up to 1000 characters.</li>
+              <li>
+                A photo of yourself with your face centered. A square photo will
+                work best.
+              </li>
+              <li>Your practice’s logo.</li>
+            </ul>
+          </section>
+        </section>
+        <section className="info-section small">
+          <aside>
+            <h2>
+              <span>Q.</span>How will my info be displayed?
+            </h2>
+          </aside>
+          <section>
+            <p>
+              Preview our sample profile page to see how the information you
+              enter will be displayed publicly.
+            </p>
+            <button>View Sample Profile</button>
+          </section>
+        </section>
+      </section>
       <div className="bg-tan">
         <h2>Start your registration</h2>
         <p>
