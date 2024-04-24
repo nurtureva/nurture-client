@@ -36,15 +36,13 @@ SelectorProps) => {
       </li>
     );
   });
-console.log(dbName)
   return (
     <>
       {needsConsent ? (
-        <div className='consent-question'>
+        <div className="consent-question">
           <label>
-            <input type="checkbox" />
-            Display your {dbName} on your public-facing
-            profile?
+            <input type="checkbox" {...register(`demographics.${dbName}-consent`)} />
+            Display your {dbName} on your public-facing profile?
           </label>
         </div>
       ) : (
