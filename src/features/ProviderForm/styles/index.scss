@@ -118,7 +118,6 @@ form {
 .page-state-indicator {
   display: flex;
   align-items: center;
-  cursor: pointer;
   padding: 10px;
   margin: 0;
   &.active span {
@@ -126,6 +125,7 @@ form {
     color: white;
   }
   &.complete {
+  cursor: pointer;
     color: var(--brand-gray);
     span {
       background-color: var(--lighter-green);
@@ -195,6 +195,7 @@ form {
 
 
 @media only screen and (max-width: 860px) {
+
   .small,
   .half,
   .large {

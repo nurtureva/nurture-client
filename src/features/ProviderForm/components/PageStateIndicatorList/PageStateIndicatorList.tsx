@@ -23,7 +23,10 @@ export const PageStateIndicatorList = () => {
           <li
             className={`page-state-indicator ${state}`}
             key={`PageStateIndicator${id}`}
-            onClick={() => updateState({ pageState: id })}>
+            onClick={() => {
+              if (id<pageState) updateState({ pageState: id })
+              }}
+              >
             <PageStateIndicator {...indicatorProps} />
             {isMobileViewport && state !== 'active' ? '' : pageStateTitle}
           </li>
