@@ -27,6 +27,15 @@
   font-style: normal;
   font-display: block;
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
 body {
   line-height: 1.4em;
   font-family: 'Inter', sans-serif;
@@ -79,6 +88,7 @@ p {
   --primary-tan: #fbf2e4;
 
   --lighter-green: #caded0;
+  --lighter-pink: #F9DAE4;
   --lighter-gray: #c2c2c2;
   --darker-gray: #575757;
   --off-white: #fcfbf7;
@@ -174,9 +184,6 @@ a {
 }
 
 @media only screen and (max-width: 700px) {
-  .bg-yellow {
-    background-color: var(--white);
-  }
   .dashboard h1,
   h2 {
     text-align: left;
@@ -192,6 +199,9 @@ a {
     & > section {
       padding: 20px;
     }
+  }
+  p {
+    padding: 0 15px;
   }
 }
 @media only screen and (max-width: var(--tablet-breakpoint)) {

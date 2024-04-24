@@ -78,7 +78,7 @@
       "Element": "INPUT",
       "props": {
         "dbName": "address_1",
-        "size": "large",
+        "size": "full",
         "placeholder": "1234 example street"
       }
     },
@@ -88,7 +88,7 @@
       "Element": "INPUT",
       "props": {
         "dbName": "address_2",
-        "size": "small"
+        "size": "full"
       }
     },
     {

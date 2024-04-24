@@ -3,13 +3,11 @@ import { useFormContext } from '../../utils/formContext';
 import { ButtonProps } from '@/types';
 import { useFormAction } from '../../utils/api';
 
-
 function removeUndefinedKeys(obj) {
   return Object.fromEntries(
     Object.entries(obj).filter(([key, value]) => value !== false)
   );
 }
-
 
 export const ButtonGroup = ({
   disabled,

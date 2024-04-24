@@ -6,6 +6,7 @@ export const Footer = ({ navRoutes }: EndpointPropWrapper) => {
   return (
     <footer>
       <img src={logo} />
+      <section className='footer-routes'>
       <ul>
         {navRoutes.map((path) => {
           return (
@@ -28,6 +29,7 @@ export const Footer = ({ navRoutes }: EndpointPropWrapper) => {
           </a>
         </li>
       </ul>
+      </section>
     </footer>
   );
 };

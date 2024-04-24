@@ -7,9 +7,7 @@ div.dashboard {
       color: var(--primary-pink);
     }
   }
-  .provider-search {
-    width: 70%;
-  }
+
   h1 {
     font-size: 56px;
     font-weight: 600;
@@ -17,7 +15,6 @@ div.dashboard {
   }
   .picture-split-container {
     &.full {
-      height: calc(90vh - 104px);
       .children-container p {
         font-size: 24px;
         font-weight: 500;
