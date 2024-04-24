@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { PictureSplitContainer } from '.';
 import { Button } from '..';
 
@@ -8,6 +9,7 @@ interface ServiceDescriptionProps {
   imageSource: string;
   bulletArray: string[] | { title: string; description: string }[];
   postscript?: string;
+  srcLink?: ReactNode;
 }
 
 export const ServiceDescriptionSection = ({
@@ -16,7 +18,8 @@ export const ServiceDescriptionSection = ({
   bulletTitle,
   imageSource,
   bulletArray,
-  postscript
+  postscript,
+  srcLink
 }: ServiceDescriptionProps) => {
   return (
     <section
@@ -37,6 +40,7 @@ export const ServiceDescriptionSection = ({
             );
           })}
         </ul>
+        {srcLink ? srcLink : ''}
         {postscript ? <p>{postscript}</p> : ''}
         <Button to="/results">Find {title}</Button>
       </PictureSplitContainer>
