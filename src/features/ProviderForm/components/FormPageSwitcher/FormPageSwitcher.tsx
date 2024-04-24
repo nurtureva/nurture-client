@@ -1,6 +1,7 @@
 import { useFormContext } from '../../utils/formContext';
 import { Confirmation } from '../../layouts/Confirmation';
 import { FormStub } from '../../layouts/FormStub';
+import { useEffect } from 'react';
 
 export const FormPageSwitcher = () => {
   const {
@@ -9,6 +10,11 @@ export const FormPageSwitcher = () => {
       formType: { pageStateTitles }
     }
   } = useFormContext();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+  }, [pageState])
 
   const currentPageStateTitle = pageStateTitles[pageState - 1];
   return (
