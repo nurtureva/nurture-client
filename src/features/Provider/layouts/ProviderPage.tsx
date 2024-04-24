@@ -50,9 +50,12 @@ export default function ProviderPage() {
         </a>
       </div>
       <div className="provider-header">
-        <Bookmark provider={provider} />
-        <span>
+        <span className="provider-container"></span>
+        <div className="provider-image">
+          <Bookmark provider={provider} />
           <img src={photoSrc} />
+        </div>
+        <section className='information-container'>
           <span>
             <h2>{provider.name}</h2>
             <p>{provider.business_name}</p>
@@ -62,12 +65,12 @@ export default function ProviderPage() {
             </p>
             <Address provider={provider} />
           </span>
-        </span>
-        <span>
-          <p>Phone number: {provider.phone}</p>
-          <p>Email: {provider.email}</p>
-          <p>Website: {provider.website}</p>
-        </span>
+          <span>
+            <p>Phone number: {provider.phone}</p>
+            <p>Email: {provider.email}</p>
+            {provider.website ? <p>Website: {provider.website}</p> : ' '}
+          </span>
+        </section>
       </div>
       <div>
         <h3>About {firstName}</h3>
@@ -78,16 +81,25 @@ export default function ProviderPage() {
           Payment Accepted:{' '}
           {provider.paymentOptions?.map((payment) => payment.name + ', ')}
         </p>
-        <p>
-          Certifications:{' '}
-          {provider.certifications?.map(
-            (certification) => certification.name + ', '
-          )}
-        </p>
-        <h3>Personal Details</h3>
+        {provider.certifications ? (
+          <p>
+            Certifications:{' '}
+            {provider.certifications?.map(
+              (certification) => certification.name + ', '
+            )}
+          </p>
+        ) : (
+          ''
+        )}
+
+        {provider?.bio ? <h3>Personal Details</h3> : ''}
+
         {/* {provider.pronouns} */}
         {provider.languages_spoken}
-        <h3>Contact</h3>
+        <h3>Contact {firstName}</h3>
+        <p>{provider.phone}</p>
+        <p>{provider.email}</p>
+        <p>{provider.website}</p>
       </div>
       {/* <div>
         <Name provider={provider}>
