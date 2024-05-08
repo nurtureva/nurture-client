@@ -68,9 +68,32 @@ header {
     display: none;
   }
 }
+.banner {
+  position: fixed;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  padding: 13px 20px;
+  z-index: 10000;
+  top: 104px;
+  transition: 200ms;
+  span {
+    padding: 5px;
+    margin-right: 5px;
+    background-color: var(--lighter-pink);
+  }
+  &.condensed {
+    top: 56px;
+  }
+}
 
 /******************************* MOBILE *********************************/
 @media only screen and (max-width: 700px) {
+  .banner {
+    top: 56px;
+  }
   .header-clone {
     height: 64px;
   }
