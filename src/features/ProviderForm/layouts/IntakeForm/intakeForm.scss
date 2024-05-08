@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   background-color: var(--off-white);
-  margin: 30px 0;
+  margin-top: 30px;
 }
 
 .form {
@@ -29,6 +29,7 @@
 .header-section {
   display: flex;
   flex-direction: column;
+  padding-top: 75px;
   h3 {
     padding-bottom: 20px;
   }
@@ -51,11 +52,27 @@
     font-weight: bold;
     display: flex;
   }
+  &.extra-large {
+    section {
+      border: 1px solid var(--brand-yellow);
+      background-color: var(--primary-yellow);
+      width: 85%;
+    }
+    span {
+      color: var(--brand-yellow);
+    }
+  }
   &.large {
     section {
       border: 1px solid var(--brand-yellow);
       background-color: var(--primary-yellow);
-      width: 100%;
+      width: 65%;
+      p {
+        width: 85%;
+      }
+    }
+    aside {
+      width: 40%;
     }
     span {
       color: var(--brand-yellow);
@@ -73,9 +90,15 @@
     span {
       color: var(--brand-pink);
     }
-    p {
-      margin-left: 40px;
-      width: 60%;
+    // p {
+    //   margin-left: 40px;
+    //   width: 60%;
+    // }
+    ul {
+      padding-left: 26px;
+      li {
+        font-size: 0.9em;
+      }
     }
   }
   &.small {
@@ -104,7 +127,44 @@
   }
 }
 
+#registration {
+  background-color: var(--primary-tan);
+  max-width: 100%;
+  padding: 150px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.registration-container {
+  display: flex;
+  justify-content: center;
+}
+
+.registration-section {
+  margin: 20px;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: white;
+  width: 30%;
+  border: 1px solid var(--primary-green);
+  h2 {
+    font-size: 25px;
+  }
+}
+
 @media only screen and (max-width: 865px) {
+  #registration {
+    padding: 100px 50px;
+    h2 {
+      text-align: center;
+      padding-bottom: 10px;
+    }
+  }
+  .header-section {
+    text-align: center;
+  }
   .info-section {
     flex-direction: column;
     width: 100%;
@@ -120,9 +180,15 @@
       margin: 0;
       width: 100%;
     }
-    &.large {
+    &.extra-large {
       aside {
         margin-left: 30px;
+      }
+    }
+    &.large {
+      aside {
+        padding-left: 30px;
+        width: 100%;
       }
     }
     &.medium {
@@ -130,16 +196,19 @@
         padding-left: 30px;
         width: 100%;
       }
-      p {
-        width: 100%;
-        margin: 0;
-      }
     }
     &.small {
       aside {
         padding-left: 30px;
       }
     }
+  }
+  .registration-container {
+    flex-direction: column;
+  }
+  .registration-section {
+    width: 100%;
+    margin: 10px 0;
   }
 }
 

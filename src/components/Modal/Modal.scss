@@ -1,0 +1,62 @@
+.backdrop {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  position: relative;
+  top: 6vh;
+  background-color: var(--primary-yellow);
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+  animation: slide-down 300ms ease-out forwards;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  border: 1px solid var(--brand-yellow);
+
+  i {
+    position: absolute;
+    top: 22px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 1.8em;
+  }
+
+  &.large {
+    width: 90%;
+  }
+  &.medium {
+    width: 65%;
+  }
+  &.small {
+    width: 50%;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+h3 {
+  color: var(--brand-pink);
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
