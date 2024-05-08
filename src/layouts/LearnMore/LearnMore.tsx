@@ -12,6 +12,14 @@ export const Content = () => {
     bulletTitle: 'Services doulas may provide include:',
     description:
       'Doulas are trained professionals who provide support, education, and advocacy for birthing parents and their families.',
+    srcLink: (
+      <a
+        href="https://www.dmas.virginia.gov/for-members/for-pregnant-women/"
+        target="_blank"
+        rel="noopener noreferrer">
+        Visit this link to learn more.
+      </a>
+    ),
     bulletArray: [
       {
         title: 'Birth Doulas',
@@ -32,14 +40,7 @@ export const Content = () => {
       },
       {
         title: 'Community Doulas',
-        description: `Assist pregnant and postpartum parents through their grounding within the community, languages, and value systems of the populations they serve. In Virginia, Medicaid may cover the cost of a state-certified community doula. ${(
-          <a
-            href="https://www.dmas.virginia.gov/for-members/for-pregnant-women/"
-            target="_blank"
-            rel="noopener noreferrer">
-            Visit this link to learn more.
-          </a>
-        )}`
+        description: `Assist pregnant and postpartum parents through their grounding within the community, languages, and value systems of the populations they serve. In Virginia, Medicaid may cover the cost of a state-certified community doula.`
       }
     ]
   };
