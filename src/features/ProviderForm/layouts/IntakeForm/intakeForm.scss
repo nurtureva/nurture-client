@@ -1,5 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--off-white);
+  margin: 30px 0;
+}
+
 .form {
-  padding: 40px;
+  // padding: 40px;
   .form-selector {
     & > p,
     div {
@@ -15,6 +23,123 @@
   }
   .bg-tan {
     padding: 20px 40px;
+  }
+}
+
+.header-section {
+  display: flex;
+  flex-direction: column;
+  h3 {
+    padding-bottom: 20px;
+  }
+}
+.info-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+  padding: 20px 0;
+  section {
+    border-radius: 15px;
+    padding: 25px;
+  }
+  span {
+    font-weight: bold;
+  }
+  h2 {
+    font-weight: bold;
+    display: flex;
+  }
+  &.large {
+    section {
+      border: 1px solid var(--brand-yellow);
+      background-color: var(--primary-yellow);
+      width: 100%;
+    }
+    span {
+      color: var(--brand-yellow);
+    }
+  }
+  &.medium {
+    aside {
+      width: 50%;
+    }
+    section {
+      border: 1px solid var(--brand-pink);
+      background-color: var(--lighter-pink);
+      width: 65%;
+    }
+    span {
+      color: var(--brand-pink);
+    }
+    p {
+      margin-left: 40px;
+      width: 60%;
+    }
+  }
+  &.small {
+    aside {
+      width: 100%;
+    }
+    section {
+      border: 1px solid var(--brand-green);
+      background-color: var(--primary-green);
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+    }
+    span {
+      color: var(--brand-green);
+    }
+    button {
+      margin-top: 40px;
+      border: 1px solid var(--brand-pink);
+      border-radius: 10px;
+      color: var(--brand-pink);
+      background-color: #ffffff4d;
+      padding: 10px;
+      font-weight: bold;
+    }
+  }
+}
+
+@media only screen and (max-width: 865px) {
+  .info-section {
+    flex-direction: column;
+    width: 100%;
+    padding: 15px 10px;
+    section {
+      margin-top: 15px;
+      width: 90% !important;
+    }
+    h2 {
+      margin: 15px 0;
+    }
+    p {
+      margin: 0;
+      width: 100%;
+    }
+    &.large {
+      aside {
+        margin-left: 30px;
+      }
+    }
+    &.medium {
+      aside {
+        padding-left: 30px;
+        width: 100%;
+      }
+      p {
+        width: 100%;
+        margin: 0;
+      }
+    }
+    &.small {
+      aside {
+        padding-left: 30px;
+      }
+    }
   }
 }
 
