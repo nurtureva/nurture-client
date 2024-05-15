@@ -21,13 +21,12 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
     handleSubmit,
     setValue,
     getValues,
-    formState: { errors, isValid },
+    formState,
   } = useForm({
     defaultValues: newProvider,
     mode: 'onBlur'
   });
-
-  useEffect(()=>{console.log(errors, isValid);}, [errors, isValid])
+  const {errors, isSubmitted} = formState;
   
 
   const profilePhotoMessage =
@@ -41,25 +40,29 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
       })}>
       {type === 'Demographics' && (
         <>
-          <h4>Why do we collect demographic data?</h4> 
+          <h4>Why do we collect demographic data?</h4>
           <p>
-          Demographic information is collected in order to better understand the local perinatal health
-            ecosystem and how providers reflect the populations that they serve.
-            Some parents may wish to seek providers with similar identities as
-            their own. Demographic information will not be displayed on your
-            public-facing profile unless you choose to share it. De-identified
-            data may be shared with other organizations seeking to improve
-            conditions for pregnant and postpartum families.
-            <br/> 
-            <br/> 
-            In our approach to data collection, we reviewed sources focused on more inclusive data
-            collection practices, incorporated feedback from local parents and
-            providers, and consulted with epidemiologists at the Virginia
-            Department of Health. If you have suggestions for ways to improve
-            our data collection, please reach out.
+            Demographic information is collected in order to better understand
+            the local perinatal health ecosystem and how providers reflect the
+            populations that they serve. Some parents may wish to seek providers
+            with similar identities as their own. Demographic information will
+            not be displayed on your public-facing profile unless you choose to
+            share it. De-identified data may be shared with other organizations
+            seeking to improve conditions for pregnant and postpartum families.
+            <br />
+            <br />
+            In our approach to data collection, we reviewed sources focused on
+            more inclusive data collection practices, incorporated feedback from
+            local parents and providers, and consulted with epidemiologists at
+            the Virginia Department of Health. If you have suggestions for ways
+            to improve our data collection, please reach out.
           </p>
         </>
       )}
+      <span className="form-error">
+        {isSubmitted && errors?.general &&
+          `Please enter a valid ${Object.keys(errors.general).join(', ')}.`}
+      </span>
       {formFields[type].map((input) => {
         const needsConsent = type === 'Demographics';
         input.props = {
@@ -83,7 +86,7 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
           </>
         );
       })}
-      <ButtonGroup disabled={!isValid} isConfirmation={false} />
+      <ButtonGroup isConfirmation={false} />
     </form>
   );
 };
