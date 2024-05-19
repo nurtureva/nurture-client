@@ -79,7 +79,7 @@ header {
   z-index: 10000;
   top: 104px;
   transition: 200ms;
-  span {
+  .banner-label {
     padding: 5px;
     margin-right: 5px;
     background-color: var(--lighter-pink);
@@ -90,6 +90,11 @@ header {
 }
 
 /******************************* MOBILE *********************************/
+@media only screen and (max-width: 920px) {
+  .desktop-text {
+    display: none;
+  }
+}
 @media only screen and (max-width: 700px) {
   .banner {
     top: 56px;
