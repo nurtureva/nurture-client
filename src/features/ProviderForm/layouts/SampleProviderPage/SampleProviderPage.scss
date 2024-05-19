@@ -1,3 +1,8 @@
+.sample-list {
+  li {
+    font-size: 0.9em;
+  }
+}
 .sample-provider-header {
   margin-top: 15px;
   position: relative;
@@ -12,12 +17,24 @@
     }
   }
   img {
-    height: 150px;
+    // height: 150px;
     border-radius: 50%;
     margin-right: 20px;
   }
   span {
     padding-right: 15px;
+  }
+}
+
+.sample-provider-image {
+  position: relative;
+  padding-right: 35px;
+  .logo-label {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 60px;
+    width: 60px;
   }
 }
 .sample-about-section {
@@ -37,6 +54,16 @@
 }
 
 @media only screen and (max-width: 700px) {
+  .sample-provider-image {
+    padding-right: 0px;
+    .logo-label {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      height: 60px !important;
+      width: 60px;
+    }
+  }
   .sample-provider-header {
     padding-top: 10px;
     display: flex;
