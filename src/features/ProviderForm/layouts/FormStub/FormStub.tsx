@@ -100,7 +100,7 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
           </>
         );
       })}
-      <ButtonGroup disabled={!isValid} isConfirmation={false} />
+      <ButtonGroup isConfirmation={false} />
     </form>
   );
 };
