@@ -42,13 +42,11 @@ const SubmissionPage = ({ formType }: { formType: string }) => {
         <>
           <h2>Thank You!</h2>
           <p>
-            {submissionResponse.message}
-            <Link
-              to={`/${formType === 'individual' ? 'provider' : formType}/${
-                submissionResponse.id
-              }`}>
-              Check out your new profile!
-            </Link>
+            {submissionResponse.message}{' '}
+            Your feedback helps us build this directory. Please take our brief survey to give us your input! 
+            <Button to="https://participant.use2.usertesting.com/se/invite/6d9f968f-b2ad-4a7b-8f04-439ec79823b8">
+            Take survey
+            </Button>
           </p>
           <h3>Your Submission</h3>
           <form>
