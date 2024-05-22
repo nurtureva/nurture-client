@@ -125,7 +125,7 @@ export const Content = () => {
             care: doula, lactation, and perinatal mental health supports. This
             selection is based on our surveys of parents’ core needs during
             pregnancy, birth, and early childhood. As this project grows, we
-            hope to expand to add more categories of care. "
+            hope to expand to add more categories of care.
           </p>
         </Modal>
       )}
