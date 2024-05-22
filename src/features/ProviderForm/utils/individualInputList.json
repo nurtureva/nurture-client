@@ -228,15 +228,6 @@
         "selection": "multiple",
         "isDemographics": true
       }
-    },
-    {
-      "name": "Age",
-      "Element": "SELECTOR",
-      "props": {
-        "dbName": "age",
-        "selection": "single",
-        "isDemographics": true
-      }
     }
   ]
 }
