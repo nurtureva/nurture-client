@@ -28,7 +28,6 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
     message:
       'Are you sure you want to navigate away from the form?\nYou will lose your data if you proceed.',
     when: ({ currentLocation, nextLocation }) => {
-      console.log(isDirty)
       if (!isDirty) return false;
       return currentLocation.key !== nextLocation.key;
     }
@@ -69,10 +68,8 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
       )}
       {isSubmitted && Object.keys(errors).length ? (
         <div className="form-error">
-          <h4>
-            <Icon type="error_outline" />
+            <Icon type="error_outline" />{' '}
             Please correct the following fields:
-          </h4>
           <ul>
             {Object.keys(flatErrors).map((error) => {
               return <li>{error}</li>;

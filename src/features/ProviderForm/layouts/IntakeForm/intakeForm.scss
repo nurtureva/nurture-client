@@ -8,9 +8,30 @@
 
 .form {
   // padding: 40px;
-  .error-message, .form-error {
+  i {
+    color: var(--error);
+  }
+  .error-message {
     color: var(--error);
     font-size: .85em;
+  }
+  .form-error {
+    font-size: .85em;
+    border: 4px solid var(--error);
+    background-color: rgba(179, 38, 30, 0.1);
+    padding: 16px 24px;
+    transition: all 2s;
+    h4 {
+      font-weight: 400;
+    }
+    ul {
+      border: none;
+      padding: 0;
+    }
+    li {
+      margin-top:8px;
+      font-weight: 500;
+    }
   }
   .form-selector {
     & > p,

@@ -81,6 +81,16 @@ form {
     &.small {
       width: 30%;
     }
+    &.error {
+      & > label {
+        font-weight: 500;
+        color: var(--error);
+      }
+      .input-container {
+        border-color:var(--error);
+        border-width: 2px;
+      }
+    }
     & p {
       margin: 0;
       font-size: 0.8em;
