@@ -4,8 +4,12 @@ import { Search } from '@/features/Provider/components/Search';
 import doulaImage from '@/assets/images/doula-learn-more.png';
 import lactationImage from '@/assets/images/lactation-learn-more.png';
 import mentalHealthImage from '@/assets/images/mental-health-learn-more.png';
+import { Modal } from '../../components/Modal';
+import { useState } from 'react';
 
 export const Content = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   const doulaProps = {
     imageSource: doulaImage,
     title: 'Doulas',
@@ -111,6 +115,20 @@ export const Content = () => {
   // };
   return (
     <>
+      {isModalOpen && (
+        <Modal
+          title="Why these Categories?"
+          closeHandler={() => setIsModalOpen(false)}
+          size="small">
+          <p>
+            Currently, this directory focuses on three essential categories of
+            care: doula, lactation, and perinatal mental health supports. This
+            selection is based on our surveys of parents’ core needs during
+            pregnancy, birth, and early childhood. As this project grows, we
+            hope to expand to add more categories of care. "
+          </p>
+        </Modal>
+      )}
       <section className="bg-tan">
         <h1>Learn more</h1>
         <p>
@@ -132,11 +150,10 @@ export const Content = () => {
               <a href="#mentalHealth">Mental Health Care</a>
             </li>
           </ul>
-          <p>Why these categories?</p>
+          <div className="tooltip" onClick={() => setIsModalOpen(true)}>
+            Why these categories?
+          </div>
         </span>
-        <div className="tooltip" style={{ display: 'none' }}>
-          Why these categories?
-        </div>
       </section>
       <section id="doula">
         <ServiceDescriptionSection {...doulaProps} />
