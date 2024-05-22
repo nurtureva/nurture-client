@@ -8,14 +8,17 @@
 
 .form {
   // padding: 40px;
-  i {
-    color: var(--error);
-  }
   .error-message {
+    i {
+      color: var(--error);
+    }
     color: var(--error);
     font-size: .85em;
   }
   .form-error {
+    i {
+        color: var(--error);
+      }
     font-size: .85em;
     border: 4px solid var(--error);
     background-color: rgba(179, 38, 30, 0.1);

@@ -19,7 +19,7 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
     defaultValues: newProvider,
     mode: 'onBlur'
   });
-  const { errors, isValid, isDirty } = formState;
+  const { errors, isValid, isDirty, isSubmitted } = formState;
 
   // Block navigating elsewhere when data has been entered into the input
   unstable_usePrompt({
