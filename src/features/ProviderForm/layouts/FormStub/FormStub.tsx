@@ -4,6 +4,8 @@ import { PageStateTitle } from '@/types';
 import { ButtonGroup } from '../../components/ButtonGroup';
 import { useForm } from 'react-hook-form';
 import { Icon } from '@/components';
+import { unstable_usePrompt } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const FormStub = ({ type }: { type: PageStateTitle }) => {
   const {
@@ -15,20 +17,24 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
     }
   } = useFormContext();
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    getValues,
-    formState,
-  } = useForm({
+  const { register, handleSubmit, setValue, getValues, formState } = useForm({
     defaultValues: newProvider,
-    mode: 'onBlur',
+    mode: 'onBlur'
   });
-  console.log(formState)
-  const {errors, isSubmitted} = formState;
+  const { errors, isSubmitted, isDirty } = formState;
 
-  const {general, ...errorsWithoutGeneral} = errors;
+  // Block navigating elsewhere when data has been entered into the input
+  unstable_usePrompt({
+    message:
+      'Are you sure you want to navigate away from the form?\nYou will lose your data if you proceed.',
+    when: ({ currentLocation, nextLocation }) => {
+      console.log(isDirty)
+      if (!isDirty) return false;
+      return currentLocation.key !== nextLocation.key;
+    }
+  });
+
+  const { general, ...errorsWithoutGeneral } = errors;
   const flatErrors = { ...general, ...errorsWithoutGeneral };
 
   const profilePhotoMessage =
@@ -61,18 +67,21 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
           </p>
         </>
       )}
-      {(isSubmitted && Object.keys(errors).length) ? 
-      <div className="form-error">
-        <h4><Icon type="error_outline"/>Please correct the following fields:</h4>
-        <ul>
-          {Object.keys(flatErrors).map(error => {
-            return <li>{error}</li>
-          })}
-        </ul>
-
-      </div>
-      : ''
-      }
+      {isSubmitted && Object.keys(errors).length ? (
+        <div className="form-error">
+          <h4>
+            <Icon type="error_outline" />
+            Please correct the following fields:
+          </h4>
+          <ul>
+            {Object.keys(flatErrors).map((error) => {
+              return <li>{error}</li>;
+            })}
+          </ul>
+        </div>
+      ) : (
+        ''
+      )}
       {formFields[type].map((input) => {
         const needsConsent = type === 'Demographics';
         input.props = {
