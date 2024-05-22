@@ -8,6 +8,10 @@
 
 .form {
   // padding: 40px;
+  .error-message, .form-error {
+    color: var(--error);
+    font-size: .85em;
+  }
   .form-selector {
     & > p,
     div {
@@ -24,6 +28,17 @@
   .bg-tan {
     padding: 20px 40px;
   }
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
 }
 
 .header-section {

@@ -21,8 +21,10 @@
       "props": {
         "dbName": "email",
         "required": true,
-        "size": "large",
-        "placeholder": "yourname@example.com"
+        "size": "half",
+        "placeholder": "yourname@example.com",
+        "errorMessage": "Please enter an email address in the format: yourname@example.com",
+        "pattern": "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$"
       }
     },
     {
@@ -31,7 +33,11 @@
       "props": {
         "dbName": "phone",
         "required": true,
-        "size": "small",
+        "size": "half",
+        "type": "number",
+        "minLength": "10",
+        "maxLength": "10",
+        "errorMessage": "Please enter a ten-digit phone number",
         "placeholder": "(xxx) xxx-xxxx"
       }
     },
@@ -115,7 +121,11 @@
       "props": {
         "dbName": "zip",
         "required": true,
-        "size": "small"
+        "size": "small",
+        "type": "number",
+        "errorMessage": "Please enter a five-digit zip code",
+        "minLength": "5",
+        "maxLength": "5"
       }
     }
   ],

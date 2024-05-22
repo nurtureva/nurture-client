@@ -3,8 +3,7 @@ import { FormItem } from '../../components/FormItem';
 import { PageStateTitle } from '@/types';
 import { ButtonGroup } from '../../components/ButtonGroup';
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
-import { IssuesCloseOutlined } from '@ant-design/icons';
+import { Icon } from '@/components';
 
 export const FormStub = ({ type }: { type: PageStateTitle }) => {
   const {
@@ -24,10 +23,13 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
     formState,
   } = useForm({
     defaultValues: newProvider,
-    mode: 'onBlur'
+    mode: 'onBlur',
   });
+  console.log(formState)
   const {errors, isSubmitted} = formState;
-  
+
+  const {general, ...errorsWithoutGeneral} = errors;
+  const flatErrors = { ...general, ...errorsWithoutGeneral };
 
   const profilePhotoMessage =
     'While not required, we highly recommend uploading a profile picture for your listing. From the perspective of parents seeking services, profile pictures can help create a visual connection with prospective providers.';
@@ -59,10 +61,18 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
           </p>
         </>
       )}
-      <span className="form-error">
-        {isSubmitted && errors?.general &&
-          `Please enter a valid ${Object.keys(errors.general).join(', ')}.`}
-      </span>
+      {(isSubmitted && Object.keys(errors).length) ? 
+      <div className="form-error">
+        <h4><Icon type="error_outline"/>Please correct the following fields:</h4>
+        <ul>
+          {Object.keys(flatErrors).map(error => {
+            return <li>{error}</li>
+          })}
+        </ul>
+
+      </div>
+      : ''
+      }
       {formFields[type].map((input) => {
         const needsConsent = type === 'Demographics';
         input.props = {
