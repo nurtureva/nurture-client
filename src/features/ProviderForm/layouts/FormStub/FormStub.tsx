@@ -5,7 +5,6 @@ import { ButtonGroup } from '../../components/ButtonGroup';
 import { useForm } from 'react-hook-form';
 import { Icon } from '@/components';
 import { unstable_usePrompt } from 'react-router-dom';
-import { useEffect } from 'react';
 
 export const FormStub = ({ type }: { type: PageStateTitle }) => {
   const {
@@ -16,12 +15,11 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
       next
     }
   } = useFormContext();
-
   const { register, handleSubmit, setValue, getValues, formState } = useForm({
     defaultValues: newProvider,
     mode: 'onBlur'
   });
-  const { errors, isSubmitted, isDirty } = formState;
+  const { errors, isValid, isDirty } = formState;
 
   // Block navigating elsewhere when data has been entered into the input
   unstable_usePrompt({
@@ -35,7 +33,7 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
 
   const { general, ...errorsWithoutGeneral } = errors;
   const flatErrors = { ...general, ...errorsWithoutGeneral };
-
+  
   const profilePhotoMessage =
     'While not required, we highly recommend uploading a profile picture for your listing. From the perspective of parents seeking services, profile pictures can help create a visual connection with prospective providers.';
 
@@ -102,7 +100,7 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
           </>
         );
       })}
-      <ButtonGroup isConfirmation={false} />
+      <ButtonGroup disabled={!isValid} isConfirmation={false} />
     </form>
   );
 };
