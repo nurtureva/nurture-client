@@ -11,7 +11,7 @@ export const Content = () => {
     title: 'Doulas',
     bulletTitle: 'Services doulas may provide include:',
     description:
-      'Doulas are trained professionals who provide support, education, and advocacy for birthing parents and their families.',
+      'Doulas are professionally trained birth coaches who support and advocate for expecting parents. Many pregnant people, especially those giving birth for the first time, choose to hire a birth doula, who offers prenatal education and emotional support, and advocates for the pregnant parent.',
     srcLink: (
       <a
         href="https://www.dmas.virginia.gov/for-members/for-pregnant-women/"
@@ -91,24 +91,24 @@ export const Content = () => {
       'These illnesses can be mild, moderate or severe, requiring different kinds of care or treatment.'
   };
 
-  const JumpTo = ({ children }: React.PropsWithChildren<{}>) => {
-    return (
-      <p
-        onClick={(e) => {
-          console.log(
-            document.getElementById(
-              e.currentTarget.innerText.replace(/\s+/g, '-')
-            ),
-            e.currentTarget.innerText
-          );
-          // document
-          //   ?.getElementById(e.currentTarget.innerText.replace(/\s+/g, '-'))
-          //   .scroll(0, 0);
-        }}>
-        {children}
-      </p>
-    );
-  };
+  // const JumpTo = ({ children }: React.PropsWithChildren<{}>) => {
+  //   return (
+  //     <p
+  //       onClick={(e) => {
+  //         console.log(
+  //           document.getElementById(
+  //             e.currentTarget.innerText.replace(/\s+/g, '-')
+  //           ),
+  //           e.currentTarget.innerText
+  //         );
+  //         // document
+  //         //   ?.getElementById(e.currentTarget.innerText.replace(/\s+/g, '-'))
+  //         //   .scroll(0, 0);
+  //       }}>
+  //       {children}
+  //     </p>
+  //   );
+  // };
   return (
     <>
       <section className="bg-tan">
@@ -119,26 +119,34 @@ export const Content = () => {
           providers. Not sure what all of this means? Don’t know what kind of
           care you need? Read more below to get started.
         </p>
-        <span>
-          <ul title="Jump to:">
+        <span className="link-container">
+          <ul>
+            <li>Jump to:</li>
             <li>
-              <JumpTo>Doulas</JumpTo>
+              <a href="#doula">Doulas</a>
             </li>
             <li>
-              <JumpTo>Lactation Support</JumpTo>
+              <a href="#lactation">Lactation Support</a>
             </li>
             <li>
-              <JumpTo>Mental Health Care</JumpTo>
+              <a href="#mentalHealth">Mental Health Care</a>
             </li>
           </ul>
+          <p>Why these categories?</p>
         </span>
         <div className="tooltip" style={{ display: 'none' }}>
           Why these categories?
         </div>
       </section>
-      <ServiceDescriptionSection {...doulaProps} />
-      <ServiceDescriptionSection {...lactationProps} />
-      <ServiceDescriptionSection {...mentalHealthProps} />
+      <section id="doula">
+        <ServiceDescriptionSection {...doulaProps} />
+      </section>
+      <section id="lactation">
+        <ServiceDescriptionSection {...lactationProps} />
+      </section>
+      <section id="mentalHealth">
+        <ServiceDescriptionSection {...mentalHealthProps} />
+      </section>
       <section className="bg-tan">
         <h2>Why these categories?</h2>
         <p>

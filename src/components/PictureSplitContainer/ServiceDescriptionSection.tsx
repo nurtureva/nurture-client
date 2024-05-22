@@ -25,8 +25,12 @@ export const ServiceDescriptionSection = ({
     <section
       id={title.replace(/\s+/g, '-')}
       className="service-description-section">
-      <h2>{title}</h2>
-      <p>{description}</p>
+      <section className="header-section">
+        <section>
+          <h2>{title}</h2>
+          <p>{description}</p>
+        </section>
+      </section>
       <PictureSplitContainer picture={imageSource} type="top">
         <ul title={bulletTitle}>
           {bulletArray.map((bulletPoint) => {
