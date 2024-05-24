@@ -32,22 +32,24 @@ export const useContextInitializer: ContextInitializer = (formType) => {
   };
 
   const getFormValues = () => {
-    const { general, ...otherStuff } = newProvider;
-    const providerList = { ...general, ...otherStuff };
+    const { general,demographics, ...otherStuff } = newProvider;
+    const providerList = { ...general, ...demographics, ...otherStuff };
     return Object.keys(formFields)
       .flatMap((fieldName) => {
         return formFields[fieldName].map((field) => {
           const dbName = field.props.dbName;
-          if (dbName && providerList[dbName]) {
+          const fieldValue = providerList[dbName] || pictures[dbName]
+          console.log(dbName, fieldValue, typeof fieldValue, fieldValue instanceof File)
+          if (dbName && fieldValue) {
             const userResponse =
-              typeof providerList[dbName] !== 'string'
+              (Array.isArray(fieldValue))
                 ? providerOptions[dbName]
                     .filter((optionObject) =>
-                      providerList[dbName].includes(optionObject.id.toString())
+                      fieldValue.includes(optionObject.id.toString())
                     )
                     .map((optionObject) => optionObject.name)
                     .join(', ')
-                : providerList[dbName];
+                : fieldValue;
             return [field.name, userResponse];
           }
         });
