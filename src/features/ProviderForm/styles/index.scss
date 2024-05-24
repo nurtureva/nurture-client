@@ -32,9 +32,15 @@ ul.confirmation-list {
   border-color: var(--lighter-gray);
   max-height: 500px;
   overflow-y: scroll;
-  li span {
-    font-weight: 500;
-    display: block;
+  li {
+    margin: 6px 0;
+    img {
+      max-width: 160px;
+    }
+    span {
+      font-weight: 500;
+      display: block;
+    }
   }
   &::-webkit-scrollbar {
     width: 16px;
@@ -60,7 +66,7 @@ form {
   justify-content: space-between;
 
   textarea {
-    padding:8px;
+    padding: 8px;
     height: 100px;
     width: 100%;
     border-radius: 8px;
@@ -87,7 +93,7 @@ form {
         color: var(--error);
       }
       .input-container {
-        border-color:var(--error);
+        border-color: var(--error);
         border-width: 2px;
       }
     }
@@ -114,7 +120,7 @@ form {
     }
     label {
       display: block;
-      padding:10px;
+      padding: 10px;
       width: 100%;
     }
   }
@@ -135,7 +141,7 @@ form {
     color: white;
   }
   &.complete {
-  cursor: pointer;
+    cursor: pointer;
     color: var(--brand-gray);
     span {
       background-color: var(--lighter-green);
@@ -202,7 +208,6 @@ form {
     }
   }
 }
-
 
 @media only screen and (max-width: 860px) {
   .small,

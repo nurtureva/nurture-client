@@ -210,7 +210,7 @@
   ],
   "Demographics": [
     {
-      "name": "What is your race/ethnicity? Check all that apply.",
+      "name": "What is your race/ethnicity?",
       "description": "Select all that apply",
       "Element": "SELECTOR",
       "props": {
@@ -220,7 +220,7 @@
       }
     },
     {
-      "name": "How would you describe your gender? Check all that apply.",
+      "name": "How would you describe your gender?",
       "description": "Select all that apply",
       "Element": "SELECTOR",
       "props": {
