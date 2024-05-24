@@ -42,7 +42,7 @@ export const Content = () => {
           including doulas for expert birth guidance, lactation support
           providers for nurturing breastfeeding/chestfeeding experiences, and
           perinatal mental health care professionals for emotional well-being.
-          <div></div>
+          <div><br/></div>
           Whether you're embarking on the adventure of parenthood for the first
           time or expanding your family, our aim is to ease the process of
           navigating this remarkable life chapter.
