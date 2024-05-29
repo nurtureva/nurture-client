@@ -47,7 +47,7 @@ SelectorProps) => {
           <label>
             <input
               type="checkbox"
-              {...register(`demographics.${dbName}-consent`)}
+              {...register(`demographics.${dbName}_consent`)}
             />
             Display your {dbName} on your public-facing profile?
           </label>
