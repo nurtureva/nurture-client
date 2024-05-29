@@ -4,7 +4,7 @@ import heroImage from '@/assets/images/about-hero.png';
 export const Content = () => {
   return (
     <>
-      <PictureSplitContainer backgroundColor="yellow" picture={heroImage}>
+      <PictureSplitContainer backgroundColor="tan" picture={heroImage}>
         <h1>About the Birth and Early Parenting Resource Directory</h1>
         <p>
           The Birth and Early Parenting Resource Directory is an initiative of{' '}

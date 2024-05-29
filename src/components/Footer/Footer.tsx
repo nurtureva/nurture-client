@@ -8,7 +8,7 @@ export const Footer = ({ navRoutes }: EndpointPropWrapper) => {
       <img src={logo} />
       <section className="footer-routes">
         <ul>
-          {navRoutes.map((path) => {
+          {navRoutes.slice(0, 4).map((path) => {
             return (
               <li key={path.path}>
                 <Link to={path.path}>{path.name}</Link>
@@ -17,18 +17,25 @@ export const Footer = ({ navRoutes }: EndpointPropWrapper) => {
           })}
         </ul>
         <ul>
-          <li>
-            <a>Education Center</a>
-          </li>
-          <li>
-            <a>FAQ</a>
-          </li>
+          {navRoutes.slice(4).map((path) => {
+            return (
+              <li key={path.path}>
+                <Link to={path.path}>{path.name}</Link>
+              </li>
+            );
+          })}
           <li>
             <a href="mailto:directory@nurturerva.org?subject=Directory question">
               Contact
             </a>
           </li>
         </ul>
+        {/* <li>
+          <a>Education Center</a>
+        </li>
+        <li>
+          <a>FAQ</a>
+        </li> */}
       </section>
     </footer>
   );
