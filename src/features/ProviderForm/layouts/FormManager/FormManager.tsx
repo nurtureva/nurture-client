@@ -52,12 +52,19 @@ const SubmissionPage = ({ formType }: { formType: string }) => {
           <form>
             <ul className="confirmation-list">
               {formValues.map((entry: string[], i: number) => {
-                if (!!entry[0])
+                if (!!entry[0]) {
+                  const value =
+                    entry[1] instanceof File ? (
+                      <img src={URL.createObjectURL(entry[1])}></img>
+                    ) : (
+                      entry[1]
+                    );
                   return (
                     <li key={i}>
-                      <span>{entry[0]}:</span> {entry[1]}
+                      <span>{entry[0]}:</span> {value}
                     </li>
                   );
+                }
               })}
             </ul>
           </form>

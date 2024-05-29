@@ -99,6 +99,8 @@ export const useFormAction = (providerType: 'individual' | 'organization') => {
     const { demographics, ...provider } = providerWithDemographics;
     const newId = await formFuncton(provider);
     if (demographics) {
+      if (!demographics.ethnicity) demographics.ethnicity = [];
+      if (!demographics.gender) demographics.gender = [];
       const demo = uploadDemographics(demographics, newId);
     }
     if (Object.keys(pictures).length) {

@@ -34,7 +34,8 @@ export const ButtonGroup = ({
           const id = await submitProviderData(removeUndefinedKeys(newProvider));
           const message = window.location.pathname.includes('provider-form')
             ? 'Your information has been submitted. Please allow two weeks for us to review and add you to the database.'
-            : 'Your new information has been submitted. Your information should be live now.';
+            : 'Your information has been submitted! During the beta phase, please allow 2-4 weeks for your information to be live.'
+            // : 'Your new information has been submitted. Your information should be live now.'; ****uncomment this after beta
           updateState({
             submissionResponse: { message: message || 'error', id }
           });
