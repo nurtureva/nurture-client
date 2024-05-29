@@ -35,9 +35,6 @@ export default function ProviderPage() {
         </span>
         <a
           onClick={(e) => {
-            alert(
-              `DEVELOPER NOTE: This will send an email to ${provider.email}. Are you sure?`
-            );
             const message = prompt(
               "Leave a note for the provider so they can fix what's wrong."
             );
