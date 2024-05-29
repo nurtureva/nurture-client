@@ -94,6 +94,13 @@ export const Header = ({ navRoutes }: EndpointPropWrapper) => {
         />
       </header>
       <div className="header-clone"></div>
+      <div className={`banner ${className}`}>
+        <span className="banner-label">BETA</span>This is a new directory!
+        <span className="desktop-text">
+          It is currently released for providers to register.
+        </span>{' '}
+        Your feedback will help us improve it.
+      </div>
     </>
   );
 };

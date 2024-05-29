@@ -28,6 +28,18 @@ a {
   padding-bottom: 20px;
 }
 
+.header-section {
+  display: flex;
+  align-items: center;
+  section {
+    padding: 30px 15px;
+    width: 70%;
+    margin-bottom: 45px;
+    background-color: var(--off-white);
+    border: 1px solid var(--brand-green);
+  }
+}
+
 .service-description-section {
   h2 {
     color: var(--primary-pink);
@@ -75,6 +87,11 @@ a {
     height: 200px;
     &.full {
       height: 350px;
+    }
+  }
+  .header-section {
+    section {
+      width: 90%;
     }
   }
 }

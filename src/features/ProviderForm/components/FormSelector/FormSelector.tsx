@@ -12,7 +12,10 @@ export const FormSelector = ({
   register,
   setValue,
   getValues,
-  needsConsent
+  needsConsent,
+  errors,
+  errorMessage,
+  required
 }: // isDropdown
 SelectorProps) => {
   const [optionsVisible, setOptionsVisible] = useState(
@@ -31,6 +34,7 @@ SelectorProps) => {
           register={register}
           dbName={dbName}
           setValue={setValue}
+          required={required}
           getValues={getValues}
         />
       </li>
@@ -41,7 +45,10 @@ SelectorProps) => {
       {needsConsent ? (
         <div className="consent-question">
           <label>
-            <input type="checkbox" {...register(`demographics.${dbName}-consent`)} />
+            <input
+              type="checkbox"
+              {...register(`demographics.${dbName}_consent`)}
+            />
             Display your {dbName} on your public-facing profile?
           </label>
         </div>
@@ -66,6 +73,12 @@ SelectorProps) => {
           optionsList
         )}
       </ul>
+      {errors && errors[dbName] && (
+        <span className="error-message">
+          <Icon type="error_outline" />{' '}
+          {errorMessage || 'This field is required'}
+        </span>
+      )}
     </>
   );
 };
@@ -77,8 +90,8 @@ const Checkbox = ({
   register,
   isDemographics,
   dbName,
+  required,
   isOther,
-  setValue,
   getValues
 }: {
   type: string;
@@ -104,7 +117,7 @@ const Checkbox = ({
           setChecked(e.currentTarget.checked);
         }}
         value={type === 'radio' ? name : id}
-        {...register(`${isDemographics ? 'demographics.' : ''}${dbName}`)}
+        {...register(`${isDemographics ? 'demographics.' : ''}${dbName}`, {required})}
 
       />
       {checked && isOther ? (

@@ -21,21 +21,24 @@ export const ButtonGroup = ({ converse, buttonProps }: ButtonGroupProps) => {
     </span>
   );
 };
-
-<ButtonGroup
-  converse
-  buttonProps={[
-    {
-      children: 'test',
-      onClick: (e) => {
-        console.log(e);
-      }
-    },
-    {
-      children: 'test2',
-      onClick: () => {
-        console.log('test2');
-      }
-    }
-  ]}
-/>;
+/**
+ * 
+ * @example
+ * <ButtonGroup
+ * converse
+ * buttonProps={[
+ *   {
+ *     children: 'test',
+ *     onClick: (e) => {
+ *       console.log(e);
+ *     }
+ *   },
+ *   {
+ *     children: 'test2',
+ *     onClick: () => {
+ *       console.log('test2');
+ *     }
+ *   }
+ * ]}
+ * />;
+*/
