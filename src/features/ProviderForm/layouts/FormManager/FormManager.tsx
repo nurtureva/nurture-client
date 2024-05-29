@@ -2,12 +2,21 @@ import { FormType } from '../../types';
 import { useContextInitializer, useFormContext } from '../../utils/formContext';
 import { FormPageSwitcher } from '../../components/FormPageSwitcher';
 import { PageStateIndicatorList } from '../../components/PageStateIndicatorList';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components';
+import { error } from 'console';
 
 export const FormManager = ({ formType }: { formType: FormType }) => {
   const [FormContext, value] = useContextInitializer(formType);
+  const location = useLocation();
 
+const splitPathName = location.pathname.split('/')
+const urlEditHash = splitPathName[splitPathName.length-1]
+const userEditHash = value.formData.newProvider?.general.edit_hash
+
+if(location.pathname.includes('edit') && urlEditHash !== userEditHash) {
+  throw new Error('You are not authorized to edit this data.')
+} 
   return (
     <FormContext.Provider value={value}>
       <div className="content-wrapper">
