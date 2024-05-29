@@ -18,9 +18,16 @@ body div .picture-split-container {
     &.reverse {
       grid-area: right;
     }
+    h2 {
+      text-align: left;
+    }
   }
   p {
     font-size: 0.95em;
+    padding: 0px;
+  }
+  a {
+    width: fit-content !important;
   }
 }
 
@@ -72,6 +79,9 @@ a {
   body div .picture-split-container {
     display: flex;
     flex-direction: column;
+    a {
+      width: 100% !important;
+    }
     &.top {
       flex-direction: column-reverse;
       .picture-container {

@@ -14,7 +14,7 @@ export const Content = () => {
   return (
     <>
       <PictureSplitContainer
-        backgroundColor="yellow"
+        backgroundColor="tan"
         picture={careProviderHeroImage}>
         <h1>
           Care Providers: Join the Birth and Early Parenting Resource Directory!

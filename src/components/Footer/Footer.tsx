@@ -6,29 +6,37 @@ export const Footer = ({ navRoutes }: EndpointPropWrapper) => {
   return (
     <footer>
       <img src={logo} />
-      <section className='footer-routes'>
-      <ul>
-        {navRoutes.map((path) => {
-          return (
-            <li key={path.path}>
-              <Link to={path.path}>{path.name}</Link>
-            </li>
-          );
-        })}
-      </ul>
-      <ul>
-        <li>
+      <section className="footer-routes">
+        <ul>
+          {navRoutes.slice(0, 4).map((path) => {
+            return (
+              <li key={path.path}>
+                <Link to={path.path}>{path.name}</Link>
+              </li>
+            );
+          })}
+        </ul>
+        <ul>
+          {navRoutes.slice(4).map((path) => {
+            return (
+              <li key={path.path}>
+                <Link to={path.path}>{path.name}</Link>
+              </li>
+            );
+          })}
+          <li>
+            <a href="mailto:info@nurturerva.org?subject=Directory question">
+              Contact
+            </a>
+          </li>
+        </ul>
+
+        {/* <li>
           <a>Education Center</a>
         </li>
         <li>
           <a>FAQ</a>
-        </li>
-        <li>
-          <a href="mailto:info@nurturerva.org?subject=Directory question">
-            Contact
-          </a>
-        </li>
-      </ul>
+        </li> */}
       </section>
     </footer>
   );
