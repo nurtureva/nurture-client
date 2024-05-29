@@ -27,7 +27,7 @@ export const Content = () => {
         <ButtonGroup
           buttonProps={[
             { children: 'Find Care', to: '/results' },
-            { children: "I'm a care provder", to: '/provider-home' }
+            { children: "I'm a care provider", to: '/provider-home' }
           ]}
         />
       </PictureSplitContainer>
