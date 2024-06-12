@@ -61,7 +61,7 @@ const Initializer = ({
           <h1>Get listed in the directory</h1>
           <h3>Read the following before you start!</h3>
           <a onClick={scrollToForm}>
-            Skip the intructions-take me to the registration form
+            Skip the intructions - take me to the registration form
           </a>
         </section>
         <section className="container">
