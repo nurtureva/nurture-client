@@ -8,12 +8,14 @@ export const Filters = ({
   options,
   updateFilters,
   setProviderType,
-  providerType
+  providerType,
+  modalHandler
 }: {
   options: OptionsObject;
   updateFilters: Function;
   setProviderType: Function;
   providerType: string;
+  modalHandler?: () => void;
 }) => {
   const location = useLocation();
   const filters = location.state?.filters;
@@ -25,6 +27,7 @@ export const Filters = ({
   const [bookmarkFilter, setBookmarkFilter] = useState(
     location.pathname.includes('/bookmarks') ? true : false
   );
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 700);
   const clearFilters = () => {
     setPaymentFilters([]);
     setServiceFilters([]);
@@ -37,10 +40,19 @@ export const Filters = ({
       paymentOptions: paymentFilters,
       bookmarkFilter
     });
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 700);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [serviceFilters, paymentFilters, bookmarkFilter]);
   return (
     <div className="provider-filters">
-      <Icon type="clear" onClick={toggleFilterMenu} />
+      {isMobileView && <Icon type="carrot_back" onClick={modalHandler} />}
       <span>
         <h4>Filter Results</h4>
         <a onClick={clearFilters}>clear filters</a>

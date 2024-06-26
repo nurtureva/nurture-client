@@ -16,6 +16,7 @@ export const Information = ({ provider }: { provider: ProviderObject }) => {
   const { paymentOptions, certifications } = provider;
   return (
     <>
+      <Address provider={provider} />
       <p>
         {paymentOptions &&
           stringifyOptionList(paymentOptions, 'payment options')}
@@ -24,7 +25,6 @@ export const Information = ({ provider }: { provider: ProviderObject }) => {
         {certifications &&
           stringifyOptionList(certifications, 'certifications')}
       </p>
-      <Address provider={provider} />
     </>
   );
 };

@@ -52,7 +52,7 @@ export default function ProviderPage() {
           <Bookmark provider={provider} />
           <img src={photoSrc} />
         </div>
-        <section className='information-container'>
+        <section className="information-container">
           <span>
             <h2>{provider.name}</h2>
             <p>{provider.business_name}</p>
@@ -69,10 +69,25 @@ export default function ProviderPage() {
           </span>
         </section>
       </div>
-      <div>
+      <div className="provider-body">
         <h3>About {firstName}</h3>
+        {provider.overview ? (
+          <>
+            <h4>Overview of service:</h4>
+            <p>{provider.overview}</p>
+          </>
+        ) : (
+          ' '
+        )}
+        {provider.bio ? (
+          <>
+            <h4>Personal Bio:</h4>
+            <p>{provider.bio}</p>
+          </>
+        ) : (
+          ' '
+        )}
         <p>{provider.role}</p>
-        <p>{provider.overview}</p>
         <h3>Professional Details</h3>
         <p>
           Payment Accepted:{' '}
@@ -89,7 +104,27 @@ export default function ProviderPage() {
           ''
         )}
 
-        {provider?.bio ? <h3>Personal Details</h3> : ''}
+        {provider?.bio ? (
+          <>
+            <h3>Personal Details</h3>
+            {provider.languages_spoken && (
+              <>
+                <p>
+                  <span>Languages spoken:</span> {provider.languages_spoken}
+                </p>
+              </>
+            )}
+            {provider.pronouns && (
+              <>
+                <p>
+                  <span>Pronouns:</span> {provider.pronouns}
+                </p>
+              </>
+            )}
+          </>
+        ) : (
+          ''
+        )}
 
         {/* {provider.pronouns} */}
         {provider.languages_spoken}
