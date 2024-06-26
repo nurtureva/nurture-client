@@ -130,6 +130,9 @@ form {
   display: flex;
   padding: 15px !important;
 }
+.popup-p-tag {
+  cursor: pointer;
+}
 
 .page-state-indicator {
   display: flex;
@@ -220,6 +223,7 @@ form {
 @media only screen and (max-width: 700px) {
   .results-page {
     padding: 0;
+    flex-direction: column;
     .provider-table-container > span:first-of-type {
       padding: 15px;
     }

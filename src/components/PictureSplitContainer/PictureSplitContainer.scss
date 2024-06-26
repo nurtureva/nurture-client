@@ -41,6 +41,9 @@ body div .picture-split-container {
     background-color: var(--off-white);
     border: 1px solid var(--brand-green);
   }
+  a {
+    cursor: pointer;
+  }
 }
 
 .service-description-section {

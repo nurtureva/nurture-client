@@ -18,7 +18,6 @@ html {
   }
   .children-container {
     padding: 0 20px 0 0 !important;
-    padding-right: 20px;
     ul[title]::before {
       margin-bottom: 20px;
     }
@@ -30,6 +29,9 @@ html {
         display: block;
         font-weight: 600;
       }
+    }
+    a {
+      margin: 5px 0;
     }
   }
 }
@@ -63,5 +65,8 @@ html {
         padding: 10px 0;
       }
     }
+  }
+  .learn-more .children-container {
+    padding: 0 20px !important;
   }
 }

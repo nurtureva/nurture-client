@@ -117,15 +117,15 @@ const ProviderContainer = ({
         <span>
           {isMobileViewport ? '' : <Identity provider={provider} />}
           <Information provider={provider} />
-          <p>
-            {provider.phone ? provider.phone : ''}
-            {provider.phone && (provider.email || provider.website)
-              ? ' | '
-              : ''}
-            {provider.email ? provider.email : ''}
+          {/* <p> */}
+            {/* {provider.phone ? provider.phone : ''} */}
+            {/* {provider.phone && (provider.email || provider.website) */}
+            {/* ? ' | ' */}
+            {/* : ''} */}
+            {/* {provider.email ? provider.email : ''} */}
             {/* {provider.email && provider.website ? ' | ' : ''} */}
             {/* {provider.website ? provider.website : ''} */}
-          </p>
+          {/* </p> */}
         </span>
       </Link>
     </div>
