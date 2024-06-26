@@ -152,7 +152,8 @@ const Initializer = ({
             </section>
             <section className="registration-section">
               <h2>Organizations and Groups</h2>
-              <p>
+              <h3 style={{ color: 'var(--darker-gray', fontWeight:400, fontSize:'32px', textAlign:'center', marginTop:'18%', marginBottom:'18%' }}>Coming soon!</h3>
+              {/* <p>   
                 Are you an administrator, owner, or other authorized
                 representative of an organization like a hospital or agency?
               </p>
@@ -160,7 +161,7 @@ const Initializer = ({
                 className="button secondary"
                 onClick={buttonProps[1].onClick}>
                 Organization Registration
-              </button>
+              </button> */}
             </section>
           </section>
         </div>
