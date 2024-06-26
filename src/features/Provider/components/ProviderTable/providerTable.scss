@@ -72,9 +72,8 @@
       }
     }
     img {
-      height: 150px;
+      height: 200px;
       border-radius: 50%;
-      margin-right: 20px;
     }
     span {
       padding-right: 15px;
@@ -83,11 +82,30 @@
 }
 .provider-image {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .bookmark-label {
     position: absolute;
     top: 10px;
     left: 7px;
   }
+}
+.circle {
+  width: 200px;
+  height: 200px;
+  background-color: var(--primary-tan);
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .provider-table-container {
   margin: auto;
@@ -133,6 +151,9 @@
     padding: 5px;
     top: 15px !important;
     left: 15px !important;
+  }
+  .provider-container.full .provider-actions {
+    padding-top: 70px;
   }
   .provider-container.list {
     flex-wrap: wrap;

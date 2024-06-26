@@ -53,6 +53,12 @@
   }
 }
 
+p {
+  span {
+    font-weight: bold;
+  }
+}
+
 @media only screen and (max-width: 700px) {
   .sample-provider-image {
     padding-right: 0px;
