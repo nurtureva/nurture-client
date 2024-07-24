@@ -1,3 +1,21 @@
+.community-sponsors-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px 0 0 0;
+  section {
+    display: flex;
+    justify-content: center;
+    a {
+      margin: 0px 60px 0 60px !important;
+      img {
+        display: flex;
+        max-height: 150px;
+        max-width: 150px;
+      }
+    }
+  }
+}
 .sponsors-section {
   display: flex;
   align-items: center;

@@ -66,8 +66,7 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
       )}
       {isSubmitted && Object.keys(errors).length ? (
         <div className="form-error">
-            <Icon type="error_outline" />{' '}
-            Please correct the following fields:
+          <Icon type="error_outline" /> Please correct the following fields:
           <ul>
             {Object.keys(flatErrors).map((error) => {
               return <li>{error}</li>;
@@ -96,7 +95,11 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
             ) : (
               ''
             )}
-            <FormItem input={input} key={input.props.dbName} />
+            <FormItem
+              input={input}
+              key={input.props.dbName}
+              isDropdown={true}
+            />
           </>
         );
       })}
