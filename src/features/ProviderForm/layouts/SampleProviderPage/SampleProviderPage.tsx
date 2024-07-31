@@ -31,7 +31,9 @@ export const SampleProviderPage = () => {
         </section>
       </div>
       <div className="sample-about-section">
-        <p>Overview of services:</p>
+        <p>
+          <span>Overview of services:</span>
+        </p>
 
         <p>
           I provide comprehensive support for breastfeeding mothers, including:
@@ -76,20 +78,38 @@ export const SampleProviderPage = () => {
           forces and make your breastfeeding experience as rewarding as it
           should be!
         </p>
-        <p>Payment Accepted: </p>
+        <p>
+          <span>Payment Accepted:</span>{' '}
+        </p>
         <p>Fee for service, Sliding scale</p>
-        <p>Certfications:</p>
+        <p>
+          <span>Certfications:</span>
+        </p>
         <p>Certified Lactation Counselor (CLC)</p>
         <h3>Personal Details</h3>
         {/* {provider.pronouns} */}
-        <p>Languages Spoken: English, Spanish</p>
-        <p>Pronouns: she/her/hers</p>
-        <p>Race/ethnicity: Black</p>
-        <p>Gender: Woman, Cisgender</p>
+        <p>
+          <span>Languages Spoken:</span> English, Spanish
+        </p>
+        <p>
+          <span>Pronouns:</span> she/her/hers
+        </p>
+        <p>
+          <span>Race/ethnicity:</span> Black
+        </p>
+        <p>
+          <span>Gender:</span> Woman, Cisgender
+        </p>
         <h3>Contact Devon</h3>
-        <p>Phone Number: 804-555-0199</p>
-        <p>Email: Devon@bluebirdlactation.com</p>
-        <p>Website: BluebirdLactation.com</p>
+        <p>
+          <span>Phone Number:</span> 804-555-0199
+        </p>
+        <p>
+          <span>Email:</span> Devon@bluebirdlactation.com
+        </p>
+        <p>
+          <span>Website:</span> BluebirdLactation.com
+        </p>
       </div>
     </>
   );

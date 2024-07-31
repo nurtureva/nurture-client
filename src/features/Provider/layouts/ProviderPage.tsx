@@ -21,6 +21,22 @@ export default function ProviderPage() {
     ? import.meta.env.VITE_S3_URL + provider.profile_photo
     : photoList[Math.floor(Math.random() * photoList.length)];
 
+  const formatNames = (items: any[]) => {
+    if (!items || items.length === 0) {
+      return '';
+    }
+
+    return items.reduce((currentString, item, index) => {
+      const name = item.name;
+      return index === items.length - 1
+        ? currentString + name
+        : currentString + name + ', ';
+    }, '');
+  };
+  const formattedPayments = formatNames(provider.paymentOptions!);
+  const formattedCertifications = formatNames(provider.certifications!);
+  const formattedServices = formatNames(provider.services!);
+
   return (
     <div className="provider-container full">
       <div className="provider-actions">
@@ -49,23 +65,43 @@ export default function ProviderPage() {
       <div className="provider-header">
         <span className="provider-container"></span>
         <div className="provider-image">
-          <Bookmark provider={provider} />
-          <img src={photoSrc} />
+          <div className="circle">
+            <Bookmark provider={provider} />
+            <img src={photoSrc} className="photo" />
+          </div>
         </div>
         <section className="information-container">
           <span>
             <h2>{provider.name}</h2>
             <p>{provider.business_name}</p>
-            <p>
-              Type of care:{' '}
-              {provider.services?.map((service) => service.name + ', ')}
-            </p>
+            <p>Type of care: {formattedServices}</p>
             <Address provider={provider} />
           </span>
           <span>
-            <p>Phone number: {provider.phone}</p>
-            <p>Email: {provider.email}</p>
-            {provider.website ? <p>Website: {provider.website}</p> : ' '}
+            {provider.phone && <p>Phone number: {provider.phone}</p>}
+            {provider.email && (
+              <p>
+                Email: <a href={`mailto:${provider.email}`}>{provider.email}</a>
+              </p>
+            )}
+            {provider.website ? (
+              <p>
+                Website:{' '}
+                <a
+                  href={
+                    provider.website.startsWith('http://') ||
+                    provider.website.startsWith('https://')
+                      ? provider.website
+                      : `https://www.${provider.website}`
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  {provider.website}
+                </a>
+              </p>
+            ) : (
+              ' '
+            )}
           </span>
         </section>
       </div>
@@ -90,15 +126,11 @@ export default function ProviderPage() {
         <p>{provider.role}</p>
         <h3>Professional Details</h3>
         <p>
-          Payment Accepted:{' '}
-          {provider.paymentOptions?.map((payment) => payment.name + ', ')}
+          <span>Payment Form Accepted:</span> {formattedPayments}
         </p>
         {provider.certifications ? (
           <p>
-            Certifications:{' '}
-            {provider.certifications?.map(
-              (certification) => certification.name + ', '
-            )}
+            <span>Certifications:</span> {formattedCertifications}
           </p>
         ) : (
           ''
@@ -130,8 +162,24 @@ export default function ProviderPage() {
         {provider.languages_spoken}
         <h3>Contact {firstName}</h3>
         <p>{provider.phone}</p>
-        <p>{provider.email}</p>
-        <p>{provider.website}</p>
+        <p>
+          <a href={`mailto:${provider.email}`}>{provider.email}</a>
+        </p>
+        {provider.website && (
+          <p>
+            <a
+              href={
+                provider.website.startsWith('http://') ||
+                provider.website.startsWith('https://')
+                  ? provider.website
+                  : `https://www.${provider.website}`
+              }
+              target="_blank"
+              rel="noopener noreferrer">
+              {provider.website}
+            </a>
+          </p>
+        )}
       </div>
       {/* <div>
         <Name provider={provider}>
