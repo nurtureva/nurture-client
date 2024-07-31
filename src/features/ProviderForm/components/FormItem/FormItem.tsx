@@ -2,7 +2,7 @@ import React from 'react';
 import { FormItem as FormItemObject } from '../../types';
 import { Icon } from '@/components';
 
-export const FormItem = (formItemProps: { input: FormItemObject }) => {
+export const FormItem = (formItemProps: { input: FormItemObject}) => {
   const { input } = formItemProps;
   if (!input) return <span className={`form-input-container`}>{formItemProps.children}</span>;
 
@@ -41,6 +41,7 @@ export const FormItem = (formItemProps: { input: FormItemObject }) => {
         inputHasError && 'error'
       }`}>
       <label>
+      <div>{formItemName}</div>
         {input.name} {!!props.required ? '*' : '(optional)'}
         <Element id={formItemName} {...props} />
       </label>

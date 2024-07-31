@@ -7,6 +7,8 @@ import { Button, Icon } from '@/components';
 import { Address } from '../components/Address';
 import { confirmChoice } from '@/features/Admin/utils/helpers';
 import { addHash } from '@/features/ProviderForm/utils/api';
+import { Modal } from '../../../components/Modal';
+import { useRef, useState, useEffect } from 'react';
 
 export default function ProviderPage() {
   const { provider: individualProvider, organization } = useLoaderData() as {
@@ -21,6 +23,36 @@ export default function ProviderPage() {
     ? import.meta.env.VITE_S3_URL + provider.profile_photo
     : photoList[Math.floor(Math.random() * photoList.length)];
 
+  const textRef = useRef<HTMLTextAreaElement>(null);
+  const countRef = useRef<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (textRef.current) {
+      const length = textRef.current.value.length;
+      const lengthDisplay = document.getElementById('lengthDisplay');
+      if (lengthDisplay) {
+        lengthDisplay.textContent = `${length}/500`;
+        lengthDisplay.className = length > 500 ? 'text-red' : 'text-grey';
+      }
+    }
+    console.log(countRef.current);
+  };
+  const requestEditHandler = () => {
+    setIsSubmitted(false);
+    setIsModalOpen(true);
+    if (textRef.current) {
+      textRef.current.value = '';
+    }
+  };
+  const submitHandler = () => {
+    if (textRef.current) {
+      addHash(provider.id, textRef.current.value);
+      setIsSubmitted(true);
+    }
+  };
+  
   const formatNames = (items: any[]) => {
     if (!items || items.length === 0) {
       return '';
@@ -39,6 +71,60 @@ export default function ProviderPage() {
 
   return (
     <div className="provider-container full">
+      {isModalOpen && (
+        <Modal
+          title="Request an Edit"
+          size="small"
+          closeHandler={() => setIsModalOpen(false)}>
+          {!isSubmitted ? (
+            <>
+              <p>
+                See something incorrect? Requesting an edit will prompt the
+                practitioner to update their information. Please use the text
+                box below to briefly describe what needs editing.
+              </p>
+              <section className="popup-text-container">
+                <p>Edit/update needed:</p>
+                <p
+                  id="lengthDisplay"
+                  className={`${
+                    countRef.current || 0 > 500 ? 'text-red' : 'text-grey'
+                  }`}>
+                  {countRef.current}/500
+                </p>
+              </section>
+              <textarea
+                className="modal-textarea"
+                ref={textRef}
+                onChange={handleChange}
+                rows="10"
+                cols="30"
+              />
+              <section className="button-container">
+                <button
+                  className="button secondary"
+                  onClick={() => setIsModalOpen(false)}>
+                  Cancel
+                </button>
+                <button className={`button primary`} onClick={submitHandler}>
+                  Request Edit
+                </button>
+              </section>
+            </>
+          ) : (
+            <>
+              <p>Thank you! Your request has been submitted.</p>
+              <section className="button-container">
+                <button
+                  className="button secondary"
+                  onClick={() => setIsModalOpen(false)}>
+                  Close
+                </button>
+              </section>
+            </>
+          )}
+        </Modal>
+      )}
       <div className="provider-actions">
         <span>
           <Icon type="arrow_back" />
@@ -49,18 +135,6 @@ export default function ProviderPage() {
             back
           </a>
         </span>
-        <a
-          onClick={(e) => {
-            const message = prompt(
-              "Leave a note for the provider so they can fix what's wrong."
-            );
-            if (message)
-              confirmChoice(() => {
-                addHash(provider.id, message);
-              }, `send "${message}" to ${provider.name}?`);
-          }}>
-          request an edit
-        </a>
       </div>
       <div className="provider-header">
         <span className="provider-container"></span>
@@ -205,6 +279,25 @@ export default function ProviderPage() {
         </div>
         <Contact provider={provider} title={provider.name.split(' ')[0]} />
       </div> */}
+      <hr></hr>
+      <p className="text-warning">See something incorrect on this page?</p>
+      <div className="edit-section">
+        <Icon type="edit"></Icon>
+        <a
+          onClick={requestEditHandler}
+          // onClick={(e) => {
+          //   const message = prompt(
+          //     "Leave a note for the provider so they can fix what's wrong."
+          //   );
+          //   if (message)
+          //     confirmChoice(() => {
+          //       addHash(provider.id, message);
+          //     }, `send "${message}" to ${provider.name}?`);
+          // }}>
+        >
+          request an edit
+        </a>
+      </div>
     </div>
   );
 }

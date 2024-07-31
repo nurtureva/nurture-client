@@ -125,6 +125,7 @@ const FilterList = ({
   filterGroup: number[];
   setFilterGroup: React.Dispatch<React.SetStateAction<number[]>>;
 }) => {
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(true);
   const updateFilterList = (value: number, checked: boolean) => {
     if (checked) setFilterGroup([...filterGroup, value]);
     else {
@@ -137,8 +138,14 @@ const FilterList = ({
   };
   return (
     <div>
-      <label>{title}:</label>
-      <ul>
+      <div className="title-container">
+        <label>{title}:</label>
+        <Icon
+          type={`${isFilterOpen ? 'carrot_up' : 'carrot_down'}`}
+          onClick={() => setIsFilterOpen(!isFilterOpen)}
+        />
+      </div>
+      <ul className={`${isFilterOpen ? 'opening' : 'closing'}`}>
         {optionList.map((choice) => {
           return (
             <li key={choice.id}>

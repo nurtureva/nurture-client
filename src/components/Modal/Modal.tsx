@@ -18,7 +18,7 @@ export const Modal: FC<ModalProps> = ({
   return (
     <>
       <div className="backdrop" onClick={closeHandler}>
-        <div className={`modal ${size}`}>
+        <div className={`modal ${size}`} onClick={(e) => e.stopPropagation()}>
           <Icon type="clear" onClick={closeHandler} />
           <h3>{title}</h3>
           {children}
