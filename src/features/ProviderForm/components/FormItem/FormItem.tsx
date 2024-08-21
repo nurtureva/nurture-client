@@ -41,7 +41,7 @@ export const FormItem = (formItemProps: { input: FormItemObject}) => {
         inputHasError && 'error'
       }`}>
       <label>
-      <div>{formItemName}</div>
+      {/* <div>{formItemName}</div> */}
         {input.name} {!!props.required ? '*' : '(optional)'}
         <Element id={formItemName} {...props} />
       </label>
