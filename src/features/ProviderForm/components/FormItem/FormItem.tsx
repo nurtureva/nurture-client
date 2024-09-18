@@ -2,14 +2,12 @@ import React from 'react';
 import { FormItem as FormItemObject } from '../../types';
 import { Icon } from '@/components';
 
-export const FormItem = (formItemProps: {
-  input: FormItemObject;
-  isDropdown: boolean;
-}) => {
+export const FormItem = (formItemProps: { input: FormItemObject }) => {
   const { input } = formItemProps;
-  console.log(input);
-  if (!input) return <span className={`form-input-container`}>{input}</span>;
-
+  if (!input)
+    return (
+      <span className={`form-input-container`}>{formItemProps.children}</span>
+    );
   //todo update FormItem type to more accurately assert type for Element (string in JSON, FC any other time)
   const Element = input.Element as React.FC<any>;
 
