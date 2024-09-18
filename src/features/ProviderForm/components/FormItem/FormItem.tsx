@@ -2,9 +2,13 @@ import React from 'react';
 import { FormItem as FormItemObject } from '../../types';
 import { Icon } from '@/components';
 
-export const FormItem = (formItemProps: { input: FormItemObject}) => {
+export const FormItem = (formItemProps: {
+  input: FormItemObject;
+  isDropdown: boolean;
+}) => {
   const { input } = formItemProps;
-  if (!input) return <span className={`form-input-container`}>{formItemProps.children}</span>;
+  console.log(input);
+  if (!input) return <span className={`form-input-container`}>{input}</span>;
 
   //todo update FormItem type to more accurately assert type for Element (string in JSON, FC any other time)
   const Element = input.Element as React.FC<any>;
@@ -14,34 +18,34 @@ export const FormItem = (formItemProps: { input: FormItemObject}) => {
   const formItemName: string = input.props.dbName;
   //todo remove required prop from being passed down, check on other unnecessary prop drilling
   const { size, errors, errorMessage, ...props } = input.props;
- function hasKey(obj, key) {
-   // Check if the object has the key directly
-   if (obj.hasOwnProperty(key)) {
-     return true;
-   }
+  function hasKey(obj, key) {
+    // Check if the object has the key directly
+    if (obj.hasOwnProperty(key)) {
+      return true;
+    }
 
-   // Check if the object has a nested object named 'general'
-   if (
-     obj.hasOwnProperty('general') &&
-     typeof obj.general === 'object' &&
-     obj.general !== null
-   ) {
-     // Recursively check the 'general' object
-     return hasKey(obj.general, key);
-   }
+    // Check if the object has a nested object named 'general'
+    if (
+      obj.hasOwnProperty('general') &&
+      typeof obj.general === 'object' &&
+      obj.general !== null
+    ) {
+      // Recursively check the 'general' object
+      return hasKey(obj.general, key);
+    }
 
-   // If the key is not found
-   return false;
- }
+    // If the key is not found
+    return false;
+  }
 
-  const inputHasError = hasKey(errors, formItemName)
+  const inputHasError = hasKey(errors, formItemName);
   return (
     <span
       className={`form-input-container${!!size ? ' ' + size : ''} ${
         inputHasError && 'error'
       }`}>
       <label>
-      <div>{formItemName}</div>
+        <div>{formItemName}</div>
         {input.name} {!!props.required ? '*' : '(optional)'}
         <Element id={formItemName} {...props} />
       </label>
