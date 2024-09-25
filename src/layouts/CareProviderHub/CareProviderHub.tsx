@@ -32,70 +32,36 @@ export const Content = () => {
         <h2>About the Birth and Early Parenting Resource Directory</h2>
         <p>
           The Birth and Early Parenting Resource Directory came about in
-          response to multiple community surveys of parents and providers. These
-          yielded recurring themes of
-          <ol>
-            <li>
-              challenges in accessing accurate information and resources, and
-            </li>{' '}
-            <li>
-              a fragmented perinatal health and early parenting ecosystem.
-            </li>
-          </ol>
-          <strong>
-            Our goal is to create a regional hub for Greater Richmond that
-            connects parents to resources and provides a pathway for
-            communication and collaboration among perinatal and early childhood
-            support providers.
-          </strong>
+          response to community surveys and focus groups with parents and
+          providers that yielded recurring themes of challenges in accessing
+          accurate information and resources, and a fragmented perinatal health
+          and early parenting ecosystem. This directory is predicated on the
+          idea that pregnancy, birth, and early parenting comprise a critical
+          life transition that requires specific resources and supports. Our
+          goal is to create a regional hub for Greater Richmond that connects
+          parents to resources and provides a pathway for communication and
+          collaboration among perinatal and early childhood support providers.
         </p>
         <p>
-          In 2021,{' '}
-          <a
-            href="https://nurturerva.org/"
-            target="_blank"
-            rel="noopener noreferrer">
-            Nurture
-          </a>{' '}
-          and{' '}
-          <a
-            href="https://postpartumva.org/"
-            target="_blank"
-            rel="noopener noreferrer">
-            Postpartum Support Virginia
-          </a>{' '}
-          conducted a{' '}
-          <a
-            href="https://www.canva.com/design/DAEiCTRvO7Q/CUXZOJf9792LLcvd3Muk5Q/edit?utm_content=DAEiCTRvO7Q&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
-            target="_blank"
-            rel="noopener noreferrer">
-            statewide survey
-          </a>{' '}
-          of pregnant and postpartum parents, who indicated that their top needs
-          were for mental health, lactation, and doula support. We are piloting
-          the directory with these parent-informed categories, with the goal of
-          adding more resource categories as funding allows. As we go, we are
-          also collecting demographic data on providers to capture snapshots of
-          how our providers reflect the communities they serve. This
-          de-identified data will be shared with community partners to help
+          In 2021, Nurture conducted a statewide survey of pregnant and
+          postpartum parents, who indicated that their top needs were for mental
+          health, lactation, and doula support across nearly every demographic
+          category. We are piloting the directory with these parent-informed
+          categories, with the goal of adding more resource categories as
+          funding allows. As we go, we are also collecting demographic data on
+          providers to capture a snapshot of how our providers reflect the
+          communities they serve, and to measure change over time in provider
+          demographics. This de-identified data will be shared publicly to help
           inform collective efforts to build a truly diverse and responsive
           pregnancy/early childhood support ecosystem.
         </p>
         <p>
           We hope you will join us by listing your services here, as we work to
-          build a culture of support for Richmond’s newest families. In order to
+          build a culture of support for Richmond's newest families. In order to
           ensure equitable access to all, there is no fee to be listed in the
-          directory.
-        </p>
-        <p>
-          <strong>Help expand the directory!</strong>{' '}
-          <a
-            href="https://nurturerva.networkforgood.com/projects/150819-nurture-general-fund"
-            target="_blank"
-            rel="noopener noreferrer">
-            Please consider a donation to support Nurture's systems building
-            work.
-          </a>
+          directory. If you would like to contribute to expanding this
+          initiative, please consider a donation in any amount to Nurture to
+          support our ecosystem building work.
         </p>
       </InformationSection>
       <PictureSplitContainer backgroundColor="tan" picture={howItWorksImage}>
