@@ -1,7 +1,9 @@
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { OrganizationObject, ProviderObject } from '@/types';
 import samplePhoto1 from '@/assets/images/profile-1.png';
+import sampleProfilePhoto from '@/assets/images/about-hero.png';
 import samplePhoto2 from '@/assets/images/profile-2.png';
+import sampleLogo from '@/assets/images/sample-logo-1.png';
 import { Bookmark } from '../components/Bookmark';
 import { Button, Icon } from '@/components';
 import { Address } from '../components/Address';
@@ -37,7 +39,6 @@ export default function ProviderPage() {
         lengthDisplay.className = length > 500 ? 'text-red' : 'text-grey';
       }
     }
-    console.log(countRef.current);
   };
   const requestEditHandler = () => {
     setIsSubmitted(false);
@@ -52,7 +53,7 @@ export default function ProviderPage() {
       setIsSubmitted(true);
     }
   };
-  
+
   const formatNames = (items: any[]) => {
     if (!items || items.length === 0) {
       return '';
@@ -64,6 +65,13 @@ export default function ProviderPage() {
         ? currentString + name
         : currentString + name + ', ';
     }, '');
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
   const formattedPayments = formatNames(provider.paymentOptions!);
   const formattedCertifications = formatNames(provider.certifications!);
@@ -141,7 +149,17 @@ export default function ProviderPage() {
         <div className="provider-image">
           <div className="circle">
             <Bookmark provider={provider} />
-            <img src={photoSrc} className="photo" />
+            <img
+              src={
+                provider.profile_photo ? provider.profile_photo : provider.logo
+              }
+              className="photo"
+            />
+            {provider.logo && provider.profile_photo ? (
+              <div className="circle">
+                <img className="org-photo" src={provider.logo}></img>
+              </div>
+            ) : null}
           </div>
         </div>
         <section className="information-container">
@@ -173,9 +191,7 @@ export default function ProviderPage() {
                   {provider.website}
                 </a>
               </p>
-            ) : (
-              ' '
-            )}
+            ) : null}
           </span>
         </section>
       </div>
@@ -186,17 +202,13 @@ export default function ProviderPage() {
             <h4>Overview of service:</h4>
             <p>{provider.overview}</p>
           </>
-        ) : (
-          ' '
-        )}
+        ) : null}
         {provider.bio ? (
           <>
             <h4>Personal Bio:</h4>
             <p>{provider.bio}</p>
           </>
-        ) : (
-          ' '
-        )}
+        ) : null}
         <p>{provider.role}</p>
         <h3>Professional Details</h3>
         <p>
@@ -206,11 +218,9 @@ export default function ProviderPage() {
           <p>
             <span>Certifications:</span> {formattedCertifications}
           </p>
-        ) : (
-          ''
-        )}
+        ) : null}
 
-        {provider?.bio ? (
+        {provider.languages_spoken || provider.pronouns ? (
           <>
             <h3>Personal Details</h3>
             {provider.languages_spoken && (
@@ -228,9 +238,7 @@ export default function ProviderPage() {
               </>
             )}
           </>
-        ) : (
-          ''
-        )}
+        ) : null}
 
         {/* {provider.pronouns} */}
         {provider.languages_spoken}
@@ -297,6 +305,9 @@ export default function ProviderPage() {
         >
           request an edit
         </a>
+        <button onClick={scrollToTop}>
+          <Icon type="arrow_upward" />
+        </button>
       </div>
     </div>
   );

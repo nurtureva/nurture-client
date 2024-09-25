@@ -15,11 +15,7 @@ export const SampleProviderPage = () => {
           <span>
             <h2>Devon Lane</h2>
             <p>Bluebird Lactation and Wellness</p>
-            <p>
-              Type of care:{' '}
-              {/* {provider.services?.map((service) => service.name + ', ')} */}
-              Lactation Support
-            </p>
+            <p>Type of care: Lactation Support</p>
             {/* <Address provider={provider} /> */}
             <p>2972 Westheimer Rd. Richmond, VA 23221</p>
           </span>
@@ -31,10 +27,10 @@ export const SampleProviderPage = () => {
         </section>
       </div>
       <div className="sample-about-section">
+        <h3>About Devon</h3>
         <p>
           <span>Overview of services:</span>
         </p>
-
         <p>
           I provide comprehensive support for breastfeeding mothers, including:
         </p>
@@ -62,7 +58,7 @@ export const SampleProviderPage = () => {
             mothers and gaining insights.
           </li>
         </ul>
-        <h3>About Devon</h3>
+
         <p>
           Hey there, I'm Devon, your lactation support provider based right here
           in Richmond, VA. As a devoted mom of two, I intimately understand the
