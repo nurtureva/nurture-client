@@ -11,10 +11,19 @@ import { Modal } from '../../components/Modal';
 import Select from 'react-select';
 import { ProviderObject } from '@/types';
 
+interface ProviderOption {
+  value: number;
+  label: string;
+  email: string;
+}
+
 export const Content = () => {
   // A variable to check if the modal is open or not
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [selectedOption, setSelectedOption] = useState<ProviderOption | null>(
+    null
+  );
   // Store the providers retrieved from the backend
   const [providers, setProviders] = useState<ProviderObject[]>([]);
   // Retrieve providers from the backend with a GET request
@@ -27,13 +36,17 @@ export const Content = () => {
     }
   }
   // Map through the providers and return an object
-  let providerOptions = providers.map((provider) => {
+  let providerOptions: ProviderOption[] = providers.map((provider) => {
     return {
       value: provider.id,
       label: provider.name,
       email: provider.email
     };
   });
+
+  const handleChange = (selectedOption: ProviderOption | null) => {
+    setSelectedOption(selectedOption);
+  };
   // Call function "retrieveProviders" in a useEffect for the function to run once after the page is rendered
   useEffect(() => {
     retrieveProviders();
@@ -41,6 +54,10 @@ export const Content = () => {
   const requestUpdateHandler = () => {
     setIsSubmitted(false);
     setIsModalOpen(true);
+  };
+  const cancelHandler = () => {
+    setIsModalOpen(false);
+    setSelectedOption(null);
   };
   const submitHandler = () => {
     // include function that will send email to selected provider
@@ -90,14 +107,18 @@ export const Content = () => {
                 styles={customStyles}
                 menuPosition="relative"
                 menuPlacement="bottom"
+                onChange={handleChange}
               />
               <section className="button-container">
-                <button
-                  className="button secondary"
-                  onClick={() => setIsModalOpen(false)}>
+                <button className="button secondary" onClick={cancelHandler}>
                   Cancel
                 </button>
-                <button className={`button primary`} onClick={submitHandler}>
+                <button
+                  className={`button primary ${
+                    !selectedOption ? 'disabled' : ''
+                  }`}
+                  disabled={!selectedOption}
+                  onClick={submitHandler}>
                   Submit
                 </button>
               </section>
@@ -109,9 +130,7 @@ export const Content = () => {
                 link to update your profile.
               </p>
               <section className="button-container">
-                <button
-                  className="button secondary"
-                  onClick={() => setIsModalOpen(false)}>
+                <button className="button secondary" onClick={cancelHandler}>
                   Close
                 </button>
               </section>
