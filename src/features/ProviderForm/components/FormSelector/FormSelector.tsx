@@ -2,6 +2,8 @@ import { SelectorProps } from '@/types';
 import { useFormContext } from '../../utils/formContext';
 import { Icon } from '@/components';
 import { useEffect, useState } from 'react';
+import makeAnimated from 'react-select/animated';
+import Select from 'react-select';
 
 export const FormSelector = ({
   dbName,
@@ -40,6 +42,32 @@ SelectorProps) => {
       </li>
     );
   });
+  const animatedComponents = makeAnimated();
+
+  let dropdownOptions = optionsArray.map((option) => {
+    return {
+      value: option.id,
+      label: option.name
+    };
+  });
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      border: 'none !important',
+      boxShadow: 'none !important'
+    }),
+    menu: (provided) => ({
+      ...provided,
+      marginTop: '15px'
+    }),
+    option: (provided: any, state: any) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? '#F9E3BD' : 'white',
+      color: 'black',
+      cursor: 'pointer'
+    })
+  };
   return (
     <>
       {needsConsent ? (
@@ -57,18 +85,19 @@ SelectorProps) => {
       )}
       <ul className={selectorType}>
         {isDropdown ? (
-          <>
-            <span>
-              {dbName}
-              <Icon
-                type="carrot_down"
-                onClick={() => {
-                  setOptionsVisible(!optionsVisible);
-                }}
-              />
-            </span>
+          <div>
+            <Select
+              className="basic-single"
+              classNamePrefix="select"
+              components={animatedComponents}
+              name="color"
+              isMulti
+              closeMenuOnSelect={false}
+              options={dropdownOptions}
+              styles={customStyles}
+            />
             {optionsVisible && optionsList}
-          </>
+          </div>
         ) : (
           optionsList
         )}
@@ -104,11 +133,11 @@ const Checkbox = ({
 }) => {
   const [checked, setChecked] = useState();
   const [userDescription, setUserDescription] = useState('');
-  useEffect(()=>{
+  useEffect(() => {
     const init = getValues(dbName) || [];
-    const newOne = [...init, {userDescription, id}];
+    const newOne = [...init, { userDescription, id }];
     // if(userDescription) setValue(dbName, {userDescription, id})
-  }, [userDescription])
+  }, [userDescription]);
   return (
     <label>
       <input
@@ -117,14 +146,19 @@ const Checkbox = ({
           setChecked(e.currentTarget.checked);
         }}
         value={type === 'radio' ? name : id}
-        {...register(`${isDemographics ? 'demographics.' : ''}${dbName}`, {required})}
-
+        {...register(`${isDemographics ? 'demographics.' : ''}${dbName}`, {
+          required
+        })}
       />
       {checked && isOther ? (
-        <input onChange={e=>{setUserDescription(e.target.value)}}/>
+        <input
+          onChange={(e) => {
+            setUserDescription(e.target.value);
+          }}
+        />
       ) : (
         name
       )}
     </label>
   );
-  };
+};

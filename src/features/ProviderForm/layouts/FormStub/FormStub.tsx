@@ -98,7 +98,6 @@ export const FormStub = ({ type }: { type: PageStateTitle }) => {
             <FormItem
               input={input}
               key={input.props.dbName}
-              isDropdown={true}
             />
           </>
         );

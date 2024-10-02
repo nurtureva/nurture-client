@@ -5,14 +5,139 @@ import researchImage from '@/assets/images/research-image.png';
 import getListed from '@/assets/images/get-listed.png';
 import { Button, ButtonGroup, ButtonPropArray, Input } from '@/components';
 import { InformationSection } from '@/components/InformationSection';
+import { useEffect, useState } from 'react';
+import { accessDatabase } from '../../api/fetch';
+import { Modal } from '../../components/Modal';
+import Select from 'react-select';
+import { ProviderObject } from '@/types';
+
+interface ProviderOption {
+  value: number;
+  label: string;
+  email: string;
+}
 
 export const Content = () => {
+  // A variable to check if the modal is open or not
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [selectedOption, setSelectedOption] = useState<ProviderOption | null>(
+    null
+  );
+  // Store the providers retrieved from the backend
+  const [providers, setProviders] = useState<ProviderObject[]>([]);
+  // Retrieve providers from the backend with a GET request
+  async function retrieveProviders(): Promise<void> {
+    try {
+      const providers = await accessDatabase('GET', 'providers');
+      setProviders(providers);
+    } catch (error) {
+      console.error('Error retrieving providers:', error);
+    }
+  }
+  // Map through the providers and return an object
+  let providerOptions: ProviderOption[] = providers.map((provider) => {
+    return {
+      value: provider.id,
+      label: provider.name,
+      email: provider.email
+    };
+  });
+
+  const handleChange = (selectedOption: ProviderOption | null) => {
+    setSelectedOption(selectedOption);
+  };
+  // Call function "retrieveProviders" in a useEffect for the function to run once after the page is rendered
+  useEffect(() => {
+    retrieveProviders();
+  }, []);
+  const requestUpdateHandler = () => {
+    setIsSubmitted(false);
+    setIsModalOpen(true);
+  };
+  const cancelHandler = () => {
+    setIsModalOpen(false);
+    setSelectedOption(null);
+  };
+  const submitHandler = () => {
+    // include function that will send email to selected provider
+    setIsSubmitted(true);
+  };
   const providerButtonProps: ButtonPropArray = [
     { children: 'List your practice', to: '/provider-form' },
     { children: 'Update your listing' }
   ];
+  // Custom styling for the Select component
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      boxShadow: 'none',
+      marginBottom: '20px'
+    }),
+    menu: (provided) => ({
+      ...provided,
+      position: 'relative',
+      marginTop: '-18px'
+    }),
+    option: (provided: any, state: any) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? '#F9E3BD' : 'white',
+      color: 'black',
+      cursor: 'pointer'
+    })
+  };
   return (
     <>
+      {isModalOpen && (
+        <Modal
+          title={!isSubmitted ? 'Update/Edit your listing' : 'Thank you!'}
+          size="small"
+          closeHandler={() => setIsModalOpen(false)}>
+          {!isSubmitted ? (
+            <>
+              <p>
+                Begin typing to find your name and click submit. A link to
+                update your information will be sent to the email on file.
+              </p>
+              <Select
+                className="basic-single"
+                classNamePrefix="custom-select"
+                name="options"
+                options={providerOptions}
+                styles={customStyles}
+                menuPosition="relative"
+                menuPlacement="bottom"
+                onChange={handleChange}
+              />
+              <section className="button-container">
+                <button className="button secondary" onClick={cancelHandler}>
+                  Cancel
+                </button>
+                <button
+                  className={`button primary ${
+                    !selectedOption ? 'disabled' : ''
+                  }`}
+                  disabled={!selectedOption}
+                  onClick={submitHandler}>
+                  Submit
+                </button>
+              </section>
+            </>
+          ) : (
+            <>
+              <p>
+                Your request has been submitted. Please check your email for a
+                link to update your profile.
+              </p>
+              <section className="button-container">
+                <button className="button secondary" onClick={cancelHandler}>
+                  Close
+                </button>
+              </section>
+            </>
+          )}
+        </Modal>
+      )}
       <PictureSplitContainer
         backgroundColor="tan"
         picture={careProviderHeroImage}>
@@ -25,8 +150,12 @@ export const Content = () => {
           expecting parents find and hire you while contributing to the creation
           of comprehensive, accessible resource network.
         </p>
-        <Button to="/provider-form">List your practice</Button>
-        {/* <ButtonGroup buttonProps={providerButtonProps} /> */}
+        <div className="care-provider-btns">
+          <Button to="/provider-form">List your practice</Button>
+          <Button type="secondary" onClick={requestUpdateHandler}>
+            Update your listing
+          </Button>
+        </div>
       </PictureSplitContainer>
       <InformationSection>
         <h2>About the Birth and Early Parenting Resource Directory</h2>

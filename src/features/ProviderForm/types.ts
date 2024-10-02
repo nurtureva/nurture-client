@@ -40,7 +40,6 @@ export interface SelectorProps extends BaseFormItemProps {
   dbName: keyof Omit<FormProvider, 'general'>;
   selection: 'single' | 'multiple';
   isDemographics?: boolean;
-  isDropdown?: boolean;
   optionsArray: Option[];
   selectorType: 'input' | 'dropdown';
 }

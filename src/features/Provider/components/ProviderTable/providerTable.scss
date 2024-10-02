@@ -185,6 +185,12 @@
     margin: 2px !important;
   }
 }
+.care-provider-btns {
+  display: flex;
+  button {
+    margin: 0 20px;
+  }
+}
 .text-grey {
   color: gray;
 }
