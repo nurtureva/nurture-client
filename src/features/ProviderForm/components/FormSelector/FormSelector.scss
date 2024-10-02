@@ -1,5 +1,6 @@
 .dropdown {
   padding: 13px 8px;
+  overflow-y: visible;
   span {
     display: flex;
     align-items: center;
@@ -13,10 +14,9 @@
   }
 }
 
-
 .consent-question {
-  margin:3px 15px;
-  font-size: .9em;
+  margin: 3px 15px;
+  font-size: 0.9em;
   input {
     margin-right: 10px;
   }

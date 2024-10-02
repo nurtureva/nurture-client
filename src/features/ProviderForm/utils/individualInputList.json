@@ -132,7 +132,7 @@
   "About": [
     {
       "name": "Overview of services",
-      "description": "Describe the type of care you provide (500 characters max)",
+      "description": "Describe the type of care you provide (1000 characters max)",
       "Element": "INPUT",
       "props": {
         "dbName": "overview",
@@ -142,7 +142,7 @@
     },
     {
       "name": "Personal bio",
-      "description": "Brief introduction about yourself (500 characters max)",
+      "description": "Brief introduction about yourself (1000 characters max)",
       "Element": "INPUT",
       "props": {
         "dbName": "bio",
@@ -156,7 +156,8 @@
       "props": {
         "dbName": "languages",
         "required": true,
-        "selection": "multiple"
+        "selection": "multiple",
+        "selectorType": "dropdown"
       }
     },
     {
@@ -187,7 +188,8 @@
       "Element": "SELECTOR",
       "props": {
         "dbName": "certifications",
-        "selection": "multiple"
+        "selection": "multiple",
+        "selectorType": "dropdown"
       }
     },
     {
