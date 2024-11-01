@@ -87,7 +87,7 @@ export default function App() {
         },
         {
           path: 'provider-form',
-          loader: useOptionsLoader,
+          loader: useMainPageLoader,
           element: <IntakeForm />,
           errorElement: <PageLayout {...errorContent} />
         },

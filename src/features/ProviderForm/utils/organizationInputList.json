@@ -151,6 +151,16 @@
       "props": {
         "dbName": "year_established"
       }
+    },
+    {
+      "name": "Providers",
+      "description": "Please select the provider(s) affiliated with your organization:",
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "providers",
+        "selection": "multiple",
+        "selectorType": "dropdown"
+      }
     }
   ]
 }

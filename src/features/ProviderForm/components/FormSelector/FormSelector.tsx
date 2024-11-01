@@ -44,11 +44,15 @@ SelectorProps) => {
   });
   const animatedComponents = makeAnimated();
 
-  let dropdownOptions = optionsArray.map((option) => {
-    return {
-      value: option.id,
-      label: option.name
-    };
+  let dropdownOptions = (optionsArray || []).map((option) => {
+    try {
+      return {
+        value: option.id,
+        label: option.name
+      };
+    } catch {
+      console.log('Oh No');
+    }
   });
 
   const customStyles = {

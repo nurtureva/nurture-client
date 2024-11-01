@@ -183,6 +183,16 @@
       }
     },
     {
+      "name": "Organizations",
+      "description": "Please select the organization(s) you are affiliated with:",
+      "Element": "SELECTOR",
+      "props": {
+        "dbName": "organizations",
+        "selection": "multiple",
+        "selectorType": "dropdown"
+      }
+    },
+    {
       "name": "Certifications",
       "description": "Select all that apply",
       "Element": "SELECTOR",
